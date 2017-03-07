@@ -1,11 +1,5 @@
 #!/usr/bin/env python2.7
 
-# If two elements in the tuple are equal (with value x)
-  # Delete the tuple
-  # Decrease all elements with value greater than x
-  # print "The tuple [] has been eliminated"
-# return knot  
-
 def remove_tuple(crossing, knot):  
   knot.remove(crossing)
   return knot
