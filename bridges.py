@@ -11,13 +11,6 @@ def alter_elements_greater_than(knot, value, increment):
         crossing[index] = element + increment
   return knot
 
-def has_twist(crossing):
-  duplicate_value = has_duplicate_value(crossing)
-  if duplicate_value:
-    return True
-  else:
-    return False
-
 def has_duplicate_value(crossing):
   sets = reduce(
     lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
