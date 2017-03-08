@@ -47,8 +47,23 @@ def has_duplicate_value(crossing):
     else:
         return False
 
-def simplify_rm1(knot):
+def simplify_rm1(twisted_crossings, knot):
     """Simplify one level of a knot by Reidemeister moves of type 1.
+
+    Arguments:
+    twisted_crossings -- a list of indices of crossings to eliminate
+    knot -- the PD notation of a knot
+    """
+    for index in twisted_crossings:
+        duplicate_value = has_duplicate_value(knot[index])
+        alter_elements_greater_than(knot, duplicate_value, -2)
+
+    remove_tuples(twisted_crossings, knot)
+    return knot
+
+def check_rm1(knot):
+    """Inspect a knot for crossings that can be eliminated
+    by Reidemeister moves of type 1.
 
     Arguments:
     knot -- the PD notation of a knot
@@ -58,10 +73,24 @@ def simplify_rm1(knot):
         duplicate_value = has_duplicate_value(crossing)
         if duplicate_value:
             twisted_crossings.append(index)
-            alter_elements_greater_than(knot, duplicate_value, -2)
     if twisted_crossings:
-        remove_tuples(twisted_crossings, knot)
-    return knot
+        return (twisted_crossings, knot)
+    else:
+        return False
+
+def simplify_rm1_recursive(knot):
+    """Simplify a knot by Reidemeister moves of type 1 until
+    no more moves are possible.
+
+    Arguments:
+    knot -- the PD notation of a knot
+    """
+    while True:
+        moves_possible = check_rm1(knot)
+        if moves_possible:
+            simplify_rm1(moves_possible[0], moves_possible[1])
+        if not moves_possible:
+            break;
 
 # Read in a CSV.
 with open('knots.csv') as csvfile:
@@ -73,5 +102,5 @@ with open('knots.csv') as csvfile:
         knot = ast.literal_eval(row['pd_notation'])
         # Check if the knot contains any twists.
         print 'the original knot is ' + str(knot)
-        simplify_rm1(knot)
+        simplify_rm1_recursive(knot)
         print 'the simplified knot is ' + str(knot)
