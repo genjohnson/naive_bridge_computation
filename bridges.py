@@ -3,10 +3,6 @@
 import ast
 import csv
 
-def remove_tuple(crossing, knot):
-    knot.remove(crossing)
-    return knot
-
 def remove_tuples(indices, knot):
     # Remove tuples from last to first to avoid changing
     # the index of tuples not yet processed.
