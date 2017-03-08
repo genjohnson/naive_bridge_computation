@@ -1,5 +1,8 @@
 #!/usr/bin/env python2.7
 
+import ast
+import csv
+
 def remove_tuple(crossing, knot):
     knot.remove(crossing)
     return knot
@@ -41,8 +44,6 @@ def simplify_all_rm1(knot):
     return knot
 
 # Read in a CSV.
-import ast
-import csv
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
     knotreader = csv.DictReader(csvfile)
