@@ -47,7 +47,7 @@ def has_duplicate_value(crossing):
     else:
         return False
 
-def simplify_all_rm1(knot):
+def simplify_rm1(knot):
     """Simplify one level of a knot by Reidemeister moves of type 1.
 
     Arguments:
@@ -73,5 +73,5 @@ with open('knots.csv') as csvfile:
         knot = ast.literal_eval(row['pd_notation'])
         # Check if the knot contains any twists.
         print 'the original knot is ' + str(knot)
-        simplify_all_rm1(knot)
+        simplify_rm1(knot)
         print 'the simplified knot is ' + str(knot)
