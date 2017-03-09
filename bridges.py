@@ -104,6 +104,7 @@ def simplify_rm1_recursive(knot):
             simplify_rm1(moves_possible[0], moves_possible[1])
         if not moves_possible:
             break;
+    return knot
 
 # Read in a CSV.
 with open('knots.csv') as csvfile:
