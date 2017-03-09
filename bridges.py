@@ -78,6 +78,11 @@ def check_rm1(knot):
     """Inspect a knot for crossings that can be eliminated
     by Reidemeister moves of type 1.
 
+    >>> check_rm1([[3, 6, 4, 1], [4, 2, 5, 1], [5, 2, 6, 3]])
+    False
+    >>> check_rm1([[1, 5, 2, 4],[3, 3, 4, 2],[6, 6, 7, 5],[8, 8, 1, 7]])
+    ([1, 2, 3], [[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
+
     Arguments:
     knot -- the PD notation of a knot
     """
