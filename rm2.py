@@ -49,6 +49,24 @@ def simplify_rm2(overlayed_crossings, removed_segments, knot):
     alter_elements_greater_than(knot, max(removed_segments)-2, -2)
     return knot
 
+def simplify_rm2_recursive(knot):
+    """Simplify a knot by Reidemeister moves of type 2 until
+    no more moves are possible.
+
+    >>> simplify_rm2_recursive([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
+    [[1, 3, 2, 2]]
+
+    Arguments:
+    knot -- the PD notation of a knot
+    """
+    while True:
+        moves_possible = check_rm2(knot)
+        if moves_possible:
+            simplify_rm2(moves_possible[0], moves_possible[1], knot)
+        if not moves_possible:
+            break;
+    return knot
+
 # Read in a CSV.
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
@@ -57,10 +75,9 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Evaluate strings containing Python lists.
         knot = ast.literal_eval(row['pd_notation'])
-        # Check if the knot contains an overlay.
-        overlay = check_rm2(knot)
-        if overlay:
-            simplify_rm2(overlay[0], overlay[1], knot)
+        # Simplify the knot by Reidemesiter moves of type 2.
+        simplify_rm2_recursive(knot)
+        print 'the simplified knot is ' + str(knot)
 
 if __name__ == '__main__':
     import doctest
