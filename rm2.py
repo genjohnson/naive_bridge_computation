@@ -2,6 +2,8 @@
 
 import ast
 import csv
+from common import alter_elements_greater_than
+from common import remove_tuples
 
 def check_rm2(knot):
     """Inspect a knot for crossings that can be eliminated
@@ -31,6 +33,22 @@ def check_rm2(knot):
     else:
         return False
 
+def simplify_rm2(overlayed_crossings, removed_segments, knot):
+    """Simplify a knot by one Reidemeister move of type 2.
+
+    >>> simplify_rm2([3,4],[8,4],[[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
+    [[1, 5, 2, 4], [2, 5, 3, 6], [3, 1, 4, 6]]
+
+    Arguments:
+    overlayed_crossings -- a list of indices of crossings to remove
+    removed_segments -- the segments to remove as part of the move
+    knot -- the PD notation of a knot
+    """
+    remove_tuples(overlayed_crossings, knot)
+    alter_elements_greater_than(knot, min(removed_segments), -2)
+    alter_elements_greater_than(knot, max(removed_segments)-2, -2)
+    return knot
+
 # Read in a CSV.
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
@@ -39,8 +57,10 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Evaluate strings containing Python lists.
         knot = ast.literal_eval(row['pd_notation'])
-        # Check if the knot contains any overlays.
-        check_rm2(knot)
+        # Check if the knot contains an overlay.
+        overlay = check_rm2(knot)
+        if overlay:
+            simplify_rm2(overlay[0], overlay[1], knot)
 
 if __name__ == '__main__':
     import doctest
