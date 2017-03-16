@@ -77,7 +77,6 @@ with open('knots.csv') as csvfile:
         knot = ast.literal_eval(row['pd_notation'])
         # Simplify the knot by Reidemesiter moves of type 2.
         simplify_rm2_recursive(knot)
-        print 'the simplified knot is ' + str(knot)
 
 if __name__ == '__main__':
     import doctest

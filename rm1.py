@@ -95,9 +95,7 @@ with open('knots.csv') as csvfile:
         # Evaluate strings containing Python lists.
         knot = ast.literal_eval(row['pd_notation'])
         # Check if the knot contains any twists.
-        print 'the original knot is ' + str(knot)
         simplify_rm1_recursive(knot)
-        print 'the simplified knot is ' + str(knot)
 
 if __name__ == '__main__':
     import doctest
