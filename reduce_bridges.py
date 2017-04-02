@@ -38,8 +38,8 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Evaluate strings containing Python lists.
         knot = [Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])]
-        check_rm1(knot)
         #print str(row['name']) +': the original knot is ' + str(knot)
+        simplify_rm1_recursive(knot)
         #simplify_rm1_rm2_recursivly(knot)
         #print str(row['name']) +': the final knot is ' + str(knot)
 
