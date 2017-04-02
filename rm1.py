@@ -7,13 +7,8 @@ from common import *
 def has_duplicate_value(crossing):
     """Find duplicate values in the PD notation of a crossing.
 
-    >>> has_duplicate_value([1, 2, 3, 4])
-    False
-    >>> has_duplicate_value([1, 2, 3, 3])
-    3
-
     Arguments:
-    crossing -- the PD notation of a crossing
+    crossing -- (list) the PD notation of a crossing
     """
     sets = reduce(
         lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
