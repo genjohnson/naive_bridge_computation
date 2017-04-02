@@ -2,8 +2,7 @@
 
 import ast
 import csv
-from common import alter_elements_greater_than
-from common import remove_tuples
+import common
 
 def has_duplicate_value(crossing):
     """Find duplicate values in the PD notation of a crossing.
