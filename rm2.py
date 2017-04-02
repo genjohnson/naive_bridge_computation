@@ -2,8 +2,7 @@
 
 import ast
 import csv
-from common import alter_elements_greater_than
-from common import remove_tuples
+from common import *
 
 def check_rm2(knot):
     """Inspect a knot for crossings that can be eliminated
