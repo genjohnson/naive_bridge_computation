@@ -10,6 +10,11 @@ class Crossing:
         self.pd_code = pd_code
         self.bridge = bridge
 
+class Knot:
+    def __init__(self, crossings):
+        self.crossings = crossings # crossings is a list of Crossing objects
+        self.pd_notation = [crossing.pd_code for crossing in self.crossings]
+
 def simplify_rm1_rm2_recursivly(knot):
     """Simplify a knot by Reidemeister moves of types 1 & 2 until
     no more moves are possible.
@@ -36,19 +41,13 @@ with open('knots.csv') as csvfile:
 
     for row in knotreader:
         # Evaluate strings containing Python lists.
-        knot = [Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])]
+        knot = Knot([Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])])
 
-        crossings = []
-        for crossing in knot:
-            crossings.append(crossing.pd_code)
-        print str(row['name']) +': the original knot is ' + str(crossings)
+        print str(row['name']) +': the original knot is ' + str(knot.pd_notation)
 
-        simplify_rm1_rm2_recursivly(knot)
+        #simplify_rm1_rm2_recursivly(knot)
 
-        crossings = []
-        for crossing in knot:
-            crossings.append(crossing.pd_code)
-        print str(row['name']) +': the final knot is ' + str(crossings)
+        print str(row['name']) +': the final knot is ' + str(knot.pd_notation)
 
 # if __name__ == '__main__':
 #     import doctest
