@@ -10,11 +10,11 @@ def alter_elements_greater_than(knot, value, increment):
     [[4, 2, 7, 1], [10, 8, 1, 7], [8, 3, 9, 4], [2, 9, 3, 10]]
 
     Arguments:
-    knot -- the knot in which to alter elements
-    value -- the integer against which to compare each element
-    increment -- the integer to add to all elements greater than value
+    knot -- (object) the knot in which to alter elements
+    value -- (int) the number against which to compare each element
+    increment -- (int) the number to add to all elements greater than value
     """
-    for place, crossing in enumerate(knot):
+    for place, crossing in enumerate(knot.crossings):
         for index, element in enumerate(crossing.pd_code):
             if element > value:
                 crossing.pd_code[index] = element + increment
