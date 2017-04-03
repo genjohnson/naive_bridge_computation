@@ -45,6 +45,7 @@ with open('knots.csv') as csvfile:
 
         print str(row['name']) +': the original knot is ' + str(knot.pd_notation)
 
+        check_rm1(knot)
         #simplify_rm1_rm2_recursivly(knot)
 
         print str(row['name']) +': the final knot is ' + str(knot.pd_notation)
