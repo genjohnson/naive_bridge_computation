@@ -22,7 +22,7 @@ class Crossing:
         """
         sets = reduce(
             lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
-            crossing.pd_code,
+            self.pd_code,
             (set(), set()))
         if sets[1]:
             return list(sets[1])[0]
@@ -32,6 +32,19 @@ class Crossing:
 class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
+
+    def has_rm1(self):
+        """Inspect a knot for crossings that can be eliminated
+        by Reidemeister moves of type 1.
+        """
+        twisted_crossings = []
+        for index, crossing in enumerate(self.crossings):
+            if crossing.has_duplicate_value():
+                twisted_crossings.append(index)
+        if twisted_crossings:
+            return (twisted_crossings, self)
+        else:
+            return False
 
     def remove_crossings(self, indices):
         """Remove crossings from a knot.
@@ -82,8 +95,8 @@ with open('knots.csv') as csvfile:
 
         #simplify_rm1_rm2_recursivly(knot)
 
-        for crossing in knot.crossings:
-            print crossing.has_duplicate_value()
+        if knot.has_rm1():
+            print 'the knot has at least one twist'
 
         print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
 

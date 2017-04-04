@@ -17,23 +17,6 @@ def simplify_rm1(twisted_crossings, knot):
     remove_tuples(twisted_crossings, knot)
     return knot
 
-def check_rm1(knot):
-    """Inspect a knot for crossings that can be eliminated
-    by Reidemeister moves of type 1.
-
-    Arguments:
-    knot -- (object) a knot
-    """
-    twisted_crossings = []
-    for index, crossing in enumerate(knot.crossings):
-        duplicate_value = has_duplicate_value(crossing.pd_code)
-        if duplicate_value:
-            twisted_crossings.append(index)
-    if twisted_crossings:
-        return (twisted_crossings, knot)
-    else:
-        return False
-
 def simplify_rm1_recursive(knot):
     """Simplify a knot by Reidemeister moves of type 1 until
     no more moves are possible.
