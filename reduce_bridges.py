@@ -14,6 +14,21 @@ class Crossing:
         self.pd_code = [x+addend if x > value else x for x in self.pd_code]
         return self
 
+    def has_duplicate_value(self):
+        """Determine if there are duplicate values in the PD notation of a crossing.
+
+        Arguments:
+        crossing -- (object) a crossing object
+        """
+        sets = reduce(
+            lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
+            crossing.pd_code,
+            (set(), set()))
+        if sets[1]:
+            return list(sets[1])[0]
+        else:
+            return False
+
 class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
@@ -68,7 +83,7 @@ with open('knots.csv') as csvfile:
         #simplify_rm1_rm2_recursivly(knot)
 
         for crossing in knot.crossings:
-            crossing.alter_elements_greater_than(4, -2)
+            print crossing.has_duplicate_value()
 
         print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
 

@@ -3,21 +3,6 @@
 import ast
 import csv
 
-def has_duplicate_value(crossing):
-    """Find duplicate values in the PD notation of a crossing.
-
-    Arguments:
-    crossing -- (list) the PD notation of a crossing
-    """
-    sets = reduce(
-        lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
-        crossing,
-        (set(), set()))
-    if sets[1]:
-        return list(sets[1])[0]
-    else:
-        return False
-
 def simplify_rm1(twisted_crossings, knot):
     """Simplify one level of a knot by Reidemeister moves of type 1.
 
