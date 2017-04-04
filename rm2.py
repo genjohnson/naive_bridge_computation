@@ -2,7 +2,6 @@
 
 import ast
 import csv
-from common import *
 
 def check_rm2(knot):
     """Inspect a knot for crossings that can be eliminated

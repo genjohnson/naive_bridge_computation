@@ -10,6 +10,10 @@ class Crossing:
         self.pd_code = pd_code
         self.bridge = bridge
 
+    def alter_elements_greater_than(self, value, addend):
+        self.pd_code = [x+addend if x > value else x for x in self.pd_code]
+        return self
+
 class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
@@ -61,8 +65,10 @@ with open('knots.csv') as csvfile:
 
         print str(row['name']) +': the original knot is ' + str(knot.pd_notation())
 
-        knot.remove_crossings([0, 1])
         #simplify_rm1_rm2_recursivly(knot)
+
+        for crossing in knot.crossings:
+            crossing.alter_elements_greater_than(4, -2)
 
         print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
 

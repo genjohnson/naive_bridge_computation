@@ -2,7 +2,6 @@
 
 import ast
 import csv
-from common import *
 
 def has_duplicate_value(crossing):
     """Find duplicate values in the PD notation of a crossing.
