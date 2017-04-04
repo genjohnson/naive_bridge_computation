@@ -13,7 +13,9 @@ class Crossing:
 class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
-        self.pd_notation = [crossing.pd_code for crossing in self.crossings]
+
+    def pd_notation(self):
+        return [crossing.pd_code for crossing in self.crossings]
 
 def simplify_rm1_rm2_recursivly(knot):
     """Simplify a knot by Reidemeister moves of types 1 & 2 until
@@ -43,12 +45,12 @@ with open('knots.csv') as csvfile:
         # Evaluate strings containing Python lists.
         knot = Knot([Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])])
 
-        print str(row['name']) +': the original knot is ' + str(knot.pd_notation)
+        print str(row['name']) +': the original knot is ' + str(knot.pd_notation())
 
-        check_rm1(knot)
+        knot2 = remove_tuples([0, 1], knot)
         #simplify_rm1_rm2_recursivly(knot)
 
-        print str(row['name']) +': the final knot is ' + str(knot.pd_notation)
+        print str(row['name']) +': the final knot is ' + str(knot2.pd_notation())
 
 # if __name__ == '__main__':
 #     import doctest

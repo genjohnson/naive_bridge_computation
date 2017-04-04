@@ -23,16 +23,16 @@ def alter_elements_greater_than(knot, value, increment):
 def remove_tuples(indices, knot):
     """Remove crossings from a knot.
 
-    >>> remove_tuples([1,3], [[4, 2, 5, 1], [8, 6, 1, 5], [6, 3, 7, 4], [2, 7, 3, 8]])
-    [[4, 2, 5, 1], [6, 3, 7, 4]]
-
     Arguments:
-    indices -- the list of indices of the crossings to remove
-    knot -- the knot from which to remove crossings
+    indices -- (list) the indices of the crossings to remove
+    knot -- (object) the knot from which to remove crossings
     """
     # Remove crossings from last to first to avoid changing
     # the index of crossings not yet processed.
+    crossings = knot.crossings
     indices.sort(reverse = True)
     for index in indices:
-        del(knot[index])
+        del crossings[index]
+    knot.crossings = crossings
+    
     return knot

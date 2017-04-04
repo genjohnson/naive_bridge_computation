@@ -22,17 +22,12 @@ def has_duplicate_value(crossing):
 def simplify_rm1(twisted_crossings, knot):
     """Simplify one level of a knot by Reidemeister moves of type 1.
 
-    >>> simplify_rm1([1, 2, 3], [[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
-    [[1, 3, 2, 2]]
-    >>> simplify_rm1([0], [[1, 1, 2, 2]])
-    []
-
     Arguments:
-    twisted_crossings -- a list of indices of crossings to eliminate
-    knot -- the PD notation of a knot
+    twisted_crossings -- (list) the indices of crossings to eliminate
+    knot -- (object) a knot
     """
     for index in twisted_crossings:
-        duplicate_value = has_duplicate_value(knot[index].pd_code)
+        duplicate_value = has_duplicate_value(knot.crossings[index].pd_code)
         alter_elements_greater_than(knot, duplicate_value, -2)
 
     remove_tuples(twisted_crossings, knot)

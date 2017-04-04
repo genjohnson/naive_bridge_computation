@@ -23,5 +23,13 @@ class Rm1TestCase(unittest.TestCase):
       knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,1,4,6],[5,3,6,2]]])
       self.assertFalse(check_rm1(knot))
 
+    def test_simplify_rm1(self):
+
+    >>> simplify_rm1([1, 2, 3], [[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
+    [[1, 3, 2, 2]]
+    >>> simplify_rm1([0], [[1, 1, 2, 2]])
+    []
+
+
 if __name__ == '__main__':
     unittest.main()
