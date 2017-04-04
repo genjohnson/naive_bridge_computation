@@ -19,20 +19,3 @@ def alter_elements_greater_than(knot, value, increment):
             if element > value:
                 crossing.pd_code[index] = element + increment
     return knot
-
-def remove_tuples(indices, knot):
-    """Remove crossings from a knot.
-
-    Arguments:
-    indices -- (list) the indices of the crossings to remove
-    knot -- (object) the knot from which to remove crossings
-    """
-    # Remove crossings from last to first to avoid changing
-    # the index of crossings not yet processed.
-    crossings = knot.crossings
-    indices.sort(reverse = True)
-    for index in indices:
-        del crossings[index]
-    knot.crossings = crossings
-    
-    return knot

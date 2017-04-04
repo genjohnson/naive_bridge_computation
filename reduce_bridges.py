@@ -14,6 +14,20 @@ class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
 
+    def remove_crossings(self, indices):
+        """Remove crossings from a knot.
+
+        Arguments:
+        indices -- (list) the indices of the crossings to remove
+        knot -- (object) the knot from which to remove crossings
+        """
+        # Remove crossings from last to first to avoid changing
+        # the index of crossings not yet processed.
+        indices.sort(reverse = True)
+        for index in indices:
+            del self.crossings[index]   
+        return self
+
     def pd_notation(self):
         return [crossing.pd_code for crossing in self.crossings]
 
@@ -47,10 +61,10 @@ with open('knots.csv') as csvfile:
 
         print str(row['name']) +': the original knot is ' + str(knot.pd_notation())
 
-        knot2 = remove_tuples([0, 1], knot)
+        knot.remove_crossings([0, 1])
         #simplify_rm1_rm2_recursivly(knot)
 
-        print str(row['name']) +': the final knot is ' + str(knot2.pd_notation())
+        print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
 
 # if __name__ == '__main__':
 #     import doctest
