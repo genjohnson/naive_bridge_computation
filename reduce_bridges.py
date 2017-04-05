@@ -69,10 +69,12 @@ class Knot:
         Arguments:
         twisted_crossings -- (list) the indices of crossings to eliminate
         """
+        crossings = self.crossings
         for index in twisted_crossings:
-            duplicate_value = self.crossings[index].has_duplicate_value
-            for crossing in knot.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, -2)
+            twisted_crossing = crossings[index]
+            duplicate_value = twisted_crossing.has_duplicate_value()
+            for index, crossing in enumerate(self.crossings):
+                self.crossings[index] = crossing.alter_elements_greater_than(duplicate_value, -2)
         self.remove_crossings(twisted_crossings)
         return self
 
