@@ -42,7 +42,7 @@ class Knot:
             if crossing.has_duplicate_value():
                 twisted_crossings.append(index)
         if twisted_crossings:
-            return (twisted_crossings, self)
+            return twisted_crossings
         else:
             return False
 
@@ -62,6 +62,19 @@ class Knot:
 
     def pd_notation(self):
         return [crossing.pd_code for crossing in self.crossings]
+
+    def simplify_rm1(self, twisted_crossings):
+        """Simplify one level of a knot by Reidemeister moves of type 1.
+
+        Arguments:
+        twisted_crossings -- (list) the indices of crossings to eliminate
+        """
+        for index in twisted_crossings:
+            duplicate_value = self.crossings[index].has_duplicate_value
+            for crossing in knot.crossings:
+                crossing.alter_elements_greater_than(duplicate_value, -2)
+        self.remove_crossings(twisted_crossings)
+        return self
 
 def simplify_rm1_rm2_recursivly(knot):
     """Simplify a knot by Reidemeister moves of types 1 & 2 until
@@ -95,9 +108,11 @@ with open('knots.csv') as csvfile:
 
         #simplify_rm1_rm2_recursivly(knot)
 
-        if knot.has_rm1():
+        twisted_crossings = knot.has_rm1()
+        if twisted_crossings:
             print 'the knot has at least one twist'
-
+            knot.simplify_rm1(twisted_crossings)
+            
         print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
 
 # if __name__ == '__main__':

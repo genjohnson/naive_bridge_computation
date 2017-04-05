@@ -3,20 +3,6 @@
 import ast
 import csv
 
-def simplify_rm1(twisted_crossings, knot):
-    """Simplify one level of a knot by Reidemeister moves of type 1.
-
-    Arguments:
-    twisted_crossings -- (list) the indices of crossings to eliminate
-    knot -- (object) a knot
-    """
-    for index in twisted_crossings:
-        duplicate_value = has_duplicate_value(knot.crossings[index].pd_code)
-        alter_elements_greater_than(knot, duplicate_value, -2)
-
-    remove_tuples(twisted_crossings, knot)
-    return knot
-
 def simplify_rm1_recursive(knot):
     """Simplify a knot by Reidemeister moves of type 1 until
     no more moves are possible.
