@@ -90,7 +90,7 @@ class Knot:
         self.remove_crossings(twisted_crossings)
         return self
 
-    def simplify_rm1_recursivly(self):
+    def simplify_rm1_recursively(self):
         """
         Simplify a knot by Reidemeister moves of type 1 until
         no more moves are possible.
@@ -108,12 +108,12 @@ class Knot:
                 break
         return self
 
-def simplify_rm1_rm2_recursivly(knot):
+def simplify_rm1_rm2_recursively(knot):
     """
     Simplify a knot by Reidemeister moves of types 1 & 2 until
     no more moves are possible.
 
-    >>> simplify_rm1_rm2_recursivly([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
+    >>> simplify_rm1_rm2_recursively([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
     []
 
     Arguments:
@@ -140,8 +140,8 @@ with open('knots.csv') as csvfile:
         print str(row['name'])
         print knot
 
-        #simplify_rm1_rm2_recursivly(knot)
-        knot.simplify_rm1_recursivly()
+        #simplify_rm1_rm2_recursively(knot)
+        knot.simplify_rm1_recursively()
             
         print knot
 
