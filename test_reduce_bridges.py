@@ -56,5 +56,12 @@ class SimplifyRm1TestCase(unittest.TestCase):
     knot.simplify_rm1([1,2,3])
     self.assertEqual(knot, Knot([Crossing([1,3,2,2],0)]))
     
+class SimplifyRm1RecursivelyTestCase(unittest.TestCase):
+  def testSimplifyRm1Recursively(self):
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1, 5, 2, 4], [3, 3, 4, 2], [7, 10, 8, 1], [8, 6, 9, 5], [9, 6, 10, 7]]])
+    knot.simplify_rm1_recursively()
+    answer = Knot([Crossing(pd_code, 0) for pd_code in [[3, 6, 4, 1], [4, 2, 5, 1], [5, 2, 6, 3]]])
+    self.assertEqual(knot, answer)
+
 if __name__ == '__main__':
   unittest.main()
