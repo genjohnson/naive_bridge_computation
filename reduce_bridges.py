@@ -13,14 +13,20 @@ class Crossing:
         return self.pd_code == other.pd_code and self.bridge == other.bridge
 
     def alter_elements_greater_than(self, value, addend):
+        """
+        Change the value of all elements in a Crossing which are greater
+        than the provided value.
+
+        Arguments:
+        value -- (int) The number to compare each element of the crossing with.
+        addend -- (int) The number to add to crossing elements greater than value.
+        """
         self.pd_code = [x+addend if x > value else x for x in self.pd_code]
         return self
 
     def has_duplicate_value(self):
-        """Determine if there are duplicate values in the PD notation of a crossing.
-
-        Arguments:
-        crossing -- (object) a crossing object
+        """
+        Determine if there are duplicate values in the PD notation of a crossing.
         """
         sets = reduce(
             lambda (u, d), o : (u.union([o]), d.union(u.intersection([o]))),
@@ -39,7 +45,8 @@ class Knot:
         return self.crossings == other.crossings
 
     def has_rm1(self):
-        """Inspect a knot for crossings that can be eliminated
+        """
+        Inspect a knot for crossings that can be eliminated
         by Reidemeister moves of type 1.
         """
         twisted_crossings = []
@@ -52,11 +59,11 @@ class Knot:
             return False
 
     def remove_crossings(self, indices):
-        """Remove crossings from a knot.
+        """
+        Remove crossings from a knot.
 
         Arguments:
         indices -- (list) the indices of the crossings to remove
-        knot -- (object) the knot from which to remove crossings
         """
         # Remove crossings from last to first to avoid changing
         # the index of crossings not yet processed.
@@ -69,7 +76,8 @@ class Knot:
         return [crossing.pd_code for crossing in self.crossings]
 
     def simplify_rm1(self, twisted_crossings):
-        """Simplify one level of a knot by Reidemeister moves of type 1.
+        """
+        Simplify one level of a knot by Reidemeister moves of type 1.
 
         Arguments:
         twisted_crossings -- (list) the indices of crossings to eliminate
@@ -83,7 +91,8 @@ class Knot:
         return self
 
     def simplify_rm1_recursivly(self):
-        """Simplify a knot by Reidemeister moves of type 1 until
+        """
+        Simplify a knot by Reidemeister moves of type 1 until
         no more moves are possible.
 
         >>> simplify_rm1_recursive([[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
@@ -100,7 +109,8 @@ class Knot:
         return self
 
 def simplify_rm1_rm2_recursivly(knot):
-    """Simplify a knot by Reidemeister moves of types 1 & 2 until
+    """
+    Simplify a knot by Reidemeister moves of types 1 & 2 until
     no more moves are possible.
 
     >>> simplify_rm1_rm2_recursivly([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
