@@ -2,7 +2,6 @@
 
 import ast
 import csv
-from rm1 import *
 from rm2 import *
 
 class Crossing:
