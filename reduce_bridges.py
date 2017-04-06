@@ -2,6 +2,9 @@
 
 import ast
 import csv
+import itertools
+from itertools import izip, islice
+import numpy
 from rm2 import *
 
 class Crossing:
@@ -61,6 +64,12 @@ class Knot:
         else:
             return False
 
+    def num_crossings(self):
+        """
+        Return the number of crossings in the knot.
+        """
+        return len(knot.crossings)
+
     def remove_crossings(self, indices):
         """
         Remove crossings from a knot.
@@ -102,6 +111,41 @@ class Knot:
             if not moves_possible:
                 break
         return self
+     
+    def has_rm2(self):
+        """
+        Inspect a knot for crossings that can be eliminated
+        by Reidemeister moves of type 2.
+        """
+
+        # for each crossing in the knot, if the next crossing matches one of 
+        # our two comparissions, then RM2 exists.
+
+
+
+        overlayed_crossings = []
+        removed_segments = []
+        for i in range(0, len(knot)-1):
+            if knot[i].pd_code[1] == knot[i+1].pd_code[2] and knot[i].pd_code[2] == knot[i+1].pd_code[1]:
+                overlayed_crossings = [i, i+1]
+                removed_segments = [knot[i].pd_code[1], knot[i].pd_code[2]]
+                return (overlayed_crossings, removed_segments)
+            elif knot[i].pd_code[2] == knot[i+1].pd_code[0] and knot[i].pd_code[3] == knot[i+1].pd_code[3]:
+                overlayed_crossings = [i, i+1]
+                removed_segments = [knot[i].pd_code[2], knot[i].pd_code[3]]
+                return (overlayed_crossings, removed_segments)
+        else:
+            return False
+
+
+def compare_two_crossings(crossing_a, crossing_b):
+    if crossing_a.pd_code[1] == crossing_b.pd_code[2] and crossing_a.pd_code[2] == crossing_b.pd_code[1]:
+        print 'the crossings form an arc -- check 1'
+    elif crossing_a.pd_code[2] == crossing_b.pd_code[0] and crossing_a.pd_code[3] == crossing_b.pd_code[3]:
+        print 'the crossings form an arc -- check 2'
+    else:
+        print 'the crossings do not form an arc'
+
 
 def simplify_rm1_rm2_recursively(knot):
     """
@@ -123,7 +167,9 @@ def simplify_rm1_rm2_recursively(knot):
             break;
     return knot
 
-# Read in a CSV.
+
+
+#Read in a CSV.
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
     knotreader = csv.DictReader(csvfile)
@@ -136,9 +182,8 @@ with open('knots.csv') as csvfile:
         print knot
 
         #simplify_rm1_rm2_recursively(knot)
-        knot.simplify_rm1_recursively()
-            
-        print knot
+        for current_item, next_item in izip(knot.crossings, numpy.roll(knot.crossings, -1)):
+            compare_two_crossings(current_item, next_item)
 
 # if __name__ == '__main__':
 #     import doctest
