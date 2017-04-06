@@ -44,6 +44,9 @@ class Knot:
     def __eq__(self, other):
         return self.crossings == other.crossings
 
+    def __str__(self):
+        return str([crossing.pd_code for crossing in self.crossings])
+
     def has_rm1(self):
         """
         Inspect a knot for crossings that can be eliminated
@@ -71,9 +74,6 @@ class Knot:
         for index in indices:
             del self.crossings[index]   
         return self
-
-    def pd_notation(self):
-        return [crossing.pd_code for crossing in self.crossings]
 
     def simplify_rm1(self, twisted_crossings):
         """
@@ -137,12 +137,13 @@ with open('knots.csv') as csvfile:
         # Evaluate strings containing Python lists.
         knot = Knot([Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])])
 
-        print str(row['name']) +': the original knot is ' + str(knot.pd_notation())
+        print str(row['name'])
+        print knot
 
         #simplify_rm1_rm2_recursivly(knot)
         knot.simplify_rm1_recursivly()
             
-        print str(row['name']) +': the final knot is ' + str(knot.pd_notation())
+        print knot
 
 # if __name__ == '__main__':
 #     import doctest
