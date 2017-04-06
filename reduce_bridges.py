@@ -9,6 +9,9 @@ class Crossing:
         self.pd_code = pd_code
         self.bridge = bridge
 
+    def __eq__(self, other):
+        return self.pd_code == other.pd_code and self.bridge == other.bridge
+
     def alter_elements_greater_than(self, value, addend):
         self.pd_code = [x+addend if x > value else x for x in self.pd_code]
         return self
@@ -31,6 +34,9 @@ class Crossing:
 class Knot:
     def __init__(self, crossings):
         self.crossings = crossings # crossings is a list of Crossing objects
+
+    def __eq__(self, other):
+        return self.crossings == other.crossings
 
     def has_rm1(self):
         """Inspect a knot for crossings that can be eliminated
