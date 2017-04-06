@@ -3,34 +3,6 @@
 import ast
 import csv
 
-def check_rm2(knot):
-    """Inspect a knot for crossings that can be eliminated
-    by Reidemeister moves of type 2.
-
-    >>> check_rm2([[1, 2, 3, 4], [1, 3, 2, 4], [5, 6, 7, 8], [7, 5, 6, 8]])
-    ([0, 1], [2, 3])
-    >>> check_rm2([[1, 2, 3, 4], [3, 1, 2, 4], [5, 6, 7, 8], [5, 7, 6, 8]])
-    ([0, 1], [3, 4])
-    >>> check_rm2([[1, 2, 3, 4], [1, 2, 3, 4]])
-    False
-
-    Arguments:
-    knot -- the PD notation of a knot
-    """
-    overlayed_crossings = []
-    removed_segments = []
-    for i in range(0, len(knot)-1):
-        if knot[i].pd_code[1] == knot[i+1].pd_code[2] and knot[i].pd_code[2] == knot[i+1].pd_code[1]:
-            overlayed_crossings = [i, i+1]
-            removed_segments = [knot[i].pd_code[1], knot[i].pd_code[2]]
-            return (overlayed_crossings, removed_segments)
-        elif knot[i].pd_code[2] == knot[i+1].pd_code[0] and knot[i].pd_code[3] == knot[i+1].pd_code[3]:
-            overlayed_crossings = [i, i+1]
-            removed_segments = [knot[i].pd_code[2], knot[i].pd_code[3]]
-            return (overlayed_crossings, removed_segments)
-    else:
-        return False
-
 def simplify_rm2(overlayed_crossings, removed_segments, knot):
     """Simplify a knot by one Reidemeister move of type 2.
 
