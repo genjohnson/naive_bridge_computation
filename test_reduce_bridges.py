@@ -49,6 +49,12 @@ class RemoveCrossingsTestCase(unittest.TestCase):
     knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,6,4,7],[5,1,6,8],[7,2,8,3]]])
     knot.remove_crossings([2,1,3])
     self.assertEqual(knot, Knot([Crossing([1,5,2,4],0)]))
+
+class SimplifyRm1TestCase(unittest.TestCase):
+  def testSimplifyRm1(self):
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]]])
+    knot.simplify_rm1([1,2,3])
+    self.assertEqual(knot, Knot([Crossing([1,3,2,2],0)]))
     
 if __name__ == '__main__':
   unittest.main()

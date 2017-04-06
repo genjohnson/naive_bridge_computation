@@ -85,7 +85,7 @@ class Knot:
         crossings = self.crossings
         for index in twisted_crossings:
             duplicate_value = self.crossings[index].has_duplicate_value()
-            for crossing in knot.crossings:
+            for crossing in self.crossings:
                 crossing.alter_elements_greater_than(duplicate_value, -2)
         self.remove_crossings(twisted_crossings)
         return self
