@@ -94,11 +94,6 @@ class Knot:
         """
         Simplify a knot by Reidemeister moves of type 1 until
         no more moves are possible.
-
-        >>> simplify_rm1_recursive([[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
-        []
-        >>> simplify_rm1_recursive([[1, 5, 2, 4], [3, 3, 4, 2], [7, 10, 8, 1], [8, 6, 9, 5], [9, 6, 10, 7]])
-        [[3, 6, 4, 1], [4, 2, 5, 1], [5, 2, 6, 3]]
         """
         while True:
             moves_possible = self.has_rm1()
