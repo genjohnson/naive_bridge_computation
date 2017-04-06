@@ -34,5 +34,15 @@ class HasDuplicateValueTestCase(unittest.TestCase):
       crossing = Crossing(pd_code, 0)
       self.assertEqual(crossing.has_duplicate_value(), False)
 
+# Tests for Knot methods
+class HasRm1TestCase(unittest.TestCase):
+  def testHasRm1(self):
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]]])
+    self.assertEqual(knot.has_rm1(), [1,2,3])
+
+  def testDoesNotHaveRm1(self):
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,1,4,6],[5,3,6,2]]])
+    self.assertEqual(knot.has_rm1(), False)
+
 if __name__ == '__main__':
   unittest.main()

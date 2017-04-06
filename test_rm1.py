@@ -7,14 +7,6 @@ from reduce_bridges import Crossing
 from reduce_bridges import Knot
 
 class Rm1TestCase(unittest.TestCase):
-    def test_check_rm1(self):
-      """Is a knot successfully determined to contain a twisted crossing?"""
-      knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,2,2,3]]])
-      self.assertNotEqual(check_rm1(knot), False)
-      """Is a knot successfully determined to contain no twisted crossings?"""
-      knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,1,4,6],[5,3,6,2]]])
-      self.assertFalse(check_rm1(knot))
-
     def test_simplify_rm1(self):
 
     >>> simplify_rm1([1, 2, 3], [[1, 5, 2, 4], [3, 3, 4, 2], [6, 6, 7, 5], [8, 8, 1, 7]])
