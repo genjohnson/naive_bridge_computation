@@ -75,17 +75,19 @@ class Knot:
         """
         crossings_formings_arcs = []
         pd_code_segments_to_eliminate = []
-        for current_crossing, next_crossing in izip(self.crossings, numpy.roll(self.crossings, -1)):
+        rolled_crossings = numpy.roll(self.crossings, -1)
+        num_crossings = len(self.crossings)
+        for index, current_crossing in enumerate(self.crossings):
+            next_index = (index+1)%num_crossings
+            next_crossing = self.crossings[next_index]
+            # Type 1
             if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
-                crossings_formings_arcs.append(current_crossing)
-                crossings_formings_arcs.append(next_crossing)
-                pd_code_segments_to_eliminate.append(current_crossing.pd_code[1])
-                pd_code_segments_to_eliminate.append(current_crossing.pd_code[2])
+                crossings_formings_arcs.extend([index, next_index])
+                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+            # Type 2
             elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
-                crossings_formings_arcs.append(current_crossing)
-                crossings_formings_arcs.append(next_crossing)
-                pd_code_segments_to_eliminate.append(current_crossing.pd_code[2])
-                pd_code_segments_to_eliminate.append(current_crossing.pd_code[3])
+                crossings_formings_arcs.extend([index, next_index])
+                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
         if crossings_formings_arcs:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:

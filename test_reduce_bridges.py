@@ -40,6 +40,15 @@ class HasRm1TestCase(unittest.TestCase):
     knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]]])
     self.assertEqual(knot.has_rm1(), [1,2,3])
 
+  def testHasRm2(self):
+    # The first and last tuple form an arc of type 2.
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[2,5,3,6],[6,3,1,4]]])
+    self.assertEqual(knot.has_rm2(), ([2,0], [1,4]))
+
+    # Consecutive tuples form an arc of type 2.
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,4,2,5],[5,2,6,3],[6,4,1,3]]])
+    self.assertEqual(knot.has_rm2(), ([1,2], [6,3]))
+
   def testDoesNotHaveRm1(self):
     knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,5,2,4],[3,1,4,6],[5,3,6,2]]])
     self.assertEqual(knot.has_rm1(), False)
