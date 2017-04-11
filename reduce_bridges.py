@@ -141,6 +141,19 @@ class Knot:
                 break
         return self
 
+    def simplify_rm2(self, crossing_indices, segments_to_eliminate):
+        """Simplify a knot by one Reidemeister move of type 2.
+
+        Arguments:
+        crossing_indices -- (list) the indices of crossings to remove
+        segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
+        """
+        self.remove_crossings(crossing_indices)
+        for crossing in self.crossings:
+            crossing.alter_elements_greater_than(min(segments_to_eliminate), -2)
+            crossing.alter_elements_greater_than(max(segments_to_eliminate)-2, -2)
+        return self
+
 def simplify_rm1_rm2_recursively(knot):
     """
     Simplify a knot by Reidemeister moves of types 1 & 2 until
