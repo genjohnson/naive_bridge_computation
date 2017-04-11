@@ -165,25 +165,19 @@ class Knot:
                 break;
         return self
 
-def simplify_rm1_rm2_recursively(knot):
-    """
-    Simplify a knot by Reidemeister moves of types 1 & 2 until
-    no more moves are possible.
-
-    >>> simplify_rm1_rm2_recursively([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
-    []
-
-    Arguments:
-    knot -- the PD notation of a knot
-    """
-    while True:
-        if check_rm1(knot):
-            simplify_rm1_recursive(knot)
-        if check_rm2(knot):
-            simplify_rm2_recursive(knot)
-        if not check_rm1(knot) and not check_rm2(knot):
-            break;
-    return knot
+    def simplify_rm1_rm2_recursively(self):
+        """
+        Simplify a knot by Reidemeister moves of types 1 & 2 until
+        no more moves are possible.
+        """
+        while True:
+            if self.has_rm1():
+                self.simplify_rm1_recursively()
+            if self.has_rm2():
+                self.simplify_rm2_recursively()
+            if not self.has_rm1() and not self.has_rm2():
+                break;
+        return self
 
 
 
