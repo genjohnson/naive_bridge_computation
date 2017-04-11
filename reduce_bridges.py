@@ -195,7 +195,3 @@ with open('knots.csv') as csvfile:
         knot.has_rm2()
 
         #simplify_rm1_rm2_recursively(knot)
-
-# if __name__ == '__main__':
-#     import doctest
-#     doctest.testmod()
