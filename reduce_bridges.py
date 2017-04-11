@@ -5,7 +5,6 @@ import csv
 import itertools
 from itertools import izip, islice
 import numpy
-from rm2 import *
 
 class Crossing:
     def __init__(self, pd_code, bridge):
@@ -185,6 +184,8 @@ def simplify_rm1_rm2_recursively(knot):
         if not check_rm1(knot) and not check_rm2(knot):
             break;
     return knot
+
+
 
 #Read in a CSV.
 with open('knots.csv') as csvfile:
