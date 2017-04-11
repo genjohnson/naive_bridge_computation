@@ -3,22 +3,6 @@
 import ast
 import csv
 
-def simplify_rm2(overlayed_crossings, removed_segments, knot):
-    """Simplify a knot by one Reidemeister move of type 2.
-
-    >>> simplify_rm2([3,4],[8,4],[[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
-    [[1, 5, 2, 4], [2, 5, 3, 6], [3, 1, 4, 6]]
-
-    Arguments:
-    overlayed_crossings -- a list of indices of crossings to remove
-    removed_segments -- the segments to remove as part of the move
-    knot -- the PD notation of a knot
-    """
-    remove_tuples(overlayed_crossings, knot)
-    alter_elements_greater_than(knot, min(removed_segments), -2)
-    alter_elements_greater_than(knot, max(removed_segments)-2, -2)
-    return knot
-
 def simplify_rm2_recursive(knot):
     """Simplify a knot by Reidemeister moves of type 2 until
     no more moves are possible.
