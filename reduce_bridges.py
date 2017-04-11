@@ -179,8 +179,6 @@ class Knot:
                 break;
         return self
 
-
-
 #Read in a CSV.
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
@@ -192,6 +190,5 @@ with open('knots.csv') as csvfile:
 
         print str(row['name'])
         print knot
-        knot.has_rm2()
-
-        #simplify_rm1_rm2_recursively(knot)
+        knot.simplify_rm1_rm2_recursively()
+        print knot
