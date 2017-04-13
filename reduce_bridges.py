@@ -25,10 +25,8 @@ class Crossing:
         def alter_and_mod(x, value, addend, maximum):
             if x > value:
                 if x <= maximum-addend:
-                    print 'we perform ' + str(x) + '+' + str(addend)
                     x += addend
                 else:
-                    print 'we perform ' + str(x) + '%' + str(maximum)
                     x = (x+addend)%maximum
             return x
 
