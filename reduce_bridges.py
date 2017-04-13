@@ -12,7 +12,7 @@ class Crossing:
     def __eq__(self, other):
         return self.pd_code == other.pd_code and self.bridge == other.bridge
 
-    def alter_elements_greater_than(self, value, addend):
+    def alter_elements_greater_than(self, value, addend, maximum):
         """
         Change the value of all elements in a Crossing which are greater
         than the provided value.
@@ -20,8 +20,17 @@ class Crossing:
         Arguments:
         value -- (int) The number to compare each element of the crossing with.
         addend -- (int) The number to add to crossing elements greater than value.
+        maximum -- (int) The maximum allowed value of elements in the crossing.
         """
-        self.pd_code = [x+addend if x > value else x for x in self.pd_code]
+        def alter_and_mod(x, value, addend, maximum):
+            if x > value:
+                if x <= maximum-addend:
+                    x += addend
+                else:
+                    x = (x+addend)%maximum
+            return x
+
+        self.pd_code = [alter_and_mod(x, value, addend, maximum) for x in self.pd_code]
         return self
 
     def has_duplicate_value(self):
@@ -122,7 +131,7 @@ class Knot:
         for index in twisted_crossings:
             duplicate_value = self.crossings[index].has_duplicate_value()
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, -2)
+                crossing.alter_elements_greater_than(duplicate_value, -2, len(self.crossings)*2)
         self.remove_crossings(twisted_crossings)
         return self
 
@@ -147,9 +156,17 @@ class Knot:
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
         self.remove_crossings(crossing_indices)
-        for crossing in self.crossings:
-            crossing.alter_elements_greater_than(min(segments_to_eliminate), -2)
-            crossing.alter_elements_greater_than(max(segments_to_eliminate)-2, -2)
+
+        if 1 in segments_to_eliminate:
+            print 'our new case for RM 2'
+            for crossing in self.crossings:
+                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, len(self.crossings)*2)
+                crossing.alter_elements_greater_than(min(segments_to_eliminate), -1, len(self.crossings)*2)
+        else:
+            for crossing in self.crossings:
+                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, len(self.crossings)*2)
+                crossing.alter_elements_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
+        print self
         return self
 
     def simplify_rm2_recursively(self):
