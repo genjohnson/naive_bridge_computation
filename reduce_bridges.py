@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
 
 import itertools
-from itertools import izip, islice
 import numpy
 
 class Crossing:
