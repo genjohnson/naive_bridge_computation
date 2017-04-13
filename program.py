@@ -11,9 +11,10 @@ with open('knots.csv') as csvfile:
 
     for row in knotreader:
         # Evaluate strings containing Python lists.
-        knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']))
+        knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
 
-        print str(row['name'])
-        print knot
+        print '----------------'
+        print knot.name
+        print 'in:  ' + str(knot)
         knot.simplify_rm1_rm2_recursively()
-        print knot
+        print 'out: ' + str(knot)

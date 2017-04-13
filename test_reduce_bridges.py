@@ -99,7 +99,7 @@ class SimplifyRm2TestCase(unittest.TestCase):
     # One of the segments to be removed is 1.
     knot = create_knot_from_pd_code([[2,12,3,11],[3,10,4,11],[4,5,5,6],[6,1,7,2],[7,1,8,14],[8,13,9,14],[9,13,10,12]])
     knot.simplify_rm2([3,4], [7,1])
-    answer = create_knot_from_pd_code([[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]])
+    answer = create_knot_from_pd_code([[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]], 'answer')
     self.assertEqual(knot, answer)
 
 class SimplifyRm2RecursivelyTestCase(unittest.TestCase):

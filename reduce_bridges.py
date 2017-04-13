@@ -47,7 +47,8 @@ class Crossing:
             return False
 
 class Knot:
-    def __init__(self, crossings):
+    def __init__(self, crossings, name = None):
+        self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
 
     def __eq__(self, other):
@@ -192,11 +193,11 @@ class Knot:
                 break;
         return self
 
-def create_knot_from_pd_code(pd_code):
+def create_knot_from_pd_code(pd_code, name = None):
     """
     Create a Knot object using a provided PD code.
 
     Arguments:
     pd_code -- (list) the PD notation of a knot expressed as a list of lists
     """
-    return Knot([Crossing(crossing) for crossing in pd_code])
+    return Knot([Crossing(crossing) for crossing in pd_code], name)
