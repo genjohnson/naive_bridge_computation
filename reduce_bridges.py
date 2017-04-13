@@ -25,8 +25,10 @@ class Crossing:
         def alter_and_mod(x, value, addend, maximum):
             if x > value:
                 if x <= maximum-addend:
+                    print 'we perform ' + str(x) + '+' + str(addend)
                     x += addend
                 else:
+                    print 'we perform ' + str(x) + '%' + str(maximum)
                     x = (x+addend)%maximum
             return x
 
@@ -95,7 +97,6 @@ class Knot:
                 crossings_formings_arcs.extend([index, next_index])
                 pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
         if crossings_formings_arcs:
-            print 'pd_code_segments_to_eliminate are ' + str(pd_code_segments_to_eliminate)
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
             return False
@@ -158,15 +159,13 @@ class Knot:
         self.remove_crossings(crossing_indices)
 
         if 1 in segments_to_eliminate:
-            print 'our new case for RM 2'
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, len(self.crossings)*2)
+                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
                 crossing.alter_elements_greater_than(min(segments_to_eliminate), -1, len(self.crossings)*2)
         else:
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, len(self.crossings)*2)
+                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
                 crossing.alter_elements_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
-        print self
         return self
 
     def simplify_rm2_recursively(self):
@@ -188,17 +187,9 @@ class Knot:
         """
         while True:
             if self.has_rm1():
-                print 'has_rm1'
-                print self
                 self.simplify_rm1_recursively()
-                print 'after has_rm1'
-                print self
             if self.has_rm2():
-                print 'has_rm2'
-                print self
                 self.simplify_rm2_recursively()
-                print 'after has_rm2'
-                print self
             if not self.has_rm1() and not self.has_rm2():
                 break;
         return self

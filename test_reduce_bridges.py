@@ -88,19 +88,22 @@ class SimplifyRm1Rm2RecursivelyTestCase(unittest.TestCase):
     answer = Knot([])
     self.assertEqual(knot, answer)
 
-# class SimplifyRm2TestCase(unittest.TestCase):
-#   def testSimplifyRm2(self):
-#     knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]]])
-#     knot.simplify_rm2([3,4], [8,4])
-#     answer = Knot([Crossing(pd_code, 0) for pd_code in [[1, 5, 2, 4], [2, 5, 3, 6], [3, 1, 4, 6]]])
-#     self.assertEqual(knot, answer)
+class SimplifyRm2TestCase(unittest.TestCase):
+  def testSimplifyRm2(self):
+    print '---------------'
+    knot = Knot([Crossing(pd_code, 0) for pd_code in [[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]]])
+    knot.simplify_rm2([3,4], [8,4])
+    print 'knot is ' + str(knot)
+    answer = Knot([Crossing(pd_code, 0) for pd_code in [[1, 5, 2, 4], [2, 5, 3, 6], [3, 1, 4, 6]]])
+    print 'answer is ' + str(answer)
+    self.assertEqual(knot, answer)
 
-#     # One of the segments to be removed is 1.
-#     knot = Knot([Crossing(pd_code, 0) for pd_code in [[2,12,3,11],3,10,4,11],[4,5,5,6],[6,1,7,2],[7,1,8,14],[8,13,9,14],[9,13,10,12]])
-#     knot.simplify_rm2([3,4], [7,1])
-#     crossing_indices, segments_to_eliminate
-#     answer = Knot([Crossing(pd_code, 0) for pd_code in [[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]]])
-#     self.assertEqual(knot, answer)
+    # # One of the segments to be removed is 1.
+    # knot = Knot([Crossing(pd_code, 0) for pd_code in [[2,12,3,11],3,10,4,11],[4,5,5,6],[6,1,7,2],[7,1,8,14],[8,13,9,14],[9,13,10,12]])
+    # knot.simplify_rm2([3,4], [7,1])
+    # crossing_indices, segments_to_eliminate
+    # answer = Knot([Crossing(pd_code, 0) for pd_code in [[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]]])
+    # self.assertEqual(knot, answer)
 
 # class SimplifyRm2RecursivelyTestCase(unittest.TestCase):
 #   def testSimplifyRm2Recursively(self):
