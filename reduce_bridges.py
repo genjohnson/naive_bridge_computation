@@ -1,7 +1,5 @@
 #!/usr/bin/env python2.7
 
-import ast
-import csv
 import itertools
 from itertools import izip, islice
 import numpy
@@ -88,6 +86,7 @@ class Knot:
                 crossings_formings_arcs.extend([index, next_index])
                 pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
         if crossings_formings_arcs:
+            print 'pd_code_segments_to_eliminate are ' + str(pd_code_segments_to_eliminate)
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
             return False
@@ -172,23 +171,17 @@ class Knot:
         """
         while True:
             if self.has_rm1():
+                print 'has_rm1'
+                print self
                 self.simplify_rm1_recursively()
+                print 'after has_rm1'
+                print self
             if self.has_rm2():
+                print 'has_rm2'
+                print self
                 self.simplify_rm2_recursively()
+                print 'after has_rm2'
+                print self
             if not self.has_rm1() and not self.has_rm2():
                 break;
         return self
-
-#Read in a CSV.
-with open('knots.csv') as csvfile:
-    fieldnames = ['name', 'pd_notation']
-    knotreader = csv.DictReader(csvfile)
-
-    for row in knotreader:
-        # Evaluate strings containing Python lists.
-        knot = Knot([Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])])
-
-        print str(row['name'])
-        print knot
-        knot.simplify_rm1_rm2_recursively()
-        print knot
