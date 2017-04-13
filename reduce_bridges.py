@@ -191,3 +191,12 @@ class Knot:
             if not self.has_rm1() and not self.has_rm2():
                 break;
         return self
+
+def create_knot_from_pd_code(pd_code):
+    """
+    Create a Knot object using a provided PD code.
+
+    Arguments:
+    pd_code -- (list) the PD notation of a knot expressed as a list of lists
+    """
+    return Knot([Crossing(crossing) for crossing in pd_code])
