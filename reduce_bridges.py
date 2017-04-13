@@ -5,7 +5,7 @@ from itertools import izip, islice
 import numpy
 
 class Crossing:
-    def __init__(self, pd_code, bridge):
+    def __init__(self, pd_code, bridge = 0):
         self.pd_code = pd_code
         self.bridge = bridge
 

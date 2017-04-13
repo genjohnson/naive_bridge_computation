@@ -11,7 +11,7 @@ with open('knots.csv') as csvfile:
 
     for row in knotreader:
         # Evaluate strings containing Python lists.
-        knot = Knot([Crossing(pd_code, 0) for pd_code in ast.literal_eval(row['pd_notation'])])
+        knot = Knot([Crossing(pd_code) for pd_code in ast.literal_eval(row['pd_notation'])])
 
         print str(row['name'])
         print knot
