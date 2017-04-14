@@ -20,10 +20,12 @@ with open('knots.csv') as csvfile:
         knot.simplify_rm1_rm2_recursively()
         print 'out: ' + str(knot)
 
-
-        print json.dumps(knot, default=ObjectEncoder)
+        #print json.dumps(knot, default=ObjectEncoder)
+        for crossing in knot.crossings:
+            print json.dumps(crossing, default=ObjectEncoder)
         
-        #print json.dumps(knot, cls=KnotEncoder)
+
+        #print json.dumps(knot, default=ObjectEncoder)
 
         #with open('output.json', 'w') as outfile:
-            #json.dump(knot, cls=KnotEncoder, outfile)
+         #   json.dump(knot, outfile)
