@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import itertools
+from json import JSONEncoder
 import numpy
 
 class Crossing:
@@ -44,6 +45,9 @@ class Crossing:
             return list(sets[1])[0]
         else:
             return False
+
+    def json(self):
+        return self.__dict__
 
 class Knot:
     def __init__(self, crossings, name = None):
@@ -98,6 +102,9 @@ class Knot:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
             return False
+
+    def json(self):
+        return self.name
 
     def num_crossings(self):
         """
@@ -191,6 +198,34 @@ class Knot:
             if not self.has_rm1() and not self.has_rm2():
                 break;
         return self
+
+class CrossingEncoder(JSONEncoder):
+    def default(self, o):
+       try:
+           iterable = iter(o)
+       except TypeError:
+           pass
+       else:
+           return list(iterable)
+       # Let the base class default method raise the TypeError
+       return JSONEncoder.default(self, o)
+
+class KnotEncoder(JSONEncoder):
+    def default(self, o):
+       try:
+           iterable = iter(o)
+       except TypeError:
+           pass
+       else:
+           return list(iterable)
+       # Let the base class default method raise the TypeError
+       return JSONEncoder.default(self, o)
+
+def ObjectEncoder(Obj):
+    if hasattr(Obj, 'json'):
+        return Obj.json()
+    else:
+        raise TypeError, 'Object of type %s with value of %s is not JSON serializable' % (type(Obj), repr(Obj))
 
 def create_knot_from_pd_code(pd_code, name = None):
     """

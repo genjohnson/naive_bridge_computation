@@ -2,6 +2,7 @@
 
 import ast
 import csv
+import json
 from reduce_bridges import *
 
 #Read in a CSV.
@@ -18,3 +19,11 @@ with open('knots.csv') as csvfile:
         print 'in:  ' + str(knot)
         knot.simplify_rm1_rm2_recursively()
         print 'out: ' + str(knot)
+
+
+        print json.dumps(knot, default=ObjectEncoder)
+        
+        #print json.dumps(knot, cls=KnotEncoder)
+
+        #with open('output.json', 'w') as outfile:
+            #json.dump(knot, cls=KnotEncoder, outfile)
