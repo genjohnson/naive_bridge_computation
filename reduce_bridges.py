@@ -104,7 +104,7 @@ class Knot:
             return False
 
     def json(self):
-        return self.name
+        return dict(name=self.name, crossings=self.crossings) 
 
     def num_crossings(self):
         """
@@ -199,33 +199,12 @@ class Knot:
                 break;
         return self
 
-class CrossingEncoder(JSONEncoder):
-    def default(self, o):
-       try:
-           iterable = iter(o)
-       except TypeError:
-           pass
-       else:
-           return list(iterable)
-       # Let the base class default method raise the TypeError
-       return JSONEncoder.default(self, o)
-
-class KnotEncoder(JSONEncoder):
-    def default(self, o):
-       try:
-           iterable = iter(o)
-       except TypeError:
-           pass
-       else:
-           return list(iterable)
-       # Let the base class default method raise the TypeError
-       return JSONEncoder.default(self, o)
-
-def ObjectEncoder(Obj):
-    if hasattr(Obj, 'json'):
-        return Obj.json()
-    else:
-        raise TypeError, 'Object of type %s with value of %s is not JSON serializable' % (type(Obj), repr(Obj))
+class ComplexEncoder(JSONEncoder):
+    def default(self, obj):
+        if hasattr(obj,'json'):
+            return obj.json()
+        else:
+            return json.JSONEncoder.default(self, obj)
 
 def create_knot_from_pd_code(pd_code, name = None):
     """

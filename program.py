@@ -5,27 +5,25 @@ import csv
 import json
 from reduce_bridges import *
 
-#Read in a CSV.
+# Stub for our output JSON file.
+knot_output = {"knots":[]}
+
+# Read in a CSV.
 with open('knots.csv') as csvfile:
     fieldnames = ['name', 'pd_notation']
     knotreader = csv.DictReader(csvfile)
 
+    # Perform actions on each row of the input CSV.
     for row in knotreader:
-        # Evaluate strings containing Python lists.
+        # Create a knot object.
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
-
-        print '----------------'
-        print knot.name
-        print 'in:  ' + str(knot)
+        # Simplify the knot.
         knot.simplify_rm1_rm2_recursively()
-        print 'out: ' + str(knot)
+        # Add the results to our output.
+        knot_output['knots'].append(knot.json())
+        # Output a message that the knot has been processed.
+        print 'processed ' + knot.name
 
-        #print json.dumps(knot, default=ObjectEncoder)
-        for crossing in knot.crossings:
-            print json.dumps(crossing, default=ObjectEncoder)
-        
-
-        #print json.dumps(knot, default=ObjectEncoder)
-
-        #with open('output.json', 'w') as outfile:
-         #   json.dump(knot, outfile)
+# Write the results to our output JSON file.
+with open('output.json', mode='w') as outfile:
+    json.dump(knot_output, outfile, indent=2, cls=ComplexEncoder)
