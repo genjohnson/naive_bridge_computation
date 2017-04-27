@@ -111,7 +111,7 @@ class Knot:
             return False
 
     def json(self):
-        return dict(name=self.name, crossings=self.crossings) 
+        return dict(name = self.name, crossings = self.crossings)
 
     def num_crossings(self):
         """
