@@ -5,7 +5,7 @@ from json import JSONEncoder
 import numpy
 
 class Crossing:
-    def __init__(self, pd_code, bridge = 0):
+    def __init__(self, pd_code, bridge = None):
         self.pd_code = pd_code
         self.bridge = bridge
 
@@ -53,10 +53,10 @@ class Crossing:
         return self.__dict__
 
 class Knot:
-    def __init__(self, crossings, name = None, bridges = {}, free_crossings = []):
+    def __init__(self, crossings, name = None, bridges = [], free_crossings = []):
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
-        self.bridges = {}
+        self.bridges = bridges
         self.free_crossings = crossings
 
     def __eq__(self, other):
