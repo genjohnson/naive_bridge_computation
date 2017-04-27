@@ -12,6 +12,9 @@ class Crossing:
     def __eq__(self, other):
         return self.pd_code == other.pd_code and self.bridge == other.bridge
 
+    def __str__(self):
+        return str([self.pd_code, self.bridge])
+
     def alter_elements_greater_than(self, value, addend, maximum):
         """
         Change the value of all elements in a Crossing which are greater
