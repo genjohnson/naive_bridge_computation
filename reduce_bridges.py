@@ -53,9 +53,11 @@ class Crossing:
         return self.__dict__
 
 class Knot:
-    def __init__(self, crossings, name = None):
+    def __init__(self, crossings, name = None, bridges = {}, free_crossings = []):
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
+        self.bridges = {}
+        self.free_crossings = crossings
 
     def __eq__(self, other):
         return self.crossings == other.crossings
