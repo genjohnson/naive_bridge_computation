@@ -113,7 +113,7 @@ class Knot:
         """
         Return the number of crossings in the knot.
         """
-        return len(knot.crossings)
+        return len(self.crossings)
 
     def remove_crossings(self, indices):
         """
