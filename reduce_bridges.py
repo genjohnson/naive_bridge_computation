@@ -60,7 +60,9 @@ class Knot:
         self.free_crossings = crossings
 
     def __eq__(self, other):
-        return self.crossings == other.crossings
+        same_crossings = self.crossings == other.crossings
+        same_free_crossings = self.free_crossings == other.free_crossings
+        return same_crossings and same_free_crossings
 
     def __str__(self):
         return str([crossing.pd_code for crossing in self.crossings])
@@ -117,18 +119,19 @@ class Knot:
         """
         return len(self.crossings)
 
-    def remove_crossings(self, indices):
+    def delete_crossings(self, indices):
         """
-        Remove crossings from a knot.
+        Delete crossings from a knot.
+        This removes objects from both knot.crossings and knot.free_crossings.
 
         Arguments:
-        indices -- (list) the indices of the crossings to remove
+        indices -- (list) the indices of the crossings to delete
         """
-        # Remove crossings from last to first to avoid changing
+        # Delete crossings from last to first to avoid changing
         # the index of crossings not yet processed.
         indices.sort(reverse = True)
         for index in indices:
-            del self.crossings[index]   
+            del self.crossings[index]
         return self
 
     def simplify_rm1(self, twisted_crossings):
@@ -143,7 +146,7 @@ class Knot:
             duplicate_value = self.crossings[index].has_duplicate_value()
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(duplicate_value, -2, len(self.crossings)*2)
-        self.remove_crossings(twisted_crossings)
+        self.delete_crossings(twisted_crossings)
         return self
 
     def simplify_rm1_recursively(self):
@@ -166,7 +169,7 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
-        self.remove_crossings(crossing_indices)
+        self.delete_crossings(crossing_indices)
 
         if 1 in segments_to_eliminate:
             for crossing in self.crossings:
