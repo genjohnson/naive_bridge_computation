@@ -168,6 +168,7 @@ class Knot:
                         bridge[index] = crossing.pd_code[1]
                         x = crossing.pd_code[1]
                     self.free_crossings.remove(crossing)
+                    crossing.bridge = bridge_index
                 else:
                     x_is_deadend = True
 
