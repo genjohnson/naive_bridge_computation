@@ -134,6 +134,32 @@ class Knot:
             del self.crossings[index]
         return self
 
+    def designate_bridge(self, crossing):
+        """
+        Identify a crossing as a bridge and extend until it deadends.
+
+        Arguments:
+        crossing -- (obj) a crossing
+        """
+        self.bridges.append((crossing.pd_code[1], crossing.pd_code[3]))
+        self.free_crossings.remove(crossing)
+        crossing.bridge = len(self.bridges) - 1
+        self.extend_bridge(crossing.bridge)
+
+    def extend_bridge(self, bridge_index):
+        """
+        Extend both ends of a bridge until it deadends.
+
+        Arguments:
+        bridge_index -- (int) the index of the bridge to extend
+        """
+        bridge = self.bridges[bridge_index]
+        for x in bridge:
+            for crossing in self.free_crossings:
+                if x in crossing.pd_code and (x == crossing.pd_code[1] or x == crossing.pd_code[3]):
+                    print str(x) + ' is in the crossing ' + str(crossing) + ' and the bridge can be expanded'
+                    break
+
     def simplify_rm1(self, twisted_crossings):
         """
         Simplify one level of a knot by Reidemeister moves of type 1.

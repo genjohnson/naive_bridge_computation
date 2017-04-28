@@ -20,14 +20,12 @@ with open('knots.csv') as csvfile:
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
-        # Pick initial bridges.
+        # Designate initial bridges.
         if (knot.num_crossings() > 0):
-            # Pick the first crossing as a bridge.
+            # Designate the first crossing as a bridge.
             knot.designate_bridge(knot.crossings[0])
-            knot.extend_bridge(0)
 
-            # Pick the crossing which forms a "T" with the first bridge.
-
+            # Designate another bridge which forms a "T" with the first bridge.
 
             print str(knot.bridges)
 
