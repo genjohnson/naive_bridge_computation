@@ -21,7 +21,7 @@ with open('knots.csv') as csvfile:
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
         # Designate initial bridges.
-        if (knot.num_crossings() > 0):
+        if (knot.num_crossings() > 1):
             # Designate the first crossing as a bridge.
             knot.designate_bridge(knot.crossings[0])
 
