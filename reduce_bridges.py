@@ -158,17 +158,18 @@ class Knot:
             index = bridge.index(x)
             x_is_deadend = False
             while (x_is_deadend == False):
-                for crossing in self.free_crossings:
-                    if x in crossing.pd_code:
-                        if x == crossing.pd_code[1]:
-                            bridge[index] = crossing.pd_code[3]
-                            x = crossing.pd_code[3]
-                        elif x == crossing.pd_code[3]:
-                            bridge[index] = crossing.pd_code[1]
-                            x = crossing.pd_code[1]
-                        self.free_crossings.remove(crossing)
-                        break
-                x_is_deadend = True
+                result = filter(lambda free_crossing: x in free_crossing.pd_code, self.free_crossings)
+                if result:
+                    crossing = result.pop()
+                    if x == crossing.pd_code[1]:
+                        bridge[index] = crossing.pd_code[3]
+                        x = crossing.pd_code[3]
+                    elif x == crossing.pd_code[3]:
+                        bridge[index] = crossing.pd_code[1]
+                        x = crossing.pd_code[1]
+                    self.free_crossings.remove(crossing)
+                else:
+                    x_is_deadend = True
 
     def simplify_rm1(self, twisted_crossings):
         """
