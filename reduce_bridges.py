@@ -53,10 +53,10 @@ class Crossing:
         return self.__dict__
 
 class Knot:
-    def __init__(self, crossings, name = None, bridges = [], free_crossings = []):
+    def __init__(self, crossings, name = None):
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
-        self.bridges = bridges
+        self.bridges = []
         self.free_crossings = crossings
 
     def __eq__(self, other):
@@ -141,7 +141,7 @@ class Knot:
         Arguments:
         crossing -- (obj) a crossing
         """
-        self.bridges.append((crossing.pd_code[1], crossing.pd_code[3]))
+        self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
         self.free_crossings.remove(crossing)
         crossing.bridge = len(self.bridges) - 1
         self.extend_bridge(crossing.bridge)
@@ -155,10 +155,20 @@ class Knot:
         """
         bridge = self.bridges[bridge_index]
         for x in bridge:
-            for crossing in self.free_crossings:
-                if x in crossing.pd_code and (x == crossing.pd_code[1] or x == crossing.pd_code[3]):
-                    print str(x) + ' is in the crossing ' + str(crossing) + ' and the bridge can be expanded'
-                    break
+            index = bridge.index(x)
+            x_is_deadend = False
+            while (x_is_deadend == False):
+                for crossing in self.free_crossings:
+                    if x in crossing.pd_code:
+                        if x == crossing.pd_code[1]:
+                            bridge[index] = crossing.pd_code[3]
+                            x = crossing.pd_code[3]
+                        elif x == crossing.pd_code[3]:
+                            bridge[index] = crossing.pd_code[1]
+                            x = crossing.pd_code[1]
+                        self.free_crossings.remove(crossing)
+                        break
+                x_is_deadend = True
 
     def simplify_rm1(self, twisted_crossings):
         """
