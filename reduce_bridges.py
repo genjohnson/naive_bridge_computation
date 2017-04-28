@@ -57,7 +57,7 @@ class Knot:
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
         self.bridges = []
-        self.free_crossings = crossings
+        self.free_crossings = crossings[:]
 
     def __eq__(self, other):
         same_crossings = self.crossings == other.crossings
