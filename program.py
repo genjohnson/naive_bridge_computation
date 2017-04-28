@@ -27,12 +27,15 @@ with open('knots.csv') as csvfile:
 
             # Designate another bridge which forms a "T" with the first bridge.
 
-            print str(knot.bridges)
-
         # Add the results to our output.
         knot_output['knots'].append(knot.json())
         # Output a message that the knot has been processed.
         print 'processed ' + knot.name
+        print 'bridges are ' + str(knot.bridges)
+        print 'crossings are:'
+        for crossing in knot.crossings:
+            print crossing
+        print '----------------------'
 
 # Write the results to our output JSON file.
 with open('output.json', mode = 'w') as outfile:
