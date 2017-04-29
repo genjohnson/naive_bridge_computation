@@ -133,7 +133,6 @@ class Knot:
         indices.sort(reverse = True)
         for index in indices:
             del self.crossings[index]
-
         self.free_crossings = list(set(self.crossings).intersection(self.free_crossings))
         return self
 
