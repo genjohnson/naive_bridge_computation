@@ -200,8 +200,8 @@ class Knot:
             self.delete_crossings([index])
             # Adjust bridges.
             self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
             for bridge in self.bridges:
-                extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
