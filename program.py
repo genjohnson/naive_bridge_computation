@@ -19,18 +19,19 @@ with open('knots.csv') as csvfile:
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
-        knot.simplify_rm1_rm2_recursively()
+        #knot.simplify_rm1_rm2_recursively()
         # Designate initial bridges.
         if (knot.num_crossings() > 1):
             # Designate the first crossing as a bridge.
             knot.designate_bridge(knot.crossings[0])
-
+            print 'processed ' + knot.name
+            print 'initial bridges are ' + str(knot.bridges)
+            knot.simplify_rm1_recursively()
             # Designate another bridge which forms a "T" with the first bridge.
 
         # Add the results to our output.
         knot_output['knots'].append(knot.json())
         # Output a message that the knot has been processed.
-        print 'processed ' + knot.name
         print 'bridges are ' + str(knot.bridges)
         print 'crossings are:'
         for crossing in knot.crossings:

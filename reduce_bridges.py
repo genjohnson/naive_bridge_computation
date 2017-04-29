@@ -70,7 +70,9 @@ class Knot:
         addend -- (int) The number to add to the segments greater than value.
         maximum -- (int) The maximum allowed value of segments in the bridge.
         """
-        self.bridges = [alter_and_mod(x, value, addend, maximum) for x in self.bridges]
+        for bridge in self.bridges:
+            for x in bridge:
+                alter_and_mod(x, value, addend, maximum)
 
     def has_rm1(self):
         """
@@ -117,12 +119,6 @@ class Knot:
 
     def json(self):
         return dict(name = self.name, crossings = self.crossings)
-
-    def num_crossings(self):
-        """
-        Return the number of crossings in the knot.
-        """
-        return len(self.crossings)
 
     def delete_crossings(self, indices):
         """
@@ -180,6 +176,13 @@ class Knot:
                     else:
                         x_is_deadend = True
 
+
+    def num_crossings(self):
+        """
+        Return the number of crossings in the knot.
+        """
+        return len(self.crossings)
+
     def simplify_rm1(self, twisted_crossings):
         """
         Simplify one level of a knot by Reidemeister moves of type 1.
@@ -191,10 +194,18 @@ class Knot:
         for index in twisted_crossings:
             duplicate_value = self.crossings[index].has_duplicate_value()
             max_value = len(self.crossings)*2
+            # Adjust crossings.
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
-        self.delete_crossings(twisted_crossings)
-        self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            self.delete_crossings([index])
+            # Adjust bridges.
+            self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            for bridge in self.bridges:
+                extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
+                extend_bridge = any(x in bridge for x in extend_if_bridge_end)
+                if extend_bridge:
+                    bridge_index = self.bridges.index(bridge)
+                    self.extend_bridge(bridge_index)      
         return self
 
     def simplify_rm1_recursively(self):
@@ -205,6 +216,8 @@ class Knot:
         while True:
             moves_possible = self.has_rm1()
             if moves_possible:
+                print 'the knot has a twsit'
+                print str(moves_possible)
                 self.simplify_rm1(moves_possible)
             if not moves_possible:
                 break
