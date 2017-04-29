@@ -28,14 +28,6 @@ class Crossing:
         addend -- (int) The number to add to crossing elements greater than value.
         maximum -- (int) The maximum allowed value of elements in the crossing.
         """
-        def alter_and_mod(x, value, addend, maximum):
-            if x > value:
-                if x <= maximum-addend:
-                    x += addend
-                else:
-                    x = (x+addend)%maximum
-            return x
-
         self.pd_code = [alter_and_mod(x, value, addend, maximum) for x in self.pd_code]
         return self
 
@@ -255,6 +247,20 @@ class ComplexEncoder(JSONEncoder):
             return obj.json()
         else:
             return json.JSONEncoder.default(self, obj)
+
+def alter_and_mod(x, value, addend, maximum):
+    """
+    Arguments:
+    value -- (int) The number to compare each element of the crossing with.
+    addend -- (int) The number to add to crossing elements greater than value.
+    maximum -- (int) The maximum allowed value of elements in the crossing.
+    """
+    if x > value:
+        if x <= maximum-addend:
+            x += addend
+        else:
+            x = (x+addend)%maximum
+    return x
 
 def create_knot_from_pd_code(pd_code, name = None):
     """
