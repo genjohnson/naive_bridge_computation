@@ -62,6 +62,10 @@ class HasRm2TestCase(unittest.TestCase):
         knot = create_knot_from_pd_code([[1,4,2,5],[5,2,6,3],[6,4,1,3]])
         self.assertEqual(knot.has_rm2(), ([1,2], [6,3]))
 
+        # Consecutive tuples form an arc of type 3.
+        knot = create_knot_from_pd_code([[1,15,2,14],[3,10,4,11],[5,13,6,12],[6,13,7,14],[16,24,17,23],[17,3,18,2],[18,11,19,12],[19,4,20,5],[20,25,21,26],[21,9,22,8],[22,16,23,15],[24,9,25,10],[26,8,1,7]])
+        self.assertEqual(knot.has_rm2(), ([2,3], [13,6]))
+
 class DeleteCrossingsTestCase(unittest.TestCase):
     def testDeleteCrossings(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,6,4,7],[5,1,6,8],[7,2,8,3]])
