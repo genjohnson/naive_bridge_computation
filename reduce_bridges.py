@@ -191,7 +191,7 @@ class Knot:
         twisted_crossings -- (list) the indices of crossings to eliminate
         """
         crossings = self.crossings
-        for index in twisted_crossings:
+        for index in sorted(twisted_crossings, reverse = True):
             duplicate_value = self.crossings[index].has_duplicate_value()
             max_value = len(self.crossings)*2
             # Adjust crossings.
