@@ -12,6 +12,9 @@ class Crossing:
     def __eq__(self, other):
         return self.pd_code == other.pd_code and self.bridge == other.bridge
 
+    def __hash__(self):
+        return hash(tuple(self.pd_code))
+
     def __str__(self):
         return str([self.pd_code, self.bridge])
 
@@ -132,6 +135,8 @@ class Knot:
         indices.sort(reverse = True)
         for index in indices:
             del self.crossings[index]
+
+        self.free_crossings = list(set(self.crossings).intersection(self.free_crossings))
         return self
 
     def designate_bridge(self, crossing):
