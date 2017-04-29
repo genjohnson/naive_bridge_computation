@@ -173,6 +173,10 @@ class Knot:
             elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
                 crossings_formings_arcs.extend([index, next_index])
                 pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
+            # arc type 3
+            elif current_crossing.pd_code[1] == next_crossing.pd_code[1] and current_crossing.pd_code[2] == next_crossing.pd_code[0]:
+                crossings_formings_arcs.extend([index, next_index])
+                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
         if crossings_formings_arcs:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
