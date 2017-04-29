@@ -166,13 +166,15 @@ class Knot:
                     if x == crossing.pd_code[1]:
                         bridge[index] = crossing.pd_code[3]
                         x = crossing.pd_code[3]
+                        self.free_crossings.remove(crossing)
+                        crossing.bridge = bridge_index
                     elif x == crossing.pd_code[3]:
                         bridge[index] = crossing.pd_code[1]
                         x = crossing.pd_code[1]
-                    self.free_crossings.remove(crossing)
-                    crossing.bridge = bridge_index
-                else:
-                    x_is_deadend = True
+                        self.free_crossings.remove(crossing)
+                        crossing.bridge = bridge_index
+                    else:
+                        x_is_deadend = True
 
     def simplify_rm1(self, twisted_crossings):
         """
