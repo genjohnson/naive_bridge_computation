@@ -68,6 +68,13 @@ class DeleteCrossingsTestCase(unittest.TestCase):
         answer = create_knot_from_pd_code([[1,5,2,4]])
         self.assertEqual(knot, answer)
 
+class DesignateBridgeTestCase(unittest.TestCase):
+    def testDesignateBridge(self):
+        knot = create_knot_from_pd_code([[1,15,2,14],[5,17,6,16],[6,12,7,11],[9,5,10,4],[10,16,11,15],[12,8,13,7],[13,3,14,2],[17,9,18,8],[18,4,1,3]])
+        knot.designate_bridge(knot.crossings[0])
+        answer = Knot([Crossing(x[0],x[1]) for x in [[[1, 15, 2, 14], 0],[[5, 17, 6, 16], 0],[[6, 12, 7, 11], None],[[9, 5, 10, 4], None],[[10, 16, 11, 15], 0],[[12, 8, 13, 7], None],[[13, 3, 14, 2], None],[[17, 9, 18, 8], None],[[18, 4, 1, 3], None]]])
+        self.assertEqual(knot, answer)
+
 class SimplifyRm1TestCase(unittest.TestCase):
     def testSimplifyRm1(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]])
@@ -93,7 +100,7 @@ class SimplifyRm2TestCase(unittest.TestCase):
     def testSimplifyRm2(self):
         knot = create_knot_from_pd_code([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
         knot.simplify_rm2([3,4], [8,4])
-        answer = create_knot_from_pd_code([[1, 5, 2, 4], [2, 5, 3, 6], [3, 1, 4, 6]])
+        answer = create_knot_from_pd_code([[1, 5, 2, 4],[2, 5, 3, 6],[3, 1, 4, 6]])
         self.assertEqual(knot, answer)
 
         # One of the segments to be removed is 1.
