@@ -71,54 +71,11 @@ class Knot:
         maximum -- (int) The maximum allowed value of segments in the bridge.
         """
         for bridge in self.bridges:
+            bridge_index = self.bridges.index(bridge)
             for x in bridge:
-                alter_and_mod(x, value, addend, maximum)
-
-    def has_rm1(self):
-        """
-        Inspect a knot for crossings that can be eliminated
-        by Reidemeister moves of type 1.
-        """
-        twisted_crossings = []
-        for index, crossing in enumerate(self.crossings):
-            if crossing.has_duplicate_value():
-                twisted_crossings.append(index)
-        if twisted_crossings:
-            return twisted_crossings
-        else:
-            return False
-
-    def has_rm2(self):
-        """
-        Inspect a knot for crossings that can be eliminated
-        by Reidemeister moves of type 2.
-
-        Return the crossings which form an arc and 
-        the PD code value of the segments which will be eliminated when the
-        knot is simplified.
-        """
-        crossings_formings_arcs = []
-        pd_code_segments_to_eliminate = []
-        rolled_crossings = numpy.roll(self.crossings, -1)
-        num_crossings = len(self.crossings)
-        for index, current_crossing in enumerate(self.crossings):
-            next_index = (index+1)%num_crossings
-            next_crossing = self.crossings[next_index]
-            # arc type 1
-            if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
-            # arc type 2
-            elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
-        if crossings_formings_arcs:
-            return (crossings_formings_arcs, pd_code_segments_to_eliminate)
-        else:
-            return False
-
-    def json(self):
-        return dict(name = self.name, crossings = self.crossings)
+                x_index = bridge.index(x)
+                self.bridges[bridge_index][x_index] = alter_and_mod(x, value, addend, maximum)
+        return self
 
     def delete_crossings(self, indices):
         """
@@ -178,6 +135,52 @@ class Knot:
                 else:
                     break;
 
+    def has_rm1(self):
+        """
+        Inspect a knot for crossings that can be eliminated
+        by Reidemeister moves of type 1.
+        """
+        twisted_crossings = []
+        for index, crossing in enumerate(self.crossings):
+            if crossing.has_duplicate_value():
+                twisted_crossings.append(index)
+        if twisted_crossings:
+            return twisted_crossings
+        else:
+            return False
+
+    def has_rm2(self):
+        """
+        Inspect a knot for crossings that can be eliminated
+        by Reidemeister moves of type 2.
+
+        Return the crossings which form an arc and
+        the PD code value of the segments which will be eliminated when the
+        knot is simplified.
+        """
+        crossings_formings_arcs = []
+        pd_code_segments_to_eliminate = []
+        rolled_crossings = numpy.roll(self.crossings, -1)
+        num_crossings = len(self.crossings)
+        for index, current_crossing in enumerate(self.crossings):
+            next_index = (index+1)%num_crossings
+            next_crossing = self.crossings[next_index]
+            # arc type 1
+            if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
+                crossings_formings_arcs.extend([index, next_index])
+                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+            # arc type 2
+            elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
+                crossings_formings_arcs.extend([index, next_index])
+                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
+        if crossings_formings_arcs:
+            return (crossings_formings_arcs, pd_code_segments_to_eliminate)
+        else:
+            return False
+
+    def json(self):
+        return dict(name = self.name, crossings = self.crossings)
+
     def num_crossings(self):
         """
         Return the number of crossings in the knot.
@@ -217,7 +220,6 @@ class Knot:
         while True:
             moves_possible = self.has_rm1()
             if moves_possible:
-                print 'the knot ' + str(self.name) + ' is twisted at crossings: ' + str(moves_possible)
                 self.simplify_rm1(moves_possible)
             if not moves_possible:
                 break
@@ -243,6 +245,19 @@ class Knot:
                 crossing.alter_elements_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
             self.alter_bridge_segments_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
             self.alter_bridge_segments_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
+        # Extend bridges.
+        extend_if_bridge_end = []
+        for segment in segments_to_eliminate:
+            if segment != 1:
+                extend_if_bridge_end.extend((segment - 1, segment + 1))
+            else:
+                extend_if_bridge_end.extend((2, len(self.crossings) * 2))
+        for bridge in self.bridges:
+            extend_bridge = any(x in bridge for x in extend_if_bridge_end)
+            if extend_bridge:
+                bridge_index = self.bridges.index(bridge)
+                self.extend_bridge(bridge_index)
+
         return self
 
     def simplify_rm2_recursively(self):
