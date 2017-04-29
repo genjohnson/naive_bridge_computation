@@ -175,7 +175,8 @@ class Knot:
                         crossing.bridge = bridge_index
                     else:
                         x_is_deadend = True
-
+                else:
+                    break;
 
     def num_crossings(self):
         """
