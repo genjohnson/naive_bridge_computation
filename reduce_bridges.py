@@ -63,9 +63,7 @@ class Knot:
         self.free_crossings = crossings[:]
 
     def __eq__(self, other):
-        same_crossings = self.crossings == other.crossings
-        same_free_crossings = self.free_crossings == other.free_crossings
-        return same_crossings and same_free_crossings
+        return self.crossings == other.crossings
 
     def __str__(self):
         return str([crossing.pd_code for crossing in self.crossings])
