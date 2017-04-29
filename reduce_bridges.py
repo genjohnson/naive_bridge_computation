@@ -217,8 +217,7 @@ class Knot:
         while True:
             moves_possible = self.has_rm1()
             if moves_possible:
-                print 'the knot has a twsit'
-                print str(moves_possible)
+                print 'the knot ' + str(self.name) + ' is twisted at crossings: ' + str(moves_possible)
                 self.simplify_rm1(moves_possible)
             if not moves_possible:
                 break
