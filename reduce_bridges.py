@@ -165,18 +165,20 @@ class Knot:
         for index, current_crossing in enumerate(self.crossings):
             next_index = (index+1)%num_crossings
             next_crossing = self.crossings[next_index]
-            # arc type 1
-            if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
-            # arc type 2
-            elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
-            # arc type 3
-            elif current_crossing.pd_code[1] == next_crossing.pd_code[1] and current_crossing.pd_code[2] == next_crossing.pd_code[0]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+            difference = max(current_crossing.pd_code[0], next_crossing.pd_code[0]) - min(current_crossing.pd_code[0], next_crossing.pd_code[0])
+            if (difference == 1) or (difference == num_crossings-1):
+                # arc type 1
+                if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
+                    crossings_formings_arcs.extend([index, next_index])
+                    pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+                # arc type 2
+                elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
+                    crossings_formings_arcs.extend([index, next_index])
+                    pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
+                # arc type 3
+                elif current_crossing.pd_code[1] == next_crossing.pd_code[1] and current_crossing.pd_code[2] == next_crossing.pd_code[0]:
+                    crossings_formings_arcs.extend([index, next_index])
+                    pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
         if crossings_formings_arcs:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
