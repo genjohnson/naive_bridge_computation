@@ -170,15 +170,15 @@ class Knot:
                 # # arc type 1
                 # if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
                 #     crossings_formings_arcs.extend([index, next_index])
-                #     pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+                #     pd_code_segments_to_eliminate.append([current_crossing.pd_code[1], current_crossing.pd_code[2]])
                 # arc type 2
                 if current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
                     crossings_formings_arcs.extend([index, next_index])
-                    pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
+                    pd_code_segments_to_eliminate.append([current_crossing.pd_code[2], current_crossing.pd_code[3]])
                 # arc type 3
                 elif current_crossing.pd_code[1] == next_crossing.pd_code[1] and current_crossing.pd_code[2] == next_crossing.pd_code[0]:
                     crossings_formings_arcs.extend([index, next_index])
-                    pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+                    pd_code_segments_to_eliminate.append([current_crossing.pd_code[1], current_crossing.pd_code[2]])
         if crossings_formings_arcs:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
@@ -238,26 +238,28 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
-        self.delete_crossings(crossing_indices)
-        if 1 in segments_to_eliminate:
-            for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-                crossing.alter_elements_greater_than(min(segments_to_eliminate), -1, len(self.crossings)*2)
-            self.alter_bridge_segments_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-            self.alter_bridge_segments_greater_than(min(segments_to_eliminate), -1, len(self.crossings)*2)
-        else:
-            for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-                crossing.alter_elements_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
-            self.alter_bridge_segments_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-            self.alter_bridge_segments_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
-        # Extend bridges.
         extend_if_bridge_end = []
-        for segment in segments_to_eliminate:
-            if segment != 1:
-                extend_if_bridge_end.extend((segment - 1, segment + 1))
+        self.delete_crossings(crossing_indices)
+        # segments_to_eliminate = sorted(segments_to_eliminate, reverse = False)
+        for segment_pair in segments_to_eliminate:
+            if 1 in segment_pair:
+                for crossing in self.crossings:
+                    crossing.alter_elements_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
+                    crossing.alter_elements_greater_than(min(segment_pair), -1, len(self.crossings)*2)
+                self.alter_bridge_segments_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
+                self.alter_bridge_segments_greater_than(min(segment_pair), -1, len(self.crossings)*2)
             else:
-                extend_if_bridge_end.extend((2, len(self.crossings) * 2))
+                for crossing in self.crossings:
+                    crossing.alter_elements_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
+                    crossing.alter_elements_greater_than(min(segment_pair), -2, len(self.crossings)*2)
+                self.alter_bridge_segments_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
+                self.alter_bridge_segments_greater_than(min(segment_pair), -2, len(self.crossings)*2)
+            # Extend bridges.
+            for segment in segment_pair:
+                if segment != 1:
+                    extend_if_bridge_end.extend((segment - 1, segment + 1))
+                else:
+                    extend_if_bridge_end.extend((2, len(self.crossings) * 2))
         for bridge in self.bridges:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
