@@ -18,7 +18,7 @@ class Crossing:
     def __str__(self):
         return str([self.pd_code, self.bridge])
 
-    def alter_elements_greater_than(self, value, addend, maximum):
+    def alter_elements_greater_than(self, value, addend, maximum = None):
         """
         Change the value of all elements in a Crossing which are greater
         than the provided value.
@@ -28,7 +28,7 @@ class Crossing:
         addend -- (int) The number to add to crossing elements greater than value.
         maximum -- (int) The maximum allowed value of elements in the crossing.
         """
-        self.pd_code = [alter_and_mod(x, value, addend, maximum) for x in self.pd_code]
+        self.pd_code = [alter_if_greater(x, value, addend, maximum) for x in self.pd_code]
         return self
 
     def has_duplicate_value(self):
@@ -60,7 +60,7 @@ class Knot:
     def __str__(self):
         return str([crossing.pd_code for crossing in self.crossings])
 
-    def alter_bridge_segments_greater_than(self, value, addend, maximum):
+    def alter_bridge_segments_greater_than(self, value, addend, maximum = None):
         """
         Change the value of the bridge end segments if they are greater
         than the provided value.
@@ -74,7 +74,7 @@ class Knot:
             bridge_index = self.bridges.index(bridge)
             for x in bridge:
                 x_index = bridge.index(x)
-                self.bridges[bridge_index][x_index] = alter_and_mod(x, value, addend, maximum)
+                self.bridges[bridge_index][x_index] = alter_if_greater(x, value, addend, maximum)
         return self
 
     def delete_crossings(self, indices):
@@ -171,14 +171,19 @@ class Knot:
                 # if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
                 #     crossings_formings_arcs.extend([index, next_index])
                 #     pd_code_segments_to_eliminate.append([current_crossing.pd_code[1], current_crossing.pd_code[2]])
-                # arc type 2
-                if current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
-                    crossings_formings_arcs.extend([index, next_index])
-                    pd_code_segments_to_eliminate.append([current_crossing.pd_code[2], current_crossing.pd_code[3]])
-                # arc type 3
-                elif current_crossing.pd_code[1] == next_crossing.pd_code[1] and current_crossing.pd_code[2] == next_crossing.pd_code[0]:
-                    crossings_formings_arcs.extend([index, next_index])
-                    pd_code_segments_to_eliminate.append([current_crossing.pd_code[1], current_crossing.pd_code[2]])
+                
+                # type 2 and type 3.
+                indices_to_compare = [[[2,3],[0,3]],[[1,2],[1,0]]]
+                for comparision in indices_to_compare:
+                    current_comparision = [current_crossing.pd_code[comparision[0][0]], current_crossing.pd_code[comparision[0][1]]]
+                    next_comparison = [next_crossing.pd_code[comparision[1][0]], next_crossing.pd_code[comparision[1][1]]]
+                    if current_comparision == next_comparison: # True if a RM2 move is possible.
+                        crossings_formings_arcs.extend([index, next_index])
+                        for segment_to_eliminate in current_comparision:
+                            if segment_to_eliminate == 1:
+                                pd_code_segments_to_eliminate.append([segment_to_eliminate, -1])
+                            else:
+                                pd_code_segments_to_eliminate.append([segment_to_eliminate, -2])
         if crossings_formings_arcs:
             return (crossings_formings_arcs, pd_code_segments_to_eliminate)
         else:
@@ -238,28 +243,44 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
-        extend_if_bridge_end = []
+        print 'original knot is:'
+        print self
         self.delete_crossings(crossing_indices)
-        # segments_to_eliminate = sorted(segments_to_eliminate, reverse = False)
-        for segment_pair in segments_to_eliminate:
-            if 1 in segment_pair:
+        print 'knot after deleting crossings is:'
+        print self
+        extend_if_bridge_end = []
+        segments_to_eliminate.sort(reverse = True)
+        print 'segments_to_eliminate are: ' + str(segments_to_eliminate)
+        maximum = len(self.crossings) * 2
+        print 'maximum is: ' + str(maximum)
+        segment_info = segments_to_eliminate.pop()
+
+        while segment_info:
+            value = segment_info[0]
+            addend = segment_info[1]
+            print "value is " + str(value)
+            print "addend is " + str(addend)
+
+            if value <= maximum:
                 for crossing in self.crossings:
-                    crossing.alter_elements_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
-                    crossing.alter_elements_greater_than(min(segment_pair), -1, len(self.crossings)*2)
-                self.alter_bridge_segments_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
-                self.alter_bridge_segments_greater_than(min(segment_pair), -1, len(self.crossings)*2)
-            else:
-                for crossing in self.crossings:
-                    crossing.alter_elements_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
-                    crossing.alter_elements_greater_than(min(segment_pair), -2, len(self.crossings)*2)
-                self.alter_bridge_segments_greater_than(max(segment_pair), -2, (len(self.crossings)+2)*2)
-                self.alter_bridge_segments_greater_than(min(segment_pair), -2, len(self.crossings)*2)
-            # Extend bridges.
-            for segment in segment_pair:
-                if segment != 1:
-                    extend_if_bridge_end.extend((segment - 1, segment + 1))
+                    crossing.alter_elements_greater_than(value, addend)
+                self.alter_bridge_segments_greater_than(value, addend, maximum)
+                print 'altered knot is'
+                print self
+
+                # Similarly alter values of remaining segments to eliminate.
+                segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
+
+                # Extend bridges.
+                if value != 1:
+                    extend_if_bridge_end.extend((value - 1, value + 1))
                 else:
-                    extend_if_bridge_end.extend((2, len(self.crossings) * 2))
+                    extend_if_bridge_end.extend((2, maximum))
+                # Iterate to the next segment.
+                segment_info = segments_to_eliminate.pop()
+            else: 
+                break
+
         for bridge in self.bridges:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
@@ -301,7 +322,7 @@ class ComplexEncoder(JSONEncoder):
         else:
             return json.JSONEncoder.default(self, obj)
 
-def alter_and_mod(x, value, addend, maximum):
+def alter_if_greater(x, value, addend, maximum = None):
     """
     Arguments:
     value -- (int) The number to compare each element of the crossing with.
@@ -309,11 +330,28 @@ def alter_and_mod(x, value, addend, maximum):
     maximum -- (int) The maximum allowed value of elements in the crossing.
     """
     if x > value:
-        if x <= maximum-addend:
-            x += addend
+        if maximum:
+            if x <= maximum-addend:
+                x += addend
+            else:
+                x = (x+addend)%maximum
         else:
-            x = (x+addend)%maximum
+            x += addend
     return x
+
+def alter_segment_elements_greater_than(segments, value, addend):
+    """
+    Arguments:
+    segments -- (list) A list of lists of integers to alter.
+    value -- (int) The number to compare each element of the crossing with.
+    addend -- (int) The number to add to crossing elements greater than value.
+    """
+    altered_segments = []
+    altered_pair= []
+    for pair in segments:
+        altered_pair = [alter_if_greater(x, value, addend) for x in pair]
+    altered_segments.append(altered_pair)
+    return altered_segments
 
 def create_knot_from_pd_code(pd_code, name = None):
     """
