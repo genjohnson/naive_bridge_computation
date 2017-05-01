@@ -243,34 +243,22 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
-        print 'original knot is:'
-        print self
         self.delete_crossings(crossing_indices)
-        print 'knot after deleting crossings is:'
-        print self
         extend_if_bridge_end = []
         segments_to_eliminate.sort(reverse = True)
-        print 'segments_to_eliminate are: ' + str(segments_to_eliminate)
         maximum = len(self.crossings) * 2
-        print 'maximum is: ' + str(maximum)
         segment_info = segments_to_eliminate.pop()
 
         while segment_info:
             value = segment_info[0]
             addend = segment_info[1]
-            print "value is " + str(value)
-            print "addend is " + str(addend)
 
             if value <= maximum:
                 for crossing in self.crossings:
                     crossing.alter_elements_greater_than(value, addend)
                 self.alter_bridge_segments_greater_than(value, addend, maximum)
-                print 'altered knot is'
-                print self
-
                 # Similarly alter values of remaining segments to eliminate.
                 segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
-
                 # Extend bridges.
                 if value != 1:
                     extend_if_bridge_end.extend((value - 1, value + 1))
@@ -280,6 +268,10 @@ class Knot:
                 segment_info = segments_to_eliminate.pop()
             else: 
                 break
+
+        # Mod final crossings based on maximum value allowed.
+        for crossing in self.crossings:
+            crossing.alter_elements_greater_than(maximum, 0, maximum)
 
         for bridge in self.bridges:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)

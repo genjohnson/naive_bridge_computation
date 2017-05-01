@@ -100,28 +100,23 @@ class SimplifyRm1RecursivelyTestCase(unittest.TestCase):
 
 class SimplifyRm1Rm2RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm1Rm2Recursively(self):
-        knot = create_knot_from_pd_code([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
+        knot = create_knot_from_pd_code([[1,7,2,6],[2,5,3,6],[4,3,5,4],[7,1,8,8]])
         knot.simplify_rm1_rm2_recursively()
         answer = Knot([])
         self.assertEqual(knot, answer)
 
 class SimplifyRm2TestCase(unittest.TestCase):
     def testSimplifyRm2(self):
+        # One arc to remove and none of the semgnets to be removed is 1.
         knot = create_knot_from_pd_code([[1,7,2,6],[2,9,3,10],[5,1,6,10],[7,5,8,4],[8,3,9,4]])
-        knot.simplify_rm2([3,4], [8,4])
-        answer = create_knot_from_pd_code([[1, 5, 2, 4],[2, 5, 3, 6],[3, 1, 4, 6]])
+        knot.simplify_rm2([3,4], [[8,-2], [4, -2]])
+        answer = create_knot_from_pd_code([[1,5,2,4],[2,5,3,6],[3,1,4,6]])
         self.assertEqual(knot, answer)
 
-        # One of the segments to be removed is 1.
+        # One arc to remove and one of the segments to be removed is 1.
         knot = create_knot_from_pd_code([[2,12,3,11],[3,10,4,11],[4,5,5,6],[6,1,7,2],[7,1,8,14],[8,13,9,14],[9,13,10,12]])
-        knot.simplify_rm2([3,4], [7,1])
-        answer = create_knot_from_pd_code([[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]], 'answer')
-        self.assertEqual(knot, answer)
-
-        knot = create_knot_from_pd_code([[1,13,2,12],[2,21,3,22],[3,14,4,15],[4,18,5,17],[5,25,6,24],[6,12,7,11],[7,22,8,23],[8,15,9,16],[9,17,10,16],[10,24,11,23],[18,26,19,25],[19,26,20,1],[20,13,21,14]], "rm2_test")
-        moves_possible = knot.has_rm2()
-        knot.simplify_rm2(moves_possible[0], moves_possible[1])
-        answer = create_knot_from_pd_code([[1,11,2,10],[2,15,3,16],[3,12,4,13],[4,14,5,13],[5,1,6,18],[6,10,7,9],[7,16,8,17],[8,18,9,17],[14,12,15,11]])
+        knot.simplify_rm2([3,4], [[7, -2],[1, -1]])
+        answer = create_knot_from_pd_code([[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]])
         self.assertEqual(knot, answer)
 
 class SimplifyRm2RecursivelyTestCase(unittest.TestCase):
