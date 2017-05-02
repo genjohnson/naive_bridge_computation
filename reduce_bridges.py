@@ -246,38 +246,22 @@ class Knot:
         self.delete_crossings(crossing_indices)
         extend_if_bridge_end = []
         segments_to_eliminate.sort(reverse = True)
-        maximum = len(self.crossings) * 2
-        segment_info = segments_to_eliminate.pop()
 
-        while segment_info:
-            value = segment_info[0]
-            addend = segment_info[1]
-
-            if value <= maximum:
-                for crossing in self.crossings:
-                    crossing.alter_elements_greater_than(value, addend)
-                self.alter_bridge_segments_greater_than(value, addend, maximum)
-                # Similarly alter values of remaining segments to eliminate.
-                segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
-                # Extend bridges.
-                if value != 1:
-                    extend_if_bridge_end.extend((value - 1, value + 1))
-                else:
-                    extend_if_bridge_end.extend((2, maximum))
-                # Iterate to the next segment.
-                segment_info = segments_to_eliminate.pop()
-            else: 
-                break
+        for segment in segments_to_eliminate:
+            value = segment[0]
+            addend = segment[1]
+            # Alter values of each crossing.
+            for crossing in self.crossings:
+                crossing.alter_elements_greater_than(value, addend)
+            # Alter values of remaining segments to eliminate.
+            segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
+            # Remove segments as we finish with them.
+            del(segments_to_eliminate[-1])
 
         # Mod final crossings based on maximum value allowed.
+        maximum = len(self.crossings) * 2
         for crossing in self.crossings:
             crossing.alter_elements_greater_than(maximum, 0, maximum)
-
-        for bridge in self.bridges:
-            extend_bridge = any(x in bridge for x in extend_if_bridge_end)
-            if extend_bridge:
-                bridge_index = self.bridges.index(bridge)
-                self.extend_bridge(bridge_index)
 
         return self
 
@@ -339,10 +323,8 @@ def alter_segment_elements_greater_than(segments, value, addend):
     addend -- (int) The number to add to crossing elements greater than value.
     """
     altered_segments = []
-    altered_pair= []
     for pair in segments:
-        altered_pair = [alter_if_greater(x, value, addend) for x in pair]
-    altered_segments.append(altered_pair)
+        altered_segments.append([alter_if_greater(x, value, addend) for x in pair])
     return altered_segments
 
 def create_knot_from_pd_code(pd_code, name = None):
