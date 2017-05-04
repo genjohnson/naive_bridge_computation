@@ -158,28 +158,38 @@ class Knot:
         the PD code value of the segments which will be eliminated when the
         knot is simplified.
         """
-        crossings_formings_arcs = []
-        pd_code_segments_to_eliminate = []
+        def compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing):
+            output = False
+            for comparision in indices_to_compare:
+                current_comparision = [current_crossing.pd_code[comparision[0][0]], current_crossing.pd_code[comparision[0][1]]]
+                next_comparison = [next_crossing.pd_code[comparision[1][0]], next_crossing.pd_code[comparision[1][1]]]
+                if current_comparision == next_comparison: # True if a RM2 move is possible.
+                    pd_code_segments_to_eliminate = []
+                    for segment_to_eliminate in current_comparision:
+                        if segment_to_eliminate == 1:
+                            pd_code_segments_to_eliminate.append([segment_to_eliminate, -1])
+                        else:
+                            pd_code_segments_to_eliminate.append([segment_to_eliminate, -2])
+                    output = ([index, next_index], pd_code_segments_to_eliminate)
+                    break
+            return output
+
         num_crossings = len(self.crossings)
+        has_rm2 = False
         for index, current_crossing in enumerate(self.crossings):
-            next_index = (index+1)%num_crossings
-            next_crossing = self.crossings[next_index]
-            difference = max(current_crossing.pd_code[0], next_crossing.pd_code[0]) - min(current_crossing.pd_code[0], next_crossing.pd_code[0])
-            if (difference == 1) or (difference == num_crossings-1):
-                # type 2 and type 3.
-                indices_to_compare = [[[2,3],[0,3]],[[1,2],[1,0]]]
-                for comparision in indices_to_compare:
-                    current_comparision = [current_crossing.pd_code[comparision[0][0]], current_crossing.pd_code[comparision[0][1]]]
-                    next_comparison = [next_crossing.pd_code[comparision[1][0]], next_crossing.pd_code[comparision[1][1]]]
-                    if current_comparision == next_comparison: # True if a RM2 move is possible.
-                        crossings_formings_arcs.extend([index, next_index])
-                        for segment_to_eliminate in current_comparision:
-                            if segment_to_eliminate == 1:
-                                pd_code_segments_to_eliminate.append([segment_to_eliminate, -1])
-                            else:
-                                pd_code_segments_to_eliminate.append([segment_to_eliminate, -2])
-                        return (crossings_formings_arcs, pd_code_segments_to_eliminate)
-        return False
+            if has_rm2 == False:
+                next_index = (index+1)%num_crossings
+                next_crossing = self.crossings[next_index]
+                difference = max(current_crossing.pd_code[0], next_crossing.pd_code[0]) - min(current_crossing.pd_code[0], next_crossing.pd_code[0])
+                if (difference == 1):
+                    indices_to_compare = [[[2,3],[0,3]],[[1,2],[1,0]]]
+                    has_rm2 = compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing)
+                elif (difference == num_crossings-1):
+                    indices_to_compare = [[[0,3],[2,3]],[[0,1],[2,1]]]
+                    has_rm2 = compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing)
+            else:
+                break
+        return has_rm2
 
     def json(self):
         return dict(name = self.name, crossings = self.crossings)
