@@ -160,7 +160,6 @@ class Knot:
         """
         crossings_formings_arcs = []
         pd_code_segments_to_eliminate = []
-        rolled_crossings = numpy.roll(self.crossings, -1)
         num_crossings = len(self.crossings)
         for index, current_crossing in enumerate(self.crossings):
             next_index = (index+1)%num_crossings
