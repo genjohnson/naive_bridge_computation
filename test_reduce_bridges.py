@@ -119,13 +119,6 @@ class SimplifyRm2TestCase(unittest.TestCase):
         answer = create_knot_from_pd_code([[1,9,2,8],[2,7,3,8],[3,4,4,5],[5,10,6,1],[6,10,7,9]])
         self.assertEqual(knot, answer)
 
-        # Multiple arcs to remove and none of the segments to be removed is 1.
-        knot = create_knot_from_pd_code([[1,13,2,12],[2,21,3,22],[3,14,4,15],[4,18,5,17],[5,25,6,24],[6,12,7,11],[7,22,8,23],[8,15,9,16],[9,17,10,16],[10,24,11,23],[18,26,19,25],[19,26,20,1],[20,14,21,13]], "rm2_multiple_arcs")
-        moves_possible = knot.has_rm2()
-        knot.simplify_rm2(moves_possible[0], moves_possible[1])
-        answer = create_knot_from_pd_code([[1,11,2,10],[2,15,3,16],[3,12,4,13],[4,14,5,13],[5,1,6,18],[6,10,7,9],[7,16,8,17],[8,18,9,17],[14,12,15,11]])
-        self.assertEqual(knot, answer)
-
 class SimplifyRm2RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm2Recursively(self):
         knot = create_knot_from_pd_code([[1,13,2,12],[2,21,3,22],[3,14,4,15],[4,18,5,17],[5,25,6,24],[6,12,7,11],[7,22,8,23],[8,15,9,16],[9,17,10,16],[10,24,11,23],[18,26,19,25],[19,26,20,1],[20,14,21,13]])

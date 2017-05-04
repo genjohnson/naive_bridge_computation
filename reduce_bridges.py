@@ -183,10 +183,8 @@ class Knot:
                                 pd_code_segments_to_eliminate.append([segment_to_eliminate, -1])
                             else:
                                 pd_code_segments_to_eliminate.append([segment_to_eliminate, -2])
-        if crossings_formings_arcs:
-            return (crossings_formings_arcs, pd_code_segments_to_eliminate)
-        else:
-            return False
+                        return (crossings_formings_arcs, pd_code_segments_to_eliminate)
+        return False
 
     def json(self):
         return dict(name = self.name, crossings = self.crossings)
