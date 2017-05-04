@@ -166,11 +166,6 @@ class Knot:
             next_crossing = self.crossings[next_index]
             difference = max(current_crossing.pd_code[0], next_crossing.pd_code[0]) - min(current_crossing.pd_code[0], next_crossing.pd_code[0])
             if (difference == 1) or (difference == num_crossings-1):
-                # # arc type 1
-                # if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
-                #     crossings_formings_arcs.extend([index, next_index])
-                #     pd_code_segments_to_eliminate.append([current_crossing.pd_code[1], current_crossing.pd_code[2]])
-                
                 # type 2 and type 3.
                 indices_to_compare = [[[2,3],[0,3]],[[1,2],[1,0]]]
                 for comparision in indices_to_compare:
