@@ -93,6 +93,19 @@ class Knot:
         self.free_crossings = list(set(self.crossings).intersection(self.free_crossings))
         return self
 
+    def designate_additional_bridge(self):
+        """
+        Choose a crossing to designate as a bridge based on existing bridges.
+        """
+        for bridge in self.bridges:
+            # Sort the bridge ends to first follow the orientation of the knot
+            # when searching for the next available crossing.
+            for x in sorted(bridge, reverse = True):
+                for free_crossing in self.free_crossings:
+                    if x == free_crossing.pd_code[0]:
+                        self.designate_bridge(free_crossing)
+                        return self
+
     def designate_bridge(self, crossing):
         """
         Identify a crossing as a bridge and extend until it deadends.
