@@ -265,6 +265,15 @@ class Knot:
         for crossing in self.crossings:
             crossing.alter_elements_greater_than(maximum, 0, maximum)
 
+        # Adjust bridges.
+        self.alter_bridge_segments_greater_than(value, addend, maximum)
+        extend_if_bridge_end = [value - 1, value + 1]
+        for bridge in self.bridges:
+            extend_bridge = any(x in bridge for x in extend_if_bridge_end)
+            if extend_bridge:
+                bridge_index = self.bridges.index(bridge)
+                self.extend_bridge(bridge_index)
+
         return self
 
     def simplify_rm2_recursively(self):
