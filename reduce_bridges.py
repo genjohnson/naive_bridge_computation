@@ -5,14 +5,20 @@ from json import JSONEncoder
 import numpy
 
 class Crossing:
-    def __init__(self, pd_code, bridge = 0):
+    def __init__(self, pd_code, bridge = None):
         self.pd_code = pd_code
         self.bridge = bridge
 
     def __eq__(self, other):
         return self.pd_code == other.pd_code and self.bridge == other.bridge
 
-    def alter_elements_greater_than(self, value, addend, maximum):
+    def __hash__(self):
+        return hash(tuple(self.pd_code))
+
+    def __str__(self):
+        return str([self.pd_code, self.bridge])
+
+    def alter_elements_greater_than(self, value, addend, maximum = None):
         """
         Change the value of all elements in a Crossing which are greater
         than the provided value.
@@ -22,15 +28,7 @@ class Crossing:
         addend -- (int) The number to add to crossing elements greater than value.
         maximum -- (int) The maximum allowed value of elements in the crossing.
         """
-        def alter_and_mod(x, value, addend, maximum):
-            if x > value:
-                if x <= maximum-addend:
-                    x += addend
-                else:
-                    x = (x+addend)%maximum
-            return x
-
-        self.pd_code = [alter_and_mod(x, value, addend, maximum) for x in self.pd_code]
+        self.pd_code = [alter_if_greater(x, value, addend, maximum) for x in self.pd_code]
         return self
 
     def has_duplicate_value(self):
@@ -53,12 +51,102 @@ class Knot:
     def __init__(self, crossings, name = None):
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
+        self.bridges = []
+        self.free_crossings = crossings[:]
 
     def __eq__(self, other):
         return self.crossings == other.crossings
 
     def __str__(self):
         return str([crossing.pd_code for crossing in self.crossings])
+
+    def alter_bridge_segments_greater_than(self, value, addend, maximum = None):
+        """
+        Change the value of the bridge end segments if they are greater
+        than the provided value.
+
+        Arguments:
+        value -- (int) The number to compare each segment with.
+        addend -- (int) The number to add to the segments greater than value.
+        maximum -- (int) The maximum allowed value of segments in the bridge.
+        """
+        for bridge in self.bridges:
+            bridge_index = self.bridges.index(bridge)
+            for x in bridge:
+                x_index = bridge.index(x)
+                self.bridges[bridge_index][x_index] = alter_if_greater(x, value, addend, maximum)
+        return self
+
+    def delete_crossings(self, indices):
+        """
+        Delete crossings from a knot.
+        This removes objects from both knot.crossings and knot.free_crossings.
+
+        Arguments:
+        indices -- (list) the indices of the crossings to delete
+        """
+        # Delete crossings from last to first to avoid changing
+        # the index of crossings not yet processed.
+        indices.sort(reverse = True)
+        for index in indices:
+            del self.crossings[index]
+        self.free_crossings = list(set(self.crossings).intersection(self.free_crossings))
+        return self
+
+    def designate_additional_bridge(self):
+        """
+        Choose a crossing to designate as a bridge based on existing bridges.
+        """
+        for bridge in self.bridges:
+            # Sort the bridge ends to first follow the orientation of the knot
+            # when searching for the next available crossing.
+            for x in sorted(bridge, reverse = True):
+                for free_crossing in self.free_crossings:
+                    if x == free_crossing.pd_code[0]:
+                        self.designate_bridge(free_crossing)
+                        return self
+
+    def designate_bridge(self, crossing):
+        """
+        Identify a crossing as a bridge and extend until it deadends.
+
+        Arguments:
+        crossing -- (obj) a crossing
+        """
+        self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
+        self.free_crossings.remove(crossing)
+        crossing.bridge = len(self.bridges) - 1
+        self.extend_bridge(crossing.bridge)
+
+    def extend_bridge(self, bridge_index):
+        """
+        Extend both ends of a bridge until it deadends.
+
+        Arguments:
+        bridge_index -- (int) the index of the bridge to extend
+        """
+        bridge = self.bridges[bridge_index]
+        for x in bridge:
+            index = bridge.index(x)
+            x_is_deadend = False
+            while (x_is_deadend == False):
+                result = filter(lambda free_crossing: x in free_crossing.pd_code, self.free_crossings)
+                if result:
+                    crossing = result.pop()
+                    if x == crossing.pd_code[1]:
+                        bridge[index] = crossing.pd_code[3]
+                        x = crossing.pd_code[3]
+                        self.free_crossings.remove(crossing)
+                        crossing.bridge = bridge_index
+                    elif x == crossing.pd_code[3]:
+                        bridge[index] = crossing.pd_code[1]
+                        x = crossing.pd_code[1]
+                        self.free_crossings.remove(crossing)
+                        crossing.bridge = bridge_index
+                    else:
+                        x_is_deadend = True
+                else:
+                    break;
 
     def has_rm1(self):
         """
@@ -69,62 +157,59 @@ class Knot:
         for index, crossing in enumerate(self.crossings):
             if crossing.has_duplicate_value():
                 twisted_crossings.append(index)
-        if twisted_crossings:
-            return twisted_crossings
-        else:
-            return False
+                return twisted_crossings
+        return False
 
     def has_rm2(self):
         """
         Inspect a knot for crossings that can be eliminated
         by Reidemeister moves of type 2.
 
-        Return the crossings which form an arc and 
+        Return the crossings which form an arc and
         the PD code value of the segments which will be eliminated when the
         knot is simplified.
         """
-        crossings_formings_arcs = []
-        pd_code_segments_to_eliminate = []
-        rolled_crossings = numpy.roll(self.crossings, -1)
+        def compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing):
+            output = False
+            for comparision in indices_to_compare:
+                current_comparision = [current_crossing.pd_code[comparision[0][0]], current_crossing.pd_code[comparision[0][1]]]
+                next_comparison = [next_crossing.pd_code[comparision[1][0]], next_crossing.pd_code[comparision[1][1]]]
+                if current_comparision == next_comparison: # True if a RM2 move is possible.
+                    pd_code_segments_to_eliminate = []
+                    for segment_to_eliminate in current_comparision:
+                        if segment_to_eliminate == 1:
+                            pd_code_segments_to_eliminate.append([segment_to_eliminate, -1])
+                        else:
+                            pd_code_segments_to_eliminate.append([segment_to_eliminate, -2])
+                    output = ([index, next_index], pd_code_segments_to_eliminate)
+                    break
+            return output
+
         num_crossings = len(self.crossings)
+        has_rm2 = False
         for index, current_crossing in enumerate(self.crossings):
-            next_index = (index+1)%num_crossings
-            next_crossing = self.crossings[next_index]
-            # arc type 1
-            if current_crossing.pd_code[1] == next_crossing.pd_code[2] and current_crossing.pd_code[2] == next_crossing.pd_code[1]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[1], current_crossing.pd_code[2]])
-            # arc type 2
-            elif current_crossing.pd_code[2] == next_crossing.pd_code[0] and current_crossing.pd_code[3] == next_crossing.pd_code[3]:
-                crossings_formings_arcs.extend([index, next_index])
-                pd_code_segments_to_eliminate.extend([current_crossing.pd_code[2], current_crossing.pd_code[3]])
-        if crossings_formings_arcs:
-            return (crossings_formings_arcs, pd_code_segments_to_eliminate)
-        else:
-            return False
+            if has_rm2 == False:
+                next_index = (index+1)%num_crossings
+                next_crossing = self.crossings[next_index]
+                difference = max(current_crossing.pd_code[0], next_crossing.pd_code[0]) - min(current_crossing.pd_code[0], next_crossing.pd_code[0])
+                if (difference == 1):
+                    indices_to_compare = [[[2,3],[0,3]],[[1,2],[1,0]]]
+                    has_rm2 = compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing)
+                elif (difference == num_crossings-1):
+                    indices_to_compare = [[[0,3],[2,3]],[[0,1],[2,1]]]
+                    has_rm2 = compare_pd_codes_for_rm2(indices_to_compare, current_crossing, next_crossing)
+            else:
+                break
+        return has_rm2
 
     def json(self):
-        return dict(name=self.name, crossings=self.crossings) 
+        return dict(name = self.name, crossings = self.crossings)
 
     def num_crossings(self):
         """
         Return the number of crossings in the knot.
         """
-        return len(knot.crossings)
-
-    def remove_crossings(self, indices):
-        """
-        Remove crossings from a knot.
-
-        Arguments:
-        indices -- (list) the indices of the crossings to remove
-        """
-        # Remove crossings from last to first to avoid changing
-        # the index of crossings not yet processed.
-        indices.sort(reverse = True)
-        for index in indices:
-            del self.crossings[index]   
-        return self
+        return len(self.crossings)
 
     def simplify_rm1(self, twisted_crossings):
         """
@@ -134,11 +219,24 @@ class Knot:
         twisted_crossings -- (list) the indices of crossings to eliminate
         """
         crossings = self.crossings
-        for index in twisted_crossings:
+        for index in sorted(twisted_crossings, reverse = True):
             duplicate_value = self.crossings[index].has_duplicate_value()
+            self.delete_crossings([index])
+            max_value = len(self.crossings)*2
+            # Adjust crossings.
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, -2, len(self.crossings)*2)
-        self.remove_crossings(twisted_crossings)
+                if duplicate_value <= max_value:
+                    crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
+                elif duplicate_value > max_value:
+                    crossing.alter_elements_greater_than(max_value, 0, max_value)
+            # Adjust bridges.
+            self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
+            for bridge in self.bridges:
+                extend_bridge = any(x in bridge for x in extend_if_bridge_end)
+                if extend_bridge:
+                    bridge_index = self.bridges.index(bridge)
+                    self.extend_bridge(bridge_index)      
         return self
 
     def simplify_rm1_recursively(self):
@@ -161,16 +259,35 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
-        self.remove_crossings(crossing_indices)
+        self.delete_crossings(crossing_indices)
+        extend_if_bridge_end = []
+        segments_to_eliminate.sort(reverse = True)
 
-        if 1 in segments_to_eliminate:
+        for segment in segments_to_eliminate:
+            value = segment[0]
+            addend = segment[1]
+            # Alter values of each crossing.
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-                crossing.alter_elements_greater_than(min(segments_to_eliminate), -1, len(self.crossings)*2)
-        else:
-            for crossing in self.crossings:
-                crossing.alter_elements_greater_than(max(segments_to_eliminate), -2, (len(self.crossings)+2)*2)
-                crossing.alter_elements_greater_than(min(segments_to_eliminate), -2, len(self.crossings)*2)
+                crossing.alter_elements_greater_than(value, addend)
+            # Alter values of remaining segments to eliminate.
+            segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
+            # Remove segments as we finish with them.
+            del(segments_to_eliminate[-1])
+
+        # Mod final crossings based on maximum value allowed.
+        maximum = len(self.crossings) * 2
+        for crossing in self.crossings:
+            crossing.alter_elements_greater_than(maximum, 0, maximum)
+
+        # Adjust bridges.
+        self.alter_bridge_segments_greater_than(value, addend, maximum)
+        extend_if_bridge_end = [value - 1, value + 1]
+        for bridge in self.bridges:
+            extend_bridge = any(x in bridge for x in extend_if_bridge_end)
+            if extend_bridge:
+                bridge_index = self.bridges.index(bridge)
+                self.extend_bridge(bridge_index)
+
         return self
 
     def simplify_rm2_recursively(self):
@@ -205,6 +322,31 @@ class ComplexEncoder(JSONEncoder):
             return obj.json()
         else:
             return json.JSONEncoder.default(self, obj)
+
+def alter_if_greater(x, value, addend, maximum = None):
+    """
+    Arguments:
+    value -- (int) The number to compare each element of the crossing with.
+    addend -- (int) The number to add to crossing elements greater than value.
+    maximum -- (int) The maximum allowed value of elements in the crossing.
+    """
+    if x > value:
+        x += addend
+        if maximum and x > maximum:
+            x = x%maximum
+    return x
+
+def alter_segment_elements_greater_than(segments, value, addend):
+    """
+    Arguments:
+    segments -- (list) A list of lists of integers to alter.
+    value -- (int) The number to compare each element of the crossing with.
+    addend -- (int) The number to add to crossing elements greater than value.
+    """
+    altered_segments = []
+    for pair in segments:
+        altered_segments.append([alter_if_greater(x, value, addend) for x in pair])
+    return altered_segments
 
 def create_knot_from_pd_code(pd_code, name = None):
     """
