@@ -38,7 +38,7 @@ class HasDuplicateValueTestCase(unittest.TestCase):
 class HasRm1TestCase(unittest.TestCase):
     def testHasRm1(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]])
-        self.assertEqual(knot.has_rm1(), [1,2,3])
+        self.assertEqual(knot.has_rm1(), [1])
 
     def testDoesNotHaveRm1(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,1,4,6],[5,3,6,2]])
@@ -83,10 +83,10 @@ class DesignateBridgeTestCase(unittest.TestCase):
 class SimplifyRm1TestCase(unittest.TestCase):
     def testSimplifyRm1(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]])
-        knot.simplify_rm1([1,2,3])
-        answer = create_knot_from_pd_code([[1,3,2,2]])
+        knot.simplify_rm1([1])
+        answer = create_knot_from_pd_code([[1,3,2,2],[4,4,5,3],[6,6,1,5]])
         self.assertEqual(knot, answer)
-    
+
 class SimplifyRm1RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm1Recursively(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[7,10,8,1],[8,6,9,5],[9,6,10,7]])

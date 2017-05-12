@@ -157,10 +157,8 @@ class Knot:
         for index, crossing in enumerate(self.crossings):
             if crossing.has_duplicate_value():
                 twisted_crossings.append(index)
-        if twisted_crossings:
-            return twisted_crossings
-        else:
-            return False
+                return twisted_crossings
+        return False
 
     def has_rm2(self):
         """
@@ -223,11 +221,14 @@ class Knot:
         crossings = self.crossings
         for index in sorted(twisted_crossings, reverse = True):
             duplicate_value = self.crossings[index].has_duplicate_value()
+            self.delete_crossings([index])
             max_value = len(self.crossings)*2
             # Adjust crossings.
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
-            self.delete_crossings([index])
+                if duplicate_value <= max_value:
+                    crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
+                elif duplicate_value > max_value:
+                    crossing.alter_elements_greater_than(max_value, 0, max_value)
             # Adjust bridges.
             self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
@@ -330,13 +331,9 @@ def alter_if_greater(x, value, addend, maximum = None):
     maximum -- (int) The maximum allowed value of elements in the crossing.
     """
     if x > value:
-        if maximum:
-            if x <= maximum-addend:
-                x += addend
-            else:
-                x = (x+addend)%maximum
-        else:
-            x += addend
+        x += addend
+        if maximum and x > maximum:
+            x = x%maximum
     return x
 
 def alter_segment_elements_greater_than(segments, value, addend):
