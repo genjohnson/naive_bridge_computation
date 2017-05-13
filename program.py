@@ -17,24 +17,24 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Create a knot object.
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
+        print 'knot being processed is ' + str(knot.name)
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
         # Designate initial bridges.
         if (knot.num_crossings() > 1):
-            # Designate the first crossing as a bridge.
             knot.designate_bridge(knot.crossings[0])
-            print 'knot being processed is ' + str(knot.name)
-            # Designate another bridge.
             knot.designate_additional_bridge()
-        # Drag crossings, simplify knot, and identify bridges
-        # until all crossings belong to a bridge.
-        while knot.free_crossings != []:
-            crossing_to_drag = knot.find_crossing_to_drag()
-            if crossing_to_drag:
-                break
-            else:
-                knot.designate_additional_bridge()
+            # Drag crossings, simplify knot, and identify bridges
+            # until all crossings belong to a bridge.
+            while knot.free_crossings != []:
+                crossing_to_drag = knot.find_crossing_to_drag()
+                if crossing_to_drag:
+                    break
+                else:
+                    knot.designate_additional_bridge()
+        else:
+            print 'after simplifying, the knot is the unknot'
         # Add the results to our output.
         knot_output['knots'].append(knot.json())
         print '----------------------'
