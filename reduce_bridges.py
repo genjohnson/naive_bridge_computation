@@ -375,7 +375,7 @@ def crossing_deadends_at_bridge(knot, crossing):
     bridge_crossings = diff(knot.crossings, knot.free_crossings)
     crossing_overpass = [crossing.pd_code[1], crossing.pd_code[3]]
 
-    for x, i in enumerate(crossing_overpass):
+    for i, x in enumerate(crossing_overpass):
         for bridge_crossing in bridge_crossings:
             if x == bridge_crossing.pd_code[0] or x == bridge_crossing.pd_code[2]:
                 print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
