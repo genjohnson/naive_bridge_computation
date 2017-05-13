@@ -104,6 +104,7 @@ class Knot:
                 for free_crossing in self.free_crossings:
                     if x == free_crossing.pd_code[0]:
                         self.designate_bridge(free_crossing)
+                        print 'the bridges are ' + str(self.bridges)
                         return self
 
     def designate_bridge(self, crossing):
@@ -149,11 +150,11 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
-        crossing_to_drag = False
-        while crossing_to_drag == False:
-            for free_crossing in self.free_crossings:
-                crossing_to_drag = crossing_deadends_at_bridge(self, free_crossing)
-        return crossing_to_drag
+        for free_crossing in self.free_crossings:
+            crossing_to_drag = crossing_deadends_at_bridge(self, free_crossing)
+            if crossing_to_drag:
+                return crossing_to_drag
+        return False
 
     def has_rm1(self):
         """

@@ -27,13 +27,11 @@ with open('knots.csv') as csvfile:
             print 'knot being processed is ' + str(knot.name)
             # Designate another bridge.
             knot.designate_additional_bridge()
-            print 'the bridges are ' + str(knot.bridges)
         # Drag crossings, simplify knot, and identify bridges
         # until all crossings belong to a bridge.
         while knot.free_crossings != []:
             crossing_to_drag = knot.find_crossing_to_drag()
             if crossing_to_drag:
-                print 'there is a crossing to drag'
                 break
             else:
                 knot.designate_additional_bridge()
