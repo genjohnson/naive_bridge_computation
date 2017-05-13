@@ -148,6 +148,13 @@ class Knot:
                 else:
                     break;
 
+    def find_crossing_to_drag(self):
+        crossing_to_drag = False
+        while crossing_to_drag == False:
+            for free_crossing in self.free_crossings:
+                crossing_to_drag = crossing_deadends_at_bridge(self, free_crossing)
+        return crossing_to_drag
+
     def has_rm1(self):
         """
         Inspect a knot for crossings that can be eliminated
@@ -356,3 +363,32 @@ def create_knot_from_pd_code(pd_code, name = None):
     pd_code -- (list) the PD notation of a knot expressed as a list of lists
     """
     return Knot([Crossing(crossing) for crossing in pd_code], name)
+
+def crossing_deadends_at_bridge(knot, crossing):
+    """
+    Determine if a crossing ends at a bridge overpass.
+
+    Arguments:
+    knot -- (object) a Knot
+    crossing -- (object) a Crossing
+    """
+    bridge_crossings = diff(knot.crossings, knot.free_crossings)
+    crossing_overpass = [crossing.pd_code[1], crossing.pd_code[3]]
+
+    for x, i in enumerate(crossing_overpass):
+        for bridge_crossing in bridge_crossings:
+            if x == bridge_crossing.pd_code[0] or x == bridge_crossing.pd_code[2]:
+                print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                return True
+    return False
+
+def diff(first, second):
+    """
+    Compute the difference of two lists.
+
+    Arguments:
+    first -- (list) The list to prune
+    second -- (list) The elements to remove from "first" (if they exist)
+    """
+    second = set(second)
+    return [item for item in first if item not in second]
