@@ -15,6 +15,22 @@ class AlterElementsGreaterThanTestCase(unittest.TestCase):
         crossing.alter_elements_greater_than(2, -1, 2)
         self.assertEqual(crossing, Crossing([1,2,2,1],0))
 
+class AlterForDrag(unittest.TestCase):
+    def testAlterForDrag(self):
+        crossing = Crossing([12,2,13,1])
+        crossing.alter_for_drag(3,9)
+        self.assertEqual(crossing, Crossing([16,2,17,1]))
+
+    def testAlterForDragTwo(self):
+        crossing = Crossing([16,10,1,9])
+        crossing.alter_for_drag(3,9)
+        self.assertEqual(crossing, Crossing([20,14,1,13]))
+
+    def testAlterForDragThree(self):
+        crossing = Crossing([5,11,6,10])
+        crossing.alter_for_drag(3,9)
+        self.assertEqual(crossing, Crossing([7,15,8,14]))
+
 class HasDuplicateValueTestCase(unittest.TestCase):
     def testHasDuplicateValue(self):
         pd_codes = itertools.permutations([1, 2, 3, 3])

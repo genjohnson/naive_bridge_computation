@@ -31,6 +31,19 @@ class Crossing:
         self.pd_code = [alter_if_greater(x, value, addend, maximum) for x in self.pd_code]
         return self
 
+    def alter_for_drag(self, minimum, maximum):
+        def alter_element_for_drag(x, minimum, maximum):
+            if x <= minimum:
+                return x
+            if minimum < x < maximum:
+                return x+2
+            if x >= maximum:
+                return x+4
+
+        self.pd_code = [alter_element_for_drag(x, minimum, maximum) for x in self.pd_code]
+
+        return self
+
     def has_duplicate_value(self):
         """
         Determine if there are duplicate values in the PD notation of a crossing.
