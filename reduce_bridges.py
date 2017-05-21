@@ -31,16 +31,16 @@ class Crossing:
         self.pd_code = [alter_if_greater(x, value, addend, maximum) for x in self.pd_code]
         return self
 
-    def alter_for_drag(self, minimum, maximum):
-        def alter_element_for_drag(x, minimum, maximum):
-            if x <= minimum:
+    def alter_for_drag(self, ordered_segments):
+        def alter_element_for_drag(x, first, second):
+            if x <= first:
                 return x
-            if minimum < x <= maximum:
+            if first < x <= second:
                 return x+2
-            if x > maximum:
+            if x > second:
                 return x+4
 
-        self.pd_code = [alter_element_for_drag(x, minimum, maximum) for x in self.pd_code]
+        self.pd_code = [alter_element_for_drag(x, ordered_segments[0], ordered_segments[1]) for x in self.pd_code]
 
         return self
 
@@ -140,18 +140,12 @@ class Knot:
         else:
             y = max(bridge_crossing.pd_code[1], bridge_crossing.pd_code[3])
 
-        minimum = min(crossing_to_drag.pd_code[0], y)
-        maximum = max(crossing_to_drag.pd_code[0], y)
+        # Determine the order we traverse a and y.
+        ordered_segments = sorted([crossing_to_drag.pd_code[0], y])
 
-        print 'minimum is ' + str(minimum) + ' and maximum is ' + str(maximum)
-
-        print 'crossings before alter are'
-        print self
         # Alter the PD code values of all crossings not invloved in the drag.
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
-            crossing.alter_for_drag(minimum, maximum)
-        print 'crossings after alter are'
-        print self
+            crossing.alter_for_drag(ordered_segments)
 
     def extend_bridge(self, bridge_index):
         """
