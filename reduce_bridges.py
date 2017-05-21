@@ -133,15 +133,18 @@ class Knot:
         self.extend_bridge(crossing.bridge)
 
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
+        (a, b, c, d) = crossing_to_drag.pd_code
+        (e, f, g, h) = bridge_crossing.pd_code
+
         # Get the value of f/h that we travel from toward the other.
         y = None
-        if abs(bridge_crossing.pd_code[1] - bridge_crossing.pd_code[3]) == 1:
-            y = min(bridge_crossing.pd_code[1], bridge_crossing.pd_code[3])
+        if abs(f - h) == 1:
+            y = min(f, h)
         else:
-            y = max(bridge_crossing.pd_code[1], bridge_crossing.pd_code[3])
+            y = max(f, h)
 
         # Determine the order we traverse a and y.
-        ordered_segments = sorted([crossing_to_drag.pd_code[0], y])
+        ordered_segments = sorted([a, y])
 
         # Alter the PD code values of all crossings not invloved in the drag.
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
