@@ -35,9 +35,9 @@ class Crossing:
         def alter_element_for_drag(x, minimum, maximum):
             if x <= minimum:
                 return x
-            if minimum < x < maximum:
+            if minimum < x <= maximum:
                 return x+2
-            if x >= maximum:
+            if x > maximum:
                 return x+4
 
         self.pd_code = [alter_element_for_drag(x, minimum, maximum) for x in self.pd_code]
@@ -131,6 +131,27 @@ class Knot:
         self.free_crossings.remove(crossing)
         crossing.bridge = len(self.bridges) - 1
         self.extend_bridge(crossing.bridge)
+
+    def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
+        # Get the value of f/h that we travel from toward the other.
+        y = None
+        if abs(bridge_crossing.pd_code[1] - bridge_crossing.pd_code[3]) == 1:
+            y = min(bridge_crossing.pd_code[1], bridge_crossing.pd_code[3])
+        else:
+            y = max(bridge_crossing.pd_code[1], bridge_crossing.pd_code[3])
+
+        minimum = min(crossing_to_drag.pd_code[0], y)
+        maximum = max(crossing_to_drag.pd_code[0], y)
+
+        print 'minimum is ' + str(minimum) + ' and maximum is ' + str(maximum)
+
+        print 'crossings before alter are'
+        print self
+        # Alter the PD code values of all crossings not invloved in the drag.
+        for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
+            crossing.alter_for_drag(minimum, maximum)
+        print 'crossings after alter are'
+        print self
 
     def extend_bridge(self, bridge_index):
         """
@@ -391,9 +412,14 @@ def crossing_deadends_at_bridge(knot, crossing):
 
     for i, x in enumerate(crossing_overpass):
         for bridge_crossing in bridge_crossings:
-            if x == bridge_crossing.pd_code[0] or x == bridge_crossing.pd_code[2]:
+            if x == bridge_crossing.pd_code[0]:
+                # x is a match with element e.
                 print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
-                return True
+                return (i*2+1, 0, crossing, bridge_crossing)
+            elif x == bridge_crossing.pd_code[2]:
+                # x is a match with element g.
+                print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                return (i*2+1, 2, crossing, bridge_crossing)
     return False
 
 def diff(first, second):
