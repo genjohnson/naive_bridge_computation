@@ -143,12 +143,30 @@ class Knot:
         else:
             y = max(f, h)
 
-        # Determine the order we traverse a and y.
-        ordered_segments = sorted([a, y])
+        # Determine the order we traverse a, e & y.
+        ordered_segments = sorted([a, e, y])
 
         # Alter the PD code values of all crossings not invloved in the drag.
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
-            crossing.alter_for_drag(ordered_segments)
+            crossing.alter_for_drag(sorted([a,y]))
+
+        print 'original bridge crossing is ' + str(bridge_crossing.pd_code)
+
+        # Alter the PD code of the bridge crossing.
+        i = bridge_crossing.pd_code.index(e)
+        x = None
+        if d == e:
+            x = b
+        elif b == e:
+            x = d
+        if e == 1:
+            x += 4
+        else:
+            x += 2*i
+        addends = get_y_addends(a, h, y)
+        bridge_crossing.pd_code = [x, y+addends[0], e+2*i, y+addends[1]]
+
+        print 'altered bridge crossing is ' + str(bridge_crossing.pd_code)
 
     def extend_bridge(self, bridge_index):
         """
