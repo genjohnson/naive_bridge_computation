@@ -135,6 +135,7 @@ class Knot:
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
         (a, b, c, d) = crossing_to_drag.pd_code
         (e, f, g, h) = bridge_crossing.pd_code
+        bid = bridge_crossing.bridge
 
         # Get the value of f/h that we travel from toward the other.
         y = None
@@ -167,6 +168,47 @@ class Knot:
         bridge_crossing.pd_code = [x, y+addends[0], e+2*i, y+addends[1]]
 
         print 'altered bridge crossing is ' + str(bridge_crossing.pd_code)
+
+        # Alter the PD code of the crossing being dragged.
+        new_max_pd_val = self.max_pd_code_value()+4
+        ## Create two new crossings.
+        if d == e:
+            if a < y:
+                if y == f:
+                    addends = [4,5]
+                elif y == h:
+                    addends = [3,2]
+                y_vals = alter_y_values(y, addends, new_max_pd_val)
+                crossing_one = Crossing([a, (y_vals[0]), a+1, y_vals[1]], bid)
+            if a > y:
+                if y == f:
+                    addends = [2,3]
+                elif y == h:
+                    addends = [1,0]
+                y_vals = alter_y_values(y, addends, new_max_pd_val)
+                crossing_one = Crossing([a+2, y_vals[0], a+3, y_vals[1]], bid)
+        if b == e:
+            if a < y:
+                if y == f:
+                    addends = [2,3]
+                elif y == h:
+                    addends = [5,4]
+                y_vals = alter_y_values(y, addends, new_max_pd_val)
+                crossing_one = Crossing([a, y_vals[0], a+1, y_vals[1]], bid)
+            if a > y:
+                if y == f:
+                    addends = [0,1]
+                elif y == h:
+                    addends = [3,2]
+                y_vals = alter_y_values(y, addends, new_max_pd_val)
+                crossing_one = Crossing([a+2, y_vals[0], a+3, y_vals[1]], bid)
+
+        print 'crossing one is ' + str(crossing_one.pd_code)
+        ## Alter exiting crossing.
+
+        ## Replace crossing being dragged.
+        #index = self.crossings.index(crossing_to_drag)
+        #self.crossings[index:index+1] = new_crossing_1, altered_crossing_to_drag, new_crossing_2
 
     def extend_bridge(self, bridge_index):
         """
@@ -261,6 +303,12 @@ class Knot:
 
     def json(self):
         return dict(name = self.name, crossings = self.crossings)
+
+    def max_pd_code_value(self):
+        """
+        Return the maximum value possible in the PD code.
+        """
+        return len(self.crossings)*2
 
     def num_crossings(self):
         """
@@ -404,6 +452,18 @@ def alter_segment_elements_greater_than(segments, value, addend):
     for pair in segments:
         altered_segments.append([alter_if_greater(x, value, addend) for x in pair])
     return altered_segments
+
+def alter_y_values(y, addends, maximum):
+    """
+    A helper function for the drag the underpass move.
+
+    Arguments:
+    y -- (int) The PD code value of f or h, whichever we travel from toward the other.
+    addends -- (list) Integer values to add to y.
+    maximum -- (int) The maximum PD code value in the knot after dragging a crossing.
+    """
+    y_vals = [(y+addend)%maximum for addend in addends]
+    return y_vals
 
 def create_knot_from_pd_code(pd_code, name = None):
     """
