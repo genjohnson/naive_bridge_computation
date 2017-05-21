@@ -154,7 +154,7 @@ class Knot:
         print 'original bridge crossing is ' + str(bridge_crossing.pd_code)
 
         # Alter the PD code of the bridge crossing.
-        i = bridge_crossing.pd_code.index(e)
+        i = ordered_segments.index(e)
         x = None
         if d == e:
             x = b
