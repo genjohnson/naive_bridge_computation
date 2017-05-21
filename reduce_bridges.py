@@ -439,8 +439,9 @@ def get_y_addends(a, h, y):
     h -- (int) PD code of the 4th element in the bridge tuple.
     y -- (int) PD code of the 2nd or 4th element in the bridge tuple that is traveled from toward the other.
     """
-    reverse_sort = bool(y == h)
     if a < y:
-        return [3,4].sorted(reverse = reverse_sort)
+        addends = [3,4]
     elif a > y:
-        return [1,2].sorted(reverse = reverse_sort)
+        addends = [1,2]
+    addends.sort(reverse = bool(y == h))
+    return addends
