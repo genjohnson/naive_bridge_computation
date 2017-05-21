@@ -426,3 +426,18 @@ def diff(first, second):
     """
     second = set(second)
     return [item for item in first if item not in second]
+
+def get_y_addends(a, h, y):
+    """
+    Get the addends for y to alter the bridge tuple for a drag.
+
+    Arguments:
+    a -- (int) PD code of the 1st element in the tuple being dragged.
+    h -- (int) PD code of the 4th element in the bridge tuple.
+    y -- (int) PD code of the 2nd or 4th element in the bridge tuple that is traveled from toward the other.
+    """
+    reverse_sort = bool(y == h)
+    if a < y:
+        return [3,4].sorted(reverse = reverse_sort)
+    elif a > y:
+        return [1,2].sorted(reverse = reverse_sort)
