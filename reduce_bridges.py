@@ -32,16 +32,7 @@ class Crossing:
         return self
 
     def alter_for_drag(self, ordered_segments):
-        def alter_element_for_drag(x, first, second):
-            if x <= first:
-                return x
-            if first < x <= second:
-                return x+2
-            if x > second:
-                return x+4
-
         self.pd_code = [alter_element_for_drag(x, ordered_segments[0], ordered_segments[1]) for x in self.pd_code]
-
         return self
 
     def has_duplicate_value(self):
@@ -148,10 +139,9 @@ class Knot:
         i = sorted([a, e, y]).index(e)
 
         # Alter the PD codes of all crossings not invloved in the drag.
+        a_y_sorted = sorted([a, y])
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
-            crossing.alter_for_drag(sorted([a,y]))
-
-        print 'original bridge crossing is ' + str(bridge_crossing.pd_code)
+            crossing.alter_for_drag(a_y_sorted)
 
         # Alter the PD code of the bridge crossing, (e,f,g,h).
         x = None
@@ -165,8 +155,6 @@ class Knot:
             x += 2*i
         addends = get_y_addends(a, h, y)
         bridge_crossing.pd_code = [x, y+addends[0], e+2*i, y+addends[1]]
-
-        print 'altered bridge crossing is ' + str(bridge_crossing.pd_code)
 
         # Replace the crossing being dragged, (a,b,c,d).
         new_max_pd_val = self.max_pd_code_value()+4
@@ -222,14 +210,15 @@ class Knot:
                 crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
                 crossing_to_drag.pd_code = [a+3, g+2*i, a+4, e+2*i]
 
-        print 'crossing one is ' + str(crossing_one)
-        print 'dragged crossing is ' + str(crossing_to_drag)
-        print 'crossing two is ' + str(crossing_two)
-
         index = self.crossings.index(crossing_to_drag)
         self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
 
-        print str(self)
+        print 'PD code of the knot after dragging is ' + str(self)
+
+        # Alter PD code values of bridge ends.
+        for i, bridge in enumerate(self.bridges):
+            for j, end in enumerate(bridge):
+                self.bridges[i][j] = alter_element_for_drag(end, a_y_sorted[0], a_y_sorted[1])
 
     def extend_bridge(self, bridge_index):
         """
@@ -448,6 +437,23 @@ class ComplexEncoder(JSONEncoder):
             return obj.json()
         else:
             return json.JSONEncoder.default(self, obj)
+
+def alter_element_for_drag(x, first, second):
+    """
+    A helper function for the drag the underpass move to adjust PD code values
+    of crossings not directly invloved in the move.
+
+    Arguments:
+    x -- (int) The value to alter.
+    first -- (int) The PD code value of the first segment we travel into.
+    second -- (int) The PD code value of the second segment we travel into.
+    """
+    if x <= first:
+        return x
+    if first < x <= second:
+        return x+2
+    if x > second:
+        return x+4
 
 def alter_if_greater(x, value, addend, maximum = None):
     """
