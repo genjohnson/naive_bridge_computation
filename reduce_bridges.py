@@ -164,9 +164,9 @@ class Knot:
 
     def find_crossing_to_drag(self):
         for free_crossing in self.free_crossings:
-            crossing_to_drag = crossing_deadends_at_bridge(self, free_crossing)
-            if crossing_to_drag:
-                return crossing_to_drag
+            drag_info = crossing_deadends_at_bridge(self, free_crossing)
+            if drag_info:
+                return drag_info
         return False
 
     def has_rm1(self):
