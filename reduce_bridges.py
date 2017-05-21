@@ -170,8 +170,6 @@ class Knot:
 
         # Replace the crossing being dragged, (a,b,c,d).
         new_max_pd_val = self.max_pd_code_value()+4
-        self.free_crossings.remove(crossing_to_drag)
-        crossing_to_drag.bridge = bid
 
         if d == e:
             if a < y:
