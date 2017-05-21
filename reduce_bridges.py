@@ -175,35 +175,52 @@ class Knot:
         if d == e:
             if a < y:
                 if y == f:
-                    addends = [4,5]
+                    addends_crossing_one = [4,5]
+                    addends_crossing_two = [3,2]
                 elif y == h:
-                    addends = [3,2]
-                y_vals = alter_y_values(y, addends, new_max_pd_val)
-                crossing_one = Crossing([a, (y_vals[0]), a+1, y_vals[1]], bid)
+                    addends_crossing_one = [3,2]
+                    addends_crossing_two = [4,5]
+                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
+                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
+                crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
+                crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
             if a > y:
                 if y == f:
-                    addends = [2,3]
+                    addends_crossing_one = [2,3]
+                    addends_crossing_two = [1,0]
                 elif y == h:
-                    addends = [1,0]
-                y_vals = alter_y_values(y, addends, new_max_pd_val)
-                crossing_one = Crossing([a+2, y_vals[0], a+3, y_vals[1]], bid)
+                    addends_crossing_one = [1,0]
+                    addends_crossing_two = [2,3]
+                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
+                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
+                crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
+                crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
         if b == e:
             if a < y:
                 if y == f:
-                    addends = [2,3]
+                    addends_crossing_one = [2,3]
+                    addends_crossing_two = [5,4]
                 elif y == h:
-                    addends = [5,4]
-                y_vals = alter_y_values(y, addends, new_max_pd_val)
-                crossing_one = Crossing([a, y_vals[0], a+1, y_vals[1]], bid)
+                    addends_crossing_one = [5,4]
+                    addends_crossing_two = [2,3]
+                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
+                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
+                crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
+                crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
             if a > y:
                 if y == f:
-                    addends = [0,1]
+                    addends_crossing_one = [0,1]
+                    addends_crossing_two = [3,2]
                 elif y == h:
-                    addends = [3,2]
-                y_vals = alter_y_values(y, addends, new_max_pd_val)
-                crossing_one = Crossing([a+2, y_vals[0], a+3, y_vals[1]], bid)
+                    addends_crossing_one = [3,2]
+                    addends_crossing_two = [0,1]
+                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
+                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
+                crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
+                crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
 
-        print 'crossing one is ' + str(crossing_one.pd_code)
+        print 'crossing one is ' + str(crossing_one)
+        print 'crossing two is ' + str(crossing_two)
         ## Alter exiting crossing.
 
         ## Replace crossing being dragged.
