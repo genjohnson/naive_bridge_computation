@@ -144,17 +144,16 @@ class Knot:
         else:
             y = max(f, h)
 
-        # Determine the order we traverse a, e & y.
-        ordered_segments = sorted([a, e, y])
+        # Following the orientation of the knot, find when we traverse e.
+        i = sorted([a, e, y]).index(e)
 
-        # Alter the PD code values of all crossings not invloved in the drag.
+        # Alter the PD codes of all crossings not invloved in the drag.
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
             crossing.alter_for_drag(sorted([a,y]))
 
         print 'original bridge crossing is ' + str(bridge_crossing.pd_code)
 
-        # Alter the PD code of the bridge crossing.
-        i = ordered_segments.index(e)
+        # Alter the PD code of the bridge crossing, (e,f,g,h).
         x = None
         if d == e:
             x = b
@@ -169,9 +168,11 @@ class Knot:
 
         print 'altered bridge crossing is ' + str(bridge_crossing.pd_code)
 
-        # Alter the PD code of the crossing being dragged.
+        # Replace the crossing being dragged, (a,b,c,d).
         new_max_pd_val = self.max_pd_code_value()+4
-        ## Create two new crossings.
+        self.free_crossings.remove(crossing_to_drag)
+        crossing_to_drag.bridge = bid
+
         if d == e:
             if a < y:
                 if y == f:
@@ -184,6 +185,7 @@ class Knot:
                 y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
                 crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
                 crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
+                crossing_to_drag.pd_code = [a+1, e+2*i, a+2, g+2*i]
             if a > y:
                 if y == f:
                     addends_crossing_one = [2,3]
@@ -195,6 +197,7 @@ class Knot:
                 y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
                 crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
                 crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
+                crossing_to_drag.pd_code = [a+3, e+2*i, a+4, g+2*i]
         if b == e:
             if a < y:
                 if y == f:
@@ -207,6 +210,7 @@ class Knot:
                 y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
                 crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
                 crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
+                crossing_to_drag.pd_code = [a+1, g+2*i, a+2, e+2*i]
             if a > y:
                 if y == f:
                     addends_crossing_one = [0,1]
@@ -218,14 +222,16 @@ class Knot:
                 y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
                 crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
                 crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
+                crossing_to_drag.pd_code = [a+3, g+2*i, a+4, e+2*i]
 
         print 'crossing one is ' + str(crossing_one)
+        print 'dragged crossing is ' + str(crossing_to_drag)
         print 'crossing two is ' + str(crossing_two)
-        ## Alter exiting crossing.
 
-        ## Replace crossing being dragged.
-        #index = self.crossings.index(crossing_to_drag)
-        #self.crossings[index:index+1] = new_crossing_1, altered_crossing_to_drag, new_crossing_2
+        index = self.crossings.index(crossing_to_drag)
+        self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
+
+        print str(self)
 
     def extend_bridge(self, bridge_index):
         """

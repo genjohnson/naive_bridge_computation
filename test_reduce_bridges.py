@@ -103,7 +103,7 @@ class DragCrossingUnderBridgeTestCase(unittest.TestCase):
         knot.designate_additional_bridge()
         drag_info = knot.find_crossing_to_drag()
         knot.drag_crossing_under_bridge(drag_info[2], drag_info[3])
-        answer = create_knot_from_pd_code([[9,5,10,4],[10,1,11,2],[11,6,12,7],[13,3,14,2],[15,8,16,9],[16,6,1,5]])
+        answer = Knot([Crossing(x[0], x[1]) for x in [[[16,6,1,5],0], [[3,15,4,14], None], [[7,12,8,13], 1], [[9,5,10,4], 0], [[10,1,11,2], 0], [[11,6,12,7], 0], [[13,3,14,2], None], [[15,8,16,9], None]]])
         self.assertEqual(knot, answer)
 
 class SimplifyRm1TestCase(unittest.TestCase):
