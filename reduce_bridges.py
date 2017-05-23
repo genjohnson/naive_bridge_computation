@@ -177,55 +177,76 @@ class Knot:
 
         if d == e:
             if a < y:
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, e+2*i, g+2*i
                 if y == f:
-                    addends_crossing_one = [4,5]
-                    addends_crossing_two = [3,2]
+                    y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
                 elif y == h:
-                    addends_crossing_one = [3,2]
-                    addends_crossing_two = [4,5]
-                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
-                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
-                crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
-                crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
-                crossing_to_drag.pd_code = [a+1, e+2*i, a+2, g+2*i]
+                    y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
             if a > y:
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e+2*i, g+2*i
                 if y == f:
-                    addends_crossing_one = [2,3]
-                    addends_crossing_two = [1,0]
+                    y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
                 elif y == h:
-                    addends_crossing_one = [1,0]
-                    addends_crossing_two = [2,3]
-                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
-                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
-                crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
-                crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
-                crossing_to_drag.pd_code = [a+3, e+2*i, a+4, g+2*i]
-        if b == e:
+                    y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
+        elif b == e:
             if a < y:
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, g+2*i, e+2*i
                 if y == f:
-                    addends_crossing_one = [2,3]
-                    addends_crossing_two = [5,4]
+                    y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [5,4], new_max_pd_val)
                 elif y == h:
-                    addends_crossing_one = [5,4]
-                    addends_crossing_two = [2,3]
-                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
-                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
-                crossing_one = Crossing([a, y_vals_one[0], a+1, y_vals_one[1]], bid)
-                crossing_two = Crossing([a+2, y_vals_two[0], a+4, y_vals_two[1]], bid)
-                crossing_to_drag.pd_code = [a+1, g+2*i, a+2, e+2*i]
+                    y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
             if a > y:
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, g+2*i, e+2*i
                 if y == f:
-                    addends_crossing_one = [0,1]
-                    addends_crossing_two = [3,2]
+                    y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
                 elif y == h:
-                    addends_crossing_one = [3,2]
-                    addends_crossing_two = [0,1]
-                y_vals_one = alter_y_values(y, addends_crossing_one, new_max_pd_val)
-                y_vals_two = alter_y_values(y, addends_crossing_two, new_max_pd_val)
-                crossing_one = Crossing([a+2, y_vals_one[0], a+3, y_vals_one[1]], bid)
-                crossing_two = Crossing([a+4, y_vals_two[0], (a+5)%new_max_pd_val, y_vals_two[1]], bid)
-                crossing_to_drag.pd_code = [a+3, g+2*i, a+4, e+2*i]
+                    y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
+        elif d == g:
+            if a < y:
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+4, g, e
+                if y == f:
+                    y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
+                elif y == h:
+                    y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
+            if a > y:
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, g, e
+                if y == f:
+                    y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
+                elif y == h:
+                    y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
+        elif b == g:
+            if a < y:
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e, g
+                if y == f:
+                    y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
+                elif y == h:
+                    y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [5,4], new_max_pd_val)
+            if a > y:
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e, g
+                if y == f:
+                    y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
+                elif y == h:
+                    y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
+                    y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
 
+        crossing_one = Crossing([m, y_vals_one[0], n, y_vals_one[1]], bid)
+        crossing_two = Crossing([r, y_vals_two[0], s, y_vals_two[1]], bid)
+        crossing_to_drag.pd_code = [t, v, u, w]
         index = self.crossings.index(crossing_to_drag)
         self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
 
