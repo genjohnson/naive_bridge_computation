@@ -31,7 +31,7 @@ with open('knots.csv') as csvfile:
                 drag_info = knot.find_crossing_to_drag()
                 if drag_info:
                     knot.drag_crossing_under_bridge(drag_info[2], drag_info[3])
-                    break
+                    knot.simplify_rm1_rm2_recursively()
                 else:
                     knot.designate_additional_bridge()
         else:
