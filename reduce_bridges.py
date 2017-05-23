@@ -144,17 +144,33 @@ class Knot:
             crossing.alter_for_drag(a_y_sorted)
 
         # Alter the PD code of the bridge crossing, (e,f,g,h).
-        x = None
-        if d == e:
-            x = b
-        elif b == e:
-            x = d
-        if e == 1:
-            x += 4
-        else:
-            x += 2*i
         addends = get_y_addends(a, h, y)
-        bridge_crossing.pd_code = [x, y+addends[0], e+2*i, y+addends[1]]
+        m, n = None, None
+        if d == e:
+            n = e+2*i
+            if e == 1:
+                m = b+4
+            else:
+                m = b+2*i
+        elif b == e:
+            n = e+2*i
+            if e == 1:
+                m = d+4
+            else:
+                m = d+2*i
+        elif d == g:
+            m = g+2*i
+            if e == 1:
+                n = b+4
+            else:
+                n = b+2*i
+        elif b == g:
+            m = g+2*i
+            if e == 1:
+                n = d+4
+            else:
+                n = d+2*i
+        bridge_crossing.pd_code = [m, y+addends[0], n, y+addends[1]]
 
         # Replace the crossing being dragged, (a,b,c,d).
         new_max_pd_val = self.max_pd_code_value()+4
