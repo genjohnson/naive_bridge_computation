@@ -1,8 +1,8 @@
 #!/usr/bin/env python2.7
 
-import config
 import itertools
 from json import JSONEncoder
+import logging
 import numpy
 
 class Crossing:
@@ -121,8 +121,7 @@ class Knot:
         self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
         self.free_crossings.remove(crossing)
         crossing.bridge = len(self.bridges) - 1
-        if config.logging:
-            print 'Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge)
+        logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
         self.extend_bridge(crossing.bridge)
         
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
@@ -181,68 +180,84 @@ class Knot:
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, e+2*i, g+2*i
                 if y == f:
+                    logging.debug('Dragging case d=e, a<y, y==f')
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case d=e, a<y, y==h')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
             if a > y:
                 m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e+2*i, g+2*i
                 if y == f:
+                    logging.debug('Dragging case d=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case d=e, a>y, y==h')
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
         elif b == e:
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, g+2*i, e+2*i
                 if y == f:
+                    logging.debug('Dragging case b=e, a<y, y==f')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [5,4], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case b=e, a<y, y==h')
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
             if a > y:
                 m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, g+2*i, e+2*i
                 if y == f:
+                    logging.debug('Dragging case b=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case b=e, a>y, y==h')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
         elif d == g:
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+4, g, e
                 if y == f:
+                    logging.debug('Dragging case d=g, a<y, y==f')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case d=g, a<y, y==h')
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
             if a > y:
                 m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, g, e
                 if y == f:
+                    logging.debug('Dragging case d=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case d=g, a>y, y==h')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
         elif b == g:
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e, g
                 if y == f:
+                    logging.debug('Dragging case b=g, a<y, y==f')
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case b=g, a<y, y==h')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [5,4], new_max_pd_val)
             if a > y:
                 m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e, g
                 if y == f:
+                    logging.debug('Dragging case b=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
                 elif y == h:
+                    logging.debug('Dragging case b=g, a>y, y==h')
                     y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
 
@@ -252,7 +267,7 @@ class Knot:
         index = self.crossings.index(crossing_to_drag)
         self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
 
-        print 'PD code of the knot after dragging is ' + str(self)
+        logging.debug('PD code of the knot after dragging is ' + str(self))
 
         # Alter PD code values of bridge ends.
         bridge_to_extend = None
@@ -262,9 +277,8 @@ class Knot:
                 self.bridges[i][j] = end
                 # Check if the crossing we dragged is now covered by a bridge.
                 if end == crossing_to_drag.pd_code[1] or end == crossing_to_drag.pd_code[3]:
-                    bridge_to_extend = i
-                    if config.logging:
-                        print 'The crossing we dragged can be covered by expanding bridge ' + str(bridge)
+                    bridge_to_extend = i                        
+                    logging.debug('The crossing we dragged can be covered by expanding bridge ' + str(bridge))
         # Expand the bridge covering the crossing that was dragged.
         if bridge_to_extend:
             self.extend_bridge(bridge_to_extend)
@@ -277,8 +291,7 @@ class Knot:
         bridge_index -- (int) the index of the bridge to extend
         """
         bridge = self.bridges[bridge_index]
-        if config.logging:
-            print 'We will try to extend the bridge ' + str(bridge)
+        logging.debug('We will try to extend the bridge ' + str(bridge))
         for x in bridge:
             index = bridge.index(x)
             x_is_deadend = False
@@ -287,21 +300,22 @@ class Knot:
                 if result:
                     crossing = result.pop()
                     if x == crossing.pd_code[1]:
+                        logging.debug('Bridge end ' + str(x) + ' can be extended to ' + str(crossing.pd_code[3]))
                         bridge[index] = crossing.pd_code[3]
                         x = crossing.pd_code[3]
                         self.free_crossings.remove(crossing)
                         crossing.bridge = bridge_index
                     elif x == crossing.pd_code[3]:
+                        logging.debug('Bridge end ' + str(x) + ' can be extended to ' + str(crossing.pd_code[1]))
                         bridge[index] = crossing.pd_code[1]
                         x = crossing.pd_code[1]
                         self.free_crossings.remove(crossing)
                         crossing.bridge = bridge_index
                     else:
+                        logging.debug('Bridge end ' + str(x) + ' is a dead-end and cannot be extended')
                         x_is_deadend = True
                 else:
                     break;
-        if config.logging:
-            print 'After trying to extend, the bridge is ' + str(bridge)
 
     def find_crossing_to_drag(self):
         for free_crossing in self.free_crossings:
@@ -319,8 +333,7 @@ class Knot:
         for index, crossing in enumerate(self.crossings):
             if crossing.has_duplicate_value():
                 twisted_crossings.append(index)
-                if config.logging:
-                    print 'The knot can be simplified by RM1 at crossing ' + str(crossing.pd_code)
+                logging.debug('The knot can be simplified by RM1 at crossing ' + str(crossing.pd_code))
                 return twisted_crossings
         return False
 
@@ -395,12 +408,11 @@ class Knot:
             max_value = len(self.crossings)*2
             # Adjust crossings.
             for crossing in self.crossings:
+                addend = 0
+                logging.debug('Alter all crossing elements greater than ' + str(duplicate_value))
                 if duplicate_value <= max_value:
-                    crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
-                elif duplicate_value > max_value:
-                    crossing.alter_elements_greater_than(max_value, 0, max_value)
-            if config.logging:
-                print 'After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self)
+                    addend = -2
+                crossing.alter_elements_greater_than(max_value, addend, max_value)
             # Adjust bridges.
             self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
@@ -409,6 +421,7 @@ class Knot:
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
                     self.extend_bridge(bridge_index)
+            logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self))
         return self
 
     def simplify_rm1_recursively(self):
@@ -459,6 +472,7 @@ class Knot:
             if extend_bridge:
                 bridge_index = self.bridges.index(bridge)
                 self.extend_bridge(bridge_index)
+        logging.info('After simplifying RM2 of arcs ' + str(segments_to_eliminate) + ', the PD code is ' + str(self))
 
         return self
 
@@ -485,6 +499,7 @@ class Knot:
             if self.has_rm2():
                 self.simplify_rm2_recursively()
             if not self.has_rm1() and not self.has_rm2():
+                logging.info('No more moves of type RM1 or RM2 are possible.')
                 break;
         return self
 
@@ -573,13 +588,11 @@ def crossing_deadends_at_bridge(knot, crossing):
         for bridge_crossing in bridge_crossings:
             if x == bridge_crossing.pd_code[0]:
                 # x is a match with element e.
-                if config.logging:
-                    print 'Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code))
                 return (i*2+1, 0, crossing, bridge_crossing)
             elif x == bridge_crossing.pd_code[2]:
                 # x is a match with element g.
-                if config.logging:
-                    print 'Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code))
                 return (i*2+1, 2, crossing, bridge_crossing)
     return False
 

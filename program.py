@@ -2,9 +2,11 @@
 
 import ast
 import csv
-import config
 import json
+import logging
 from reduce_bridges import *
+
+logging.basicConfig(filename='naive_bridges.log', level=logging.INFO)
 
 # Stub for our output JSON file.
 knot_output = {"knots":[]}
@@ -18,11 +20,8 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Create a knot object.
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
-        if config.logging:
-            print '========================================='
-            print 'knot ' + str(knot.name)
-            print '========================================='
-            print 'The initial PD code of the knot is ' + str(knot)
+        logging.info('Created knot ' + str(knot.name))
+        logging.debug('The initial PD code of the knot is ' + str(knot))
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
@@ -39,11 +38,8 @@ with open('knots.csv') as csvfile:
                     knot.simplify_rm1_rm2_recursively()
                 else:
                     knot.designate_additional_bridge()
-            if config.logging:
-                print 'All crossings are now covered by a bridge'
-                print 'The final PD code of the knot is ' + str(knot)
-        else:
-            print 'After simplifying, the knot is the unknot'
+        logging.info('Finished processing ' + str(knot.name))
+        logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
         # Add the results to our output.
         knot_output['knots'].append(knot.json())
