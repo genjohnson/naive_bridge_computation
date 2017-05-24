@@ -2,6 +2,7 @@
 
 import ast
 import csv
+import config
 import json
 from reduce_bridges import *
 
@@ -17,7 +18,11 @@ with open('knots.csv') as csvfile:
     for row in knotreader:
         # Create a knot object.
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
-        print 'knot being processed is ' + str(knot.name)
+        if config.logging:
+            print '========================================='
+            print 'knot ' + str(knot.name)
+            print '========================================='
+            print 'The initial PD code of the knot is ' + str(knot)
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
@@ -34,11 +39,14 @@ with open('knots.csv') as csvfile:
                     knot.simplify_rm1_rm2_recursively()
                 else:
                     knot.designate_additional_bridge()
+            if config.logging:
+                print 'All crossings are now covered by a bridge'
+                print 'The final PD code of the knot is ' + str(knot)
         else:
-            print 'after simplifying, the knot is the unknot'
+            print 'After simplifying, the knot is the unknot'
+
         # Add the results to our output.
         knot_output['knots'].append(knot.json())
-        print '----------------------'
 
 # Write the results to our output JSON file.
 with open('output.json', mode = 'w') as outfile:

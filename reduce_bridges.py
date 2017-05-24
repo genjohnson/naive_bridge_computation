@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.7
 
+import config
 import itertools
 from json import JSONEncoder
 import numpy
@@ -108,7 +109,6 @@ class Knot:
                 for free_crossing in self.free_crossings:
                     if x == free_crossing.pd_code[0]:
                         self.designate_bridge(free_crossing)
-                        print 'the bridges are ' + str(self.bridges)
                         return self
 
     def designate_bridge(self, crossing):
@@ -121,8 +121,10 @@ class Knot:
         self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
         self.free_crossings.remove(crossing)
         crossing.bridge = len(self.bridges) - 1
+        if config.logging:
+            print 'Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge)
         self.extend_bridge(crossing.bridge)
-
+        
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
         (a, b, c, d) = crossing_to_drag.pd_code
         (e, f, g, h) = bridge_crossing.pd_code
@@ -261,6 +263,8 @@ class Knot:
                 # Check if the crossing we dragged is now covered by a bridge.
                 if end == crossing_to_drag.pd_code[1] or end == crossing_to_drag.pd_code[3]:
                     bridge_to_extend = i
+                    if config.logging:
+                        print 'The crossing we dragged can be covered by expanding bridge ' + str(bridge)
         # Expand the bridge covering the crossing that was dragged.
         if bridge_to_extend:
             self.extend_bridge(bridge_to_extend)
@@ -273,6 +277,8 @@ class Knot:
         bridge_index -- (int) the index of the bridge to extend
         """
         bridge = self.bridges[bridge_index]
+        if config.logging:
+            print 'We will try to extend the bridge ' + str(bridge)
         for x in bridge:
             index = bridge.index(x)
             x_is_deadend = False
@@ -294,6 +300,8 @@ class Knot:
                         x_is_deadend = True
                 else:
                     break;
+        if config.logging:
+            print 'After trying to extend, the bridge is ' + str(bridge)
 
     def find_crossing_to_drag(self):
         for free_crossing in self.free_crossings:
@@ -311,6 +319,8 @@ class Knot:
         for index, crossing in enumerate(self.crossings):
             if crossing.has_duplicate_value():
                 twisted_crossings.append(index)
+                if config.logging:
+                    print 'The knot can be simplified by RM1 at crossing ' + str(crossing.pd_code)
                 return twisted_crossings
         return False
 
@@ -389,6 +399,8 @@ class Knot:
                     crossing.alter_elements_greater_than(duplicate_value, -2, max_value)
                 elif duplicate_value > max_value:
                     crossing.alter_elements_greater_than(max_value, 0, max_value)
+            if config.logging:
+                print 'After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self)
             # Adjust bridges.
             self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
@@ -396,7 +408,7 @@ class Knot:
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
-                    self.extend_bridge(bridge_index)      
+                    self.extend_bridge(bridge_index)
         return self
 
     def simplify_rm1_recursively(self):
@@ -561,11 +573,13 @@ def crossing_deadends_at_bridge(knot, crossing):
         for bridge_crossing in bridge_crossings:
             if x == bridge_crossing.pd_code[0]:
                 # x is a match with element e.
-                print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                if config.logging:
+                    print 'Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
                 return (i*2+1, 0, crossing, bridge_crossing)
             elif x == bridge_crossing.pd_code[2]:
                 # x is a match with element g.
-                print 'crossing ' + str(crossing.pd_code) + ' can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
+                if config.logging:
+                    print 'Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code)
                 return (i*2+1, 2, crossing, bridge_crossing)
     return False
 
