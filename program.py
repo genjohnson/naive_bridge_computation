@@ -6,7 +6,7 @@ import json
 import logging
 from reduce_bridges import *
 
-logging.basicConfig(filename='naive_bridges.log', level=logging.INFO)
+logging.basicConfig(filename='naive_bridges.log', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 # Stub for our output JSON file.
 knot_output = {"knots":[]}
