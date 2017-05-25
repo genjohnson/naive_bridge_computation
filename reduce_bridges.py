@@ -52,6 +52,16 @@ class Crossing:
     def json(self):
         return self.__dict__
 
+    def overpass_traveled_from(self):
+        """
+        Find the value of the overcross segment of a crossing we travel from toward the other.
+        """
+        e,f,g,h = self.pd_code
+        if abs(f - h) == 1:
+            return min(f, h)
+        else:
+            return max(f, h)
+
 class Knot:
     def __init__(self, crossings, name = None):
         self.name = name
@@ -125,17 +135,11 @@ class Knot:
         self.extend_bridge(crossing.bridge)
         
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
-        (a, b, c, d) = crossing_to_drag.pd_code
-        (e, f, g, h) = bridge_crossing.pd_code
+        a, b, c, d = crossing_to_drag.pd_code
+        e, f, g, h = bridge_crossing.pd_code
         new_max_pd_val = self.max_pd_code_value()+4
         bid = bridge_crossing.bridge
-
-        # Get the value of f/h that we travel from toward the other.
-        y = None
-        if abs(f - h) == 1:
-            y = min(f, h)
-        else:
-            y = max(f, h)
+        y = bridge_crossing.overpass_traveled_from()
 
         # Following the orientation of the knot, find when we traverse e.
         i = sorted([a, e, y]).index(e)
@@ -320,10 +324,10 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
-        for free_crossing in self.free_crossings:
-            drag_info = crossing_deadends_at_bridge(self, free_crossing)
-            if drag_info:
-                return drag_info
+        for crossing in self.free_crossings:
+            args = crossing_deadends_at_bridge(self, crossing)
+            if (args) and (deadend_adjacent_to_bridge(self, *args)):
+                return (crossing, args[0])
         return False
 
     def has_rm1(self):
@@ -588,14 +592,28 @@ def crossing_deadends_at_bridge(knot, crossing):
 
     for i, x in enumerate(crossing_overpass):
         for bridge_crossing in bridge_crossings:
-            if x == bridge_crossing.pd_code[0]:
-                # x is a match with element e.
-                logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code))
-                return (i*2+1, 0, crossing, bridge_crossing)
-            elif x == bridge_crossing.pd_code[2]:
-                # x is a match with element g.
-                logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge and can be dragged along ' + str(x) + ' under the bridge crossing ' + str(bridge_crossing.pd_code))
-                return (i*2+1, 2, crossing, bridge_crossing)
+            for index in [0, 2]:
+                if x == bridge_crossing.pd_code[index]:
+                    logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge')
+                    return (bridge_crossing, x)
+    return False
+
+def deadend_adjacent_to_bridge(knot, crossing, deadend):
+    """
+    Determine if a crossing end is adjacent to the end of a bridge.
+
+    Arguments:
+    knot -- (object) a Knot
+    crossing -- (object) a Crossing that is covered by a bridge
+    deadend -- (int) the PD code value of the crossing segment to evaluate
+    """
+    i = crossing.pd_code.index(deadend)
+    segment_adjacent_to_deadend = crossing.pd_code[(i+2)%4]
+    for bridge in knot.bridges:
+        if segment_adjacent_to_deadend in bridge:
+            logging.debug('Segment ' + str(deadend) + ' is adjacent to bridge end ' +str(segment_adjacent_to_deadend))
+            return segment_adjacent_to_deadend
+    logging.debug('Segment ' + str(deadend) + ' is not adjacent to a bridge end')
     return False
 
 def diff(first, second):
