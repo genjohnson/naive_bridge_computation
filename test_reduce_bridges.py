@@ -99,6 +99,7 @@ class DesignateBridgeTestCase(unittest.TestCase):
         self.assertEqual(knot, answer)
 
 class DragCrossingUnderBridgeTestCase(unittest.TestCase):
+    # Dragging case d=g, a<y, y==h
     def testdrag_crossing_under_bridge(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,11,4,10],[5,8,6,9],[7,12,8,1],[9,3,10,2],[11,6,12,7]])
         knot.designate_bridge(knot.crossings[0])
