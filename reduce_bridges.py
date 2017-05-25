@@ -408,12 +408,12 @@ class Knot:
             self.delete_crossings([index])
             max_value = len(self.crossings)*2
             # Adjust crossings.
+            addend = 0
+            if duplicate_value <= max_value:
+                addend = -2
+            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(max_value))
             for crossing in self.crossings:
-                addend = 0
-                logging.debug('Alter all crossing elements greater than ' + str(duplicate_value))
-                if duplicate_value <= max_value:
-                    addend = -2
-                crossing.alter_elements_greater_than(max_value, addend, max_value)
+                crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
             # Adjust bridges.
             self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
