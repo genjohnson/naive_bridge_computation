@@ -127,6 +127,7 @@ class Knot:
     def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
         (a, b, c, d) = crossing_to_drag.pd_code
         (e, f, g, h) = bridge_crossing.pd_code
+        new_max_pd_val = self.max_pd_code_value()+4
         bid = bridge_crossing.bridge
 
         # Get the value of f/h that we travel from toward the other.
@@ -166,16 +167,12 @@ class Knot:
             else:
                 n = b+2*i
         elif b == g:
-            m = g+2*i
-            if e == 1:
-                n = d+4
-            else:
-                n = d+2*i
+            m = (e+1+2*i)%new_max_pd_val
+            n = (e+2+2*i)%new_max_pd_val
         bridge_crossing.pd_code = [m, y+addends[0], n, y+addends[1]]
+        logging.debug('(e,f,g,h) becomes ' + str(bridge_crossing.pd_code))
 
         # Replace the crossing being dragged, (a,b,c,d).
-        new_max_pd_val = self.max_pd_code_value()+4
-
         if d == e:
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, e+2*i, g+2*i
@@ -241,7 +238,7 @@ class Knot:
                     y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
         elif b == g:
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e, g
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+2*i, (e+1+2*i)%new_max_pd_val
                 if y == f:
                     logging.debug('Dragging case b=g, a<y, y==f')
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
@@ -251,7 +248,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [5,4], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e, g
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, (a+5)%new_max_pd_val, a+3, a+4, e+2*i, (e+1+2*i)%new_max_pd_val
                 if y == f:
                     logging.debug('Dragging case b=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
@@ -266,6 +263,8 @@ class Knot:
         crossing_to_drag.pd_code = [t, v, u, w]
         index = self.crossings.index(crossing_to_drag)
         self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
+
+        logging.debug('(a,b,c,d) becomes ' + str(crossing_one.pd_code) + str(crossing_to_drag.pd_code) + str(crossing_two.pd_code))
 
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
