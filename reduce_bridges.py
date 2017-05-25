@@ -381,7 +381,7 @@ class Knot:
         return has_rm2
 
     def json(self):
-        return dict(name = self.name, crossings = self.crossings)
+        return dict(name = self.name, crossings = self.crossings, naive_bridges = len(self.bridges))
 
     def max_pd_code_value(self):
         """
