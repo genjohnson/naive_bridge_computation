@@ -269,18 +269,20 @@ class Knot:
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
         # Alter PD code values of bridge ends.
+        logging.debug('Before dragging, the bridges are ' + str(self.bridges))
         bridge_to_extend = None
         for i, bridge in enumerate(self.bridges):
             for j, end in enumerate(bridge):
                 end = alter_element_for_drag(end, a_y_sorted[0], a_y_sorted[1])
                 self.bridges[i][j] = end
                 # Check if the crossing we dragged is now covered by a bridge.
-                if end == crossing_to_drag.pd_code[1] or end == crossing_to_drag.pd_code[3]:
-                    bridge_to_extend = i                        
-                    logging.debug('The crossing we dragged can be covered by expanding bridge ' + str(bridge))
+                if (end == crossing_to_drag.pd_code[1]) or (end == crossing_to_drag.pd_code[3]):
+                    bridge_to_extend = i
+                    logging.debug('Bridge end ' + str(end) + ' can be extended to cover the crossing we dragged')
         # Expand the bridge covering the crossing that was dragged.
-        if bridge_to_extend:
+        if bridge_to_extend != None:
             self.extend_bridge(bridge_to_extend)
+        logging.debug('After altering, the bridges are ' + str(self.bridges))
 
     def extend_bridge(self, bridge_index):
         """
