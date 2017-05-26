@@ -149,38 +149,10 @@ class Knot:
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
             crossing.alter_for_drag(a_y_sorted)
 
-        # Alter the PD code of the bridge crossing, (e,f,g,h).
-        addends = get_y_addends(a, h, y)
-        m, n = None, None
-        if d == e:
-            n = e+2*i
-            if e == 1:
-                m = b+4
-            else:
-                m = b+2*i
-        elif b == e:
-            n = e+2*i
-            if e == 1:
-                m = d+4
-            else:
-                m = d+2*i
-        elif d == g:
-            m = g+2*i
-            if e == 1:
-                n = b+4
-            else:
-                n = b+2*i
-        elif b == g:
-            m = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
-            n = alter_if_greater(e+2+2*i, new_max_pd_val, 0, new_max_pd_val)
-
-        bridge_crossing.pd_code = [m, y+addends[0], n, y+addends[1]]
-        logging.debug('(e,f,g,h) becomes ' + str(bridge_crossing.pd_code))
-
         # Replace the crossing being dragged, (a,b,c,d).
         if d == e:
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, e+2*i, g+2*i
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case d=e, a<y, y==f')
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
@@ -190,7 +162,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+2*i, g+2*i
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case d=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
@@ -201,7 +173,7 @@ class Knot:
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
         elif b == e:
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+4, a+1, a+2, g+2*i, e+2*i
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
                 if y == f:
                     logging.debug('Dragging case b=e, a<y, y==f')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
@@ -211,7 +183,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, g+2*i, e+2*i
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
                 if y == f:
                     logging.debug('Dragging case b=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
@@ -222,7 +194,7 @@ class Knot:
                     y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
         elif d == g:
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+4, g, e
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+1, e
                 if y == f:
                     logging.debug('Dragging case d=g, a<y, y==f')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
@@ -232,7 +204,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, g, e
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+1, e+2
                 if y == f:
                     logging.debug('Dragging case d=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
@@ -268,8 +240,18 @@ class Knot:
         crossing_to_drag.pd_code = [t, v, u, w]
         index = self.crossings.index(crossing_to_drag)
         self.crossings[index:index+1] = crossing_one, crossing_to_drag, crossing_two
-
         logging.debug('(a,b,c,d) becomes ' + str(crossing_one.pd_code) + str(crossing_to_drag.pd_code) + str(crossing_two.pd_code))
+
+        # Alter the PD code of the bridge crossing, (e,f,g,h).
+        if (d == e) or (b == e):
+            m = alter_if_greater(e+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+        elif (d == g) or (b == g):
+            m = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(e+2+2*i, new_max_pd_val, 0, new_max_pd_val)
+        addends = get_y_addends(a, h, y)
+        bridge_crossing.pd_code = [m, y+addends[0], n, y+addends[1]]
+        logging.debug('(e,f,g,h) becomes ' + str(bridge_crossing.pd_code))
 
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
