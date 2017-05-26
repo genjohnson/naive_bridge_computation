@@ -518,6 +518,7 @@ def alter_element_for_drag(x, first, second):
 def alter_if_greater(x, value, addend, maximum = None):
     """
     Arguments:
+    x -- (int) The number to alter.
     value -- (int) The number to compare each element of the crossing with.
     addend -- (int) The number to add to crossing elements greater than value.
     maximum -- (int) The maximum allowed value of elements in the crossing.
