@@ -194,7 +194,7 @@ class Knot:
                     y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
         elif d == g:
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+1, e
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
                 if y == f:
                     logging.debug('Dragging case d=g, a<y, y==f')
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
@@ -204,7 +204,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+1, e+2
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case d=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
