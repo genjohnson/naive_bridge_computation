@@ -21,13 +21,12 @@ def generate_all_pd_codes(pd_code):
 		passes-=1
 	return pd_codes
 
-generate_all_pd_codes([[2,5,3,6],[4,1,5,2],[6,3,1,4]])
-
 def bulk_generate_pd_codes(in_file = 'knots.csv', out_file = 'pd_codes.csv'):
 	infile = open(in_file, "r")
 	reader = csv.DictReader(infile)
 	outfile = open(out_file, "w")
 	writer = csv.writer(outfile, delimiter=',')
+	writer.writerow(['name','pd_notation'])
 	for row in reader:
 		i = 0
 		pd_codes = generate_all_pd_codes(ast.literal_eval(row['pd_notation']))
@@ -37,4 +36,5 @@ def bulk_generate_pd_codes(in_file = 'knots.csv', out_file = 'pd_codes.csv'):
 			writer.writerow([name, pd_code])
 	infile.close()
 	outfile.close()
+
 bulk_generate_pd_codes()
