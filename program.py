@@ -42,6 +42,7 @@ with open('knots.csv') as csvfile:
         logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
         # Add the results to our output.
+        print 'The final bridge number of ' + str(knot.name) + ' is ' + str(len(knot.bridges))
         knot_output['knots'].append(knot.json())
 
 # Write the results to our output JSON file.
