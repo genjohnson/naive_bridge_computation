@@ -22,22 +22,28 @@ def generate_pd_code_varients(pd_code):
 		passes-=1
 	return pd_codes
 
-def bulk_generate_pd_codes(in_file = 'knots.csv', out_file = 'pd_codes/pd_codes.csv', reverse = True):
+def bulk_generate_pd_codes(in_file = 'knots.csv', out_file_per_knot = True, include_reverse = True, ):
 	"""
 	Create a csv of all PD code variations of a knot.
 
 	Arguments:
 	in_file -- (str) The name of the file contaning PD codes to process.
 	out_file -- (str) The name of the file to write the results.
-	reverse -- (bool) Generate PD codes of the knot with reverse orientation.
+	include_reverse -- (bool) Generate PD codes of the knot with reverse orientation.
 	"""
 	infile = open(in_file, "r")
 	reader = csv.DictReader(infile)
-	outfile = open(out_file, "w")
-	writer = csv.writer(outfile, delimiter=',')
-	writer.writerow(['name','pd_notation'])
+	if (out_file_per_knot == False):
+		outfile = open('pd_codes.csv', "w")
+		writer = csv.writer(outfile, delimiter=',')
+		writer.writerow(['name','pd_notation'])
 
 	for row in reader:
+		if (out_file_per_knot):
+			outfile_name = 'pd_codes/' + str(row['name']) + '.csv'
+			outfile = open(outfile_name, "w")
+			writer = csv.writer(outfile, delimiter=',')
+			writer.writerow(['name','pd_notation'])
 		original_pd_code = ast.literal_eval(row['pd_notation'])
 		i = 0
 		pd_codes = generate_pd_code_varients(original_pd_code)
@@ -45,15 +51,18 @@ def bulk_generate_pd_codes(in_file = 'knots.csv', out_file = 'pd_codes/pd_codes.
 			name = row['name'] + '_' + str(i)
 			i+=1
 			writer.writerow([name, pd_code])
-		if reverse:
+		if include_reverse:
 			reverse_pd_code = reverse_orientation(original_pd_code)
 			pd_codes = generate_pd_code_varients(reverse_pd_code)
 			for pd_code in pd_codes:
 				name = row['name'] + '_reversed_' + str(i)
 				i+=1
 				writer.writerow([name, pd_code])
+		if out_file_per_knot:
+			outfile.close()
 	infile.close()
-	outfile.close()
+	if (out_file_per_knot == False):
+		outfile.close()
 
 def reverse_orientation(pd_code):
 	"""
