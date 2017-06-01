@@ -34,13 +34,14 @@ with open('knots.csv') as csvfile:
             # Drag crossings, simplify knot, and identify bridges
             # until all crossings belong to a bridge.
             knot.find_crossing_to_drag()
-            # while knot.free_crossings != []:
-            #     args = knot.find_crossing_to_drag()
-            #     if args:
-            #         knot.drag_crossing_under_bridge(*args)
-            #         knot.simplify_rm1_rm2_recursively()
-            #     else:
-            #         knot.designate_additional_bridge()
+            while knot.free_crossings != []:
+                # args = free_crossing, drag_count
+                args = knot.find_crossing_to_drag()
+                if args:
+                    knot.drag_crossing_under_bridge(*args)
+                    knot.simplify_rm1_rm2_recursively()
+                else:
+                    knot.designate_additional_bridge()
         logging.info('Finished processing ' + str(knot.name))
         logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
