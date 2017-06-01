@@ -306,16 +306,49 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
-        # Find the Ts of bridges
-        # For each bridge T:
-            # Follow the bridge until you reach a crossing.
-            # Until we find a crossing we cannot travel under/exhaust checking the crossings:
-                # (1) Incrememnt the number of drag moves to perform.
-                # (2) Continue to the next crossing following the bridge segment.
-            # If the crossing we end at is rotated such that we can drag it:
-                # Perform the drag (times the number of necessary times).
-                # Repeat the process for this bridge T.
-            # Otherwise, move on to the next bridge T.
+        for bridge in self.bridges:
+            for end in bridge:
+                crossings_containing_end = []
+                for crossing in diff(self.crossings, self.free_crossings):
+                    if end in crossing.pd_code:
+                        crossings_containing_end.append(crossing)
+                if len(crossings_containing_end) == 2:
+                    # end is a T stem.
+                    print str(end) + ' is a T stem with ' + str(crossings_containing_end[0].pd_code) + 'and ' + str(crossings_containing_end[1].pd_code)
+
+                    # Get the value of the segment adjacent to end.
+                    for end_crossing in crossings_containing_end:
+                        i = end_crossing.pd_code.index(end)
+                        if (i%2 == 0):
+                            adjacent_segment = end_crossing.pd_code[(i+2)%4]
+                            print 'the adjacent_segment is ' + str(adjacent_segment)
+                            break;
+
+                    max_pd_code_value = self.max_pd_code_value()
+                    drag_count = 0
+                    continue_search = True
+
+                    while continue_search:
+                        # Check if the adjacent segment belongs to a free crossing.
+                        for free_crossing in self.free_crossings:
+                            if adjacent_segment in free_crossing.pd_code:
+                                # Is the crossing oriented such that we can drag it?
+                                if (free_crossing.pd_code.index(adjacent_segment)%2 == 1):
+                                    # Drag the crossing.
+                                    drag_count += 1
+                                    print 'the crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment)
+                                    print 'drag_count is ' + str(drag_count)
+                                    return (free_crossing, drag_count)
+                                else:
+                                    continue_search = False
+                                    print 'we are ending our search'
+                                    break
+                            else:
+                                drag_count += 1
+                                # Consider the next crossing.
+                                # This alter assumes we are following the orientation of the knot.
+                                adjacent_segment = alter_if_greater(adjacent_segment, 0, 1, max_pd_code_value)
+                                print 'we need to consider the next crossing containing ' + str(adjacent_segment)
 
         # If we check all of the bridge Ts and cannot find a crossing to drag,
         # return False to signify we need to identify a new bridge.
