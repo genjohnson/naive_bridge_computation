@@ -306,6 +306,19 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
+        # Find the Ts of bridges
+        # For each bridge T:
+            # Follow the bridge until you reach a crossing.
+            # Until we find a crossing we cannot travel under/exhaust checking the crossings:
+                # (1) Incrememnt the number of drag moves to perform.
+                # (2) Continue to the next crossing following the bridge segment.
+            # If the crossing we end at is rotated such that we can drag it:
+                # Perform the drag (times the number of necessary times).
+                # Repeat the process for this bridge T.
+            # Otherwise, move on to the next bridge T.
+
+        # If we check all of the bridge Ts and cannot find a crossing to drag,
+        # return False to signify we need to identify a new bridge.
         return False
 
     def has_rm1(self):
