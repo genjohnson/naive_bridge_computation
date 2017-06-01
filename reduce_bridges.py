@@ -306,6 +306,8 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
+        max_pd_code_value = self.max_pd_code_value()
+
         for bridge in self.bridges:
             for end in bridge:
                 crossings_containing_end = []
@@ -324,31 +326,42 @@ class Knot:
                             print 'the adjacent_segment is ' + str(adjacent_segment)
                             break;
 
-                    max_pd_code_value = self.max_pd_code_value()
+                    # We want to follow the orientation of the knot.
+                    if (end > adjacent_segment) and (end != max_pd_code_value):
+                        break;
+                    else:
+                        print 'we are following the orientation of the knot and can continue our search with adjacent_segment ' + str(adjacent_segment)
+
                     drag_count = 0
                     continue_search = True
-
                     while continue_search:
-                        # Check if the adjacent segment belongs to a free crossing.
+                        reached_deadend = False
+
+                        # Does adjacent_segment belong to a free crossing (deadend)?
                         for free_crossing in self.free_crossings:
                             if adjacent_segment in free_crossing.pd_code:
-                                # Is the crossing oriented such that we can drag it?
-                                if (free_crossing.pd_code.index(adjacent_segment)%2 == 1):
-                                    # Drag the crossing.
-                                    drag_count += 1
-                                    print 'the crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment)
-                                    print 'drag_count is ' + str(drag_count)
-                                    return (free_crossing, drag_count)
-                                else:
-                                    continue_search = False
-                                    print 'we are ending our search'
-                                    break
-                            else:
+                                reached_deadend = True
+                                break;
+
+                        if reached_deadend:
+                            # Is the crossing oriented such that we can drag it?
+                            if (free_crossing.pd_code.index(adjacent_segment)%2 == 1):
+                                # Drag the crossing.
                                 drag_count += 1
-                                # Consider the next crossing.
-                                # This alter assumes we are following the orientation of the knot.
-                                adjacent_segment = alter_if_greater(adjacent_segment, 0, 1, max_pd_code_value)
-                                print 'we need to consider the next crossing containing ' + str(adjacent_segment)
+                                print 'the crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment)
+                                print 'drag_count is ' + str(drag_count)
+                                return (free_crossing, drag_count)
+                            else:
+                                # End search of this bridge T stem.
+                                continue_search = False
+                                print 'we are ending our search'
+                                break
+                        else:
+                            drag_count += 1
+                            # Consider the next crossing.
+                            # This alter assumes we are following the orientation of the knot.
+                            adjacent_segment = alter_if_greater(adjacent_segment, 0, 1, max_pd_code_value)
+                            print 'we need to consider the next crossing containing ' + str(adjacent_segment)
 
         # If we check all of the bridge Ts and cannot find a crossing to drag,
         # return False to signify we need to identify a new bridge.
