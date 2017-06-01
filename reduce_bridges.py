@@ -306,10 +306,6 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
-        for crossing in self.free_crossings:
-            args = crossing_deadends_at_bridge(self, crossing)
-            if (args) and (deadend_adjacent_to_bridge(self, *args)):
-                return (crossing, args[0])
         return False
 
     def has_rm1(self):
@@ -561,43 +557,6 @@ def create_knot_from_pd_code(pd_code, name = None):
     pd_code -- (list) the PD notation of a knot expressed as a list of lists
     """
     return Knot([Crossing(crossing) for crossing in pd_code], name)
-
-def crossing_deadends_at_bridge(knot, crossing):
-    """
-    Determine if a crossing ends at a bridge overpass.
-
-    Arguments:
-    knot -- (object) a Knot
-    crossing -- (object) a Crossing
-    """
-    bridge_crossings = diff(knot.crossings, knot.free_crossings)
-    crossing_overpass = [crossing.pd_code[1], crossing.pd_code[3]]
-
-    for i, x in enumerate(crossing_overpass):
-        for bridge_crossing in bridge_crossings:
-            for index in [0, 2]:
-                if x == bridge_crossing.pd_code[index]:
-                    logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge')
-                    return (bridge_crossing, x)
-    return False
-
-def deadend_adjacent_to_bridge(knot, crossing, deadend):
-    """
-    Determine if a crossing end is adjacent to the end of a bridge.
-
-    Arguments:
-    knot -- (object) a Knot
-    crossing -- (object) a Crossing that is covered by a bridge
-    deadend -- (int) the PD code value of the crossing segment to evaluate
-    """
-    i = crossing.pd_code.index(deadend)
-    segment_adjacent_to_deadend = crossing.pd_code[(i+2)%4]
-    for bridge in knot.bridges:
-        if segment_adjacent_to_deadend in bridge:
-            logging.debug('Segment ' + str(deadend) + ' is adjacent to bridge end ' +str(segment_adjacent_to_deadend))
-            return segment_adjacent_to_deadend
-    logging.debug('Segment ' + str(deadend) + ' is not adjacent to a bridge end')
-    return False
 
 def diff(first, second):
     """
