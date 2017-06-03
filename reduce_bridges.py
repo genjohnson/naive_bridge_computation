@@ -256,9 +256,12 @@ class Knot:
         logging.debug('(a,b,c,d) becomes ' + str(crossing_one.pd_code) + str(crossing_to_drag.pd_code) + str(crossing_two.pd_code))
 
         # Alter the PD code of the bridge crossing, (e,f,g,h).
-        if (d == e) or (b == e):
-            m = alter_if_greater(e+2*i, new_max_pd_val, 0, new_max_pd_val)
-            n = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+        if b == e:
+            m = alter_if_greater(d+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(d+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+        if d == e:
+            m = alter_if_greater(b+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(b+1+2*i, new_max_pd_val, 0, new_max_pd_val)
         elif (d == g) or (b == g):
             m = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
             n = alter_if_greater(e+2+2*i, new_max_pd_val, 0, new_max_pd_val)
