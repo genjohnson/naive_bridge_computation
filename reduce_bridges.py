@@ -270,20 +270,16 @@ class Knot:
 
         # Alter PD code values of bridge ends.
         logging.debug('Before dragging, the bridges are ' + str(self.bridges))
-        bridge_to_extend = None
         for i, bridge in enumerate(self.bridges):
-            for j, end in enumerate(bridge):
-                end = alter_element_for_drag(end, a_y_sorted[0], a_y_sorted[1])
-                self.bridges[i][j] = end
-                # Check if the crossing we dragged is now covered by a bridge.
+            self.bridges[i] = map(alter_element_for_drag, bridge, repeat(a_y_sorted[0],2), repeat(a_y_sorted[1],2))
+
+        # Check if the crossing we dragged is now covered by a bridge.
+        for i, bridge in enumerate(self.bridges):
+            for end in bridge:
                 if (end == crossing_to_drag.pd_code[1]) or (end == crossing_to_drag.pd_code[3]):
                     self.extend_bridge(i)
                     logging.debug('Bridge end ' + str(end) + ' has been extended to cover the crossing we dragged')
-        logging.debug('After altering, the bridges are ' + str(self.bridges))
-
-
-        if not self.free_crossings:
-            print 'there are no more free crossings'
+            logging.debug('After dragging and altering, the bridges are ' + str(self.bridges))
 
         return crossing_to_drag
 
