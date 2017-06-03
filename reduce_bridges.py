@@ -485,9 +485,9 @@ class Knot:
             new_max_value = max_value-2
             # Adjust crossings.
             addend = -2
-            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(new_max_value))
+            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(max_value))
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, addend, new_max_value)
+                crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
             # Adjust bridges.
             def alter_bridge_end_for_rm1(x, duplicate_value, new_max_value):
                 if x > duplicate_value:
