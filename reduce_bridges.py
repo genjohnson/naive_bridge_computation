@@ -340,7 +340,7 @@ class Knot:
 
     def find_crossing_to_drag(self):
         max_pd_code_value = self.max_pd_code_value()
-        logging.debug('bridge ends to consider for Ts are ' + str(self.bridges))
+        logging.debug('Bridge ends to consider for Ts are ' + str(self.bridges))
         for bridge in self.bridges:
             for end in bridge:
                 crossings_containing_end = []
@@ -349,21 +349,21 @@ class Knot:
                         crossings_containing_end.append(crossing)
                 if len(crossings_containing_end) == 2:
                     # end is a T stem.
-                    print str(end) + ' is a T stem with ' + str(crossings_containing_end[0].pd_code) + 'and ' + str(crossings_containing_end[1].pd_code)
+                    logging.debug(str(end) + ' is a T stem')
 
                     # Get the value of the segment adjacent to end.
                     for end_crossing in crossings_containing_end:
                         i = end_crossing.pd_code.index(end)
                         if (i%2 == 0):
                             adjacent_segment = end_crossing.pd_code[(i+2)%4]
-                            print 'the adjacent_segment is ' + str(adjacent_segment)
+                            logging.debug('The segment adjacent to the T stem is ' + str(adjacent_segment))
+                            # Determine the addend needed to calculate the next adjacent segment
+                            # based on the direction we travel along the T stem.
+                            if i == 0:
+                                next_segment_addend = 1
+                            else:
+                                next_segment_addend = -1
                             break;
-
-                    # We want to follow the orientation of the knot.
-                    if (end > adjacent_segment) and (end != max_pd_code_value):
-                        break;
-                    else:
-                        print 'we are following the orientation of the knot and can continue our search with adjacent_segment ' + str(adjacent_segment)
 
                     drag_count = 0
                     continue_search = True
@@ -377,24 +377,20 @@ class Knot:
                                 break;
 
                         if reached_deadend:
-                            # Is the crossing oriented such that we can drag it?
                             if (free_crossing.pd_code.index(adjacent_segment)%2 == 1):
-                                # Drag the crossing.
+                                # The crossing is oriented such that we can drag it.
                                 drag_count += 1
-                                print 'the crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment)
-                                print 'drag_count is ' + str(drag_count)
+                                logging.debug('Crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment))
                                 return (free_crossing, drag_count)
                             else:
-                                # End search of this bridge T stem.
                                 continue_search = False
-                                print 'we are ending our search'
+                                logging.debug('We have completed our search of this stem')
                                 break
                         else:
                             drag_count += 1
-                            # Consider the next crossing.
-                            # This alter assumes we are following the orientation of the knot.
-                            adjacent_segment = alter_if_greater(adjacent_segment, 0, 1, max_pd_code_value)
-                            print 'we need to consider the next crossing containing ' + str(adjacent_segment)
+                            # Consider the next crossing along the T stem.
+                            adjacent_segment = alter_if_greater(adjacent_segment, 0, next_segment_addend, max_pd_code_value)
+                            logging.debug('We need to consider the next crossing containing ' + str(adjacent_segment))
 
         # If we check all of the bridge Ts and cannot find a crossing to drag,
         # return False to signify we need to identify a new bridge.
