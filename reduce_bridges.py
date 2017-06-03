@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import itertools
+from itertools import repeat
 from json import JSONEncoder
 import logging
 import numpy
@@ -339,7 +340,7 @@ class Knot:
 
     def find_crossing_to_drag(self):
         max_pd_code_value = self.max_pd_code_value()
-
+        logging.debug('bridge ends to consider for Ts are ' + str(self.bridges))
         for bridge in self.bridges:
             for end in bridge:
                 crossings_containing_end = []
@@ -481,15 +482,29 @@ class Knot:
             duplicate_value = self.crossings[index].has_duplicate_value()
             self.delete_crossings([index])
             max_value = len(self.crossings)*2
+            new_max_value = max_value-2
             # Adjust crossings.
-            addend = 0
-            if duplicate_value <= max_value:
-                addend = -2
-            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(max_value))
+            addend = -2
+            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(new_max_value))
             for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
+                crossing.alter_elements_greater_than(duplicate_value, addend, new_max_value)
             # Adjust bridges.
-            self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            def alter_bridge_end_for_rm1(x, duplicate_value, new_max_value):
+                if x > duplicate_value:
+                    x -= 2
+                    if x > new_max_value:
+                        x = x%new_max_value
+                elif x == duplicate_value:
+                    if duplicate_value == 1:
+                        x = new_max_value
+                    else:
+                        x -= 1
+                return x
+
+            num_bridges = len(self.bridges)
+            for i, bridge in enumerate(self.bridges):
+                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, num_bridges), repeat(new_max_value, num_bridges))
+
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
             for bridge in self.bridges:
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
