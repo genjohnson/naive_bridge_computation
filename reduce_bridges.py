@@ -479,28 +479,26 @@ class Knot:
             duplicate_value = self.crossings[index].has_duplicate_value()
             self.delete_crossings([index])
             max_value = len(self.crossings)*2
-            new_max_value = max_value-2
             # Adjust crossings.
             addend = -2
-            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(max_value))
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
             # Adjust bridges.
-            def alter_bridge_end_for_rm1(x, duplicate_value, new_max_value):
+            def alter_bridge_end_for_rm1(x, duplicate_value, max_value):
                 if x > duplicate_value:
                     x -= 2
-                    if x > new_max_value:
-                        x = x%new_max_value
+                    if x > max_value:
+                        x = x%max_value
                 elif x == duplicate_value:
                     if duplicate_value == 1:
-                        x = new_max_value
+                        x = max_value
                     else:
                         x -= 1
                 return x
 
             num_bridges = len(self.bridges)
             for i, bridge in enumerate(self.bridges):
-                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, num_bridges), repeat(new_max_value, num_bridges))
+                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, num_bridges), repeat(max_value, num_bridges))
 
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
             for bridge in self.bridges:
@@ -508,7 +506,7 @@ class Knot:
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
                     self.extend_bridge(bridge_index)
-            logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self))
+            logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
     def simplify_rm1_recursively(self):
