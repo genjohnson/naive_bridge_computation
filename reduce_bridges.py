@@ -135,11 +135,7 @@ class Knot:
         logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
         self.extend_bridge(crossing.bridge)
         
-    def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment, next_segment_addend):
-        print 'crossing to drag is ' + str(crossing_to_drag.pd_code)
-        print 'adjacent_segment is ' + str(adjacent_segment)
-        print 'next_segment_addend is ' + str(next_segment_addend)
-
+    def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment):
         def find_bridge_to_go_under(adjacent_segment):
             """
             Return the bridge crossing under which to drag a free crossing.
@@ -157,6 +153,9 @@ class Knot:
         new_max_pd_val = self.max_pd_code_value()+4
         bid = bridge_crossing.bridge
         y = bridge_crossing.overpass_traveled_from()
+        adjacent_segment_index = crossing_to_drag.pd_code.index(adjacent_segment)
+
+        logging.debug('We will drag ' + str(crossing_to_drag.pd_code) + ' under ' + str(bridge_crossing.pd_code))
 
         # Following the orientation of the knot, find when we traverse e.
         i = sorted([a, e, y]).index(e)
@@ -276,7 +275,6 @@ class Knot:
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
         # Alter PD code values of bridge ends.
-        logging.debug('Before dragging, the bridges are ' + str(self.bridges))
         for i, bridge in enumerate(self.bridges):
             self.bridges[i] = map(alter_element_for_drag, bridge, repeat(a_y_sorted[0],2), repeat(a_y_sorted[1],2))
 
@@ -286,14 +284,15 @@ class Knot:
                 if (end == crossing_to_drag.pd_code[1]) or (end == crossing_to_drag.pd_code[3]):
                     self.extend_bridge(i)
                     logging.debug('Bridge end ' + str(end) + ' has been extended to cover the crossing we dragged')
-            logging.debug('After dragging and altering, the bridges are ' + str(self.bridges))
+        logging.debug('After dragging and altering, the bridges are ' + str(self.bridges))
 
         # Get the value of the next segment to drag along in case we continue with this crossing.
-        adjacent_segment = next_adjacent_segment(adjacent_segment, next_segment_addend, new_max_pd_val)
+        next_segment = crossing_to_drag.pd_code[adjacent_segment_index]
+        logging.debug('If we drag this crossing again, we should drag it along ' + str(next_segment))
 
-        return crossing_to_drag, adjacent_segment
+        return crossing_to_drag, next_segment
 
-    def drag_crossing_under_bridge_resursively(self, crossing_to_drag, adjacent_segment, next_segment_addend, drag_count):
+    def drag_crossing_under_bridge_resursively(self, crossing_to_drag, adjacent_segment, drag_count):
         """
         Drag a crossing under multiple, consecutive bridges.
 
@@ -303,7 +302,7 @@ class Knot:
         drag_count -- (int) The number of bridges to drag the crossing underneath
         """
         while (drag_count > 0):
-            crossing_to_drag, adjacent_segment = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment, next_segment_addend)
+            crossing_to_drag, adjacent_segment = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment)
             drag_count -= 1
 
     def extend_bridge(self, bridge_index):
@@ -361,9 +360,10 @@ class Knot:
                             # Determine the addend needed to calculate the next adjacent segment
                             # based on the direction we travel along the T stem.
                             if i == 0:
-                                next_segment_addend = -1
-                            else:
                                 next_segment_addend = 1
+                            else:
+                                next_segment_addend = -1
+                            logging.debug('The next_segment_addend is ' + str(next_segment_addend))
                             break;
 
                     drag_count = 0
@@ -382,7 +382,7 @@ class Knot:
                                 # The crossing is oriented such that we can drag it.
                                 drag_count += 1
                                 logging.debug('Crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment))
-                                return (free_crossing, adjacent_segment, next_segment_addend, drag_count)
+                                return (free_crossing, adjacent_segment, drag_count)
                             else:
                                 continue_search = False
                                 logging.debug('We have completed our search of this stem')
