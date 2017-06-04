@@ -32,7 +32,6 @@ with open('knots.csv') as csvfile:
             knot.designate_additional_bridge()
             # Drag crossings, simplify knot, and identify bridges
             # until all crossings belong to a bridge.
-            knot.find_crossing_to_drag()
             while knot.free_crossings != []:
                 args = knot.find_crossing_to_drag()
                 if args:
