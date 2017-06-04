@@ -391,10 +391,11 @@ class Knot:
                             drag_count += 1
                             # Consider the next crossing along the T stem.
                             adjacent_segment = next_adjacent_segment(adjacent_segment, next_segment_addend, max_pd_code_value)
-                            logging.debug('We need to consider the next crossing containing ' + str(adjacent_segment))
+                            logging.debug('We need to consider the next crossing along the T stem containing ' + str(adjacent_segment))
 
         # If we check all of the bridge Ts and cannot find a crossing to drag,
         # return False to signify we need to identify a new bridge.
+        logging.debug('There are no crossings to drag. We need to identify another bridge.')
         return False
 
     def has_rm1(self):
