@@ -22,7 +22,7 @@ with open('knots.csv') as csvfile:
         knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
         logging.info('Created knot ' + str(knot.name))
         logging.debug('The initial PD code of the knot is ' + str(knot))
-        print 'Knot name is ' + str(knot.name)
+        print 'Processing knot ' + str(knot.name)
         # Simplify the knot now to avoid choosing bridges which will be
         # discarded during simplification.
         knot.simplify_rm1_rm2_recursively()
@@ -39,12 +39,12 @@ with open('knots.csv') as csvfile:
                     knot.simplify_rm1_rm2_recursively()
                 else:
                     knot.designate_additional_bridge()
-        logging.info('Finished processing ' + str(knot.name))
+        logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(len(knot.bridges)))
         logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
         # Add the results to our output.
+        print 'The final bridge number is ' + str(len(knot.bridges))
         print '========================='
-        #print 'The final bridge number of ' + str(knot.name) + ' is ' + str(len(knot.bridges))
         knot_output['knots'].append(knot.json())
 
 # Write the results to our output JSON file.
