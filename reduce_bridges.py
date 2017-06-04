@@ -135,7 +135,11 @@ class Knot:
         logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
         self.extend_bridge(crossing.bridge)
         
-    def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment):
+    def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment, next_segment_addend):
+        print 'crossing to drag is ' + str(crossing_to_drag.pd_code)
+        print 'adjacent_segment is ' + str(adjacent_segment)
+        print 'next_segment_addend is ' + str(next_segment_addend)
+
         def find_bridge_to_go_under(adjacent_segment):
             """
             Return the bridge crossing under which to drag a free crossing.
@@ -284,9 +288,12 @@ class Knot:
                     logging.debug('Bridge end ' + str(end) + ' has been extended to cover the crossing we dragged')
             logging.debug('After dragging and altering, the bridges are ' + str(self.bridges))
 
-        return crossing_to_drag
+        # Get the value of the next segment to drag along in case we continue with this crossing.
+        adjacent_segment = next_adjacent_segment(adjacent_segment, next_segment_addend, new_max_pd_val)
 
-    def drag_crossing_under_bridge_resursively(self, crossing_to_drag, adjacent_segment, drag_count):
+        return crossing_to_drag, adjacent_segment
+
+    def drag_crossing_under_bridge_resursively(self, crossing_to_drag, adjacent_segment, next_segment_addend, drag_count):
         """
         Drag a crossing under multiple, consecutive bridges.
 
@@ -296,9 +303,8 @@ class Knot:
         drag_count -- (int) The number of bridges to drag the crossing underneath
         """
         while (drag_count > 0):
-            crossing_to_drag = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment)
+            crossing_to_drag, adjacent_segment = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment, next_segment_addend)
             drag_count -= 1
-            print 'remaining drag_count is ' + str(drag_count)
 
     def extend_bridge(self, bridge_index):
         """
@@ -355,9 +361,9 @@ class Knot:
                             # Determine the addend needed to calculate the next adjacent segment
                             # based on the direction we travel along the T stem.
                             if i == 0:
-                                next_segment_addend = 1
-                            else:
                                 next_segment_addend = -1
+                            else:
+                                next_segment_addend = 1
                             break;
 
                     drag_count = 0
@@ -376,7 +382,7 @@ class Knot:
                                 # The crossing is oriented such that we can drag it.
                                 drag_count += 1
                                 logging.debug('Crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment))
-                                return (free_crossing, adjacent_segment, drag_count)
+                                return (free_crossing, adjacent_segment, next_segment_addend, drag_count)
                             else:
                                 continue_search = False
                                 logging.debug('We have completed our search of this stem')
@@ -384,7 +390,7 @@ class Knot:
                         else:
                             drag_count += 1
                             # Consider the next crossing along the T stem.
-                            adjacent_segment = alter_if_greater(adjacent_segment, 0, next_segment_addend, max_pd_code_value)
+                            adjacent_segment = next_adjacent_segment(adjacent_segment, next_segment_addend, max_pd_code_value)
                             logging.debug('We need to consider the next crossing containing ' + str(adjacent_segment))
 
         # If we check all of the bridge Ts and cannot find a crossing to drag,
@@ -681,3 +687,17 @@ def get_y_addends(a, h, y):
         addends = [1,2]
     addends.sort(reverse = bool(y == h))
     return addends
+
+def next_adjacent_segment(current_segment, next_segment_addend, max_pd_code_value):
+    """
+    Given a direction of travel, return the PD code segment of the section adjacent to current_segment.
+
+    Arguments:
+    current_segment -- (int) The PD code value of the current segment
+    next_segment_addend -- (int) 1 or -1, depending on the direction of travel
+    max_pd_code_value -- (int) The maximum PD code value for the knot diagram.
+    """
+    next_segment = alter_if_greater(current_segment, 0, next_segment_addend, max_pd_code_value)
+    if next_segment == 0:
+        next_segment = max_pd_code_value
+    return next_segment
