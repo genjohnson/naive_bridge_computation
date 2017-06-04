@@ -30,7 +30,6 @@ with open('knots.csv') as csvfile:
         if (knot.num_crossings() > 1):
             knot.designate_bridge(knot.crossings[0])
             knot.designate_additional_bridge()
-            print 'bridges are ' + str(knot.bridges)
             # Drag crossings, simplify knot, and identify bridges
             # until all crossings belong to a bridge.
             knot.find_crossing_to_drag()
