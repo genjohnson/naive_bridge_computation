@@ -623,7 +623,9 @@ def alter_if_greater(x, value, addend, maximum = None):
     """
     if x > value:
         x += addend
-        if maximum and x > maximum:
+        if x == 0:
+            x = maximum
+        if maximum and (x > maximum):
             x = x%maximum
     return x
 
