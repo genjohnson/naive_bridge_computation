@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import itertools
+from itertools import repeat
 from json import JSONEncoder
 import logging
 import numpy
@@ -134,12 +135,27 @@ class Knot:
         logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
         self.extend_bridge(crossing.bridge)
         
-    def drag_crossing_under_bridge(self, crossing_to_drag, bridge_crossing):
+    def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment):
+        def find_bridge_to_go_under(adjacent_segment):
+            """
+            Return the bridge crossing under which to drag a free crossing.
+
+            Arguments:
+            adjacent_segment -- (int) The PD code value of the segment to drag a crossing along.
+            """
+            for crossing in diff(self.crossings, self.free_crossings):
+                if adjacent_segment in crossing.pd_code:
+                    return crossing
+
+        bridge_crossing = find_bridge_to_go_under(adjacent_segment)
         a, b, c, d = crossing_to_drag.pd_code
         e, f, g, h = bridge_crossing.pd_code
         new_max_pd_val = self.max_pd_code_value()+4
         bid = bridge_crossing.bridge
         y = bridge_crossing.overpass_traveled_from()
+        adjacent_segment_index = crossing_to_drag.pd_code.index(adjacent_segment)
+
+        logging.debug('We will drag ' + str(crossing_to_drag.pd_code) + ' under ' + str(bridge_crossing.pd_code))
 
         # Following the orientation of the knot, find when we traverse e.
         i = sorted([a, e, y]).index(e)
@@ -204,7 +220,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [3,2], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
                 if y == f:
                     logging.debug('Dragging case d=g, a>y, y==f')
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
@@ -243,9 +259,12 @@ class Knot:
         logging.debug('(a,b,c,d) becomes ' + str(crossing_one.pd_code) + str(crossing_to_drag.pd_code) + str(crossing_two.pd_code))
 
         # Alter the PD code of the bridge crossing, (e,f,g,h).
-        if (d == e) or (b == e):
-            m = alter_if_greater(e+2*i, new_max_pd_val, 0, new_max_pd_val)
-            n = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+        if b == e:
+            m = alter_if_greater(d+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(d+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+        if d == e:
+            m = alter_if_greater(b+2*i, new_max_pd_val, 0, new_max_pd_val)
+            n = alter_if_greater(b+1+2*i, new_max_pd_val, 0, new_max_pd_val)
         elif (d == g) or (b == g):
             m = alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
             n = alter_if_greater(e+2+2*i, new_max_pd_val, 0, new_max_pd_val)
@@ -256,20 +275,35 @@ class Knot:
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
         # Alter PD code values of bridge ends.
-        logging.debug('Before dragging, the bridges are ' + str(self.bridges))
-        bridge_to_extend = None
         for i, bridge in enumerate(self.bridges):
-            for j, end in enumerate(bridge):
-                end = alter_element_for_drag(end, a_y_sorted[0], a_y_sorted[1])
-                self.bridges[i][j] = end
-                # Check if the crossing we dragged is now covered by a bridge.
+            self.bridges[i] = map(alter_element_for_drag, bridge, repeat(a_y_sorted[0],2), repeat(a_y_sorted[1],2))
+
+        # Check if the crossing we dragged is now covered by a bridge.
+        for i, bridge in enumerate(self.bridges):
+            for end in bridge:
                 if (end == crossing_to_drag.pd_code[1]) or (end == crossing_to_drag.pd_code[3]):
-                    bridge_to_extend = i
-                    logging.debug('Bridge end ' + str(end) + ' can be extended to cover the crossing we dragged')
-        # Expand the bridge covering the crossing that was dragged.
-        if bridge_to_extend != None:
-            self.extend_bridge(bridge_to_extend)
-        logging.debug('After altering, the bridges are ' + str(self.bridges))
+                    self.extend_bridge(i)
+                    logging.debug('Bridge end ' + str(end) + ' has been extended to cover the crossing we dragged')
+        logging.debug('After dragging and altering, the bridges are ' + str(self.bridges))
+
+        # Get the value of the next segment to drag along in case we continue with this crossing.
+        next_segment = crossing_to_drag.pd_code[adjacent_segment_index]
+        logging.debug('If we drag this crossing again, we should drag it along ' + str(next_segment))
+
+        return crossing_to_drag, next_segment
+
+    def drag_crossing_under_bridge_resursively(self, crossing_to_drag, adjacent_segment, drag_count):
+        """
+        Drag a crossing under multiple, consecutive bridges.
+
+        Arguments:
+        crossing_to_drag -- (obj) A Crossing to drag
+        adjacent_segment -- (int) The PD code value of the adjacent segment to drag along
+        drag_count -- (int) The number of bridges to drag the crossing underneath
+        """
+        while (drag_count > 0):
+            crossing_to_drag, adjacent_segment = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment)
+            drag_count -= 1
 
     def extend_bridge(self, bridge_index):
         """
@@ -306,10 +340,62 @@ class Knot:
                     break;
 
     def find_crossing_to_drag(self):
-        for crossing in self.free_crossings:
-            args = crossing_deadends_at_bridge(self, crossing)
-            if (args) and (deadend_adjacent_to_bridge(self, *args)):
-                return (crossing, args[0])
+        max_pd_code_value = self.max_pd_code_value()
+        for bridge in self.bridges:
+            for end in bridge:
+                crossings_containing_end = []
+                for crossing in diff(self.crossings, self.free_crossings):
+                    if end in crossing.pd_code:
+                        crossings_containing_end.append(crossing)
+                if len(crossings_containing_end) == 2:
+                    # end is a T stem.
+                    logging.debug(str(end) + ' is a T stem')
+
+                    # Get the value of the segment adjacent to end.
+                    for end_crossing in crossings_containing_end:
+                        i = end_crossing.pd_code.index(end)
+                        if (i%2 == 0):
+                            adjacent_segment = end_crossing.pd_code[(i+2)%4]
+                            logging.debug('The segment adjacent to the T stem is ' + str(adjacent_segment))
+                            # Determine the addend needed to calculate the next adjacent segment
+                            # based on the direction we travel along the T stem.
+                            if i == 0:
+                                next_segment_addend = 1
+                            else:
+                                next_segment_addend = -1
+                            logging.debug('The next_segment_addend is ' + str(next_segment_addend))
+                            break;
+
+                    drag_count = 0
+                    continue_search = True
+                    while continue_search:
+                        reached_deadend = False
+
+                        # Does adjacent_segment belong to a free crossing (deadend)?
+                        for free_crossing in self.free_crossings:
+                            if adjacent_segment in free_crossing.pd_code:
+                                reached_deadend = True
+                                break;
+
+                        if reached_deadend:
+                            if (free_crossing.pd_code.index(adjacent_segment)%2 == 1):
+                                # The crossing is oriented such that we can drag it.
+                                drag_count += 1
+                                logging.debug('Crossing ' + str(free_crossing.pd_code) + ' can be dragged along ' + str(adjacent_segment))
+                                return (free_crossing, adjacent_segment, drag_count)
+                            else:
+                                continue_search = False
+                                logging.debug('We have completed our search of this stem')
+                                break
+                        else:
+                            drag_count += 1
+                            # Consider the next crossing along the T stem.
+                            adjacent_segment = next_adjacent_segment(adjacent_segment, next_segment_addend, max_pd_code_value)
+                            logging.debug('We need to consider the next crossing along the T stem containing ' + str(adjacent_segment))
+
+        # If we check all of the bridge Ts and cannot find a crossing to drag,
+        # return False to signify we need to identify a new bridge.
+        logging.debug('There are no crossings to drag. We need to identify another bridge.')
         return False
 
     def has_rm1(self):
@@ -395,21 +481,33 @@ class Knot:
             self.delete_crossings([index])
             max_value = len(self.crossings)*2
             # Adjust crossings.
-            addend = 0
-            if duplicate_value <= max_value:
-                addend = -2
-            logging.debug('Add ' + str(addend) + ' to all crossing elements greater than ' + str(duplicate_value) + ' and mod by ' + str(max_value))
+            addend = -2
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
             # Adjust bridges.
-            self.alter_bridge_segments_greater_than(duplicate_value, -2, max_value)
+            def alter_bridge_end_for_rm1(x, duplicate_value, max_value):
+                if x > duplicate_value:
+                    x -= 2
+                    if x > max_value:
+                        x = x%max_value
+                elif x == duplicate_value:
+                    if duplicate_value == 1:
+                        x = max_value
+                    else:
+                        x -= 1
+                return x
+
+            num_bridges = len(self.bridges)
+            for i, bridge in enumerate(self.bridges):
+                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, num_bridges), repeat(max_value, num_bridges))
+
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
             for bridge in self.bridges:
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
                     self.extend_bridge(bridge_index)
-            logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self))
+            logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
     def simplify_rm1_recursively(self):
@@ -525,7 +623,9 @@ def alter_if_greater(x, value, addend, maximum = None):
     """
     if x > value:
         x += addend
-        if maximum and x > maximum:
+        if x == 0:
+            x = maximum
+        if maximum and (x > maximum):
             x = x%maximum
     return x
 
@@ -562,43 +662,6 @@ def create_knot_from_pd_code(pd_code, name = None):
     """
     return Knot([Crossing(crossing) for crossing in pd_code], name)
 
-def crossing_deadends_at_bridge(knot, crossing):
-    """
-    Determine if a crossing ends at a bridge overpass.
-
-    Arguments:
-    knot -- (object) a Knot
-    crossing -- (object) a Crossing
-    """
-    bridge_crossings = diff(knot.crossings, knot.free_crossings)
-    crossing_overpass = [crossing.pd_code[1], crossing.pd_code[3]]
-
-    for i, x in enumerate(crossing_overpass):
-        for bridge_crossing in bridge_crossings:
-            for index in [0, 2]:
-                if x == bridge_crossing.pd_code[index]:
-                    logging.info('Crossing ' + str(crossing.pd_code) + ' dead-ends at a bridge')
-                    return (bridge_crossing, x)
-    return False
-
-def deadend_adjacent_to_bridge(knot, crossing, deadend):
-    """
-    Determine if a crossing end is adjacent to the end of a bridge.
-
-    Arguments:
-    knot -- (object) a Knot
-    crossing -- (object) a Crossing that is covered by a bridge
-    deadend -- (int) the PD code value of the crossing segment to evaluate
-    """
-    i = crossing.pd_code.index(deadend)
-    segment_adjacent_to_deadend = crossing.pd_code[(i+2)%4]
-    for bridge in knot.bridges:
-        if segment_adjacent_to_deadend in bridge:
-            logging.debug('Segment ' + str(deadend) + ' is adjacent to bridge end ' +str(segment_adjacent_to_deadend))
-            return segment_adjacent_to_deadend
-    logging.debug('Segment ' + str(deadend) + ' is not adjacent to a bridge end')
-    return False
-
 def diff(first, second):
     """
     Compute the difference of two lists.
@@ -625,3 +688,17 @@ def get_y_addends(a, h, y):
         addends = [1,2]
     addends.sort(reverse = bool(y == h))
     return addends
+
+def next_adjacent_segment(current_segment, next_segment_addend, max_pd_code_value):
+    """
+    Given a direction of travel, return the PD code segment of the section adjacent to current_segment.
+
+    Arguments:
+    current_segment -- (int) The PD code value of the current segment
+    next_segment_addend -- (int) 1 or -1, depending on the direction of travel
+    max_pd_code_value -- (int) The maximum PD code value for the knot diagram.
+    """
+    next_segment = alter_if_greater(current_segment, 0, next_segment_addend, max_pd_code_value)
+    if next_segment == 0:
+        next_segment = max_pd_code_value
+    return next_segment
