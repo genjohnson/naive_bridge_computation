@@ -157,9 +157,6 @@ class Knot:
 
         logging.debug('We will drag ' + str(crossing_to_drag.pd_code) + ' under ' + str(bridge_crossing.pd_code))
 
-        # Following the orientation of the knot, find when we traverse e.
-        i = sorted([a, e, y]).index(e)
-
         # Alter the PD codes of all crossings not invloved in the drag.
         a_y_sorted = sorted([a, y])
         for crossing in diff(self.crossings, [crossing_to_drag, bridge_crossing]):
@@ -167,8 +164,9 @@ class Knot:
 
         # Replace the crossing being dragged, (a,b,c,d).
         if d == e:
+            i = sorted([a, y, b]).index(b)
             if a < y:
-                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+                m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, alter_if_greater(b+1+2*i, new_max_pd_val, 0, new_max_pd_val), alter_if_greater(b+2+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case d=e, a<y, y==f')
                     y_vals_one = alter_y_values(y, [4,5], new_max_pd_val)
@@ -178,7 +176,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [4,5], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(b+1+2*i, new_max_pd_val, 0, new_max_pd_val), alter_if_greater(b+2+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case d=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
@@ -188,8 +186,8 @@ class Knot:
                     y_vals_one = alter_y_values(y, [1,0], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
         elif b == e:
+            i = sorted([a,y,d]).index(d)
             if a < y:
-                i = sorted([a,y,d]).index(d)
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, alter_if_greater(d+2+2*i, new_max_pd_val, 0, new_max_pd_val), alter_if_greater(d+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case b=e, a<y, y==f')
@@ -200,7 +198,6 @@ class Knot:
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
             if a > y:
-                i = sorted([a,y,d]).index(d)
                 m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(d+2+2*i, new_max_pd_val, 0, new_max_pd_val), alter_if_greater(d+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case b=e, a>y, y==f')
@@ -211,6 +208,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [3,2], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [0,1], new_max_pd_val)
         elif d == g:
+            i = sorted([a,y,e]).index(e)
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
                 if y == f:
@@ -232,6 +230,7 @@ class Knot:
                     y_vals_one = alter_y_values(y, [2,3], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [1,0], new_max_pd_val)
         elif b == g:
+            i = sorted([a,y,e]).index(e)
             if a < y:
                 m, n, r, s, t, u, v, w = a, a+1, a+2, a+3, a+1, a+2, e+2*i, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
