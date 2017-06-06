@@ -535,6 +535,8 @@ class Knot:
         extend_if_bridge_end = []
         segments_to_eliminate.sort(reverse = True)
 
+        logging.info('The segments ' + str(segments_to_eliminate) + ' can be elimiated by RM2 moves.')
+
         for segment in segments_to_eliminate:
             value = segment[0]
             addend = segment[1]
@@ -559,7 +561,7 @@ class Knot:
             if extend_bridge:
                 bridge_index = self.bridges.index(bridge)
                 self.extend_bridge(bridge_index)
-        logging.info('After simplifying RM2 of arcs ' + str(segments_to_eliminate) + ', the PD code is ' + str(self))
+        logging.info('After simplifying by RM2, the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
 
         return self
 
