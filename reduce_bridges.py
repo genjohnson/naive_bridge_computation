@@ -199,7 +199,8 @@ class Knot:
                     y_vals_one = alter_y_values(y, [5,4], new_max_pd_val)
                     y_vals_two = alter_y_values(y, [2,3], new_max_pd_val)
             if a > y:
-                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(e+1+2*i, new_max_pd_val, 0, new_max_pd_val), e+2*i
+                i = sorted([a,y,d]).index(d)
+                m, n, r, s, t, u, v, w = a+2, a+3, a+4, alter_if_greater(a+5, new_max_pd_val, 0, new_max_pd_val), a+3, a+4, alter_if_greater(d+2+2*i, new_max_pd_val, 0, new_max_pd_val), alter_if_greater(d+1+2*i, new_max_pd_val, 0, new_max_pd_val)
                 if y == f:
                     logging.debug('Dragging case b=e, a>y, y==f')
                     y_vals_one = alter_y_values(y, [0,1], new_max_pd_val)
