@@ -532,10 +532,11 @@ class Knot:
         segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
         """
         self.delete_crossings(crossing_indices)
+        maximum = len(self.crossings) * 2
         extend_if_bridge_end = []
         segments_to_eliminate.sort(reverse = True)
 
-        logging.info('The segments ' + str(segments_to_eliminate) + ' can be elimiated by RM2 moves.')
+        logging.info('The segments ' + str(segments_to_eliminate[0][0]) + ' and ' + str(segments_to_eliminate[1][0]) + ' can be elimiated by RM2 moves.')
 
         for segment in segments_to_eliminate:
             value = segment[0]
@@ -543,18 +544,23 @@ class Knot:
             # Alter values of each crossing.
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(value, addend)
+
+            # Adjust bridges.
+            for i, bridge in enumerate(self.bridges):
+                self.bridges[i] = map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
+
             # Alter values of remaining segments to eliminate.
             segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
+
             # Remove segments as we finish with them.
             del(segments_to_eliminate[-1])
 
         # Mod final crossings based on maximum value allowed.
-        maximum = len(self.crossings) * 2
         for crossing in self.crossings:
             crossing.alter_elements_greater_than(maximum, 0, maximum)
-
-        # Adjust bridges.
-        self.alter_bridge_segments_greater_than(value, addend, maximum)
+        # Mod final bridge ends based on maximum value allowed.
+        self.alter_bridge_segments_greater_than(maximum, 0, maximum)
+                
         extend_if_bridge_end = [value - 1, value + 1]
         for bridge in self.bridges:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
