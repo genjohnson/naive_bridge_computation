@@ -133,7 +133,11 @@ class Knot:
             for i, x in enumerate(bridge):
                 for free_crossing in self.free_crossings:
                     if (x == free_crossing.pd_code[0]) or (x == free_crossing.pd_code[2]):
-                        if not adjacent_ends(self, free_crossing, bridge[(i+1)%2]):
+                        if len(self.free_crossings) > 2:
+                            if not adjacent_ends(self, free_crossing, bridge[(i+1)%2]):
+                                self.designate_bridge(free_crossing)
+                                return self
+                        else:
                             self.designate_bridge(free_crossing)
                             return self
 
