@@ -116,11 +116,29 @@ class Knot:
         for bridge in self.bridges:
             # Sort the bridge ends to first follow the orientation of the knot
             # when searching for the next available crossing.
-            for x in sorted(bridge, reverse = True):
+            sorted_bridge = sorted(bridge, reverse = True)
+            for i, x in enumerate(sorted_bridge):
                 for free_crossing in self.free_crossings:
                     if x == free_crossing.pd_code[0]:
-                        self.designate_bridge(free_crossing)
-                        return self
+                        # Check that free_crossing.pd_code[1] and free_crossing.pd_code[3]
+                        # are not adjacent to the other bridge end.
+                        end_1 = free_crossing.pd_code[1]
+                        end_2 = free_crossing.pd_code[3]
+                        opposite_bridge_end = sorted_bridge[(i+1)%2]
+
+                        l = None
+                        m = None
+                        n = None
+                        for free_crossing in self.free_crossings:
+                            if opposite_bridge_end in free_crossing.pd_code:
+                                l = free_crossing.pd_code.index(opposite_bridge_end)
+                                if end_1 in free_crossing.pd_code:
+                                    m = free_crossing.pd_code.index(end_1)
+                                if end_2 in free_crossing.pd_code:
+                                    n = free_crossing.pd_code.index(end_2)
+                                if sorted([l,m,n]) == [None, 0, 2]:
+                                    self.designate_bridge(free_crossing)
+                                    return self
 
     def designate_bridge(self, crossing):
         """
