@@ -214,6 +214,16 @@ class DragCrossingUnderBridgeTestCase(unittest.TestCase):
         answer = Knot([Crossing(x[0], x[1]) for x in [[[1,9,2,8],0],[[3,12,4,13],1],[[4,9,5,10],0],[[5,15,6,14],1],[[6,25,7,26],2],[[10,14,11,13],1],[[11,2,12,3],None],[[15,18,16,19],None],[[17,22,18,23],None],[[19,31,20,30],None],[[21,16,22,17],None],[[23,1,24,32],None],[[27,26,28,27],2],[[28,7,29,8],0],[[29,25,30,24],2],[[31,21,32,20],None]]])
         self.assertEqual(knot, answer)
 
+    # Dragging case d=e, a<y, y==f
+    def testDragCrossingUnderBridge_12(self):
+        knot = create_knot_from_pd_code([[1,9,2,8],[3,12,4,13],[4,9,5,10],[5,15,6,14],[6,25,7,26],[10,14,11,13],[11,2,12,3],[15,18,16,19],[17,22,18,23],[19,29,20,28],[21,16,22,17],[23,1,24,30],[26,7,27,8],[27,25,28,24],[29,21,30,20]])
+        knot.designate_bridge(knot.crossings[0])
+        knot.designate_bridge(knot.crossings[1])
+        knot.designate_bridge(knot.crossings[4])
+        knot.drag_crossing_under_bridge(knot.crossings[6], 3)
+        answer = Knot([Crossing(x[0], x[1]) for x in [[[1,9,2,8],0],[[2,15,3,16],1],[[4,9,5,10],0],[[5,19,6,18],1],[[6,29,7,30],2],[[10,18,11,17],1],[[11,16,12,17],1],[[12,3,13,4],None],[[13,15,14,14],1],[[19,22,20,23],None],[[21,26,22,27],None],[[23,33,24,32],None],[[25,20,26,21],None],[[27,1,28,34],None],[[30,7,31,8],0],[[31,29,32,28],2],[[33,25,34,24],None]]])
+        self.assertEqual(knot, answer)
+
 class SimplifyRm1TestCase(unittest.TestCase):
     def testSimplifyRm1(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[6,6,7,5],[8,8,1,7]])
