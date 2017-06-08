@@ -113,14 +113,33 @@ class Knot:
         """
         Choose a crossing to designate as a bridge based on existing bridges.
         """
+        def adjacent_ends(knot, crossing, end):
+            """
+            Check if an overpass segment of crossing is adjacent to the segment end.
+
+            Arguments:
+            knot -- (obj) The knot containing crossing and end
+            crossing -- (obj) A crossing
+            end -- (int) The PD code value of a segment to check for adjacency with crossing
+            """
+            for free_crossing in knot.free_crossings:
+                if end in free_crossing.pd_code:
+                    i = free_crossing.pd_code.index(end)
+                    if (free_crossing.pd_code[(i+2)%4] == crossing.pd_code[1]) or (free_crossing.pd_code[(i+2)%4] == crossing.pd_code[3]):
+                        return True
+            return False
+
         for bridge in self.bridges:
-            # Sort the bridge ends to first follow the orientation of the knot
-            # when searching for the next available crossing.
-            for x in sorted(bridge, reverse = True):
+            for i, x in enumerate(bridge):
                 for free_crossing in self.free_crossings:
-                    if x == free_crossing.pd_code[0]:
-                        self.designate_bridge(free_crossing)
-                        return self
+                    if (x == free_crossing.pd_code[0]) or (x == free_crossing.pd_code[2]):
+                        if len(self.free_crossings) > 2:
+                            if not adjacent_ends(self, free_crossing, bridge[(i+1)%2]):
+                                self.designate_bridge(free_crossing)
+                                return self
+                        else:
+                            self.designate_bridge(free_crossing)
+                            return self
 
     def designate_bridge(self, crossing):
         """
