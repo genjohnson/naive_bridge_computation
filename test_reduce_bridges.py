@@ -3,7 +3,7 @@
 import itertools, unittest
 from reduce_bridges import *
 
-logging.basicConfig(filename='tests.log', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+logging.basicConfig(filename='tests.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 # Tests for Crossing methods.
 class AlterElementsGreaterThanTestCase(unittest.TestCase):
