@@ -7,7 +7,7 @@ import logging
 import sys, getopt
 from reduce_bridges import *
 
-logging.basicConfig(filename='bridge_computation.log', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 # Stub for our output JSON file.
 knot_output = {"knots":[]}
