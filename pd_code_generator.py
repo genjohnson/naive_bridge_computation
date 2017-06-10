@@ -13,12 +13,20 @@ def generate_pd_code_varients(pd_code):
 	pd_code -- (list) A PD code expressed as a list of lists.
 	"""
 	max_value = len(pd_code)*2
-	passes = max_value-1
-	pd_codes = [pd_code[:]]
+	passes = max_value
+	pd_codes = []
 	while (passes > 0):
 		for i, crossing in enumerate(pd_code):
 			pd_code[i] = [alter_if_greater(x, 0, 1, max_value) for x in crossing]
-		pd_codes.append(pd_code[:])
+		# Rotate the crossings to change which crossings are identified as bridges.
+		rotations = len(pd_code)
+		while rotations > 0:
+			pd_code = deque(pd_code)
+			pd_code.rotate(1)
+			pd_code = list(pd_code)
+			print 'rotated pd code is ' + str(pd_code)
+			pd_codes.append(pd_code[:])
+			rotations-=1
 		passes-=1
 	return pd_codes
 
