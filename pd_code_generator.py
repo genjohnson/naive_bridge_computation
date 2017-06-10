@@ -24,7 +24,6 @@ def generate_pd_code_varients(pd_code):
 			pd_code = deque(pd_code)
 			pd_code.rotate(1)
 			pd_code = list(pd_code)
-			print 'rotated pd code is ' + str(pd_code)
 			pd_codes.append(pd_code[:])
 			rotations-=1
 		passes-=1
