@@ -30,7 +30,7 @@ def generate_pd_code_varients(pd_code):
 		passes-=1
 	return pd_codes
 
-def bulk_generate_pd_codes(in_file = 'knots.csv', out_file_per_knot = True, include_reverse = True, ):
+def bulk_generate_pd_codes(in_file = 'knots.csv', out_file_per_knot = True, include_reverse = True):
 	"""
 	Create a csv of all PD code variations of a knot.
 
