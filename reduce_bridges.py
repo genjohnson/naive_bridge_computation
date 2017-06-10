@@ -324,6 +324,9 @@ class Knot:
         while (drag_count > 0):
             crossing_to_drag, adjacent_segment = self.drag_crossing_under_bridge(crossing_to_drag, adjacent_segment)
             drag_count -= 1
+            # Stop if the crossing being dragged has been assigned to a bridge.
+            if crossing_to_drag.bridge:
+                break;
 
     def extend_bridge(self, bridge_index):
         """
