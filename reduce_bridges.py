@@ -517,9 +517,8 @@ class Knot:
                         x -= 1
                 return x
 
-            num_bridges = len(self.bridges)
             for i, bridge in enumerate(self.bridges):
-                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, num_bridges), repeat(max_value, num_bridges))
+                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, 2), repeat(max_value, 2))
 
             extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
             for bridge in self.bridges:
