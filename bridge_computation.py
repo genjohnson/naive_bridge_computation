@@ -76,8 +76,13 @@ def calculate_bridge_index(inputfile):
             knot_output['knots'].append(knot.json())
 
     # Write the results to our output JSON file.
-    with open('output.json', mode = 'w') as outfile:
-        json.dump(knot_output, outfile, indent = 2, cls = ComplexEncoder)
+    root, ext = os.path.splitext(os.path.basename(inputfile))
+    outfile_name = 'outputs/' + root + '_output.json'
+    try:
+        with open(outfile_name, "w") as outfile:
+            json.dump(knot_output, outfile, indent = 2, cls = ComplexEncoder)
+    except IOError:
+        print 'Cannot write output file. Be sure the directory "outputs" exists and is writeable.'
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
