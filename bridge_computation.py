@@ -4,7 +4,7 @@ import ast
 import csv
 import json
 import logging
-import sys, getopt
+import sys, getopt, os
 from reduce_bridges import *
 
 logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
@@ -26,6 +26,19 @@ def bridge_computation(argv):
         elif opt in ("-i", "--inputfile"):
             inputfile = arg
 
+    if os.path.isdir(inputfile):
+        # Traverse the directory to process all csv files.
+        for root, dirs, files in os.walk(inputfile):
+            for file in files:
+                if file.endswith(".csv"):
+                    calculate_bridge_index(os.path.join(root, file))
+    elif os.path.isfile(inputfile):
+        calculate_bridge_index(inputfile)
+    else:
+        print "The specified input is not a file or a directory. Please try a different input."
+        logging.warning("The specified input is not a file or a directory. Please try a different input.")
+
+def calculate_bridge_index(inputfile):
     # Read in a CSV.
     with open(inputfile) as csvfile:
         fieldnames = ['name', 'pd_notation']
@@ -63,8 +76,13 @@ def bridge_computation(argv):
             knot_output['knots'].append(knot.json())
 
     # Write the results to our output JSON file.
-    with open('output.json', mode = 'w') as outfile:
-        json.dump(knot_output, outfile, indent = 2, cls = ComplexEncoder)
+    root, ext = os.path.splitext(os.path.basename(inputfile))
+    outfile_name = 'outputs/' + root + '_output.json'
+    try:
+        with open(outfile_name, "w") as outfile:
+            json.dump(knot_output, outfile, indent = 2, cls = ComplexEncoder)
+    except IOError:
+        print 'Cannot write output file. Be sure the directory "outputs" exists and is writeable.'
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
