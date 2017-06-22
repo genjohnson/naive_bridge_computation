@@ -1,5 +1,4 @@
-output.json
-outputs/*
+output*
 *.log
 *.pyc
 pd_codes.csv

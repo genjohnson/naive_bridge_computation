@@ -113,33 +113,15 @@ class Knot:
         """
         Choose a crossing to designate as a bridge based on existing bridges.
         """
-        def adjacent_ends(knot, crossing, end):
-            """
-            Check if an overpass segment of crossing is adjacent to the segment end.
-
-            Arguments:
-            knot -- (obj) The knot containing crossing and end
-            crossing -- (obj) A crossing
-            end -- (int) The PD code value of a segment to check for adjacency with crossing
-            """
-            for free_crossing in knot.free_crossings:
-                if end in free_crossing.pd_code:
-                    i = free_crossing.pd_code.index(end)
-                    if (free_crossing.pd_code[(i+2)%4] == crossing.pd_code[1]) or (free_crossing.pd_code[(i+2)%4] == crossing.pd_code[3]):
-                        return True
-            return False
-
-        for bridge in self.bridges:
-            for i, x in enumerate(bridge):
+        for bridge_crossing in diff(self.crossings, self.free_crossings):
+            for i in [0, 2]:
+                x = bridge_crossing.pd_code[i]
                 for free_crossing in self.free_crossings:
-                    if (x == free_crossing.pd_code[0]) or (x == free_crossing.pd_code[2]):
-                        if len(self.free_crossings) > 2:
-                            if not adjacent_ends(self, free_crossing, bridge[(i+1)%2]):
-                                self.designate_bridge(free_crossing)
-                                return self
-                        else:
-                            self.designate_bridge(free_crossing)
-                            return self
+                    if (x == free_crossing.pd_code[1]) or (x == free_crossing.pd_code[3]):
+                        self.designate_bridge(free_crossing)
+                        return self
+        logging.critical('We were unable to designate an additional bridge.')
+        sys.exit('We were unable to designate an additional bridge.')
 
     def designate_bridge(self, crossing):
         """
