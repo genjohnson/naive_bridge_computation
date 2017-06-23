@@ -50,7 +50,6 @@ def calculate_bridge_index(inputfile):
             knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
             logging.info('Created knot ' + str(knot.name))
             logging.debug('The initial PD code of the knot is ' + str(knot))
-            print 'Processing knot ' + str(knot.name)
             # Simplify the knot now to avoid choosing bridges which will be
             # discarded during simplification.
             knot.simplify_rm1_rm2_recursively()
@@ -71,8 +70,6 @@ def calculate_bridge_index(inputfile):
             logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
             # Add the results to our output.
-            print 'The final bridge number is ' + str(len(knot.bridges))
-            print '========================='
             knot_output['knots'].append(knot.json())
 
     # Write the results to our output JSON file.
