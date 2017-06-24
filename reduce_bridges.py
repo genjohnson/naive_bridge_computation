@@ -2,7 +2,6 @@
 
 import itertools
 from itertools import repeat
-from json import JSONEncoder
 import logging
 import numpy
 
@@ -49,9 +48,6 @@ class Crossing:
             return list(sets[1])[0]
         else:
             return False
-
-    def json(self):
-        return self.__dict__
 
     def overpass_traveled_from(self):
         """
@@ -458,9 +454,6 @@ class Knot:
                 break
         return has_rm2
 
-    def json(self):
-        return dict(name = self.name, crossings = self.crossings, naive_bridges = len(self.bridges))
-
     def max_pd_code_value(self):
         """
         Return the maximum value possible in the PD code.
@@ -600,13 +593,6 @@ class Knot:
                 logging.info('No more moves of type RM1 or RM2 are possible.')
                 break;
         return self
-
-class ComplexEncoder(JSONEncoder):
-    def default(self, obj):
-        if hasattr(obj,'json'):
-            return obj.json()
-        else:
-            return json.JSONEncoder.default(self, obj)
 
 def alter_element_for_drag(x, first, second):
     """

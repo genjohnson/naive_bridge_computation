@@ -9,9 +9,6 @@ from reduce_bridges import *
 
 logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
-# Stub for our output JSON file.
-knot_output = {"knots":[]}
-
 def bridge_computation(argv):
     inputfile = ''
     try:
@@ -26,6 +23,10 @@ def bridge_computation(argv):
         elif opt in ("-i", "--inputfile"):
             inputfile = arg
 
+    # Create a directory for outputs.
+    if not os.path.exists('outputs'):
+        os.makedirs('outputs')
+
     if os.path.isdir(inputfile):
         # Traverse the directory to process all csv files.
         for root, dirs, files in os.walk(inputfile):
@@ -39,6 +40,13 @@ def bridge_computation(argv):
         logging.warning("The specified input is not a file or a directory. Please try a different input.")
 
 def calculate_bridge_index(inputfile):
+    # Create an output file.
+    root, ext = os.path.splitext(os.path.basename(inputfile))
+    outfile_name = 'outputs/' + root + '_output.csv'
+    with open(outfile_name, "w") as outfile:
+        outputwriter = csv.writer(outfile, delimiter=',')
+        outputwriter.writerow(['name','computed_bridge_index'])
+
     # Read in a CSV.
     with open(inputfile) as csvfile:
         fieldnames = ['name', 'pd_notation']
@@ -66,20 +74,17 @@ def calculate_bridge_index(inputfile):
                         knot.simplify_rm1_rm2_recursively()
                     else:
                         knot.designate_additional_bridge()
-            logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(len(knot.bridges)))
+            computed_bridge_index = len(knot.bridges)
+            logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
             logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
 
-            # Add the results to our output.
-            knot_output['knots'].append(knot.json())
-
-    # Write the results to our output JSON file.
-    root, ext = os.path.splitext(os.path.basename(inputfile))
-    outfile_name = 'outputs/' + root + '_output.json'
-    try:
-        with open(outfile_name, "w") as outfile:
-            json.dump(knot_output, outfile, indent = 2, cls = ComplexEncoder)
-    except IOError:
-        print 'Cannot write output file. Be sure the directory "outputs" exists and is writeable.'
+            # Add the results to our output file.
+            try:
+                with open(outfile_name, "a") as outfile:
+                    outputwriter = csv.writer(outfile, delimiter=',')
+                    outputwriter.writerow([knot.name, computed_bridge_index])
+            except IOError:
+                sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
