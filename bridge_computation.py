@@ -11,38 +11,41 @@ logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(a
 
 def bridge_computation(argv):
     inputfile = ''
+    outputdir = 'output'
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["inputfile="])
+        opts, args = getopt.getopt(argv,"hi:o:",["inputfile=", "outputdir",])
     except getopt.GetoptError:
-        print 'bridge_computation.py -i <inputfile>'
+        print 'bridge_computation.py -i <inputfile> -o <outputdir>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'bridge_computation.py -i <inputfile>'
+            print 'bridge_computation.py -i <inputfile> -o <outputdir>'
             sys.exit()
         elif opt in ("-i", "--inputfile"):
             inputfile = arg
+        elif opt in ("-o", "--outputdir"):
+            outputdir = arg
 
     # Create a directory for outputs.
-    if not os.path.exists('outputs'):
-        os.makedirs('outputs')
+    if not os.path.exists(outputdir):
+        os.makedirs(outputdir)
 
     if os.path.isdir(inputfile):
         # Traverse the directory to process all csv files.
         for root, dirs, files in os.walk(inputfile):
             for file in files:
                 if file.endswith(".csv"):
-                    calculate_bridge_index(os.path.join(root, file))
+                    calculate_bridge_index(os.path.join(root, file), outputdir)
     elif os.path.isfile(inputfile):
-        calculate_bridge_index(inputfile)
+        calculate_bridge_index(inputfile, outputdir)
     else:
         print "The specified input is not a file or a directory. Please try a different input."
         logging.warning("The specified input is not a file or a directory. Please try a different input.")
 
-def calculate_bridge_index(inputfile):
+def calculate_bridge_index(inputfile, outputdir):
     # Create an output file.
     root, ext = os.path.splitext(os.path.basename(inputfile))
-    outfile_name = 'outputs/' + root + '_output.csv'
+    outfile_name = outputdir + '/' + root + '_output.csv'
     with open(outfile_name, "w") as outfile:
         outputwriter = csv.writer(outfile, delimiter=',')
         outputwriter.writerow(['name','computed_bridge_index'])
