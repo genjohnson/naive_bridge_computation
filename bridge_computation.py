@@ -35,7 +35,11 @@ def bridge_computation(argv):
         for root, dirs, files in os.walk(inputfile):
             for file in files:
                 if file.endswith(".csv"):
-                    calculate_bridge_index(os.path.join(root, file), outputdir)
+                    try:
+                        calculate_bridge_index(os.path.join(root, file), outputdir)
+                    except:
+                        logging.error('Failed to fully process ' + str(file))
+                        print 'Failed to fully process ' + str(file)
     elif os.path.isfile(inputfile):
         calculate_bridge_index(inputfile, outputdir)
     else:
