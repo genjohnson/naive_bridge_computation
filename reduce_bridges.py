@@ -4,6 +4,7 @@ import itertools
 from itertools import repeat
 import logging
 import numpy
+import sys
 
 class Crossing:
     def __init__(self, pd_code, bridge = None):
