@@ -118,7 +118,7 @@ class Knot:
                         self.designate_bridge(free_crossing)
                         return self
         logging.critical('We were unable to designate an additional bridge.')
-        sys.exit('We were unable to designate an additional bridge.')
+        sys.exit('We were unable to designate an additional bridge for ' + self.name + '.')
 
     def designate_bridge(self, crossing):
         """
