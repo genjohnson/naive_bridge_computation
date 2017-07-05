@@ -1,0 +1,881 @@
+07/04/2017 11:38:12 PM: Created knot 12a_0056_121
+07/04/2017 11:38:12 PM: The initial PD code of the knot is [[8, 4, 9, 3], [10, 2, 11, 1], [12, 16, 13, 15], [14, 20, 15, 19], [16, 24, 17, 23], [18, 14, 19, 13], [20, 6, 21, 5], [22, 18, 23, 17], [24, 12, 1, 11], [2, 10, 3, 9], [4, 8, 5, 7], [6, 22, 7, 21]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: Crossing [8, 4, 9, 3] has been designated as a bridge with index 0
+07/04/2017 11:38:12 PM: We will try to extend the bridge [4, 3]
+07/04/2017 11:38:12 PM: Bridge end 4 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 3 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Crossing [4, 8, 5, 7] has been designated as a bridge with index 1
+07/04/2017 11:38:12 PM: We will try to extend the bridge [8, 7]
+07/04/2017 11:38:12 PM: Bridge end 7 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: 4 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 5
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: Crossing [20, 6, 21, 5] can be dragged along 5
+07/04/2017 11:38:12 PM: We will drag [20, 6, 21, 5] under [4, 8, 5, 7]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [22, 9, 23, 10][23, 5, 24, 4][24, 8, 25, 7]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [5, 9, 6, 8]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[10, 4, 11, 3], [12, 2, 13, 1], [14, 18, 15, 17], [16, 22, 17, 21], [18, 28, 19, 27], [20, 16, 21, 15], [22, 9, 23, 10], [23, 5, 24, 4], [24, 8, 25, 7], [26, 20, 27, 19], [28, 14, 1, 13], [2, 12, 3, 11], [5, 9, 6, 8], [6, 26, 7, 25]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [4, 3]
+07/04/2017 11:38:12 PM: Bridge end 4 can be extended to 5
+07/04/2017 11:38:12 PM: Bridge end 3 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 4 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[5, 3], [10, 7]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 4
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 5 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 6
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 10 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 11
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: Crossing [2, 12, 3, 11] can be dragged along 11
+07/04/2017 11:38:12 PM: We will drag [2, 12, 3, 11] under [10, 4, 11, 3]
+07/04/2017 11:38:12 PM: Dragging case d=g, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [2, 7, 3, 8][3, 15, 4, 14][4, 6, 5, 5]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [15, 7, 16, 6]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[15, 7, 16, 6], [16, 2, 17, 1], [18, 22, 19, 21], [20, 26, 21, 25], [22, 32, 23, 31], [24, 20, 25, 19], [26, 13, 27, 14], [27, 9, 28, 8], [28, 12, 29, 11], [30, 24, 31, 23], [32, 18, 1, 17], [2, 7, 3, 8], [3, 15, 4, 14], [4, 6, 5, 5], [9, 13, 10, 12], [10, 30, 11, 29]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [14, 11]
+07/04/2017 11:38:12 PM: Bridge end 14 can be extended to 15
+07/04/2017 11:38:12 PM: Bridge end 11 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 14 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[9, 5], [15, 11]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 14
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [4, 6, 5, 5]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [4, 6, 5, 5]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [7, 4]
+07/04/2017 11:38:12 PM: After simplifying the knot for RM1 at segment 5, the PD code is [[13, 5, 14, 4], [14, 2, 15, 1], [16, 20, 17, 19], [18, 24, 19, 23], [20, 30, 21, 29], [22, 18, 23, 17], [24, 11, 25, 12], [25, 7, 26, 6], [26, 10, 27, 9], [28, 22, 29, 21], [30, 16, 1, 15], [2, 5, 3, 6], [3, 13, 4, 12], [7, 11, 8, 10], [8, 28, 9, 27]] and the bridges are [[7, 4], [13, 9]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 7 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 8
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 4 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 3
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 2
+07/04/2017 11:38:12 PM: Crossing [14, 2, 15, 1] can be dragged along 2
+07/04/2017 11:38:12 PM: We will drag [14, 2, 15, 1] under [2, 5, 3, 6]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [16, 5, 17, 6][17, 3, 18, 2][18, 8, 19, 7]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [1, 6, 2, 7]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[15, 5, 16, 4], [16, 5, 17, 6], [17, 3, 18, 2], [18, 8, 19, 7], [20, 24, 21, 23], [22, 28, 23, 27], [24, 34, 25, 33], [26, 22, 27, 21], [28, 13, 29, 14], [29, 9, 30, 8], [30, 12, 31, 11], [32, 26, 33, 25], [34, 20, 1, 19], [1, 6, 2, 7], [3, 15, 4, 14], [9, 13, 10, 12], [10, 32, 11, 31]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[9, 4], [15, 11]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 3
+07/04/2017 11:38:12 PM: We will drag [17, 3, 18, 2] under [3, 15, 4, 14]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [19, 17, 20, 16][20, 4, 21, 3][21, 14, 22, 15]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [2, 16, 3, 15]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[17, 5, 18, 4], [18, 5, 19, 6], [19, 17, 20, 16], [20, 4, 21, 3], [21, 14, 22, 15], [22, 8, 23, 7], [24, 28, 25, 27], [26, 32, 27, 31], [28, 38, 29, 37], [30, 26, 31, 25], [32, 13, 33, 14], [33, 9, 34, 8], [34, 12, 35, 11], [36, 30, 37, 29], [38, 24, 1, 23], [1, 6, 2, 7], [2, 16, 3, 15], [9, 13, 10, 12], [10, 36, 11, 35]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [9, 4]
+07/04/2017 11:38:12 PM: Bridge end 4 can be extended to 3
+07/04/2017 11:38:12 PM: Bridge end 4 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[9, 3], [17, 11]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 4
+07/04/2017 11:38:12 PM: The segments 18 and 5 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[15, 15, 16, 14], [16, 4, 17, 3], [17, 12, 18, 13], [18, 6, 19, 5], [20, 24, 21, 23], [22, 28, 23, 27], [24, 34, 25, 33], [26, 22, 27, 21], [28, 11, 29, 12], [29, 7, 30, 6], [30, 10, 31, 9], [32, 26, 33, 25], [34, 20, 1, 19], [1, 4, 2, 5], [2, 14, 3, 13], [7, 11, 8, 10], [8, 32, 9, 31]] and the bridges are [[7, 3], [15, 9]]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [15, 15, 16, 14]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [15, 15, 16, 14]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [15, 15, 16, 14]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [14, 9]
+07/04/2017 11:38:12 PM: Bridge end 9 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: After simplifying the knot for RM1 at segment 15, the PD code is [[14, 4, 15, 3], [15, 12, 16, 13], [16, 6, 17, 5], [18, 22, 19, 21], [20, 26, 21, 25], [22, 32, 23, 31], [24, 20, 25, 19], [26, 11, 27, 12], [27, 7, 28, 6], [28, 10, 29, 9], [30, 24, 31, 23], [32, 18, 1, 17], [1, 4, 2, 5], [2, 14, 3, 13], [7, 11, 8, 10], [8, 30, 9, 29]] and the bridges are [[7, 3], [14, 9]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 7 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 8
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 3 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 2
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 14 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 15
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 16
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 17
+07/04/2017 11:38:12 PM: Crossing [32, 18, 1, 17] can be dragged along 17
+07/04/2017 11:38:12 PM: We will drag [32, 18, 1, 17] under [16, 6, 17, 5]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [34, 7, 35, 8][35, 19, 36, 18][36, 6, 1, 5]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [19, 7, 20, 6]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[16, 4, 17, 3], [17, 14, 18, 15], [19, 7, 20, 6], [20, 24, 21, 23], [22, 28, 23, 27], [24, 34, 25, 33], [26, 22, 27, 21], [28, 13, 29, 14], [29, 9, 30, 8], [30, 12, 31, 11], [32, 26, 33, 25], [34, 7, 35, 8], [35, 19, 36, 18], [36, 6, 1, 5], [1, 4, 2, 5], [2, 16, 3, 15], [9, 13, 10, 12], [10, 32, 11, 31]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[9, 3], [16, 11]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 18
+07/04/2017 11:38:12 PM: We will drag [35, 19, 36, 18] under [17, 14, 18, 15]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [37, 15, 38, 14][38, 20, 39, 19][39, 16, 40, 17]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [20, 15, 21, 16]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[18, 4, 19, 3], [20, 15, 21, 16], [21, 7, 22, 6], [22, 26, 23, 25], [24, 30, 25, 29], [26, 36, 27, 35], [28, 24, 29, 23], [30, 13, 31, 14], [31, 9, 32, 8], [32, 12, 33, 11], [34, 28, 35, 27], [36, 7, 37, 8], [37, 15, 38, 14], [38, 20, 39, 19], [39, 16, 40, 17], [40, 6, 1, 5], [1, 4, 2, 5], [2, 18, 3, 17], [9, 13, 10, 12], [10, 34, 11, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[9, 3], [18, 11]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 19
+07/04/2017 11:38:12 PM: We will drag [38, 20, 39, 19] under [18, 4, 19, 3]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [40, 5, 41, 6][41, 21, 42, 20][42, 4, 43, 3]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [21, 5, 22, 4]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[21, 5, 22, 4], [22, 17, 23, 18], [23, 9, 24, 8], [24, 28, 25, 27], [26, 32, 27, 31], [28, 38, 29, 37], [30, 26, 31, 25], [32, 15, 33, 16], [33, 11, 34, 10], [34, 14, 35, 13], [36, 30, 37, 29], [38, 9, 39, 10], [39, 17, 40, 16], [40, 5, 41, 6], [41, 21, 42, 20], [42, 4, 43, 3], [43, 18, 44, 19], [44, 8, 1, 7], [1, 6, 2, 7], [2, 20, 3, 19], [11, 15, 12, 14], [12, 36, 13, 35]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [20, 13]
+07/04/2017 11:38:12 PM: Bridge end 20 can be extended to 21
+07/04/2017 11:38:12 PM: Bridge end 13 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 20 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[11, 3], [21, 13]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 20
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 11 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 12
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 3 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 2
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 44
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 43
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 42
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 41
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 40
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 39
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 38
+07/04/2017 11:38:12 PM: Crossing [28, 38, 29, 37] can be dragged along 38
+07/04/2017 11:38:12 PM: We will drag [28, 38, 29, 37] under [38, 9, 39, 10]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [30, 9, 31, 10][31, 43, 32, 42][32, 12, 33, 11]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [41, 10, 42, 11]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[23, 5, 24, 4], [24, 19, 25, 20], [25, 9, 26, 8], [26, 30, 27, 29], [28, 36, 29, 35], [30, 9, 31, 10], [31, 43, 32, 42], [32, 12, 33, 11], [34, 28, 35, 27], [36, 17, 37, 18], [37, 13, 38, 12], [38, 16, 39, 15], [40, 34, 41, 33], [41, 10, 42, 11], [43, 19, 44, 18], [44, 5, 45, 6], [45, 23, 46, 22], [46, 4, 47, 3], [47, 20, 48, 21], [48, 8, 1, 7], [1, 6, 2, 7], [2, 22, 3, 21], [13, 17, 14, 16], [14, 40, 15, 39]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[13, 3], [23, 15]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 43
+07/04/2017 11:38:12 PM: We will drag [31, 43, 32, 42] under [43, 19, 44, 18]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [33, 21, 34, 20][34, 48, 35, 47][35, 18, 36, 19]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [46, 20, 47, 19]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[25, 5, 26, 4], [26, 21, 27, 22], [27, 9, 28, 8], [28, 32, 29, 31], [30, 40, 31, 39], [32, 9, 33, 10], [33, 21, 34, 20], [34, 48, 35, 47], [35, 18, 36, 19], [36, 12, 37, 11], [38, 30, 39, 29], [40, 17, 41, 18], [41, 13, 42, 12], [42, 16, 43, 15], [44, 38, 45, 37], [45, 10, 46, 11], [46, 20, 47, 19], [48, 5, 49, 6], [49, 25, 50, 24], [50, 4, 51, 3], [51, 22, 52, 23], [52, 8, 1, 7], [1, 6, 2, 7], [2, 24, 3, 23], [13, 17, 14, 16], [14, 44, 15, 43]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[13, 3], [25, 15]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 48
+07/04/2017 11:38:12 PM: We will drag [34, 48, 35, 47] under [48, 5, 49, 6]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [36, 5, 37, 6][37, 53, 38, 52][38, 8, 39, 7]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [51, 6, 52, 7]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[27, 5, 28, 4], [28, 23, 29, 24], [29, 11, 30, 10], [30, 34, 31, 33], [32, 44, 33, 43], [34, 11, 35, 12], [35, 23, 36, 22], [36, 5, 37, 6], [37, 53, 38, 52], [38, 8, 39, 7], [39, 20, 40, 21], [40, 14, 41, 13], [42, 32, 43, 31], [44, 19, 45, 20], [45, 15, 46, 14], [46, 18, 47, 17], [48, 42, 49, 41], [49, 12, 50, 13], [50, 22, 51, 21], [51, 6, 52, 7], [53, 27, 54, 26], [54, 4, 55, 3], [55, 24, 56, 25], [56, 10, 1, 9], [1, 8, 2, 9], [2, 26, 3, 25], [15, 19, 16, 18], [16, 48, 17, 47]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[15, 3], [27, 17]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 53
+07/04/2017 11:38:12 PM: We will drag [37, 53, 38, 52] under [53, 27, 54, 26]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [39, 29, 40, 28][40, 58, 41, 57][41, 26, 42, 27]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [56, 28, 57, 27]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[29, 5, 30, 4], [30, 23, 31, 24], [31, 11, 32, 10], [32, 36, 33, 35], [34, 48, 35, 47], [36, 11, 37, 12], [37, 23, 38, 22], [38, 5, 39, 6], [39, 29, 40, 28], [40, 58, 41, 57], [41, 26, 42, 27], [42, 8, 43, 7], [43, 20, 44, 21], [44, 14, 45, 13], [46, 34, 47, 33], [48, 19, 49, 20], [49, 15, 50, 14], [50, 18, 51, 17], [52, 46, 53, 45], [53, 12, 54, 13], [54, 22, 55, 21], [55, 6, 56, 7], [56, 28, 57, 27], [58, 4, 59, 3], [59, 24, 60, 25], [60, 10, 1, 9], [1, 8, 2, 9], [2, 26, 3, 25], [15, 19, 16, 18], [16, 52, 17, 51]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[15, 3], [29, 17]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 58
+07/04/2017 11:38:12 PM: We will drag [40, 58, 41, 57] under [58, 4, 59, 3]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [42, 6, 43, 5][43, 63, 44, 62][44, 3, 45, 4]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [61, 5, 62, 4]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[31, 7, 32, 6], [32, 25, 33, 26], [33, 13, 34, 12], [34, 38, 35, 37], [36, 52, 37, 51], [38, 13, 39, 14], [39, 25, 40, 24], [40, 7, 41, 8], [41, 31, 42, 30], [42, 6, 43, 5], [43, 63, 44, 62], [44, 3, 45, 4], [45, 28, 46, 29], [46, 10, 47, 9], [47, 22, 48, 23], [48, 16, 49, 15], [50, 36, 51, 35], [52, 21, 53, 22], [53, 17, 54, 16], [54, 20, 55, 19], [56, 50, 57, 49], [57, 14, 58, 15], [58, 24, 59, 23], [59, 8, 60, 9], [60, 30, 61, 29], [61, 5, 62, 4], [63, 26, 64, 27], [64, 12, 1, 11], [1, 10, 2, 11], [2, 28, 3, 27], [17, 21, 18, 20], [18, 56, 19, 55]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[17, 3], [31, 19]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 63
+07/04/2017 11:38:12 PM: We will drag [43, 63, 44, 62] under [63, 26, 64, 27]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [45, 26, 46, 27][46, 68, 47, 67][47, 29, 48, 28]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [66, 27, 67, 28]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[33, 7, 34, 6], [34, 25, 35, 26], [35, 13, 36, 12], [36, 40, 37, 39], [38, 56, 39, 55], [40, 13, 41, 14], [41, 25, 42, 24], [42, 7, 43, 8], [43, 33, 44, 32], [44, 6, 45, 5], [45, 26, 46, 27], [46, 68, 47, 67], [47, 29, 48, 28], [48, 3, 49, 4], [49, 30, 50, 31], [50, 10, 51, 9], [51, 22, 52, 23], [52, 16, 53, 15], [54, 38, 55, 37], [56, 21, 57, 22], [57, 17, 58, 16], [58, 20, 59, 19], [60, 54, 61, 53], [61, 14, 62, 15], [62, 24, 63, 23], [63, 8, 64, 9], [64, 32, 65, 31], [65, 5, 66, 4], [66, 27, 67, 28], [68, 12, 1, 11], [1, 10, 2, 11], [2, 30, 3, 29], [17, 21, 18, 20], [18, 60, 19, 59]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[17, 3], [33, 19]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 68
+07/04/2017 11:38:12 PM: We will drag [46, 68, 47, 67] under [68, 12, 1, 11]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [48, 14, 49, 13][49, 1, 50, 72][50, 11, 51, 12]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [71, 13, 72, 12]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[35, 7, 36, 6], [36, 27, 37, 28], [37, 15, 38, 14], [38, 42, 39, 41], [40, 60, 41, 59], [42, 15, 43, 16], [43, 27, 44, 26], [44, 7, 45, 8], [45, 35, 46, 34], [46, 6, 47, 5], [47, 28, 48, 29], [48, 14, 49, 13], [49, 1, 50, 72], [50, 11, 51, 12], [51, 31, 52, 30], [52, 3, 53, 4], [53, 32, 54, 33], [54, 10, 55, 9], [55, 24, 56, 25], [56, 18, 57, 17], [58, 40, 59, 39], [60, 23, 61, 24], [61, 19, 62, 18], [62, 22, 63, 21], [64, 58, 65, 57], [65, 16, 66, 17], [66, 26, 67, 25], [67, 8, 68, 9], [68, 34, 69, 33], [69, 5, 70, 4], [70, 29, 71, 30], [71, 13, 72, 12], [1, 10, 2, 11], [2, 32, 3, 31], [19, 23, 20, 22], [20, 64, 21, 63]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[19, 3], [35, 21]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 1
+07/04/2017 11:38:12 PM: We will drag [49, 1, 50, 72] under [1, 10, 2, 11]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [51, 10, 52, 11][52, 2, 53, 1][53, 13, 54, 12]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [76, 11, 1, 12]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[37, 7, 38, 6], [38, 29, 39, 30], [39, 17, 40, 16], [40, 44, 41, 43], [42, 64, 43, 63], [44, 17, 45, 18], [45, 29, 46, 28], [46, 7, 47, 8], [47, 37, 48, 36], [48, 6, 49, 5], [49, 30, 50, 31], [50, 16, 51, 15], [51, 10, 52, 11], [52, 2, 53, 1], [53, 13, 54, 12], [54, 13, 55, 14], [55, 33, 56, 32], [56, 3, 57, 4], [57, 34, 58, 35], [58, 10, 59, 9], [59, 26, 60, 27], [60, 20, 61, 19], [62, 42, 63, 41], [64, 25, 65, 26], [65, 21, 66, 20], [66, 24, 67, 23], [68, 62, 69, 61], [69, 18, 70, 19], [70, 28, 71, 27], [71, 8, 72, 9], [72, 36, 73, 35], [73, 5, 74, 4], [74, 31, 75, 32], [75, 15, 76, 14], [76, 11, 1, 12], [2, 34, 3, 33], [21, 25, 22, 24], [22, 68, 23, 67]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[21, 3], [37, 23]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 2
+07/04/2017 11:38:12 PM: We will drag [52, 2, 53, 1] under [2, 34, 3, 33]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [54, 36, 55, 35][55, 3, 56, 2][56, 33, 57, 34]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [1, 35, 2, 34]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[39, 7, 40, 6], [40, 29, 41, 30], [41, 17, 42, 16], [42, 46, 43, 45], [44, 68, 45, 67], [46, 17, 47, 18], [47, 29, 48, 28], [48, 7, 49, 8], [49, 39, 50, 38], [50, 6, 51, 5], [51, 30, 52, 31], [52, 16, 53, 15], [53, 10, 54, 11], [54, 36, 55, 35], [55, 3, 56, 2], [56, 33, 57, 34], [57, 13, 58, 12], [58, 13, 59, 14], [59, 33, 60, 32], [60, 3, 61, 4], [61, 36, 62, 37], [62, 10, 63, 9], [63, 26, 64, 27], [64, 20, 65, 19], [66, 44, 67, 43], [68, 25, 69, 26], [69, 21, 70, 20], [70, 24, 71, 23], [72, 66, 73, 65], [73, 18, 74, 19], [74, 28, 75, 27], [75, 8, 76, 9], [76, 38, 77, 37], [77, 5, 78, 4], [78, 31, 79, 32], [79, 15, 80, 14], [80, 11, 1, 12], [1, 35, 2, 34], [21, 25, 22, 24], [22, 72, 23, 71]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [21, 3]
+07/04/2017 11:38:12 PM: Bridge end 3 can be extended to 2
+07/04/2017 11:38:12 PM: Bridge end 3 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[21, 2], [39, 23]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 3
+07/04/2017 11:38:12 PM: The segments 58 and 13 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[37, 7, 38, 6], [38, 27, 39, 28], [39, 15, 40, 14], [40, 44, 41, 43], [42, 64, 43, 63], [44, 15, 45, 16], [45, 27, 46, 26], [46, 7, 47, 8], [47, 37, 48, 36], [48, 6, 49, 5], [49, 28, 50, 29], [50, 14, 51, 13], [51, 10, 52, 11], [52, 34, 53, 33], [53, 3, 54, 2], [54, 31, 55, 32], [55, 31, 56, 30], [56, 3, 57, 4], [57, 34, 58, 35], [58, 10, 59, 9], [59, 24, 60, 25], [60, 18, 61, 17], [62, 42, 63, 41], [64, 23, 65, 24], [65, 19, 66, 18], [66, 22, 67, 21], [68, 62, 69, 61], [69, 16, 70, 17], [70, 26, 71, 25], [71, 8, 72, 9], [72, 36, 73, 35], [73, 5, 74, 4], [74, 29, 75, 30], [75, 13, 76, 12], [76, 11, 1, 12], [1, 33, 2, 32], [19, 23, 20, 22], [20, 68, 21, 67]] and the bridges are [[19, 2], [37, 21]]
+07/04/2017 11:38:12 PM: The segments 55 and 31 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[35, 7, 36, 6], [36, 27, 37, 28], [37, 15, 38, 14], [38, 42, 39, 41], [40, 60, 41, 59], [42, 15, 43, 16], [43, 27, 44, 26], [44, 7, 45, 8], [45, 35, 46, 34], [46, 6, 47, 5], [47, 28, 48, 29], [48, 14, 49, 13], [49, 10, 50, 11], [50, 32, 51, 31], [51, 3, 52, 2], [52, 3, 53, 4], [53, 32, 54, 33], [54, 10, 55, 9], [55, 24, 56, 25], [56, 18, 57, 17], [58, 40, 59, 39], [60, 23, 61, 24], [61, 19, 62, 18], [62, 22, 63, 21], [64, 58, 65, 57], [65, 16, 66, 17], [66, 26, 67, 25], [67, 8, 68, 9], [68, 34, 69, 33], [69, 5, 70, 4], [70, 29, 71, 30], [71, 13, 72, 12], [72, 11, 1, 12], [1, 31, 2, 30], [19, 23, 20, 22], [20, 64, 21, 63]] and the bridges are [[19, 2], [35, 21]]
+07/04/2017 11:38:12 PM: The segments 52 and 3 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: We will try to extend the bridge [17, 2]
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[33, 5, 34, 4], [34, 25, 35, 26], [35, 13, 36, 12], [36, 40, 37, 39], [38, 56, 39, 55], [40, 13, 41, 14], [41, 25, 42, 24], [42, 5, 43, 6], [43, 33, 44, 32], [44, 4, 45, 3], [45, 26, 46, 27], [46, 12, 47, 11], [47, 8, 48, 9], [48, 30, 49, 29], [49, 30, 50, 31], [50, 8, 51, 7], [51, 22, 52, 23], [52, 16, 53, 15], [54, 38, 55, 37], [56, 21, 57, 22], [57, 17, 58, 16], [58, 20, 59, 19], [60, 54, 61, 53], [61, 14, 62, 15], [62, 24, 63, 23], [63, 6, 64, 7], [64, 32, 65, 31], [65, 3, 66, 2], [66, 27, 67, 28], [67, 11, 68, 10], [68, 9, 1, 10], [1, 29, 2, 28], [17, 21, 18, 20], [18, 60, 19, 59]] and the bridges are [[17, 2], [33, 19]]
+07/04/2017 11:38:12 PM: The segments 49 and 30 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: We will try to extend the bridge [31, 19]
+07/04/2017 11:38:12 PM: Bridge end 19 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[31, 5, 32, 4], [32, 25, 33, 26], [33, 13, 34, 12], [34, 38, 35, 37], [36, 52, 37, 51], [38, 13, 39, 14], [39, 25, 40, 24], [40, 5, 41, 6], [41, 31, 42, 30], [42, 4, 43, 3], [43, 26, 44, 27], [44, 12, 45, 11], [45, 8, 46, 9], [46, 8, 47, 7], [47, 22, 48, 23], [48, 16, 49, 15], [50, 36, 51, 35], [52, 21, 53, 22], [53, 17, 54, 16], [54, 20, 55, 19], [56, 50, 57, 49], [57, 14, 58, 15], [58, 24, 59, 23], [59, 6, 60, 7], [60, 30, 61, 29], [61, 3, 62, 2], [62, 27, 63, 28], [63, 11, 64, 10], [64, 9, 1, 10], [1, 29, 2, 28], [17, 21, 18, 20], [18, 56, 19, 55]] and the bridges are [[17, 2], [31, 19]]
+07/04/2017 11:38:12 PM: The segments 46 and 8 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[29, 5, 30, 4], [30, 23, 31, 24], [31, 11, 32, 10], [32, 36, 33, 35], [34, 48, 35, 47], [36, 11, 37, 12], [37, 23, 38, 22], [38, 5, 39, 6], [39, 29, 40, 28], [40, 4, 41, 3], [41, 24, 42, 25], [42, 10, 43, 9], [43, 20, 44, 21], [44, 14, 45, 13], [46, 34, 47, 33], [48, 19, 49, 20], [49, 15, 50, 14], [50, 18, 51, 17], [52, 46, 53, 45], [53, 12, 54, 13], [54, 22, 55, 21], [55, 6, 56, 7], [56, 28, 57, 27], [57, 3, 58, 2], [58, 25, 59, 26], [59, 9, 60, 8], [60, 7, 1, 8], [1, 27, 2, 26], [15, 19, 16, 18], [16, 52, 17, 51]] and the bridges are [[15, 2], [29, 17]]
+07/04/2017 11:38:12 PM: The segments 60 and 8 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[27, 5, 28, 4], [28, 21, 29, 22], [29, 9, 30, 8], [30, 34, 31, 33], [32, 46, 33, 45], [34, 9, 35, 10], [35, 21, 36, 20], [36, 5, 37, 6], [37, 27, 38, 26], [38, 4, 39, 3], [39, 22, 40, 23], [40, 8, 41, 7], [41, 18, 42, 19], [42, 12, 43, 11], [44, 32, 45, 31], [46, 17, 47, 18], [47, 13, 48, 12], [48, 16, 49, 15], [50, 44, 51, 43], [51, 10, 52, 11], [52, 20, 53, 19], [53, 6, 54, 7], [54, 26, 55, 25], [55, 3, 56, 2], [56, 23, 1, 24], [1, 25, 2, 24], [13, 17, 14, 16], [14, 50, 15, 49]] and the bridges are [[13, 2], [27, 15]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 13 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 14
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 2 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 1
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 56
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 55
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 54
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 53
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 52
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 51
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 27 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 28
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 29
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 30
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: There are no crossings to drag. We need to identify another bridge.
+07/04/2017 11:38:12 PM: Crossing [30, 34, 31, 33] has been designated as a bridge with index 2
+07/04/2017 11:38:12 PM: We will try to extend the bridge [34, 33]
+07/04/2017 11:38:12 PM: Bridge end 33 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: 13 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 14
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 2 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 1
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 56
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 55
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 54
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 53
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 52
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 51
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 27 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 28
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 29
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 30
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 31
+07/04/2017 11:38:12 PM: Crossing [44, 32, 45, 31] can be dragged along 31
+07/04/2017 11:38:12 PM: We will drag [44, 32, 45, 31] under [30, 34, 31, 33]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [46, 35, 47, 36][47, 31, 48, 30][48, 34, 49, 33]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [31, 35, 32, 34]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[27, 5, 28, 4], [28, 21, 29, 22], [29, 9, 30, 8], [31, 35, 32, 34], [32, 50, 33, 49], [36, 9, 37, 10], [37, 21, 38, 20], [38, 5, 39, 6], [39, 27, 40, 26], [40, 4, 41, 3], [41, 22, 42, 23], [42, 8, 43, 7], [43, 18, 44, 19], [44, 12, 45, 11], [46, 35, 47, 36], [47, 31, 48, 30], [48, 34, 49, 33], [50, 17, 51, 18], [51, 13, 52, 12], [52, 16, 53, 15], [54, 46, 55, 45], [55, 10, 56, 11], [56, 20, 57, 19], [57, 6, 58, 7], [58, 26, 59, 25], [59, 3, 60, 2], [60, 23, 1, 24], [1, 25, 2, 24], [13, 17, 14, 16], [14, 54, 15, 53]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[13, 2], [27, 15], [36, 33]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 30
+07/04/2017 11:38:12 PM: We will drag [47, 31, 48, 30] under [29, 9, 30, 8]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [49, 10, 50, 11][50, 32, 51, 31][51, 9, 52, 8]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [32, 10, 33, 9]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[29, 5, 30, 4], [30, 23, 31, 24], [32, 10, 33, 9], [33, 37, 34, 36], [34, 54, 35, 53], [38, 11, 39, 12], [39, 23, 40, 22], [40, 5, 41, 6], [41, 29, 42, 28], [42, 4, 43, 3], [43, 24, 44, 25], [44, 8, 45, 7], [45, 20, 46, 21], [46, 14, 47, 13], [48, 37, 49, 38], [49, 10, 50, 11], [50, 32, 51, 31], [51, 9, 52, 8], [52, 36, 53, 35], [54, 19, 55, 20], [55, 15, 56, 14], [56, 18, 57, 17], [58, 48, 59, 47], [59, 12, 60, 13], [60, 22, 61, 21], [61, 6, 62, 7], [62, 28, 63, 27], [63, 3, 64, 2], [64, 25, 1, 26], [1, 27, 2, 26], [15, 19, 16, 18], [16, 58, 17, 57]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[15, 2], [29, 17], [38, 35]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 31
+07/04/2017 11:38:12 PM: We will drag [50, 32, 51, 31] under [30, 23, 31, 24]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [52, 24, 53, 23][53, 33, 54, 32][54, 25, 55, 26]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [33, 24, 34, 25]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[31, 5, 32, 4], [33, 24, 34, 25], [34, 10, 35, 9], [35, 39, 36, 38], [36, 58, 37, 57], [40, 11, 41, 12], [41, 23, 42, 22], [42, 5, 43, 6], [43, 31, 44, 30], [44, 4, 45, 3], [45, 26, 46, 27], [46, 8, 47, 7], [47, 20, 48, 21], [48, 14, 49, 13], [50, 39, 51, 40], [51, 10, 52, 11], [52, 24, 53, 23], [53, 33, 54, 32], [54, 25, 55, 26], [55, 9, 56, 8], [56, 38, 57, 37], [58, 19, 59, 20], [59, 15, 60, 14], [60, 18, 61, 17], [62, 50, 63, 49], [63, 12, 64, 13], [64, 22, 65, 21], [65, 6, 66, 7], [66, 30, 67, 29], [67, 3, 68, 2], [68, 27, 1, 28], [1, 29, 2, 28], [15, 19, 16, 18], [16, 62, 17, 61]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[15, 2], [31, 17], [40, 37]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 32
+07/04/2017 11:38:12 PM: We will drag [53, 33, 54, 32] under [31, 5, 32, 4]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [55, 6, 56, 7][56, 34, 57, 33][57, 5, 58, 4]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [34, 6, 35, 5]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[34, 6, 35, 5], [35, 26, 36, 27], [36, 12, 37, 11], [37, 41, 38, 40], [38, 62, 39, 61], [42, 13, 43, 14], [43, 25, 44, 24], [44, 7, 45, 8], [45, 33, 46, 32], [46, 4, 47, 3], [47, 28, 48, 29], [48, 10, 49, 9], [49, 22, 50, 23], [50, 16, 51, 15], [52, 41, 53, 42], [53, 12, 54, 13], [54, 26, 55, 25], [55, 6, 56, 7], [56, 34, 57, 33], [57, 5, 58, 4], [58, 27, 59, 28], [59, 11, 60, 10], [60, 40, 61, 39], [62, 21, 63, 22], [63, 17, 64, 16], [64, 20, 65, 19], [66, 52, 67, 51], [67, 14, 68, 15], [68, 24, 69, 23], [69, 8, 70, 9], [70, 32, 71, 31], [71, 3, 72, 2], [72, 29, 1, 30], [1, 31, 2, 30], [17, 21, 18, 20], [18, 66, 19, 65]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [33, 19]
+07/04/2017 11:38:12 PM: Bridge end 33 can be extended to 34
+07/04/2017 11:38:12 PM: Bridge end 19 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 33 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[17, 2], [34, 19], [42, 39]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 33
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 17 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 18
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 2 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 1
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 72
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 71
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 70
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 69
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 68
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 67
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 34 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 35
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 36
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 37
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 38
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 42 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 43
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 44
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 45
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 46
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 47
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 48
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 49
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 50
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 51
+07/04/2017 11:38:12 PM: Crossing [66, 52, 67, 51] can be dragged along 51
+07/04/2017 11:38:12 PM: We will drag [66, 52, 67, 51] under [50, 16, 51, 15]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [68, 17, 69, 18][69, 53, 70, 52][70, 16, 71, 15]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [53, 17, 54, 16]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[36, 6, 37, 5], [37, 28, 38, 29], [38, 12, 39, 11], [39, 43, 40, 42], [40, 64, 41, 63], [44, 13, 45, 14], [45, 27, 46, 26], [46, 7, 47, 8], [47, 35, 48, 34], [48, 4, 49, 3], [49, 30, 50, 31], [50, 10, 51, 9], [51, 24, 52, 25], [53, 17, 54, 16], [54, 43, 55, 44], [55, 12, 56, 13], [56, 28, 57, 27], [57, 6, 58, 7], [58, 36, 59, 35], [59, 5, 60, 4], [60, 29, 61, 30], [61, 11, 62, 10], [62, 42, 63, 41], [64, 23, 65, 24], [65, 19, 66, 18], [66, 22, 67, 21], [68, 17, 69, 18], [69, 53, 70, 52], [70, 16, 71, 15], [71, 14, 72, 15], [72, 26, 73, 25], [73, 8, 74, 9], [74, 34, 75, 33], [75, 3, 76, 2], [76, 31, 1, 32], [1, 33, 2, 32], [19, 23, 20, 22], [20, 68, 21, 67]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[19, 2], [36, 21], [44, 41]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 52
+07/04/2017 11:38:12 PM: We will drag [69, 53, 70, 52] under [51, 24, 52, 25]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [71, 25, 72, 24][72, 54, 73, 53][73, 26, 74, 27]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [54, 25, 55, 26]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[38, 6, 39, 5], [39, 30, 40, 31], [40, 12, 41, 11], [41, 45, 42, 44], [42, 66, 43, 65], [46, 13, 47, 14], [47, 29, 48, 28], [48, 7, 49, 8], [49, 37, 50, 36], [50, 4, 51, 3], [51, 32, 52, 33], [52, 10, 53, 9], [54, 25, 55, 26], [55, 17, 56, 16], [56, 45, 57, 46], [57, 12, 58, 13], [58, 30, 59, 29], [59, 6, 60, 7], [60, 38, 61, 37], [61, 5, 62, 4], [62, 31, 63, 32], [63, 11, 64, 10], [64, 44, 65, 43], [66, 23, 67, 24], [67, 19, 68, 18], [68, 22, 69, 21], [70, 17, 71, 18], [71, 25, 72, 24], [72, 54, 73, 53], [73, 26, 74, 27], [74, 16, 75, 15], [75, 14, 76, 15], [76, 28, 77, 27], [77, 8, 78, 9], [78, 36, 79, 35], [79, 3, 80, 2], [80, 33, 1, 34], [1, 35, 2, 34], [19, 23, 20, 22], [20, 70, 21, 69]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[19, 2], [38, 21], [46, 43]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 53
+07/04/2017 11:38:12 PM: We will drag [72, 54, 73, 53] under [52, 10, 53, 9]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [74, 11, 75, 12][75, 55, 76, 54][76, 10, 77, 9]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [55, 11, 56, 10]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[40, 6, 41, 5], [41, 32, 42, 33], [42, 14, 43, 13], [43, 47, 44, 46], [44, 68, 45, 67], [48, 15, 49, 16], [49, 31, 50, 30], [50, 7, 51, 8], [51, 39, 52, 38], [52, 4, 53, 3], [53, 34, 54, 35], [55, 11, 56, 10], [56, 27, 57, 28], [57, 19, 58, 18], [58, 47, 59, 48], [59, 14, 60, 15], [60, 32, 61, 31], [61, 6, 62, 7], [62, 40, 63, 39], [63, 5, 64, 4], [64, 33, 65, 34], [65, 13, 66, 12], [66, 46, 67, 45], [68, 25, 69, 26], [69, 21, 70, 20], [70, 24, 71, 23], [72, 19, 73, 20], [73, 27, 74, 26], [74, 11, 75, 12], [75, 55, 76, 54], [76, 10, 77, 9], [77, 28, 78, 29], [78, 18, 79, 17], [79, 16, 80, 17], [80, 30, 81, 29], [81, 8, 82, 9], [82, 38, 83, 37], [83, 3, 84, 2], [84, 35, 1, 36], [1, 37, 2, 36], [21, 25, 22, 24], [22, 72, 23, 71]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[21, 2], [40, 23], [48, 45]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 54
+07/04/2017 11:38:12 PM: We will drag [75, 55, 76, 54] under [53, 34, 54, 35]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [77, 35, 78, 34][78, 56, 79, 55][79, 36, 80, 37]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [56, 35, 57, 36]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[42, 6, 43, 5], [43, 32, 44, 33], [44, 14, 45, 13], [45, 49, 46, 48], [46, 70, 47, 69], [50, 15, 51, 16], [51, 31, 52, 30], [52, 7, 53, 8], [53, 41, 54, 40], [54, 4, 55, 3], [56, 35, 57, 36], [57, 11, 58, 10], [58, 27, 59, 28], [59, 19, 60, 18], [60, 49, 61, 50], [61, 14, 62, 15], [62, 32, 63, 31], [63, 6, 64, 7], [64, 42, 65, 41], [65, 5, 66, 4], [66, 33, 67, 34], [67, 13, 68, 12], [68, 48, 69, 47], [70, 25, 71, 26], [71, 21, 72, 20], [72, 24, 73, 23], [74, 19, 75, 20], [75, 27, 76, 26], [76, 11, 77, 12], [77, 35, 78, 34], [78, 56, 79, 55], [79, 36, 80, 37], [80, 10, 81, 9], [81, 28, 82, 29], [82, 18, 83, 17], [83, 16, 84, 17], [84, 30, 85, 29], [85, 8, 86, 9], [86, 40, 87, 39], [87, 3, 88, 2], [88, 37, 1, 38], [1, 39, 2, 38], [21, 25, 22, 24], [22, 74, 23, 73]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[21, 2], [42, 23], [50, 47]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 55
+07/04/2017 11:38:12 PM: We will drag [78, 56, 79, 55] under [54, 4, 55, 3]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [80, 5, 81, 6][81, 57, 82, 56][82, 4, 83, 3]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [57, 5, 58, 4]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[44, 8, 45, 7], [45, 34, 46, 35], [46, 16, 47, 15], [47, 51, 48, 50], [48, 72, 49, 71], [52, 17, 53, 18], [53, 33, 54, 32], [54, 9, 55, 10], [55, 43, 56, 42], [57, 5, 58, 4], [58, 37, 59, 38], [59, 13, 60, 12], [60, 29, 61, 30], [61, 21, 62, 20], [62, 51, 63, 52], [63, 16, 64, 17], [64, 34, 65, 33], [65, 8, 66, 9], [66, 44, 67, 43], [67, 7, 68, 6], [68, 35, 69, 36], [69, 15, 70, 14], [70, 50, 71, 49], [72, 27, 73, 28], [73, 23, 74, 22], [74, 26, 75, 25], [76, 21, 77, 22], [77, 29, 78, 28], [78, 13, 79, 14], [79, 37, 80, 36], [80, 5, 81, 6], [81, 57, 82, 56], [82, 4, 83, 3], [83, 38, 84, 39], [84, 12, 85, 11], [85, 30, 86, 31], [86, 20, 87, 19], [87, 18, 88, 19], [88, 32, 89, 31], [89, 10, 90, 11], [90, 42, 91, 41], [91, 3, 92, 2], [92, 39, 1, 40], [1, 41, 2, 40], [23, 27, 24, 26], [24, 76, 25, 75]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[23, 2], [44, 25], [52, 49]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 56
+07/04/2017 11:38:12 PM: We will drag [81, 57, 82, 56] under [55, 43, 56, 42]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [83, 44, 84, 45][84, 58, 85, 57][85, 43, 86, 42]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [58, 44, 59, 43]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[46, 8, 47, 7], [47, 34, 48, 35], [48, 16, 49, 15], [49, 53, 50, 52], [50, 74, 51, 73], [54, 17, 55, 18], [55, 33, 56, 32], [56, 9, 57, 10], [58, 44, 59, 43], [59, 5, 60, 4], [60, 37, 61, 38], [61, 13, 62, 12], [62, 29, 63, 30], [63, 21, 64, 20], [64, 53, 65, 54], [65, 16, 66, 17], [66, 34, 67, 33], [67, 8, 68, 9], [68, 46, 69, 45], [69, 7, 70, 6], [70, 35, 71, 36], [71, 15, 72, 14], [72, 52, 73, 51], [74, 27, 75, 28], [75, 23, 76, 22], [76, 26, 77, 25], [78, 21, 79, 22], [79, 29, 80, 28], [80, 13, 81, 14], [81, 37, 82, 36], [82, 5, 83, 6], [83, 44, 84, 45], [84, 58, 85, 57], [85, 43, 86, 42], [86, 4, 87, 3], [87, 38, 88, 39], [88, 12, 89, 11], [89, 30, 90, 31], [90, 20, 91, 19], [91, 18, 92, 19], [92, 32, 93, 31], [93, 10, 94, 11], [94, 42, 95, 41], [95, 3, 96, 2], [96, 39, 1, 40], [1, 41, 2, 40], [23, 27, 24, 26], [24, 78, 25, 77]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[23, 2], [46, 25], [54, 51]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 57
+07/04/2017 11:38:12 PM: We will drag [84, 58, 85, 57] under [56, 9, 57, 10]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [86, 10, 87, 9][87, 59, 88, 58][88, 11, 89, 12]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [59, 10, 60, 11]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[48, 8, 49, 7], [49, 36, 50, 37], [50, 18, 51, 17], [51, 55, 52, 54], [52, 76, 53, 75], [56, 19, 57, 20], [57, 35, 58, 34], [59, 10, 60, 11], [60, 46, 61, 45], [61, 5, 62, 4], [62, 39, 63, 40], [63, 15, 64, 14], [64, 31, 65, 32], [65, 23, 66, 22], [66, 55, 67, 56], [67, 18, 68, 19], [68, 36, 69, 35], [69, 8, 70, 9], [70, 48, 71, 47], [71, 7, 72, 6], [72, 37, 73, 38], [73, 17, 74, 16], [74, 54, 75, 53], [76, 29, 77, 30], [77, 25, 78, 24], [78, 28, 79, 27], [80, 23, 81, 24], [81, 31, 82, 30], [82, 15, 83, 16], [83, 39, 84, 38], [84, 5, 85, 6], [85, 46, 86, 47], [86, 10, 87, 9], [87, 59, 88, 58], [88, 11, 89, 12], [89, 45, 90, 44], [90, 4, 91, 3], [91, 40, 92, 41], [92, 14, 93, 13], [93, 32, 94, 33], [94, 22, 95, 21], [95, 20, 96, 21], [96, 34, 97, 33], [97, 12, 98, 13], [98, 44, 99, 43], [99, 3, 100, 2], [100, 41, 1, 42], [1, 43, 2, 42], [25, 29, 26, 28], [26, 80, 27, 79]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[25, 2], [48, 27], [56, 53]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 58
+07/04/2017 11:38:12 PM: We will drag [87, 59, 88, 58] under [57, 35, 58, 34]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [89, 36, 90, 37][90, 60, 91, 59][91, 35, 92, 34]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [60, 36, 61, 35]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[50, 8, 51, 7], [51, 38, 52, 39], [52, 18, 53, 17], [53, 57, 54, 56], [54, 78, 55, 77], [58, 19, 59, 20], [60, 36, 61, 35], [61, 10, 62, 11], [62, 48, 63, 47], [63, 5, 64, 4], [64, 41, 65, 42], [65, 15, 66, 14], [66, 31, 67, 32], [67, 23, 68, 22], [68, 57, 69, 58], [69, 18, 70, 19], [70, 38, 71, 37], [71, 8, 72, 9], [72, 50, 73, 49], [73, 7, 74, 6], [74, 39, 75, 40], [75, 17, 76, 16], [76, 56, 77, 55], [78, 29, 79, 30], [79, 25, 80, 24], [80, 28, 81, 27], [82, 23, 83, 24], [83, 31, 84, 30], [84, 15, 85, 16], [85, 41, 86, 40], [86, 5, 87, 6], [87, 48, 88, 49], [88, 10, 89, 9], [89, 36, 90, 37], [90, 60, 91, 59], [91, 35, 92, 34], [92, 11, 93, 12], [93, 47, 94, 46], [94, 4, 95, 3], [95, 42, 96, 43], [96, 14, 97, 13], [97, 32, 98, 33], [98, 22, 99, 21], [99, 20, 100, 21], [100, 34, 101, 33], [101, 12, 102, 13], [102, 46, 103, 45], [103, 3, 104, 2], [104, 43, 1, 44], [1, 45, 2, 44], [25, 29, 26, 28], [26, 82, 27, 81]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[25, 2], [50, 27], [58, 55]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 59
+07/04/2017 11:38:12 PM: We will drag [90, 60, 91, 59] under [58, 19, 59, 20]
+07/04/2017 11:38:12 PM: Dragging case d=g, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [92, 20, 93, 19][93, 61, 94, 60][94, 21, 95, 22]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [61, 20, 62, 21]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[52, 8, 53, 7], [53, 40, 54, 41], [54, 18, 55, 17], [55, 59, 56, 58], [56, 80, 57, 79], [61, 20, 62, 21], [62, 38, 63, 37], [63, 10, 64, 11], [64, 50, 65, 49], [65, 5, 66, 4], [66, 43, 67, 44], [67, 15, 68, 14], [68, 33, 69, 34], [69, 25, 70, 24], [70, 59, 71, 60], [71, 18, 72, 19], [72, 40, 73, 39], [73, 8, 74, 9], [74, 52, 75, 51], [75, 7, 76, 6], [76, 41, 77, 42], [77, 17, 78, 16], [78, 58, 79, 57], [80, 31, 81, 32], [81, 27, 82, 26], [82, 30, 83, 29], [84, 25, 85, 26], [85, 33, 86, 32], [86, 15, 87, 16], [87, 43, 88, 42], [88, 5, 89, 6], [89, 50, 90, 51], [90, 10, 91, 9], [91, 38, 92, 39], [92, 20, 93, 19], [93, 61, 94, 60], [94, 21, 95, 22], [95, 37, 96, 36], [96, 11, 97, 12], [97, 49, 98, 48], [98, 4, 99, 3], [99, 44, 100, 45], [100, 14, 101, 13], [101, 34, 102, 35], [102, 24, 103, 23], [103, 22, 104, 23], [104, 36, 105, 35], [105, 12, 106, 13], [106, 48, 107, 47], [107, 3, 108, 2], [108, 45, 1, 46], [1, 47, 2, 46], [27, 31, 28, 30], [28, 84, 29, 83]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [60, 57]
+07/04/2017 11:38:12 PM: Bridge end 60 can be extended to 61
+07/04/2017 11:38:12 PM: Bridge end 57 is a dead-end and cannot be extended
+07/04/2017 11:38:12 PM: Bridge end 60 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[27, 2], [52, 29], [61, 57]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 60
+07/04/2017 11:38:12 PM: The segments 103 and 23 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[50, 8, 51, 7], [51, 38, 52, 39], [52, 18, 53, 17], [53, 57, 54, 56], [54, 78, 55, 77], [59, 20, 60, 21], [60, 36, 61, 35], [61, 10, 62, 11], [62, 48, 63, 47], [63, 5, 64, 4], [64, 41, 65, 42], [65, 15, 66, 14], [66, 31, 67, 32], [67, 23, 68, 22], [68, 57, 69, 58], [69, 18, 70, 19], [70, 38, 71, 37], [71, 8, 72, 9], [72, 50, 73, 49], [73, 7, 74, 6], [74, 39, 75, 40], [75, 17, 76, 16], [76, 56, 77, 55], [78, 29, 79, 30], [79, 25, 80, 24], [80, 28, 81, 27], [82, 23, 83, 24], [83, 31, 84, 30], [84, 15, 85, 16], [85, 41, 86, 40], [86, 5, 87, 6], [87, 48, 88, 49], [88, 10, 89, 9], [89, 36, 90, 37], [90, 20, 91, 19], [91, 59, 92, 58], [92, 21, 93, 22], [93, 35, 94, 34], [94, 11, 95, 12], [95, 47, 96, 46], [96, 4, 97, 3], [97, 42, 98, 43], [98, 14, 99, 13], [99, 32, 100, 33], [100, 34, 101, 33], [101, 12, 102, 13], [102, 46, 103, 45], [103, 3, 104, 2], [104, 43, 1, 44], [1, 45, 2, 44], [25, 29, 26, 28], [26, 82, 27, 81]] and the bridges are [[25, 2], [50, 27], [59, 55]]
+07/04/2017 11:38:12 PM: The segments 100 and 33 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[48, 8, 49, 7], [49, 36, 50, 37], [50, 18, 51, 17], [51, 55, 52, 54], [52, 76, 53, 75], [57, 20, 58, 21], [58, 34, 59, 33], [59, 10, 60, 11], [60, 46, 61, 45], [61, 5, 62, 4], [62, 39, 63, 40], [63, 15, 64, 14], [64, 31, 65, 32], [65, 23, 66, 22], [66, 55, 67, 56], [67, 18, 68, 19], [68, 36, 69, 35], [69, 8, 70, 9], [70, 48, 71, 47], [71, 7, 72, 6], [72, 37, 73, 38], [73, 17, 74, 16], [74, 54, 75, 53], [76, 29, 77, 30], [77, 25, 78, 24], [78, 28, 79, 27], [80, 23, 81, 24], [81, 31, 82, 30], [82, 15, 83, 16], [83, 39, 84, 38], [84, 5, 85, 6], [85, 46, 86, 47], [86, 10, 87, 9], [87, 34, 88, 35], [88, 20, 89, 19], [89, 57, 90, 56], [90, 21, 91, 22], [91, 33, 92, 32], [92, 11, 93, 12], [93, 45, 94, 44], [94, 4, 95, 3], [95, 40, 96, 41], [96, 14, 97, 13], [97, 12, 98, 13], [98, 44, 99, 43], [99, 3, 100, 2], [100, 41, 1, 42], [1, 43, 2, 42], [25, 29, 26, 28], [26, 80, 27, 79]] and the bridges are [[25, 2], [48, 27], [57, 53]]
+07/04/2017 11:38:12 PM: The segments 97 and 13 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[46, 8, 47, 7], [47, 34, 48, 35], [48, 16, 49, 15], [49, 53, 50, 52], [50, 74, 51, 73], [55, 18, 56, 19], [56, 32, 57, 31], [57, 10, 58, 11], [58, 44, 59, 43], [59, 5, 60, 4], [60, 37, 61, 38], [61, 13, 62, 12], [62, 29, 63, 30], [63, 21, 64, 20], [64, 53, 65, 54], [65, 16, 66, 17], [66, 34, 67, 33], [67, 8, 68, 9], [68, 46, 69, 45], [69, 7, 70, 6], [70, 35, 71, 36], [71, 15, 72, 14], [72, 52, 73, 51], [74, 27, 75, 28], [75, 23, 76, 22], [76, 26, 77, 25], [78, 21, 79, 22], [79, 29, 80, 28], [80, 13, 81, 14], [81, 37, 82, 36], [82, 5, 83, 6], [83, 44, 84, 45], [84, 10, 85, 9], [85, 32, 86, 33], [86, 18, 87, 17], [87, 55, 88, 54], [88, 19, 89, 20], [89, 31, 90, 30], [90, 11, 91, 12], [91, 43, 92, 42], [92, 4, 93, 3], [93, 38, 94, 39], [94, 42, 95, 41], [95, 3, 96, 2], [96, 39, 1, 40], [1, 41, 2, 40], [23, 27, 24, 26], [24, 78, 25, 77]] and the bridges are [[23, 2], [46, 25], [55, 51]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 23 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 24
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 2 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 1
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 96
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 95
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 94
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 93
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 92
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 91
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 90
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 89
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 88
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 87
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 86
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 85
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 84
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 83
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 82
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 81
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 80
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 79
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 78
+07/04/2017 11:38:12 PM: Crossing [24, 78, 25, 77] can be dragged along 78
+07/04/2017 11:38:12 PM: We will drag [24, 78, 25, 77] under [78, 21, 79, 22]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [26, 21, 27, 22][27, 83, 28, 82][28, 24, 29, 23]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [81, 22, 82, 23]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[50, 8, 51, 7], [51, 38, 52, 39], [52, 16, 53, 15], [53, 57, 54, 56], [54, 78, 55, 77], [59, 18, 60, 19], [60, 36, 61, 35], [61, 10, 62, 11], [62, 48, 63, 47], [63, 5, 64, 4], [64, 41, 65, 42], [65, 13, 66, 12], [66, 33, 67, 34], [67, 21, 68, 20], [68, 57, 69, 58], [69, 16, 70, 17], [70, 38, 71, 37], [71, 8, 72, 9], [72, 50, 73, 49], [73, 7, 74, 6], [74, 39, 75, 40], [75, 15, 76, 14], [76, 56, 77, 55], [78, 31, 79, 32], [79, 25, 80, 24], [80, 30, 81, 29], [81, 22, 82, 23], [83, 33, 84, 32], [84, 13, 85, 14], [85, 41, 86, 40], [86, 5, 87, 6], [87, 48, 88, 49], [88, 10, 89, 9], [89, 36, 90, 37], [90, 18, 91, 17], [91, 59, 92, 58], [92, 19, 93, 20], [93, 35, 94, 34], [94, 11, 95, 12], [95, 47, 96, 46], [96, 4, 97, 3], [97, 42, 98, 43], [98, 46, 99, 45], [99, 3, 100, 2], [100, 43, 1, 44], [1, 45, 2, 44], [25, 31, 26, 30], [26, 21, 27, 22], [27, 83, 28, 82], [28, 24, 29, 23]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[25, 2], [50, 29], [59, 55]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 83
+07/04/2017 11:38:12 PM: We will drag [27, 83, 28, 82] under [83, 33, 84, 32]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [27, 37, 28, 36][28, 88, 29, 87][29, 34, 30, 35]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [86, 36, 87, 35]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[54, 8, 55, 7], [55, 42, 56, 43], [56, 16, 57, 15], [57, 61, 58, 60], [58, 82, 59, 81], [63, 18, 64, 19], [64, 40, 65, 39], [65, 10, 66, 11], [66, 52, 67, 51], [67, 5, 68, 4], [68, 45, 69, 46], [69, 13, 70, 12], [70, 37, 71, 38], [71, 21, 72, 20], [72, 61, 73, 62], [73, 16, 74, 17], [74, 42, 75, 41], [75, 8, 76, 9], [76, 54, 77, 53], [77, 7, 78, 6], [78, 43, 79, 44], [79, 15, 80, 14], [80, 60, 81, 59], [82, 33, 83, 34], [83, 25, 84, 24], [84, 32, 85, 31], [85, 22, 86, 23], [86, 36, 87, 35], [88, 13, 89, 14], [89, 45, 90, 44], [90, 5, 91, 6], [91, 52, 92, 53], [92, 10, 93, 9], [93, 40, 94, 41], [94, 18, 95, 17], [95, 63, 96, 62], [96, 19, 97, 20], [97, 39, 98, 38], [98, 11, 99, 12], [99, 51, 100, 50], [100, 4, 101, 3], [101, 46, 102, 47], [102, 50, 103, 49], [103, 3, 104, 2], [104, 47, 1, 48], [1, 49, 2, 48], [25, 33, 26, 32], [26, 21, 27, 22], [27, 37, 28, 36], [28, 88, 29, 87], [29, 34, 30, 35], [30, 24, 31, 23]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[25, 2], [54, 31], [63, 59]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 88
+07/04/2017 11:38:12 PM: We will drag [28, 88, 29, 87] under [88, 13, 89, 14]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [30, 13, 31, 14][31, 93, 32, 92][32, 16, 33, 15]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [91, 14, 92, 15]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[58, 8, 59, 7], [59, 46, 60, 47], [60, 18, 61, 17], [61, 65, 62, 64], [62, 86, 63, 85], [67, 20, 68, 21], [68, 44, 69, 43], [69, 10, 70, 11], [70, 56, 71, 55], [71, 5, 72, 4], [72, 49, 73, 50], [73, 13, 74, 12], [74, 41, 75, 42], [75, 23, 76, 22], [76, 65, 77, 66], [77, 18, 78, 19], [78, 46, 79, 45], [79, 8, 80, 9], [80, 58, 81, 57], [81, 7, 82, 6], [82, 47, 83, 48], [83, 17, 84, 16], [84, 64, 85, 63], [86, 37, 87, 38], [87, 27, 88, 26], [88, 36, 89, 35], [89, 24, 90, 25], [90, 40, 91, 39], [91, 14, 92, 15], [93, 49, 94, 48], [94, 5, 95, 6], [95, 56, 96, 57], [96, 10, 97, 9], [97, 44, 98, 45], [98, 20, 99, 19], [99, 67, 100, 66], [100, 21, 101, 22], [101, 43, 102, 42], [102, 11, 103, 12], [103, 55, 104, 54], [104, 4, 105, 3], [105, 50, 106, 51], [106, 54, 107, 53], [107, 3, 108, 2], [108, 51, 1, 52], [1, 53, 2, 52], [27, 37, 28, 36], [28, 23, 29, 24], [29, 41, 30, 40], [30, 13, 31, 14], [31, 93, 32, 92], [32, 16, 33, 15], [33, 38, 34, 39], [34, 26, 35, 25]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[27, 2], [58, 35], [67, 63]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 93
+07/04/2017 11:38:12 PM: We will drag [31, 93, 32, 92] under [93, 49, 94, 48]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [31, 53, 32, 52][32, 98, 33, 97][33, 50, 34, 51]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [96, 52, 97, 51]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[62, 8, 63, 7], [63, 48, 64, 49], [64, 18, 65, 17], [65, 69, 66, 68], [66, 90, 67, 89], [71, 20, 72, 21], [72, 46, 73, 45], [73, 10, 74, 11], [74, 60, 75, 59], [75, 5, 76, 4], [76, 53, 77, 54], [77, 13, 78, 12], [78, 43, 79, 44], [79, 23, 80, 22], [80, 69, 81, 70], [81, 18, 82, 19], [82, 48, 83, 47], [83, 8, 84, 9], [84, 62, 85, 61], [85, 7, 86, 6], [86, 49, 87, 50], [87, 17, 88, 16], [88, 68, 89, 67], [90, 39, 91, 40], [91, 27, 92, 26], [92, 38, 93, 37], [93, 24, 94, 25], [94, 42, 95, 41], [95, 14, 96, 15], [96, 52, 97, 51], [98, 5, 99, 6], [99, 60, 100, 61], [100, 10, 101, 9], [101, 46, 102, 47], [102, 20, 103, 19], [103, 71, 104, 70], [104, 21, 105, 22], [105, 45, 106, 44], [106, 11, 107, 12], [107, 59, 108, 58], [108, 4, 109, 3], [109, 54, 110, 55], [110, 58, 111, 57], [111, 3, 112, 2], [112, 55, 1, 56], [1, 57, 2, 56], [27, 39, 28, 38], [28, 23, 29, 24], [29, 43, 30, 42], [30, 13, 31, 14], [31, 53, 32, 52], [32, 98, 33, 97], [33, 50, 34, 51], [34, 16, 35, 15], [35, 40, 36, 41], [36, 26, 37, 25]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[27, 2], [62, 37], [71, 67]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 98
+07/04/2017 11:38:12 PM: We will drag [32, 98, 33, 97] under [98, 5, 99, 6]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [34, 5, 35, 6][35, 103, 36, 102][36, 8, 37, 7]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [101, 6, 102, 7]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[66, 10, 67, 9], [67, 52, 68, 53], [68, 20, 69, 19], [69, 73, 70, 72], [70, 94, 71, 93], [75, 22, 76, 23], [76, 50, 77, 49], [77, 12, 78, 13], [78, 64, 79, 63], [79, 5, 80, 4], [80, 57, 81, 58], [81, 15, 82, 14], [82, 47, 83, 48], [83, 25, 84, 24], [84, 73, 85, 74], [85, 20, 86, 21], [86, 52, 87, 51], [87, 10, 88, 11], [88, 66, 89, 65], [89, 9, 90, 8], [90, 53, 91, 54], [91, 19, 92, 18], [92, 72, 93, 71], [94, 43, 95, 44], [95, 29, 96, 28], [96, 42, 97, 41], [97, 26, 98, 27], [98, 46, 99, 45], [99, 16, 100, 17], [100, 56, 101, 55], [101, 6, 102, 7], [103, 64, 104, 65], [104, 12, 105, 11], [105, 50, 106, 51], [106, 22, 107, 21], [107, 75, 108, 74], [108, 23, 109, 24], [109, 49, 110, 48], [110, 13, 111, 14], [111, 63, 112, 62], [112, 4, 113, 3], [113, 58, 114, 59], [114, 62, 115, 61], [115, 3, 116, 2], [116, 59, 1, 60], [1, 61, 2, 60], [29, 43, 30, 42], [30, 25, 31, 26], [31, 47, 32, 46], [32, 15, 33, 16], [33, 57, 34, 56], [34, 5, 35, 6], [35, 103, 36, 102], [36, 8, 37, 7], [37, 54, 38, 55], [38, 18, 39, 17], [39, 44, 40, 45], [40, 28, 41, 27]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[29, 2], [66, 41], [75, 71]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 103
+07/04/2017 11:38:12 PM: We will drag [35, 103, 36, 102] under [103, 64, 104, 65]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [35, 66, 36, 67][36, 108, 37, 107][37, 69, 38, 68]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [106, 67, 107, 68]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[70, 10, 71, 9], [71, 54, 72, 55], [72, 20, 73, 19], [73, 77, 74, 76], [74, 98, 75, 97], [79, 22, 80, 23], [80, 52, 81, 51], [81, 12, 82, 13], [82, 66, 83, 65], [83, 5, 84, 4], [84, 59, 85, 60], [85, 15, 86, 14], [86, 49, 87, 50], [87, 25, 88, 24], [88, 77, 89, 78], [89, 20, 90, 21], [90, 54, 91, 53], [91, 10, 92, 11], [92, 70, 93, 69], [93, 9, 94, 8], [94, 55, 95, 56], [95, 19, 96, 18], [96, 76, 97, 75], [98, 45, 99, 46], [99, 29, 100, 28], [100, 44, 101, 43], [101, 26, 102, 27], [102, 48, 103, 47], [103, 16, 104, 17], [104, 58, 105, 57], [105, 6, 106, 7], [106, 67, 107, 68], [108, 12, 109, 11], [109, 52, 110, 53], [110, 22, 111, 21], [111, 79, 112, 78], [112, 23, 113, 24], [113, 51, 114, 50], [114, 13, 115, 14], [115, 65, 116, 64], [116, 4, 117, 3], [117, 60, 118, 61], [118, 64, 119, 63], [119, 3, 120, 2], [120, 61, 1, 62], [1, 63, 2, 62], [29, 45, 30, 44], [30, 25, 31, 26], [31, 49, 32, 48], [32, 15, 33, 16], [33, 59, 34, 58], [34, 5, 35, 6], [35, 66, 36, 67], [36, 108, 37, 107], [37, 69, 38, 68], [38, 8, 39, 7], [39, 56, 40, 57], [40, 18, 41, 17], [41, 46, 42, 47], [42, 28, 43, 27]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[29, 2], [70, 43], [79, 75]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 108
+07/04/2017 11:38:12 PM: We will drag [36, 108, 37, 107] under [108, 12, 109, 11]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [38, 14, 39, 13][39, 113, 40, 112][40, 11, 41, 12]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [111, 13, 112, 12]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[74, 10, 75, 9], [75, 58, 76, 59], [76, 22, 77, 21], [77, 81, 78, 80], [78, 102, 79, 101], [83, 24, 84, 25], [84, 56, 85, 55], [85, 14, 86, 15], [86, 70, 87, 69], [87, 5, 88, 4], [88, 63, 89, 64], [89, 17, 90, 16], [90, 53, 91, 54], [91, 27, 92, 26], [92, 81, 93, 82], [93, 22, 94, 23], [94, 58, 95, 57], [95, 10, 96, 11], [96, 74, 97, 73], [97, 9, 98, 8], [98, 59, 99, 60], [99, 21, 100, 20], [100, 80, 101, 79], [102, 49, 103, 50], [103, 31, 104, 30], [104, 48, 105, 47], [105, 28, 106, 29], [106, 52, 107, 51], [107, 18, 108, 19], [108, 62, 109, 61], [109, 6, 110, 7], [110, 71, 111, 72], [111, 13, 112, 12], [113, 56, 114, 57], [114, 24, 115, 23], [115, 83, 116, 82], [116, 25, 117, 26], [117, 55, 118, 54], [118, 15, 119, 16], [119, 69, 120, 68], [120, 4, 121, 3], [121, 64, 122, 65], [122, 68, 123, 67], [123, 3, 124, 2], [124, 65, 1, 66], [1, 67, 2, 66], [31, 49, 32, 48], [32, 27, 33, 28], [33, 53, 34, 52], [34, 17, 35, 18], [35, 63, 36, 62], [36, 5, 37, 6], [37, 70, 38, 71], [38, 14, 39, 13], [39, 113, 40, 112], [40, 11, 41, 12], [41, 73, 42, 72], [42, 8, 43, 7], [43, 60, 44, 61], [44, 20, 45, 19], [45, 50, 46, 51], [46, 30, 47, 29]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[31, 2], [74, 47], [83, 79]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 113
+07/04/2017 11:38:12 PM: We will drag [39, 113, 40, 112] under [113, 56, 114, 57]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [39, 58, 40, 59][40, 118, 41, 117][41, 61, 42, 60]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [116, 59, 117, 60]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[78, 10, 79, 9], [79, 62, 80, 63], [80, 22, 81, 21], [81, 85, 82, 84], [82, 106, 83, 105], [87, 24, 88, 25], [88, 58, 89, 57], [89, 14, 90, 15], [90, 74, 91, 73], [91, 5, 92, 4], [92, 67, 93, 68], [93, 17, 94, 16], [94, 55, 95, 56], [95, 27, 96, 26], [96, 85, 97, 86], [97, 22, 98, 23], [98, 62, 99, 61], [99, 10, 100, 11], [100, 78, 101, 77], [101, 9, 102, 8], [102, 63, 103, 64], [103, 21, 104, 20], [104, 84, 105, 83], [106, 51, 107, 52], [107, 31, 108, 30], [108, 50, 109, 49], [109, 28, 110, 29], [110, 54, 111, 53], [111, 18, 112, 19], [112, 66, 113, 65], [113, 6, 114, 7], [114, 75, 115, 76], [115, 13, 116, 12], [116, 59, 117, 60], [118, 24, 119, 23], [119, 87, 120, 86], [120, 25, 121, 26], [121, 57, 122, 56], [122, 15, 123, 16], [123, 73, 124, 72], [124, 4, 125, 3], [125, 68, 126, 69], [126, 72, 127, 71], [127, 3, 128, 2], [128, 69, 1, 70], [1, 71, 2, 70], [31, 51, 32, 50], [32, 27, 33, 28], [33, 55, 34, 54], [34, 17, 35, 18], [35, 67, 36, 66], [36, 5, 37, 6], [37, 74, 38, 75], [38, 14, 39, 13], [39, 58, 40, 59], [40, 118, 41, 117], [41, 61, 42, 60], [42, 11, 43, 12], [43, 77, 44, 76], [44, 8, 45, 7], [45, 64, 46, 65], [46, 20, 47, 19], [47, 52, 48, 53], [48, 30, 49, 29]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[31, 2], [78, 49], [87, 83]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 118
+07/04/2017 11:38:12 PM: We will drag [40, 118, 41, 117] under [118, 24, 119, 23]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [42, 26, 43, 25][43, 123, 44, 122][44, 23, 45, 24]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [121, 25, 122, 24]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[82, 10, 83, 9], [83, 66, 84, 67], [84, 22, 85, 21], [85, 89, 86, 88], [86, 110, 87, 109], [91, 26, 92, 27], [92, 62, 93, 61], [93, 14, 94, 15], [94, 78, 95, 77], [95, 5, 96, 4], [96, 71, 97, 72], [97, 17, 98, 16], [98, 59, 99, 60], [99, 29, 100, 28], [100, 89, 101, 90], [101, 22, 102, 23], [102, 66, 103, 65], [103, 10, 104, 11], [104, 82, 105, 81], [105, 9, 106, 8], [106, 67, 107, 68], [107, 21, 108, 20], [108, 88, 109, 87], [110, 55, 111, 56], [111, 33, 112, 32], [112, 54, 113, 53], [113, 30, 114, 31], [114, 58, 115, 57], [115, 18, 116, 19], [116, 70, 117, 69], [117, 6, 118, 7], [118, 79, 119, 80], [119, 13, 120, 12], [120, 63, 121, 64], [121, 25, 122, 24], [123, 91, 124, 90], [124, 27, 125, 28], [125, 61, 126, 60], [126, 15, 127, 16], [127, 77, 128, 76], [128, 4, 129, 3], [129, 72, 130, 73], [130, 76, 131, 75], [131, 3, 132, 2], [132, 73, 1, 74], [1, 75, 2, 74], [33, 55, 34, 54], [34, 29, 35, 30], [35, 59, 36, 58], [36, 17, 37, 18], [37, 71, 38, 70], [38, 5, 39, 6], [39, 78, 40, 79], [40, 14, 41, 13], [41, 62, 42, 63], [42, 26, 43, 25], [43, 123, 44, 122], [44, 23, 45, 24], [45, 65, 46, 64], [46, 11, 47, 12], [47, 81, 48, 80], [48, 8, 49, 7], [49, 68, 50, 69], [50, 20, 51, 19], [51, 56, 52, 57], [52, 32, 53, 31]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[33, 2], [82, 53], [91, 87]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 123
+07/04/2017 11:38:12 PM: We will drag [43, 123, 44, 122] under [123, 91, 124, 90]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [43, 95, 44, 94][44, 128, 45, 127][45, 92, 46, 93]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [126, 94, 127, 93]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[84, 10, 85, 9], [85, 68, 86, 69], [86, 22, 87, 21], [87, 91, 88, 90], [88, 114, 89, 113], [95, 26, 96, 27], [96, 64, 97, 63], [97, 14, 98, 15], [98, 80, 99, 79], [99, 5, 100, 4], [100, 73, 101, 74], [101, 17, 102, 16], [102, 61, 103, 62], [103, 29, 104, 28], [104, 91, 105, 92], [105, 22, 106, 23], [106, 68, 107, 67], [107, 10, 108, 11], [108, 84, 109, 83], [109, 9, 110, 8], [110, 69, 111, 70], [111, 21, 112, 20], [112, 90, 113, 89], [114, 57, 115, 58], [115, 33, 116, 32], [116, 56, 117, 55], [117, 30, 118, 31], [118, 60, 119, 59], [119, 18, 120, 19], [120, 72, 121, 71], [121, 6, 122, 7], [122, 81, 123, 82], [123, 13, 124, 12], [124, 65, 125, 66], [125, 25, 126, 24], [126, 94, 127, 93], [128, 27, 129, 28], [129, 63, 130, 62], [130, 15, 131, 16], [131, 79, 132, 78], [132, 4, 133, 3], [133, 74, 134, 75], [134, 78, 135, 77], [135, 3, 136, 2], [136, 75, 1, 76], [1, 77, 2, 76], [33, 57, 34, 56], [34, 29, 35, 30], [35, 61, 36, 60], [36, 17, 37, 18], [37, 73, 38, 72], [38, 5, 39, 6], [39, 80, 40, 81], [40, 14, 41, 13], [41, 64, 42, 65], [42, 26, 43, 25], [43, 95, 44, 94], [44, 128, 45, 127], [45, 92, 46, 93], [46, 23, 47, 24], [47, 67, 48, 66], [48, 11, 49, 12], [49, 83, 50, 82], [50, 8, 51, 7], [51, 70, 52, 71], [52, 20, 53, 19], [53, 58, 54, 59], [54, 32, 55, 31]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[33, 2], [84, 55], [95, 89]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 128
+07/04/2017 11:38:12 PM: We will drag [44, 128, 45, 127] under [128, 27, 129, 28]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [46, 27, 47, 28][47, 133, 48, 132][48, 30, 49, 29]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [131, 28, 132, 29]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[88, 10, 89, 9], [89, 72, 90, 73], [90, 22, 91, 21], [91, 95, 92, 94], [92, 118, 93, 117], [99, 26, 100, 27], [100, 68, 101, 67], [101, 14, 102, 15], [102, 84, 103, 83], [103, 5, 104, 4], [104, 77, 105, 78], [105, 17, 106, 16], [106, 65, 107, 66], [107, 31, 108, 30], [108, 95, 109, 96], [109, 22, 110, 23], [110, 72, 111, 71], [111, 10, 112, 11], [112, 88, 113, 87], [113, 9, 114, 8], [114, 73, 115, 74], [115, 21, 116, 20], [116, 94, 117, 93], [118, 61, 119, 62], [119, 35, 120, 34], [120, 60, 121, 59], [121, 32, 122, 33], [122, 64, 123, 63], [123, 18, 124, 19], [124, 76, 125, 75], [125, 6, 126, 7], [126, 85, 127, 86], [127, 13, 128, 12], [128, 69, 129, 70], [129, 25, 130, 24], [130, 98, 131, 97], [131, 28, 132, 29], [133, 67, 134, 66], [134, 15, 135, 16], [135, 83, 136, 82], [136, 4, 137, 3], [137, 78, 138, 79], [138, 82, 139, 81], [139, 3, 140, 2], [140, 79, 1, 80], [1, 81, 2, 80], [35, 61, 36, 60], [36, 31, 37, 32], [37, 65, 38, 64], [38, 17, 39, 18], [39, 77, 40, 76], [40, 5, 41, 6], [41, 84, 42, 85], [42, 14, 43, 13], [43, 68, 44, 69], [44, 26, 45, 25], [45, 99, 46, 98], [46, 27, 47, 28], [47, 133, 48, 132], [48, 30, 49, 29], [49, 96, 50, 97], [50, 23, 51, 24], [51, 71, 52, 70], [52, 11, 53, 12], [53, 87, 54, 86], [54, 8, 55, 7], [55, 74, 56, 75], [56, 20, 57, 19], [57, 62, 58, 63], [58, 34, 59, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[35, 2], [88, 59], [99, 93]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 133
+07/04/2017 11:38:12 PM: We will drag [47, 133, 48, 132] under [133, 67, 134, 66]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [47, 71, 48, 70][48, 138, 49, 137][49, 68, 50, 69]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [136, 70, 137, 69]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[92, 10, 93, 9], [93, 76, 94, 77], [94, 22, 95, 21], [95, 99, 96, 98], [96, 122, 97, 121], [103, 26, 104, 27], [104, 72, 105, 71], [105, 14, 106, 15], [106, 88, 107, 87], [107, 5, 108, 4], [108, 81, 109, 82], [109, 17, 110, 16], [110, 67, 111, 68], [111, 31, 112, 30], [112, 99, 113, 100], [113, 22, 114, 23], [114, 76, 115, 75], [115, 10, 116, 11], [116, 92, 117, 91], [117, 9, 118, 8], [118, 77, 119, 78], [119, 21, 120, 20], [120, 98, 121, 97], [122, 63, 123, 64], [123, 35, 124, 34], [124, 62, 125, 61], [125, 32, 126, 33], [126, 66, 127, 65], [127, 18, 128, 19], [128, 80, 129, 79], [129, 6, 130, 7], [130, 89, 131, 90], [131, 13, 132, 12], [132, 73, 133, 74], [133, 25, 134, 24], [134, 102, 135, 101], [135, 28, 136, 29], [136, 70, 137, 69], [138, 15, 139, 16], [139, 87, 140, 86], [140, 4, 141, 3], [141, 82, 142, 83], [142, 86, 143, 85], [143, 3, 144, 2], [144, 83, 1, 84], [1, 85, 2, 84], [35, 63, 36, 62], [36, 31, 37, 32], [37, 67, 38, 66], [38, 17, 39, 18], [39, 81, 40, 80], [40, 5, 41, 6], [41, 88, 42, 89], [42, 14, 43, 13], [43, 72, 44, 73], [44, 26, 45, 25], [45, 103, 46, 102], [46, 27, 47, 28], [47, 71, 48, 70], [48, 138, 49, 137], [49, 68, 50, 69], [50, 30, 51, 29], [51, 100, 52, 101], [52, 23, 53, 24], [53, 75, 54, 74], [54, 11, 55, 12], [55, 91, 56, 90], [56, 8, 57, 7], [57, 78, 58, 79], [58, 20, 59, 19], [59, 64, 60, 65], [60, 34, 61, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[35, 2], [92, 61], [103, 97]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 138
+07/04/2017 11:38:12 PM: We will drag [48, 138, 49, 137] under [138, 15, 139, 16]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [50, 15, 51, 16][51, 143, 52, 142][52, 18, 53, 17]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [141, 16, 142, 17]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[96, 10, 97, 9], [97, 80, 98, 81], [98, 24, 99, 23], [99, 103, 100, 102], [100, 126, 101, 125], [107, 28, 108, 29], [108, 76, 109, 75], [109, 14, 110, 15], [110, 92, 111, 91], [111, 5, 112, 4], [112, 85, 113, 86], [113, 19, 114, 18], [114, 71, 115, 72], [115, 33, 116, 32], [116, 103, 117, 104], [117, 24, 118, 25], [118, 80, 119, 79], [119, 10, 120, 11], [120, 96, 121, 95], [121, 9, 122, 8], [122, 81, 123, 82], [123, 23, 124, 22], [124, 102, 125, 101], [126, 67, 127, 68], [127, 37, 128, 36], [128, 66, 129, 65], [129, 34, 130, 35], [130, 70, 131, 69], [131, 20, 132, 21], [132, 84, 133, 83], [133, 6, 134, 7], [134, 93, 135, 94], [135, 13, 136, 12], [136, 77, 137, 78], [137, 27, 138, 26], [138, 106, 139, 105], [139, 30, 140, 31], [140, 74, 141, 73], [141, 16, 142, 17], [143, 91, 144, 90], [144, 4, 145, 3], [145, 86, 146, 87], [146, 90, 147, 89], [147, 3, 148, 2], [148, 87, 1, 88], [1, 89, 2, 88], [37, 67, 38, 66], [38, 33, 39, 34], [39, 71, 40, 70], [40, 19, 41, 20], [41, 85, 42, 84], [42, 5, 43, 6], [43, 92, 44, 93], [44, 14, 45, 13], [45, 76, 46, 77], [46, 28, 47, 27], [47, 107, 48, 106], [48, 29, 49, 30], [49, 75, 50, 74], [50, 15, 51, 16], [51, 143, 52, 142], [52, 18, 53, 17], [53, 72, 54, 73], [54, 32, 55, 31], [55, 104, 56, 105], [56, 25, 57, 26], [57, 79, 58, 78], [58, 11, 59, 12], [59, 95, 60, 94], [60, 8, 61, 7], [61, 82, 62, 83], [62, 22, 63, 21], [63, 68, 64, 69], [64, 36, 65, 35]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[37, 2], [96, 65], [107, 101]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 143
+07/04/2017 11:38:12 PM: We will drag [51, 143, 52, 142] under [143, 91, 144, 90]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [51, 95, 52, 94][52, 148, 53, 147][53, 92, 54, 93]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [146, 94, 147, 93]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[100, 10, 101, 9], [101, 82, 102, 83], [102, 24, 103, 23], [103, 107, 104, 106], [104, 130, 105, 129], [111, 28, 112, 29], [112, 78, 113, 77], [113, 14, 114, 15], [114, 96, 115, 95], [115, 5, 116, 4], [116, 87, 117, 88], [117, 19, 118, 18], [118, 73, 119, 74], [119, 33, 120, 32], [120, 107, 121, 108], [121, 24, 122, 25], [122, 82, 123, 81], [123, 10, 124, 11], [124, 100, 125, 99], [125, 9, 126, 8], [126, 83, 127, 84], [127, 23, 128, 22], [128, 106, 129, 105], [130, 69, 131, 70], [131, 37, 132, 36], [132, 68, 133, 67], [133, 34, 134, 35], [134, 72, 135, 71], [135, 20, 136, 21], [136, 86, 137, 85], [137, 6, 138, 7], [138, 97, 139, 98], [139, 13, 140, 12], [140, 79, 141, 80], [141, 27, 142, 26], [142, 110, 143, 109], [143, 30, 144, 31], [144, 76, 145, 75], [145, 16, 146, 17], [146, 94, 147, 93], [148, 4, 149, 3], [149, 88, 150, 89], [150, 92, 151, 91], [151, 3, 152, 2], [152, 89, 1, 90], [1, 91, 2, 90], [37, 69, 38, 68], [38, 33, 39, 34], [39, 73, 40, 72], [40, 19, 41, 20], [41, 87, 42, 86], [42, 5, 43, 6], [43, 96, 44, 97], [44, 14, 45, 13], [45, 78, 46, 79], [46, 28, 47, 27], [47, 111, 48, 110], [48, 29, 49, 30], [49, 77, 50, 76], [50, 15, 51, 16], [51, 95, 52, 94], [52, 148, 53, 147], [53, 92, 54, 93], [54, 18, 55, 17], [55, 74, 56, 75], [56, 32, 57, 31], [57, 108, 58, 109], [58, 25, 59, 26], [59, 81, 60, 80], [60, 11, 61, 12], [61, 99, 62, 98], [62, 8, 63, 7], [63, 84, 64, 85], [64, 22, 65, 21], [65, 70, 66, 71], [66, 36, 67, 35]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[37, 2], [100, 67], [111, 105]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 148
+07/04/2017 11:38:12 PM: We will drag [52, 148, 53, 147] under [148, 4, 149, 3]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [54, 6, 55, 5][55, 153, 56, 152][56, 3, 57, 4]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [151, 5, 152, 4]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[104, 12, 105, 11], [105, 86, 106, 87], [106, 26, 107, 25], [107, 111, 108, 110], [108, 134, 109, 133], [115, 30, 116, 31], [116, 82, 117, 81], [117, 16, 118, 17], [118, 100, 119, 99], [119, 7, 120, 6], [120, 91, 121, 92], [121, 21, 122, 20], [122, 77, 123, 78], [123, 35, 124, 34], [124, 111, 125, 112], [125, 26, 126, 27], [126, 86, 127, 85], [127, 12, 128, 13], [128, 104, 129, 103], [129, 11, 130, 10], [130, 87, 131, 88], [131, 25, 132, 24], [132, 110, 133, 109], [134, 73, 135, 74], [135, 39, 136, 38], [136, 72, 137, 71], [137, 36, 138, 37], [138, 76, 139, 75], [139, 22, 140, 23], [140, 90, 141, 89], [141, 8, 142, 9], [142, 101, 143, 102], [143, 15, 144, 14], [144, 83, 145, 84], [145, 29, 146, 28], [146, 114, 147, 113], [147, 32, 148, 33], [148, 80, 149, 79], [149, 18, 150, 19], [150, 98, 151, 97], [151, 5, 152, 4], [153, 92, 154, 93], [154, 96, 155, 95], [155, 3, 156, 2], [156, 93, 1, 94], [1, 95, 2, 94], [39, 73, 40, 72], [40, 35, 41, 36], [41, 77, 42, 76], [42, 21, 43, 22], [43, 91, 44, 90], [44, 7, 45, 8], [45, 100, 46, 101], [46, 16, 47, 15], [47, 82, 48, 83], [48, 30, 49, 29], [49, 115, 50, 114], [50, 31, 51, 32], [51, 81, 52, 80], [52, 17, 53, 18], [53, 99, 54, 98], [54, 6, 55, 5], [55, 153, 56, 152], [56, 3, 57, 4], [57, 96, 58, 97], [58, 20, 59, 19], [59, 78, 60, 79], [60, 34, 61, 33], [61, 112, 62, 113], [62, 27, 63, 28], [63, 85, 64, 84], [64, 13, 65, 14], [65, 103, 66, 102], [66, 10, 67, 9], [67, 88, 68, 89], [68, 24, 69, 23], [69, 74, 70, 75], [70, 38, 71, 37]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[39, 2], [104, 71], [115, 109]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 153
+07/04/2017 11:38:12 PM: We will drag [55, 153, 56, 152] under [153, 92, 154, 93]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [55, 94, 56, 95][56, 158, 57, 157][57, 97, 58, 96]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [156, 95, 157, 96]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[108, 12, 109, 11], [109, 88, 110, 89], [110, 26, 111, 25], [111, 115, 112, 114], [112, 138, 113, 137], [119, 30, 120, 31], [120, 84, 121, 83], [121, 16, 122, 17], [122, 104, 123, 103], [123, 7, 124, 6], [124, 93, 125, 94], [125, 21, 126, 20], [126, 79, 127, 80], [127, 35, 128, 34], [128, 115, 129, 116], [129, 26, 130, 27], [130, 88, 131, 87], [131, 12, 132, 13], [132, 108, 133, 107], [133, 11, 134, 10], [134, 89, 135, 90], [135, 25, 136, 24], [136, 114, 137, 113], [138, 75, 139, 76], [139, 39, 140, 38], [140, 74, 141, 73], [141, 36, 142, 37], [142, 78, 143, 77], [143, 22, 144, 23], [144, 92, 145, 91], [145, 8, 146, 9], [146, 105, 147, 106], [147, 15, 148, 14], [148, 85, 149, 86], [149, 29, 150, 28], [150, 118, 151, 117], [151, 32, 152, 33], [152, 82, 153, 81], [153, 18, 154, 19], [154, 102, 155, 101], [155, 5, 156, 4], [156, 95, 157, 96], [158, 100, 159, 99], [159, 3, 160, 2], [160, 97, 1, 98], [1, 99, 2, 98], [39, 75, 40, 74], [40, 35, 41, 36], [41, 79, 42, 78], [42, 21, 43, 22], [43, 93, 44, 92], [44, 7, 45, 8], [45, 104, 46, 105], [46, 16, 47, 15], [47, 84, 48, 85], [48, 30, 49, 29], [49, 119, 50, 118], [50, 31, 51, 32], [51, 83, 52, 82], [52, 17, 53, 18], [53, 103, 54, 102], [54, 6, 55, 5], [55, 94, 56, 95], [56, 158, 57, 157], [57, 97, 58, 96], [58, 3, 59, 4], [59, 100, 60, 101], [60, 20, 61, 19], [61, 80, 62, 81], [62, 34, 63, 33], [63, 116, 64, 117], [64, 27, 65, 28], [65, 87, 66, 86], [66, 13, 67, 14], [67, 107, 68, 106], [68, 10, 69, 9], [69, 90, 70, 91], [70, 24, 71, 23], [71, 76, 72, 77], [72, 38, 73, 37]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[39, 2], [108, 73], [119, 113]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 158
+07/04/2017 11:38:12 PM: We will drag [56, 158, 57, 157] under [158, 100, 159, 99]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [56, 104, 57, 103][57, 163, 58, 162][58, 101, 59, 102]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [161, 103, 162, 102]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[112, 12, 113, 11], [113, 90, 114, 91], [114, 26, 115, 25], [115, 119, 116, 118], [116, 142, 117, 141], [123, 30, 124, 31], [124, 86, 125, 85], [125, 16, 126, 17], [126, 108, 127, 107], [127, 7, 128, 6], [128, 95, 129, 96], [129, 21, 130, 20], [130, 81, 131, 82], [131, 35, 132, 34], [132, 119, 133, 120], [133, 26, 134, 27], [134, 90, 135, 89], [135, 12, 136, 13], [136, 112, 137, 111], [137, 11, 138, 10], [138, 91, 139, 92], [139, 25, 140, 24], [140, 118, 141, 117], [142, 77, 143, 78], [143, 39, 144, 38], [144, 76, 145, 75], [145, 36, 146, 37], [146, 80, 147, 79], [147, 22, 148, 23], [148, 94, 149, 93], [149, 8, 150, 9], [150, 109, 151, 110], [151, 15, 152, 14], [152, 87, 153, 88], [153, 29, 154, 28], [154, 122, 155, 121], [155, 32, 156, 33], [156, 84, 157, 83], [157, 18, 158, 19], [158, 106, 159, 105], [159, 5, 160, 4], [160, 97, 161, 98], [161, 103, 162, 102], [163, 3, 164, 2], [164, 99, 1, 100], [1, 101, 2, 100], [39, 77, 40, 76], [40, 35, 41, 36], [41, 81, 42, 80], [42, 21, 43, 22], [43, 95, 44, 94], [44, 7, 45, 8], [45, 108, 46, 109], [46, 16, 47, 15], [47, 86, 48, 87], [48, 30, 49, 29], [49, 123, 50, 122], [50, 31, 51, 32], [51, 85, 52, 84], [52, 17, 53, 18], [53, 107, 54, 106], [54, 6, 55, 5], [55, 96, 56, 97], [56, 104, 57, 103], [57, 163, 58, 162], [58, 101, 59, 102], [59, 99, 60, 98], [60, 3, 61, 4], [61, 104, 62, 105], [62, 20, 63, 19], [63, 82, 64, 83], [64, 34, 65, 33], [65, 120, 66, 121], [66, 27, 67, 28], [67, 89, 68, 88], [68, 13, 69, 14], [69, 111, 70, 110], [70, 10, 71, 9], [71, 92, 72, 93], [72, 24, 73, 23], [73, 78, 74, 79], [74, 38, 75, 37]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[39, 2], [112, 75], [123, 117]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 163
+07/04/2017 11:38:12 PM: We will drag [57, 163, 58, 162] under [163, 3, 164, 2]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [59, 5, 60, 4][60, 168, 61, 167][61, 2, 62, 3]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [166, 4, 167, 3]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[116, 14, 117, 13], [117, 94, 118, 95], [118, 28, 119, 27], [119, 123, 120, 122], [120, 146, 121, 145], [127, 32, 128, 33], [128, 90, 129, 89], [129, 18, 130, 19], [130, 112, 131, 111], [131, 9, 132, 8], [132, 99, 133, 100], [133, 23, 134, 22], [134, 85, 135, 86], [135, 37, 136, 36], [136, 123, 137, 124], [137, 28, 138, 29], [138, 94, 139, 93], [139, 14, 140, 15], [140, 116, 141, 115], [141, 13, 142, 12], [142, 95, 143, 96], [143, 27, 144, 26], [144, 122, 145, 121], [146, 81, 147, 82], [147, 41, 148, 40], [148, 80, 149, 79], [149, 38, 150, 39], [150, 84, 151, 83], [151, 24, 152, 25], [152, 98, 153, 97], [153, 10, 154, 11], [154, 113, 155, 114], [155, 17, 156, 16], [156, 91, 157, 92], [157, 31, 158, 30], [158, 126, 159, 125], [159, 34, 160, 35], [160, 88, 161, 87], [161, 20, 162, 21], [162, 110, 163, 109], [163, 7, 164, 6], [164, 101, 165, 102], [165, 107, 166, 106], [166, 4, 167, 3], [168, 103, 1, 104], [1, 105, 2, 104], [41, 81, 42, 80], [42, 37, 43, 38], [43, 85, 44, 84], [44, 23, 45, 24], [45, 99, 46, 98], [46, 9, 47, 10], [47, 112, 48, 113], [48, 18, 49, 17], [49, 90, 50, 91], [50, 32, 51, 31], [51, 127, 52, 126], [52, 33, 53, 34], [53, 89, 54, 88], [54, 19, 55, 20], [55, 111, 56, 110], [56, 8, 57, 7], [57, 100, 58, 101], [58, 108, 59, 107], [59, 5, 60, 4], [60, 168, 61, 167], [61, 2, 62, 3], [62, 105, 63, 106], [63, 103, 64, 102], [64, 5, 65, 6], [65, 108, 66, 109], [66, 22, 67, 21], [67, 86, 68, 87], [68, 36, 69, 35], [69, 124, 70, 125], [70, 29, 71, 30], [71, 93, 72, 92], [72, 15, 73, 16], [73, 115, 74, 114], [74, 12, 75, 11], [75, 96, 76, 97], [76, 26, 77, 25], [77, 82, 78, 83], [78, 40, 79, 39]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[41, 2], [116, 79], [127, 121]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 168
+07/04/2017 11:38:12 PM: We will drag [60, 168, 61, 167] under [168, 103, 1, 104]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [60, 105, 61, 106][61, 1, 62, 172][62, 108, 63, 107]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [171, 106, 172, 107]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[120, 14, 121, 13], [121, 96, 122, 97], [122, 28, 123, 27], [123, 127, 124, 126], [124, 150, 125, 149], [131, 32, 132, 33], [132, 92, 133, 91], [133, 18, 134, 19], [134, 116, 135, 115], [135, 9, 136, 8], [136, 101, 137, 102], [137, 23, 138, 22], [138, 87, 139, 88], [139, 37, 140, 36], [140, 127, 141, 128], [141, 28, 142, 29], [142, 96, 143, 95], [143, 14, 144, 15], [144, 120, 145, 119], [145, 13, 146, 12], [146, 97, 147, 98], [147, 27, 148, 26], [148, 126, 149, 125], [150, 83, 151, 84], [151, 41, 152, 40], [152, 82, 153, 81], [153, 38, 154, 39], [154, 86, 155, 85], [155, 24, 156, 25], [156, 100, 157, 99], [157, 10, 158, 11], [158, 117, 159, 118], [159, 17, 160, 16], [160, 93, 161, 94], [161, 31, 162, 30], [162, 130, 163, 129], [163, 34, 164, 35], [164, 90, 165, 89], [165, 20, 166, 21], [166, 114, 167, 113], [167, 7, 168, 6], [168, 103, 169, 104], [169, 111, 170, 110], [170, 4, 171, 3], [171, 106, 172, 107], [1, 109, 2, 108], [41, 83, 42, 82], [42, 37, 43, 38], [43, 87, 44, 86], [44, 23, 45, 24], [45, 101, 46, 100], [46, 9, 47, 10], [47, 116, 48, 117], [48, 18, 49, 17], [49, 92, 50, 93], [50, 32, 51, 31], [51, 131, 52, 130], [52, 33, 53, 34], [53, 91, 54, 90], [54, 19, 55, 20], [55, 115, 56, 114], [56, 8, 57, 7], [57, 102, 58, 103], [58, 112, 59, 111], [59, 5, 60, 4], [60, 105, 61, 106], [61, 1, 62, 172], [62, 108, 63, 107], [63, 2, 64, 3], [64, 109, 65, 110], [65, 105, 66, 104], [66, 5, 67, 6], [67, 112, 68, 113], [68, 22, 69, 21], [69, 88, 70, 89], [70, 36, 71, 35], [71, 128, 72, 129], [72, 29, 73, 30], [73, 95, 74, 94], [74, 15, 75, 16], [75, 119, 76, 118], [76, 12, 77, 11], [77, 98, 78, 99], [78, 26, 79, 25], [79, 84, 80, 85], [80, 40, 81, 39]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[41, 2], [120, 81], [131, 125]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 1
+07/04/2017 11:38:12 PM: We will drag [61, 1, 62, 172] under [1, 109, 2, 108]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [61, 113, 62, 112][62, 2, 63, 1][63, 110, 64, 111]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [176, 112, 1, 111]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[124, 14, 125, 13], [125, 98, 126, 99], [126, 28, 127, 27], [127, 131, 128, 130], [128, 154, 129, 153], [135, 32, 136, 33], [136, 94, 137, 93], [137, 18, 138, 19], [138, 120, 139, 119], [139, 9, 140, 8], [140, 103, 141, 104], [141, 23, 142, 22], [142, 89, 143, 90], [143, 37, 144, 36], [144, 131, 145, 132], [145, 28, 146, 29], [146, 98, 147, 97], [147, 14, 148, 15], [148, 124, 149, 123], [149, 13, 150, 12], [150, 99, 151, 100], [151, 27, 152, 26], [152, 130, 153, 129], [154, 85, 155, 86], [155, 41, 156, 40], [156, 84, 157, 83], [157, 38, 158, 39], [158, 88, 159, 87], [159, 24, 160, 25], [160, 102, 161, 101], [161, 10, 162, 11], [162, 121, 163, 122], [163, 17, 164, 16], [164, 95, 165, 96], [165, 31, 166, 30], [166, 134, 167, 133], [167, 34, 168, 35], [168, 92, 169, 91], [169, 20, 170, 21], [170, 118, 171, 117], [171, 7, 172, 6], [172, 105, 173, 106], [173, 115, 174, 114], [174, 4, 175, 3], [175, 108, 176, 109], [176, 112, 1, 111], [41, 85, 42, 84], [42, 37, 43, 38], [43, 89, 44, 88], [44, 23, 45, 24], [45, 103, 46, 102], [46, 9, 47, 10], [47, 120, 48, 121], [48, 18, 49, 17], [49, 94, 50, 95], [50, 32, 51, 31], [51, 135, 52, 134], [52, 33, 53, 34], [53, 93, 54, 92], [54, 19, 55, 20], [55, 119, 56, 118], [56, 8, 57, 7], [57, 104, 58, 105], [58, 116, 59, 115], [59, 5, 60, 4], [60, 107, 61, 108], [61, 113, 62, 112], [62, 2, 63, 1], [63, 110, 64, 111], [64, 110, 65, 109], [65, 2, 66, 3], [66, 113, 67, 114], [67, 107, 68, 106], [68, 5, 69, 6], [69, 116, 70, 117], [70, 22, 71, 21], [71, 90, 72, 91], [72, 36, 73, 35], [73, 132, 74, 133], [74, 29, 75, 30], [75, 97, 76, 96], [76, 15, 77, 16], [77, 123, 78, 122], [78, 12, 79, 11], [79, 100, 80, 101], [80, 26, 81, 25], [81, 86, 82, 87], [82, 40, 83, 39]]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [41, 2]
+07/04/2017 11:38:12 PM: Bridge end 2 can be extended to 1
+07/04/2017 11:38:12 PM: Bridge end 2 has been extended to cover the crossing we dragged
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[41, 1], [124, 83], [135, 129]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 2
+07/04/2017 11:38:12 PM: The segments 110 and 64 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[120, 14, 121, 13], [121, 96, 122, 97], [122, 28, 123, 27], [123, 127, 124, 126], [124, 150, 125, 149], [131, 32, 132, 33], [132, 92, 133, 91], [133, 18, 134, 19], [134, 116, 135, 115], [135, 9, 136, 8], [136, 101, 137, 102], [137, 23, 138, 22], [138, 87, 139, 88], [139, 37, 140, 36], [140, 127, 141, 128], [141, 28, 142, 29], [142, 96, 143, 95], [143, 14, 144, 15], [144, 120, 145, 119], [145, 13, 146, 12], [146, 97, 147, 98], [147, 27, 148, 26], [148, 126, 149, 125], [150, 83, 151, 84], [151, 41, 152, 40], [152, 82, 153, 81], [153, 38, 154, 39], [154, 86, 155, 85], [155, 24, 156, 25], [156, 100, 157, 99], [157, 10, 158, 11], [158, 117, 159, 118], [159, 17, 160, 16], [160, 93, 161, 94], [161, 31, 162, 30], [162, 130, 163, 129], [163, 34, 164, 35], [164, 90, 165, 89], [165, 20, 166, 21], [166, 114, 167, 113], [167, 7, 168, 6], [168, 103, 169, 104], [169, 111, 170, 110], [170, 4, 171, 3], [171, 106, 172, 107], [172, 108, 1, 107], [41, 83, 42, 82], [42, 37, 43, 38], [43, 87, 44, 86], [44, 23, 45, 24], [45, 101, 46, 100], [46, 9, 47, 10], [47, 116, 48, 117], [48, 18, 49, 17], [49, 92, 50, 93], [50, 32, 51, 31], [51, 131, 52, 130], [52, 33, 53, 34], [53, 91, 54, 90], [54, 19, 55, 20], [55, 115, 56, 114], [56, 8, 57, 7], [57, 102, 58, 103], [58, 112, 59, 111], [59, 5, 60, 4], [60, 105, 61, 106], [61, 109, 62, 108], [62, 2, 63, 1], [63, 2, 64, 3], [64, 109, 65, 110], [65, 105, 66, 104], [66, 5, 67, 6], [67, 112, 68, 113], [68, 22, 69, 21], [69, 88, 70, 89], [70, 36, 71, 35], [71, 128, 72, 129], [72, 29, 73, 30], [73, 95, 74, 94], [74, 15, 75, 16], [75, 119, 76, 118], [76, 12, 77, 11], [77, 98, 78, 99], [78, 26, 79, 25], [79, 84, 80, 85], [80, 40, 81, 39]] and the bridges are [[41, 1], [120, 81], [131, 125]]
+07/04/2017 11:38:12 PM: The segments 172 and 107 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[118, 14, 119, 13], [119, 96, 120, 97], [120, 28, 121, 27], [121, 125, 122, 124], [122, 148, 123, 147], [129, 32, 130, 33], [130, 92, 131, 91], [131, 18, 132, 19], [132, 114, 133, 113], [133, 9, 134, 8], [134, 101, 135, 102], [135, 23, 136, 22], [136, 87, 137, 88], [137, 37, 138, 36], [138, 125, 139, 126], [139, 28, 140, 29], [140, 96, 141, 95], [141, 14, 142, 15], [142, 118, 143, 117], [143, 13, 144, 12], [144, 97, 145, 98], [145, 27, 146, 26], [146, 124, 147, 123], [148, 83, 149, 84], [149, 41, 150, 40], [150, 82, 151, 81], [151, 38, 152, 39], [152, 86, 153, 85], [153, 24, 154, 25], [154, 100, 155, 99], [155, 10, 156, 11], [156, 115, 157, 116], [157, 17, 158, 16], [158, 93, 159, 94], [159, 31, 160, 30], [160, 128, 161, 127], [161, 34, 162, 35], [162, 90, 163, 89], [163, 20, 164, 21], [164, 112, 165, 111], [165, 7, 166, 6], [166, 103, 167, 104], [167, 109, 168, 108], [168, 4, 1, 3], [41, 83, 42, 82], [42, 37, 43, 38], [43, 87, 44, 86], [44, 23, 45, 24], [45, 101, 46, 100], [46, 9, 47, 10], [47, 114, 48, 115], [48, 18, 49, 17], [49, 92, 50, 93], [50, 32, 51, 31], [51, 129, 52, 128], [52, 33, 53, 34], [53, 91, 54, 90], [54, 19, 55, 20], [55, 113, 56, 112], [56, 8, 57, 7], [57, 102, 58, 103], [58, 110, 59, 109], [59, 5, 60, 4], [60, 105, 61, 106], [61, 107, 62, 106], [62, 2, 63, 1], [63, 2, 64, 3], [64, 107, 65, 108], [65, 105, 66, 104], [66, 5, 67, 6], [67, 110, 68, 111], [68, 22, 69, 21], [69, 88, 70, 89], [70, 36, 71, 35], [71, 126, 72, 127], [72, 29, 73, 30], [73, 95, 74, 94], [74, 15, 75, 16], [75, 117, 76, 116], [76, 12, 77, 11], [77, 98, 78, 99], [78, 26, 79, 25], [79, 84, 80, 85], [80, 40, 81, 39]] and the bridges are [[41, 1], [118, 81], [129, 123]]
+07/04/2017 11:38:12 PM: The segments 106 and 61 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[114, 14, 115, 13], [115, 94, 116, 95], [116, 28, 117, 27], [117, 121, 118, 120], [118, 144, 119, 143], [125, 32, 126, 33], [126, 90, 127, 89], [127, 18, 128, 19], [128, 110, 129, 109], [129, 9, 130, 8], [130, 99, 131, 100], [131, 23, 132, 22], [132, 85, 133, 86], [133, 37, 134, 36], [134, 121, 135, 122], [135, 28, 136, 29], [136, 94, 137, 93], [137, 14, 138, 15], [138, 114, 139, 113], [139, 13, 140, 12], [140, 95, 141, 96], [141, 27, 142, 26], [142, 120, 143, 119], [144, 81, 145, 82], [145, 41, 146, 40], [146, 80, 147, 79], [147, 38, 148, 39], [148, 84, 149, 83], [149, 24, 150, 25], [150, 98, 151, 97], [151, 10, 152, 11], [152, 111, 153, 112], [153, 17, 154, 16], [154, 91, 155, 92], [155, 31, 156, 30], [156, 124, 157, 123], [157, 34, 158, 35], [158, 88, 159, 87], [159, 20, 160, 21], [160, 108, 161, 107], [161, 7, 162, 6], [162, 101, 163, 102], [163, 105, 164, 104], [164, 4, 1, 3], [41, 81, 42, 80], [42, 37, 43, 38], [43, 85, 44, 84], [44, 23, 45, 24], [45, 99, 46, 98], [46, 9, 47, 10], [47, 110, 48, 111], [48, 18, 49, 17], [49, 90, 50, 91], [50, 32, 51, 31], [51, 125, 52, 124], [52, 33, 53, 34], [53, 89, 54, 88], [54, 19, 55, 20], [55, 109, 56, 108], [56, 8, 57, 7], [57, 100, 58, 101], [58, 106, 59, 105], [59, 5, 60, 4], [60, 2, 61, 1], [61, 2, 62, 3], [62, 103, 63, 104], [63, 103, 64, 102], [64, 5, 65, 6], [65, 106, 66, 107], [66, 22, 67, 21], [67, 86, 68, 87], [68, 36, 69, 35], [69, 122, 70, 123], [70, 29, 71, 30], [71, 93, 72, 92], [72, 15, 73, 16], [73, 113, 74, 112], [74, 12, 75, 11], [75, 96, 76, 97], [76, 26, 77, 25], [77, 82, 78, 83], [78, 40, 79, 39]] and the bridges are [[41, 1], [114, 79], [125, 119]]
+07/04/2017 11:38:12 PM: The segments 61 and 2 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: We will try to extend the bridge [39, 1]
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[110, 12, 111, 11], [111, 90, 112, 91], [112, 26, 113, 25], [113, 117, 114, 116], [114, 140, 115, 139], [121, 30, 122, 31], [122, 86, 123, 85], [123, 16, 124, 17], [124, 106, 125, 105], [125, 7, 126, 6], [126, 95, 127, 96], [127, 21, 128, 20], [128, 81, 129, 82], [129, 35, 130, 34], [130, 117, 131, 118], [131, 26, 132, 27], [132, 90, 133, 89], [133, 12, 134, 13], [134, 110, 135, 109], [135, 11, 136, 10], [136, 91, 137, 92], [137, 25, 138, 24], [138, 116, 139, 115], [140, 77, 141, 78], [141, 39, 142, 38], [142, 76, 143, 75], [143, 36, 144, 37], [144, 80, 145, 79], [145, 22, 146, 23], [146, 94, 147, 93], [147, 8, 148, 9], [148, 107, 149, 108], [149, 15, 150, 14], [150, 87, 151, 88], [151, 29, 152, 28], [152, 120, 153, 119], [153, 32, 154, 33], [154, 84, 155, 83], [155, 18, 156, 19], [156, 104, 157, 103], [157, 5, 158, 4], [158, 97, 159, 98], [159, 101, 160, 100], [160, 2, 1, 1], [39, 77, 40, 76], [40, 35, 41, 36], [41, 81, 42, 80], [42, 21, 43, 22], [43, 95, 44, 94], [44, 7, 45, 8], [45, 106, 46, 107], [46, 16, 47, 15], [47, 86, 48, 87], [48, 30, 49, 29], [49, 121, 50, 120], [50, 31, 51, 32], [51, 85, 52, 84], [52, 17, 53, 18], [53, 105, 54, 104], [54, 6, 55, 5], [55, 96, 56, 97], [56, 102, 57, 101], [57, 3, 58, 2], [58, 99, 59, 100], [59, 99, 60, 98], [60, 3, 61, 4], [61, 102, 62, 103], [62, 20, 63, 19], [63, 82, 64, 83], [64, 34, 65, 33], [65, 118, 66, 119], [66, 27, 67, 28], [67, 89, 68, 88], [68, 13, 69, 14], [69, 109, 70, 108], [70, 10, 71, 9], [71, 92, 72, 93], [72, 24, 73, 23], [73, 78, 74, 79], [74, 38, 75, 37]] and the bridges are [[39, 1], [110, 75], [121, 115]]
+07/04/2017 11:38:12 PM: The segments 99 and 59 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[106, 12, 107, 11], [107, 88, 108, 89], [108, 26, 109, 25], [109, 113, 110, 112], [110, 136, 111, 135], [117, 30, 118, 31], [118, 84, 119, 83], [119, 16, 120, 17], [120, 102, 121, 101], [121, 7, 122, 6], [122, 93, 123, 94], [123, 21, 124, 20], [124, 79, 125, 80], [125, 35, 126, 34], [126, 113, 127, 114], [127, 26, 128, 27], [128, 88, 129, 87], [129, 12, 130, 13], [130, 106, 131, 105], [131, 11, 132, 10], [132, 89, 133, 90], [133, 25, 134, 24], [134, 112, 135, 111], [136, 75, 137, 76], [137, 39, 138, 38], [138, 74, 139, 73], [139, 36, 140, 37], [140, 78, 141, 77], [141, 22, 142, 23], [142, 92, 143, 91], [143, 8, 144, 9], [144, 103, 145, 104], [145, 15, 146, 14], [146, 85, 147, 86], [147, 29, 148, 28], [148, 116, 149, 115], [149, 32, 150, 33], [150, 82, 151, 81], [151, 18, 152, 19], [152, 100, 153, 99], [153, 5, 154, 4], [154, 95, 155, 96], [155, 97, 156, 96], [156, 2, 1, 1], [39, 75, 40, 74], [40, 35, 41, 36], [41, 79, 42, 78], [42, 21, 43, 22], [43, 93, 44, 92], [44, 7, 45, 8], [45, 102, 46, 103], [46, 16, 47, 15], [47, 84, 48, 85], [48, 30, 49, 29], [49, 117, 50, 116], [50, 31, 51, 32], [51, 83, 52, 82], [52, 17, 53, 18], [53, 101, 54, 100], [54, 6, 55, 5], [55, 94, 56, 95], [56, 98, 57, 97], [57, 3, 58, 2], [58, 3, 59, 4], [59, 98, 60, 99], [60, 20, 61, 19], [61, 80, 62, 81], [62, 34, 63, 33], [63, 114, 64, 115], [64, 27, 65, 28], [65, 87, 66, 86], [66, 13, 67, 14], [67, 105, 68, 104], [68, 10, 69, 9], [69, 90, 70, 91], [70, 24, 71, 23], [71, 76, 72, 77], [72, 38, 73, 37]] and the bridges are [[39, 1], [106, 73], [117, 111]]
+07/04/2017 11:38:12 PM: The segments 155 and 96 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[104, 12, 105, 11], [105, 88, 106, 89], [106, 26, 107, 25], [107, 111, 108, 110], [108, 134, 109, 133], [115, 30, 116, 31], [116, 84, 117, 83], [117, 16, 118, 17], [118, 100, 119, 99], [119, 7, 120, 6], [120, 93, 121, 94], [121, 21, 122, 20], [122, 79, 123, 80], [123, 35, 124, 34], [124, 111, 125, 112], [125, 26, 126, 27], [126, 88, 127, 87], [127, 12, 128, 13], [128, 104, 129, 103], [129, 11, 130, 10], [130, 89, 131, 90], [131, 25, 132, 24], [132, 110, 133, 109], [134, 75, 135, 76], [135, 39, 136, 38], [136, 74, 137, 73], [137, 36, 138, 37], [138, 78, 139, 77], [139, 22, 140, 23], [140, 92, 141, 91], [141, 8, 142, 9], [142, 101, 143, 102], [143, 15, 144, 14], [144, 85, 145, 86], [145, 29, 146, 28], [146, 114, 147, 113], [147, 32, 148, 33], [148, 82, 149, 81], [149, 18, 150, 19], [150, 98, 151, 97], [151, 5, 152, 4], [152, 2, 1, 1], [39, 75, 40, 74], [40, 35, 41, 36], [41, 79, 42, 78], [42, 21, 43, 22], [43, 93, 44, 92], [44, 7, 45, 8], [45, 100, 46, 101], [46, 16, 47, 15], [47, 84, 48, 85], [48, 30, 49, 29], [49, 115, 50, 114], [50, 31, 51, 32], [51, 83, 52, 82], [52, 17, 53, 18], [53, 99, 54, 98], [54, 6, 55, 5], [55, 94, 56, 95], [56, 96, 57, 95], [57, 3, 58, 2], [58, 3, 59, 4], [59, 96, 60, 97], [60, 20, 61, 19], [61, 80, 62, 81], [62, 34, 63, 33], [63, 112, 64, 113], [64, 27, 65, 28], [65, 87, 66, 86], [66, 13, 67, 14], [67, 103, 68, 102], [68, 10, 69, 9], [69, 90, 70, 91], [70, 24, 71, 23], [71, 76, 72, 77], [72, 38, 73, 37]] and the bridges are [[39, 1], [104, 73], [115, 109]]
+07/04/2017 11:38:12 PM: The segments 95 and 56 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[100, 12, 101, 11], [101, 86, 102, 87], [102, 26, 103, 25], [103, 107, 104, 106], [104, 130, 105, 129], [111, 30, 112, 31], [112, 82, 113, 81], [113, 16, 114, 17], [114, 96, 115, 95], [115, 7, 116, 6], [116, 91, 117, 92], [117, 21, 118, 20], [118, 77, 119, 78], [119, 35, 120, 34], [120, 107, 121, 108], [121, 26, 122, 27], [122, 86, 123, 85], [123, 12, 124, 13], [124, 100, 125, 99], [125, 11, 126, 10], [126, 87, 127, 88], [127, 25, 128, 24], [128, 106, 129, 105], [130, 73, 131, 74], [131, 39, 132, 38], [132, 72, 133, 71], [133, 36, 134, 37], [134, 76, 135, 75], [135, 22, 136, 23], [136, 90, 137, 89], [137, 8, 138, 9], [138, 97, 139, 98], [139, 15, 140, 14], [140, 83, 141, 84], [141, 29, 142, 28], [142, 110, 143, 109], [143, 32, 144, 33], [144, 80, 145, 79], [145, 18, 146, 19], [146, 94, 147, 93], [147, 5, 148, 4], [148, 2, 1, 1], [39, 73, 40, 72], [40, 35, 41, 36], [41, 77, 42, 76], [42, 21, 43, 22], [43, 91, 44, 90], [44, 7, 45, 8], [45, 96, 46, 97], [46, 16, 47, 15], [47, 82, 48, 83], [48, 30, 49, 29], [49, 111, 50, 110], [50, 31, 51, 32], [51, 81, 52, 80], [52, 17, 53, 18], [53, 95, 54, 94], [54, 6, 55, 5], [55, 3, 56, 2], [56, 3, 57, 4], [57, 92, 58, 93], [58, 20, 59, 19], [59, 78, 60, 79], [60, 34, 61, 33], [61, 108, 62, 109], [62, 27, 63, 28], [63, 85, 64, 84], [64, 13, 65, 14], [65, 99, 66, 98], [66, 10, 67, 9], [67, 88, 68, 89], [68, 24, 69, 23], [69, 74, 70, 75], [70, 38, 71, 37]] and the bridges are [[39, 1], [100, 71], [111, 105]]
+07/04/2017 11:38:12 PM: The segments 56 and 3 can be elimiated by RM2 moves.
+07/04/2017 11:38:12 PM: After simplifying by RM2, the PD code is [[96, 10, 97, 9], [97, 82, 98, 83], [98, 24, 99, 23], [99, 103, 100, 102], [100, 126, 101, 125], [107, 28, 108, 29], [108, 78, 109, 77], [109, 14, 110, 15], [110, 92, 111, 91], [111, 5, 112, 4], [112, 87, 113, 88], [113, 19, 114, 18], [114, 73, 115, 74], [115, 33, 116, 32], [116, 103, 117, 104], [117, 24, 118, 25], [118, 82, 119, 81], [119, 10, 120, 11], [120, 96, 121, 95], [121, 9, 122, 8], [122, 83, 123, 84], [123, 23, 124, 22], [124, 102, 125, 101], [126, 69, 127, 70], [127, 37, 128, 36], [128, 68, 129, 67], [129, 34, 130, 35], [130, 72, 131, 71], [131, 20, 132, 21], [132, 86, 133, 85], [133, 6, 134, 7], [134, 93, 135, 94], [135, 13, 136, 12], [136, 79, 137, 80], [137, 27, 138, 26], [138, 106, 139, 105], [139, 30, 140, 31], [140, 76, 141, 75], [141, 16, 142, 17], [142, 90, 143, 89], [143, 3, 144, 2], [144, 2, 1, 1], [37, 69, 38, 68], [38, 33, 39, 34], [39, 73, 40, 72], [40, 19, 41, 20], [41, 87, 42, 86], [42, 5, 43, 6], [43, 92, 44, 93], [44, 14, 45, 13], [45, 78, 46, 79], [46, 28, 47, 27], [47, 107, 48, 106], [48, 29, 49, 30], [49, 77, 50, 76], [50, 15, 51, 16], [51, 91, 52, 90], [52, 4, 53, 3], [53, 88, 54, 89], [54, 18, 55, 17], [55, 74, 56, 75], [56, 32, 57, 31], [57, 104, 58, 105], [58, 25, 59, 26], [59, 81, 60, 80], [60, 11, 61, 12], [61, 95, 62, 94], [62, 8, 63, 7], [63, 84, 64, 85], [64, 22, 65, 21], [65, 70, 66, 71], [66, 36, 67, 35]] and the bridges are [[37, 1], [96, 67], [107, 101]]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [144, 2, 1, 1]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [144, 2, 1, 1]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [144, 2, 1, 1]
+07/04/2017 11:38:12 PM: After simplifying the knot for RM1 at segment 1, the PD code is [[94, 8, 95, 7], [95, 80, 96, 81], [96, 22, 97, 21], [97, 101, 98, 100], [98, 124, 99, 123], [105, 26, 106, 27], [106, 76, 107, 75], [107, 12, 108, 13], [108, 90, 109, 89], [109, 3, 110, 2], [110, 85, 111, 86], [111, 17, 112, 16], [112, 71, 113, 72], [113, 31, 114, 30], [114, 101, 115, 102], [115, 22, 116, 23], [116, 80, 117, 79], [117, 8, 118, 9], [118, 94, 119, 93], [119, 7, 120, 6], [120, 81, 121, 82], [121, 21, 122, 20], [122, 100, 123, 99], [124, 67, 125, 68], [125, 35, 126, 34], [126, 66, 127, 65], [127, 32, 128, 33], [128, 70, 129, 69], [129, 18, 130, 19], [130, 84, 131, 83], [131, 4, 132, 5], [132, 91, 133, 92], [133, 11, 134, 10], [134, 77, 135, 78], [135, 25, 136, 24], [136, 104, 137, 103], [137, 28, 138, 29], [138, 74, 139, 73], [139, 14, 140, 15], [140, 88, 141, 87], [141, 1, 142, 142], [35, 67, 36, 66], [36, 31, 37, 32], [37, 71, 38, 70], [38, 17, 39, 18], [39, 85, 40, 84], [40, 3, 41, 4], [41, 90, 42, 91], [42, 12, 43, 11], [43, 76, 44, 77], [44, 26, 45, 25], [45, 105, 46, 104], [46, 27, 47, 28], [47, 75, 48, 74], [48, 13, 49, 14], [49, 89, 50, 88], [50, 2, 51, 1], [51, 86, 52, 87], [52, 16, 53, 15], [53, 72, 54, 73], [54, 30, 55, 29], [55, 102, 56, 103], [56, 23, 57, 24], [57, 79, 58, 78], [58, 9, 59, 10], [59, 93, 60, 92], [60, 6, 61, 5], [61, 82, 62, 83], [62, 20, 63, 19], [63, 68, 64, 69], [64, 34, 65, 33]] and the bridges are [[35, 142], [94, 65], [105, 99]]
+07/04/2017 11:38:12 PM: The knot can be simplified by RM1 at crossing [141, 1, 142, 142]
+07/04/2017 11:38:12 PM: We will try to extend the bridge [35, 141]
+07/04/2017 11:38:12 PM: After simplifying the knot for RM1 at segment 142, the PD code is [[94, 8, 95, 7], [95, 80, 96, 81], [96, 22, 97, 21], [97, 101, 98, 100], [98, 124, 99, 123], [105, 26, 106, 27], [106, 76, 107, 75], [107, 12, 108, 13], [108, 90, 109, 89], [109, 3, 110, 2], [110, 85, 111, 86], [111, 17, 112, 16], [112, 71, 113, 72], [113, 31, 114, 30], [114, 101, 115, 102], [115, 22, 116, 23], [116, 80, 117, 79], [117, 8, 118, 9], [118, 94, 119, 93], [119, 7, 120, 6], [120, 81, 121, 82], [121, 21, 122, 20], [122, 100, 123, 99], [124, 67, 125, 68], [125, 35, 126, 34], [126, 66, 127, 65], [127, 32, 128, 33], [128, 70, 129, 69], [129, 18, 130, 19], [130, 84, 131, 83], [131, 4, 132, 5], [132, 91, 133, 92], [133, 11, 134, 10], [134, 77, 135, 78], [135, 25, 136, 24], [136, 104, 137, 103], [137, 28, 138, 29], [138, 74, 139, 73], [139, 14, 140, 15], [140, 88, 141, 87], [35, 67, 36, 66], [36, 31, 37, 32], [37, 71, 38, 70], [38, 17, 39, 18], [39, 85, 40, 84], [40, 3, 41, 4], [41, 90, 42, 91], [42, 12, 43, 11], [43, 76, 44, 77], [44, 26, 45, 25], [45, 105, 46, 104], [46, 27, 47, 28], [47, 75, 48, 74], [48, 13, 49, 14], [49, 89, 50, 88], [50, 2, 51, 1], [51, 86, 52, 87], [52, 16, 53, 15], [53, 72, 54, 73], [54, 30, 55, 29], [55, 102, 56, 103], [56, 23, 57, 24], [57, 79, 58, 78], [58, 9, 59, 10], [59, 93, 60, 92], [60, 6, 61, 5], [61, 82, 62, 83], [62, 20, 63, 19], [63, 68, 64, 69], [64, 34, 65, 33]] and the bridges are [[35, 141], [94, 65], [105, 99]]
+07/04/2017 11:38:12 PM: No more moves of type RM1 or RM2 are possible.
+07/04/2017 11:38:12 PM: 35 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 36
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 37
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 38
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 39
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 40
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 41
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 42
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 43
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 44
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 45
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 46
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 47
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 48
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 49
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 50
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 51
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 52
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 53
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 54
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 55
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 56
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 57
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 58
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 59
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 60
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 61
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 62
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 63
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 64
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 65
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 66
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 67
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 68
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 69
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 70
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 71
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 72
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 73
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 74
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 75
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 76
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 77
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 78
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 79
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 80
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 81
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 82
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 83
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 84
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 85
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 86
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 87
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 88
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 89
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 90
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 91
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 92
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 93
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 94
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 95
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 96
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 97
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 98
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 94 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 95
+07/04/2017 11:38:12 PM: The next_segment_addend is 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 96
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 97
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 98
+07/04/2017 11:38:12 PM: We have completed our search of this stem
+07/04/2017 11:38:12 PM: 65 is a T stem
+07/04/2017 11:38:12 PM: The segment adjacent to the T stem is 64
+07/04/2017 11:38:12 PM: The next_segment_addend is -1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 63
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 62
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 61
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 60
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 59
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 58
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 57
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 56
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 55
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 54
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 53
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 52
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 51
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 50
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 49
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 48
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 47
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 46
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 45
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 44
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 43
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 42
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 41
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 40
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 39
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 38
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 37
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 36
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 35
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 34
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 33
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 32
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 31
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 30
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 29
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 28
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 27
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 26
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 25
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 24
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 23
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 22
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 21
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 20
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 19
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 18
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 17
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 16
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 15
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 14
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 13
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 12
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 11
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 10
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 9
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 8
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 7
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 6
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 5
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 4
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 3
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 2
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 1
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 140
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 139
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 138
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 137
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 136
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 135
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 134
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 133
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 132
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 131
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 130
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 129
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 128
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 127
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 126
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 125
+07/04/2017 11:38:12 PM: We need to consider the next crossing along the T stem containing 124
+07/04/2017 11:38:12 PM: Crossing [98, 124, 99, 123] can be dragged along 124
+07/04/2017 11:38:12 PM: We will drag [98, 124, 99, 123] under [124, 67, 125, 68]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [100, 67, 101, 68][101, 129, 102, 128][102, 70, 103, 69]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [127, 68, 128, 69]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[96, 8, 97, 7], [97, 82, 98, 83], [98, 22, 99, 21], [99, 105, 100, 104], [100, 67, 101, 68], [101, 129, 102, 128], [102, 70, 103, 69], [109, 26, 110, 27], [110, 78, 111, 77], [111, 12, 112, 13], [112, 92, 113, 91], [113, 3, 114, 2], [114, 87, 115, 88], [115, 17, 116, 16], [116, 73, 117, 74], [117, 31, 118, 30], [118, 105, 119, 106], [119, 22, 120, 23], [120, 82, 121, 81], [121, 8, 122, 9], [122, 96, 123, 95], [123, 7, 124, 6], [124, 83, 125, 84], [125, 21, 126, 20], [126, 104, 127, 103], [127, 68, 128, 69], [129, 35, 130, 34], [130, 66, 131, 65], [131, 32, 132, 33], [132, 72, 133, 71], [133, 18, 134, 19], [134, 86, 135, 85], [135, 4, 136, 5], [136, 93, 137, 94], [137, 11, 138, 10], [138, 79, 139, 80], [139, 25, 140, 24], [140, 108, 141, 107], [141, 28, 142, 29], [142, 76, 143, 75], [143, 14, 144, 15], [144, 90, 145, 89], [35, 67, 36, 66], [36, 31, 37, 32], [37, 73, 38, 72], [38, 17, 39, 18], [39, 87, 40, 86], [40, 3, 41, 4], [41, 92, 42, 93], [42, 12, 43, 11], [43, 78, 44, 79], [44, 26, 45, 25], [45, 109, 46, 108], [46, 27, 47, 28], [47, 77, 48, 76], [48, 13, 49, 14], [49, 91, 50, 90], [50, 2, 51, 1], [51, 88, 52, 89], [52, 16, 53, 15], [53, 74, 54, 75], [54, 30, 55, 29], [55, 106, 56, 107], [56, 23, 57, 24], [57, 81, 58, 80], [58, 9, 59, 10], [59, 95, 60, 94], [60, 6, 61, 5], [61, 84, 62, 85], [62, 20, 63, 19], [63, 70, 64, 71], [64, 34, 65, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[35, 145], [96, 65], [109, 103]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 129
+07/04/2017 11:38:12 PM: We will drag [101, 129, 102, 128] under [129, 35, 130, 34]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [103, 37, 104, 36][104, 134, 105, 133][105, 34, 106, 35]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [132, 36, 133, 35]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[98, 8, 99, 7], [99, 84, 100, 85], [100, 22, 101, 21], [101, 109, 102, 108], [102, 69, 103, 70], [103, 37, 104, 36], [104, 134, 105, 133], [105, 34, 106, 35], [106, 72, 107, 71], [113, 26, 114, 27], [114, 80, 115, 79], [115, 12, 116, 13], [116, 94, 117, 93], [117, 3, 118, 2], [118, 89, 119, 90], [119, 17, 120, 16], [120, 75, 121, 76], [121, 31, 122, 30], [122, 109, 123, 110], [123, 22, 124, 23], [124, 84, 125, 83], [125, 8, 126, 9], [126, 98, 127, 97], [127, 7, 128, 6], [128, 85, 129, 86], [129, 21, 130, 20], [130, 108, 131, 107], [131, 70, 132, 71], [132, 36, 133, 35], [134, 68, 135, 67], [135, 32, 136, 33], [136, 74, 137, 73], [137, 18, 138, 19], [138, 88, 139, 87], [139, 4, 140, 5], [140, 95, 141, 96], [141, 11, 142, 10], [142, 81, 143, 82], [143, 25, 144, 24], [144, 112, 145, 111], [145, 28, 146, 29], [146, 78, 147, 77], [147, 14, 148, 15], [148, 92, 149, 91], [37, 69, 38, 68], [38, 31, 39, 32], [39, 75, 40, 74], [40, 17, 41, 18], [41, 89, 42, 88], [42, 3, 43, 4], [43, 94, 44, 95], [44, 12, 45, 11], [45, 80, 46, 81], [46, 26, 47, 25], [47, 113, 48, 112], [48, 27, 49, 28], [49, 79, 50, 78], [50, 13, 51, 14], [51, 93, 52, 92], [52, 2, 53, 1], [53, 90, 54, 91], [54, 16, 55, 15], [55, 76, 56, 77], [56, 30, 57, 29], [57, 110, 58, 111], [58, 23, 59, 24], [59, 83, 60, 82], [60, 9, 61, 10], [61, 97, 62, 96], [62, 6, 63, 5], [63, 86, 64, 87], [64, 20, 65, 19], [65, 72, 66, 73], [66, 34, 67, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[37, 149], [98, 67], [113, 107]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 134
+07/04/2017 11:38:12 PM: We will drag [104, 134, 105, 133] under [134, 68, 135, 67]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [106, 70, 107, 69][107, 139, 108, 138][108, 67, 109, 68]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [137, 69, 138, 68]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[100, 8, 101, 7], [101, 86, 102, 87], [102, 22, 103, 21], [103, 113, 104, 112], [104, 71, 105, 72], [105, 37, 106, 36], [106, 70, 107, 69], [107, 139, 108, 138], [108, 67, 109, 68], [109, 34, 110, 35], [110, 74, 111, 73], [117, 26, 118, 27], [118, 82, 119, 81], [119, 12, 120, 13], [120, 96, 121, 95], [121, 3, 122, 2], [122, 91, 123, 92], [123, 17, 124, 16], [124, 77, 125, 78], [125, 31, 126, 30], [126, 113, 127, 114], [127, 22, 128, 23], [128, 86, 129, 85], [129, 8, 130, 9], [130, 100, 131, 99], [131, 7, 132, 6], [132, 87, 133, 88], [133, 21, 134, 20], [134, 112, 135, 111], [135, 72, 136, 73], [136, 36, 137, 35], [137, 69, 138, 68], [139, 32, 140, 33], [140, 76, 141, 75], [141, 18, 142, 19], [142, 90, 143, 89], [143, 4, 144, 5], [144, 97, 145, 98], [145, 11, 146, 10], [146, 83, 147, 84], [147, 25, 148, 24], [148, 116, 149, 115], [149, 28, 150, 29], [150, 80, 151, 79], [151, 14, 152, 15], [152, 94, 153, 93], [37, 71, 38, 70], [38, 31, 39, 32], [39, 77, 40, 76], [40, 17, 41, 18], [41, 91, 42, 90], [42, 3, 43, 4], [43, 96, 44, 97], [44, 12, 45, 11], [45, 82, 46, 83], [46, 26, 47, 25], [47, 117, 48, 116], [48, 27, 49, 28], [49, 81, 50, 80], [50, 13, 51, 14], [51, 95, 52, 94], [52, 2, 53, 1], [53, 92, 54, 93], [54, 16, 55, 15], [55, 78, 56, 79], [56, 30, 57, 29], [57, 114, 58, 115], [58, 23, 59, 24], [59, 85, 60, 84], [60, 9, 61, 10], [61, 99, 62, 98], [62, 6, 63, 5], [63, 88, 64, 89], [64, 20, 65, 19], [65, 74, 66, 75], [66, 34, 67, 33]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[37, 153], [100, 67], [117, 111]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 139
+07/04/2017 11:38:12 PM: We will drag [107, 139, 108, 138] under [139, 32, 140, 33]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [109, 32, 110, 33][110, 144, 111, 143][111, 35, 112, 34]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [142, 33, 143, 34]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[102, 8, 103, 7], [103, 88, 104, 89], [104, 22, 105, 21], [105, 117, 106, 116], [106, 73, 107, 74], [107, 39, 108, 38], [108, 72, 109, 71], [109, 32, 110, 33], [110, 144, 111, 143], [111, 35, 112, 34], [112, 69, 113, 70], [113, 36, 114, 37], [114, 76, 115, 75], [121, 26, 122, 27], [122, 84, 123, 83], [123, 12, 124, 13], [124, 98, 125, 97], [125, 3, 126, 2], [126, 93, 127, 94], [127, 17, 128, 16], [128, 79, 129, 80], [129, 31, 130, 30], [130, 117, 131, 118], [131, 22, 132, 23], [132, 88, 133, 87], [133, 8, 134, 9], [134, 102, 135, 101], [135, 7, 136, 6], [136, 89, 137, 90], [137, 21, 138, 20], [138, 116, 139, 115], [139, 74, 140, 75], [140, 38, 141, 37], [141, 71, 142, 70], [142, 33, 143, 34], [144, 78, 145, 77], [145, 18, 146, 19], [146, 92, 147, 91], [147, 4, 148, 5], [148, 99, 149, 100], [149, 11, 150, 10], [150, 85, 151, 86], [151, 25, 152, 24], [152, 120, 153, 119], [153, 28, 154, 29], [154, 82, 155, 81], [155, 14, 156, 15], [156, 96, 157, 95], [39, 73, 40, 72], [40, 31, 41, 32], [41, 79, 42, 78], [42, 17, 43, 18], [43, 93, 44, 92], [44, 3, 45, 4], [45, 98, 46, 99], [46, 12, 47, 11], [47, 84, 48, 85], [48, 26, 49, 25], [49, 121, 50, 120], [50, 27, 51, 28], [51, 83, 52, 82], [52, 13, 53, 14], [53, 97, 54, 96], [54, 2, 55, 1], [55, 94, 56, 95], [56, 16, 57, 15], [57, 80, 58, 81], [58, 30, 59, 29], [59, 118, 60, 119], [60, 23, 61, 24], [61, 87, 62, 86], [62, 9, 63, 10], [63, 101, 64, 100], [64, 6, 65, 5], [65, 90, 66, 91], [66, 20, 67, 19], [67, 76, 68, 77], [68, 36, 69, 35]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[39, 157], [102, 69], [121, 115]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 144
+07/04/2017 11:38:12 PM: We will drag [110, 144, 111, 143] under [144, 78, 145, 77]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [112, 80, 113, 79][113, 149, 114, 148][114, 77, 115, 78]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [147, 79, 148, 78]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[104, 8, 105, 7], [105, 90, 106, 91], [106, 22, 107, 21], [107, 121, 108, 120], [108, 73, 109, 74], [109, 39, 110, 38], [110, 72, 111, 71], [111, 32, 112, 33], [112, 80, 113, 79], [113, 149, 114, 148], [114, 77, 115, 78], [115, 35, 116, 34], [116, 69, 117, 70], [117, 36, 118, 37], [118, 76, 119, 75], [125, 26, 126, 27], [126, 86, 127, 85], [127, 12, 128, 13], [128, 100, 129, 99], [129, 3, 130, 2], [130, 95, 131, 96], [131, 17, 132, 16], [132, 81, 133, 82], [133, 31, 134, 30], [134, 121, 135, 122], [135, 22, 136, 23], [136, 90, 137, 89], [137, 8, 138, 9], [138, 104, 139, 103], [139, 7, 140, 6], [140, 91, 141, 92], [141, 21, 142, 20], [142, 120, 143, 119], [143, 74, 144, 75], [144, 38, 145, 37], [145, 71, 146, 70], [146, 33, 147, 34], [147, 79, 148, 78], [149, 18, 150, 19], [150, 94, 151, 93], [151, 4, 152, 5], [152, 101, 153, 102], [153, 11, 154, 10], [154, 87, 155, 88], [155, 25, 156, 24], [156, 124, 157, 123], [157, 28, 158, 29], [158, 84, 159, 83], [159, 14, 160, 15], [160, 98, 161, 97], [39, 73, 40, 72], [40, 31, 41, 32], [41, 81, 42, 80], [42, 17, 43, 18], [43, 95, 44, 94], [44, 3, 45, 4], [45, 100, 46, 101], [46, 12, 47, 11], [47, 86, 48, 87], [48, 26, 49, 25], [49, 125, 50, 124], [50, 27, 51, 28], [51, 85, 52, 84], [52, 13, 53, 14], [53, 99, 54, 98], [54, 2, 55, 1], [55, 96, 56, 97], [56, 16, 57, 15], [57, 82, 58, 83], [58, 30, 59, 29], [59, 122, 60, 123], [60, 23, 61, 24], [61, 89, 62, 88], [62, 9, 63, 10], [63, 103, 64, 102], [64, 6, 65, 5], [65, 92, 66, 93], [66, 20, 67, 19], [67, 76, 68, 77], [68, 36, 69, 35]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[39, 161], [104, 69], [125, 119]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 149
+07/04/2017 11:38:12 PM: We will drag [113, 149, 114, 148] under [149, 18, 150, 19]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [115, 18, 116, 19][116, 154, 117, 153][117, 21, 118, 20]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [152, 19, 153, 20]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[106, 8, 107, 7], [107, 92, 108, 93], [108, 24, 109, 23], [109, 125, 110, 124], [110, 75, 111, 76], [111, 41, 112, 40], [112, 74, 113, 73], [113, 34, 114, 35], [114, 82, 115, 81], [115, 18, 116, 19], [116, 154, 117, 153], [117, 21, 118, 20], [118, 79, 119, 80], [119, 37, 120, 36], [120, 71, 121, 72], [121, 38, 122, 39], [122, 78, 123, 77], [129, 28, 130, 29], [130, 88, 131, 87], [131, 12, 132, 13], [132, 102, 133, 101], [133, 3, 134, 2], [134, 97, 135, 98], [135, 17, 136, 16], [136, 83, 137, 84], [137, 33, 138, 32], [138, 125, 139, 126], [139, 24, 140, 25], [140, 92, 141, 91], [141, 8, 142, 9], [142, 106, 143, 105], [143, 7, 144, 6], [144, 93, 145, 94], [145, 23, 146, 22], [146, 124, 147, 123], [147, 76, 148, 77], [148, 40, 149, 39], [149, 73, 150, 72], [150, 35, 151, 36], [151, 81, 152, 80], [152, 19, 153, 20], [154, 96, 155, 95], [155, 4, 156, 5], [156, 103, 157, 104], [157, 11, 158, 10], [158, 89, 159, 90], [159, 27, 160, 26], [160, 128, 161, 127], [161, 30, 162, 31], [162, 86, 163, 85], [163, 14, 164, 15], [164, 100, 165, 99], [41, 75, 42, 74], [42, 33, 43, 34], [43, 83, 44, 82], [44, 17, 45, 18], [45, 97, 46, 96], [46, 3, 47, 4], [47, 102, 48, 103], [48, 12, 49, 11], [49, 88, 50, 89], [50, 28, 51, 27], [51, 129, 52, 128], [52, 29, 53, 30], [53, 87, 54, 86], [54, 13, 55, 14], [55, 101, 56, 100], [56, 2, 57, 1], [57, 98, 58, 99], [58, 16, 59, 15], [59, 84, 60, 85], [60, 32, 61, 31], [61, 126, 62, 127], [62, 25, 63, 26], [63, 91, 64, 90], [64, 9, 65, 10], [65, 105, 66, 104], [66, 6, 67, 5], [67, 94, 68, 95], [68, 22, 69, 21], [69, 78, 70, 79], [70, 38, 71, 37]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[41, 165], [106, 71], [129, 123]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 154
+07/04/2017 11:38:12 PM: We will drag [116, 154, 117, 153] under [154, 96, 155, 95]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [118, 98, 119, 97][119, 159, 120, 158][120, 95, 121, 96]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [157, 97, 158, 96]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[108, 8, 109, 7], [109, 92, 110, 93], [110, 24, 111, 23], [111, 129, 112, 128], [112, 75, 113, 76], [113, 41, 114, 40], [114, 74, 115, 73], [115, 34, 116, 35], [116, 82, 117, 81], [117, 18, 118, 19], [118, 98, 119, 97], [119, 159, 120, 158], [120, 95, 121, 96], [121, 21, 122, 20], [122, 79, 123, 80], [123, 37, 124, 36], [124, 71, 125, 72], [125, 38, 126, 39], [126, 78, 127, 77], [133, 28, 134, 29], [134, 88, 135, 87], [135, 12, 136, 13], [136, 104, 137, 103], [137, 3, 138, 2], [138, 99, 139, 100], [139, 17, 140, 16], [140, 83, 141, 84], [141, 33, 142, 32], [142, 129, 143, 130], [143, 24, 144, 25], [144, 92, 145, 91], [145, 8, 146, 9], [146, 108, 147, 107], [147, 7, 148, 6], [148, 93, 149, 94], [149, 23, 150, 22], [150, 128, 151, 127], [151, 76, 152, 77], [152, 40, 153, 39], [153, 73, 154, 72], [154, 35, 155, 36], [155, 81, 156, 80], [156, 19, 157, 20], [157, 97, 158, 96], [159, 4, 160, 5], [160, 105, 161, 106], [161, 11, 162, 10], [162, 89, 163, 90], [163, 27, 164, 26], [164, 132, 165, 131], [165, 30, 166, 31], [166, 86, 167, 85], [167, 14, 168, 15], [168, 102, 169, 101], [41, 75, 42, 74], [42, 33, 43, 34], [43, 83, 44, 82], [44, 17, 45, 18], [45, 99, 46, 98], [46, 3, 47, 4], [47, 104, 48, 105], [48, 12, 49, 11], [49, 88, 50, 89], [50, 28, 51, 27], [51, 133, 52, 132], [52, 29, 53, 30], [53, 87, 54, 86], [54, 13, 55, 14], [55, 103, 56, 102], [56, 2, 57, 1], [57, 100, 58, 101], [58, 16, 59, 15], [59, 84, 60, 85], [60, 32, 61, 31], [61, 130, 62, 131], [62, 25, 63, 26], [63, 91, 64, 90], [64, 9, 65, 10], [65, 107, 66, 106], [66, 6, 67, 5], [67, 94, 68, 95], [68, 22, 69, 21], [69, 78, 70, 79], [70, 38, 71, 37]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[41, 169], [108, 71], [133, 127]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 159
+07/04/2017 11:38:12 PM: We will drag [119, 159, 120, 158] under [159, 4, 160, 5]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [121, 4, 122, 5][122, 164, 123, 163][123, 7, 124, 6]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [162, 5, 163, 6]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[110, 10, 111, 9], [111, 94, 112, 95], [112, 26, 113, 25], [113, 133, 114, 132], [114, 77, 115, 78], [115, 43, 116, 42], [116, 76, 117, 75], [117, 36, 118, 37], [118, 84, 119, 83], [119, 20, 120, 21], [120, 100, 121, 99], [121, 4, 122, 5], [122, 164, 123, 163], [123, 7, 124, 6], [124, 97, 125, 98], [125, 23, 126, 22], [126, 81, 127, 82], [127, 39, 128, 38], [128, 73, 129, 74], [129, 40, 130, 41], [130, 80, 131, 79], [137, 30, 138, 31], [138, 90, 139, 89], [139, 14, 140, 15], [140, 106, 141, 105], [141, 3, 142, 2], [142, 101, 143, 102], [143, 19, 144, 18], [144, 85, 145, 86], [145, 35, 146, 34], [146, 133, 147, 134], [147, 26, 148, 27], [148, 94, 149, 93], [149, 10, 150, 11], [150, 110, 151, 109], [151, 9, 152, 8], [152, 95, 153, 96], [153, 25, 154, 24], [154, 132, 155, 131], [155, 78, 156, 79], [156, 42, 157, 41], [157, 75, 158, 74], [158, 37, 159, 38], [159, 83, 160, 82], [160, 21, 161, 22], [161, 99, 162, 98], [162, 5, 163, 6], [164, 107, 165, 108], [165, 13, 166, 12], [166, 91, 167, 92], [167, 29, 168, 28], [168, 136, 169, 135], [169, 32, 170, 33], [170, 88, 171, 87], [171, 16, 172, 17], [172, 104, 173, 103], [43, 77, 44, 76], [44, 35, 45, 36], [45, 85, 46, 84], [46, 19, 47, 20], [47, 101, 48, 100], [48, 3, 49, 4], [49, 106, 50, 107], [50, 14, 51, 13], [51, 90, 52, 91], [52, 30, 53, 29], [53, 137, 54, 136], [54, 31, 55, 32], [55, 89, 56, 88], [56, 15, 57, 16], [57, 105, 58, 104], [58, 2, 59, 1], [59, 102, 60, 103], [60, 18, 61, 17], [61, 86, 62, 87], [62, 34, 63, 33], [63, 134, 64, 135], [64, 27, 65, 28], [65, 93, 66, 92], [66, 11, 67, 12], [67, 109, 68, 108], [68, 8, 69, 7], [69, 96, 70, 97], [70, 24, 71, 23], [71, 80, 72, 81], [72, 40, 73, 39]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[43, 173], [110, 73], [137, 131]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 164
+07/04/2017 11:38:12 PM: We will drag [122, 164, 123, 163] under [164, 107, 165, 108]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [124, 107, 125, 108][125, 169, 126, 168][126, 110, 127, 109]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [167, 108, 168, 109]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[112, 10, 113, 9], [113, 94, 114, 95], [114, 26, 115, 25], [115, 137, 116, 136], [116, 77, 117, 78], [117, 43, 118, 42], [118, 76, 119, 75], [119, 36, 120, 37], [120, 84, 121, 83], [121, 20, 122, 21], [122, 100, 123, 99], [123, 4, 124, 5], [124, 107, 125, 108], [125, 169, 126, 168], [126, 110, 127, 109], [127, 7, 128, 6], [128, 97, 129, 98], [129, 23, 130, 22], [130, 81, 131, 82], [131, 39, 132, 38], [132, 73, 133, 74], [133, 40, 134, 41], [134, 80, 135, 79], [141, 30, 142, 31], [142, 90, 143, 89], [143, 14, 144, 15], [144, 106, 145, 105], [145, 3, 146, 2], [146, 101, 147, 102], [147, 19, 148, 18], [148, 85, 149, 86], [149, 35, 150, 34], [150, 137, 151, 138], [151, 26, 152, 27], [152, 94, 153, 93], [153, 10, 154, 11], [154, 112, 155, 111], [155, 9, 156, 8], [156, 95, 157, 96], [157, 25, 158, 24], [158, 136, 159, 135], [159, 78, 160, 79], [160, 42, 161, 41], [161, 75, 162, 74], [162, 37, 163, 38], [163, 83, 164, 82], [164, 21, 165, 22], [165, 99, 166, 98], [166, 5, 167, 6], [167, 108, 168, 109], [169, 13, 170, 12], [170, 91, 171, 92], [171, 29, 172, 28], [172, 140, 173, 139], [173, 32, 174, 33], [174, 88, 175, 87], [175, 16, 176, 17], [176, 104, 177, 103], [43, 77, 44, 76], [44, 35, 45, 36], [45, 85, 46, 84], [46, 19, 47, 20], [47, 101, 48, 100], [48, 3, 49, 4], [49, 106, 50, 107], [50, 14, 51, 13], [51, 90, 52, 91], [52, 30, 53, 29], [53, 141, 54, 140], [54, 31, 55, 32], [55, 89, 56, 88], [56, 15, 57, 16], [57, 105, 58, 104], [58, 2, 59, 1], [59, 102, 60, 103], [60, 18, 61, 17], [61, 86, 62, 87], [62, 34, 63, 33], [63, 138, 64, 139], [64, 27, 65, 28], [65, 93, 66, 92], [66, 11, 67, 12], [67, 111, 68, 110], [68, 8, 69, 7], [69, 96, 70, 97], [70, 24, 71, 23], [71, 80, 72, 81], [72, 40, 73, 39]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[43, 177], [112, 73], [141, 135]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 169
+07/04/2017 11:38:12 PM: We will drag [125, 169, 126, 168] under [169, 13, 170, 12]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [127, 15, 128, 14][128, 174, 129, 173][129, 12, 130, 13]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [172, 14, 173, 13]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[114, 10, 115, 9], [115, 96, 116, 97], [116, 28, 117, 27], [117, 141, 118, 140], [118, 79, 119, 80], [119, 45, 120, 44], [120, 78, 121, 77], [121, 38, 122, 39], [122, 86, 123, 85], [123, 22, 124, 23], [124, 102, 125, 101], [125, 4, 126, 5], [126, 109, 127, 110], [127, 15, 128, 14], [128, 174, 129, 173], [129, 12, 130, 13], [130, 112, 131, 111], [131, 7, 132, 6], [132, 99, 133, 100], [133, 25, 134, 24], [134, 83, 135, 84], [135, 41, 136, 40], [136, 75, 137, 76], [137, 42, 138, 43], [138, 82, 139, 81], [145, 32, 146, 33], [146, 92, 147, 91], [147, 16, 148, 17], [148, 108, 149, 107], [149, 3, 150, 2], [150, 103, 151, 104], [151, 21, 152, 20], [152, 87, 153, 88], [153, 37, 154, 36], [154, 141, 155, 142], [155, 28, 156, 29], [156, 96, 157, 95], [157, 10, 158, 11], [158, 114, 159, 113], [159, 9, 160, 8], [160, 97, 161, 98], [161, 27, 162, 26], [162, 140, 163, 139], [163, 80, 164, 81], [164, 44, 165, 43], [165, 77, 166, 76], [166, 39, 167, 40], [167, 85, 168, 84], [168, 23, 169, 24], [169, 101, 170, 100], [170, 5, 171, 6], [171, 110, 172, 111], [172, 14, 173, 13], [174, 93, 175, 94], [175, 31, 176, 30], [176, 144, 177, 143], [177, 34, 178, 35], [178, 90, 179, 89], [179, 18, 180, 19], [180, 106, 181, 105], [45, 79, 46, 78], [46, 37, 47, 38], [47, 87, 48, 86], [48, 21, 49, 22], [49, 103, 50, 102], [50, 3, 51, 4], [51, 108, 52, 109], [52, 16, 53, 15], [53, 92, 54, 93], [54, 32, 55, 31], [55, 145, 56, 144], [56, 33, 57, 34], [57, 91, 58, 90], [58, 17, 59, 18], [59, 107, 60, 106], [60, 2, 61, 1], [61, 104, 62, 105], [62, 20, 63, 19], [63, 88, 64, 89], [64, 36, 65, 35], [65, 142, 66, 143], [66, 29, 67, 30], [67, 95, 68, 94], [68, 11, 69, 12], [69, 113, 70, 112], [70, 8, 71, 7], [71, 98, 72, 99], [72, 26, 73, 25], [73, 82, 74, 83], [74, 42, 75, 41]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[45, 181], [114, 75], [145, 139]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 174
+07/04/2017 11:38:12 PM: We will drag [128, 174, 129, 173] under [174, 93, 175, 94]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [130, 93, 131, 94][131, 179, 132, 178][132, 96, 133, 95]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [177, 94, 178, 95]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[116, 10, 117, 9], [117, 98, 118, 99], [118, 28, 119, 27], [119, 145, 120, 144], [120, 79, 121, 80], [121, 45, 122, 44], [122, 78, 123, 77], [123, 38, 124, 39], [124, 86, 125, 85], [125, 22, 126, 23], [126, 104, 127, 103], [127, 4, 128, 5], [128, 111, 129, 112], [129, 15, 130, 14], [130, 93, 131, 94], [131, 179, 132, 178], [132, 96, 133, 95], [133, 12, 134, 13], [134, 114, 135, 113], [135, 7, 136, 6], [136, 101, 137, 102], [137, 25, 138, 24], [138, 83, 139, 84], [139, 41, 140, 40], [140, 75, 141, 76], [141, 42, 142, 43], [142, 82, 143, 81], [149, 32, 150, 33], [150, 92, 151, 91], [151, 16, 152, 17], [152, 110, 153, 109], [153, 3, 154, 2], [154, 105, 155, 106], [155, 21, 156, 20], [156, 87, 157, 88], [157, 37, 158, 36], [158, 145, 159, 146], [159, 28, 160, 29], [160, 98, 161, 97], [161, 10, 162, 11], [162, 116, 163, 115], [163, 9, 164, 8], [164, 99, 165, 100], [165, 27, 166, 26], [166, 144, 167, 143], [167, 80, 168, 81], [168, 44, 169, 43], [169, 77, 170, 76], [170, 39, 171, 40], [171, 85, 172, 84], [172, 23, 173, 24], [173, 103, 174, 102], [174, 5, 175, 6], [175, 112, 176, 113], [176, 14, 177, 13], [177, 94, 178, 95], [179, 31, 180, 30], [180, 148, 181, 147], [181, 34, 182, 35], [182, 90, 183, 89], [183, 18, 184, 19], [184, 108, 185, 107], [45, 79, 46, 78], [46, 37, 47, 38], [47, 87, 48, 86], [48, 21, 49, 22], [49, 105, 50, 104], [50, 3, 51, 4], [51, 110, 52, 111], [52, 16, 53, 15], [53, 92, 54, 93], [54, 32, 55, 31], [55, 149, 56, 148], [56, 33, 57, 34], [57, 91, 58, 90], [58, 17, 59, 18], [59, 109, 60, 108], [60, 2, 61, 1], [61, 106, 62, 107], [62, 20, 63, 19], [63, 88, 64, 89], [64, 36, 65, 35], [65, 146, 66, 147], [66, 29, 67, 30], [67, 97, 68, 96], [68, 11, 69, 12], [69, 115, 70, 114], [70, 8, 71, 7], [71, 100, 72, 101], [72, 26, 73, 25], [73, 82, 74, 83], [74, 42, 75, 41]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[45, 185], [116, 75], [149, 143]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 179
+07/04/2017 11:38:12 PM: We will drag [131, 179, 132, 178] under [179, 31, 180, 30]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [133, 33, 134, 32][134, 184, 135, 183][135, 30, 136, 31]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [182, 32, 183, 31]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[118, 10, 119, 9], [119, 100, 120, 101], [120, 28, 121, 27], [121, 149, 122, 148], [122, 81, 123, 82], [123, 47, 124, 46], [124, 80, 125, 79], [125, 40, 126, 41], [126, 88, 127, 87], [127, 22, 128, 23], [128, 106, 129, 105], [129, 4, 130, 5], [130, 113, 131, 114], [131, 15, 132, 14], [132, 95, 133, 96], [133, 33, 134, 32], [134, 184, 135, 183], [135, 30, 136, 31], [136, 98, 137, 97], [137, 12, 138, 13], [138, 116, 139, 115], [139, 7, 140, 6], [140, 103, 141, 104], [141, 25, 142, 24], [142, 85, 143, 86], [143, 43, 144, 42], [144, 77, 145, 78], [145, 44, 146, 45], [146, 84, 147, 83], [153, 34, 154, 35], [154, 94, 155, 93], [155, 16, 156, 17], [156, 112, 157, 111], [157, 3, 158, 2], [158, 107, 159, 108], [159, 21, 160, 20], [160, 89, 161, 90], [161, 39, 162, 38], [162, 149, 163, 150], [163, 28, 164, 29], [164, 100, 165, 99], [165, 10, 166, 11], [166, 118, 167, 117], [167, 9, 168, 8], [168, 101, 169, 102], [169, 27, 170, 26], [170, 148, 171, 147], [171, 82, 172, 83], [172, 46, 173, 45], [173, 79, 174, 78], [174, 41, 175, 42], [175, 87, 176, 86], [176, 23, 177, 24], [177, 105, 178, 104], [178, 5, 179, 6], [179, 114, 180, 115], [180, 14, 181, 13], [181, 96, 182, 97], [182, 32, 183, 31], [184, 152, 185, 151], [185, 36, 186, 37], [186, 92, 187, 91], [187, 18, 188, 19], [188, 110, 189, 109], [47, 81, 48, 80], [48, 39, 49, 40], [49, 89, 50, 88], [50, 21, 51, 22], [51, 107, 52, 106], [52, 3, 53, 4], [53, 112, 54, 113], [54, 16, 55, 15], [55, 94, 56, 95], [56, 34, 57, 33], [57, 153, 58, 152], [58, 35, 59, 36], [59, 93, 60, 92], [60, 17, 61, 18], [61, 111, 62, 110], [62, 2, 63, 1], [63, 108, 64, 109], [64, 20, 65, 19], [65, 90, 66, 91], [66, 38, 67, 37], [67, 150, 68, 151], [68, 29, 69, 30], [69, 99, 70, 98], [70, 11, 71, 12], [71, 117, 72, 116], [72, 8, 73, 7], [73, 102, 74, 103], [74, 26, 75, 25], [75, 84, 76, 85], [76, 44, 77, 43]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[47, 189], [118, 77], [153, 147]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 184
+07/04/2017 11:38:12 PM: We will drag [134, 184, 135, 183] under [184, 152, 185, 151]
+07/04/2017 11:38:12 PM: Dragging case b=e, a<y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [134, 156, 135, 155][135, 189, 136, 188][136, 153, 137, 154]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [187, 155, 188, 154]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[118, 10, 119, 9], [119, 100, 120, 101], [120, 28, 121, 27], [121, 151, 122, 150], [122, 81, 123, 82], [123, 47, 124, 46], [124, 80, 125, 79], [125, 40, 126, 41], [126, 88, 127, 87], [127, 22, 128, 23], [128, 106, 129, 105], [129, 4, 130, 5], [130, 113, 131, 114], [131, 15, 132, 14], [132, 95, 133, 96], [133, 33, 134, 32], [134, 156, 135, 155], [135, 189, 136, 188], [136, 153, 137, 154], [137, 30, 138, 31], [138, 98, 139, 97], [139, 12, 140, 13], [140, 116, 141, 115], [141, 7, 142, 6], [142, 103, 143, 104], [143, 25, 144, 24], [144, 85, 145, 86], [145, 43, 146, 42], [146, 77, 147, 78], [147, 44, 148, 45], [148, 84, 149, 83], [157, 34, 158, 35], [158, 94, 159, 93], [159, 16, 160, 17], [160, 112, 161, 111], [161, 3, 162, 2], [162, 107, 163, 108], [163, 21, 164, 20], [164, 89, 165, 90], [165, 39, 166, 38], [166, 151, 167, 152], [167, 28, 168, 29], [168, 100, 169, 99], [169, 10, 170, 11], [170, 118, 171, 117], [171, 9, 172, 8], [172, 101, 173, 102], [173, 27, 174, 26], [174, 150, 175, 149], [175, 82, 176, 83], [176, 46, 177, 45], [177, 79, 178, 78], [178, 41, 179, 42], [179, 87, 180, 86], [180, 23, 181, 24], [181, 105, 182, 104], [182, 5, 183, 6], [183, 114, 184, 115], [184, 14, 185, 13], [185, 96, 186, 97], [186, 32, 187, 31], [187, 155, 188, 154], [189, 36, 190, 37], [190, 92, 191, 91], [191, 18, 192, 19], [192, 110, 193, 109], [47, 81, 48, 80], [48, 39, 49, 40], [49, 89, 50, 88], [50, 21, 51, 22], [51, 107, 52, 106], [52, 3, 53, 4], [53, 112, 54, 113], [54, 16, 55, 15], [55, 94, 56, 95], [56, 34, 57, 33], [57, 157, 58, 156], [58, 35, 59, 36], [59, 93, 60, 92], [60, 17, 61, 18], [61, 111, 62, 110], [62, 2, 63, 1], [63, 108, 64, 109], [64, 20, 65, 19], [65, 90, 66, 91], [66, 38, 67, 37], [67, 152, 68, 153], [68, 29, 69, 30], [69, 99, 70, 98], [70, 11, 71, 12], [71, 117, 72, 116], [72, 8, 73, 7], [73, 102, 74, 103], [74, 26, 75, 25], [75, 84, 76, 85], [76, 44, 77, 43]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[47, 193], [118, 77], [157, 149]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 189
+07/04/2017 11:38:12 PM: We will drag [135, 189, 136, 188] under [189, 36, 190, 37]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [137, 36, 138, 37][138, 194, 139, 193][139, 39, 140, 38]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [192, 37, 193, 38]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[120, 10, 121, 9], [121, 102, 122, 103], [122, 28, 123, 27], [123, 155, 124, 154], [124, 83, 125, 84], [125, 49, 126, 48], [126, 82, 127, 81], [127, 42, 128, 43], [128, 90, 129, 89], [129, 22, 130, 23], [130, 108, 131, 107], [131, 4, 132, 5], [132, 115, 133, 116], [133, 15, 134, 14], [134, 97, 135, 98], [135, 33, 136, 32], [136, 160, 137, 159], [137, 36, 138, 37], [138, 194, 139, 193], [139, 39, 140, 38], [140, 157, 141, 158], [141, 30, 142, 31], [142, 100, 143, 99], [143, 12, 144, 13], [144, 118, 145, 117], [145, 7, 146, 6], [146, 105, 147, 106], [147, 25, 148, 24], [148, 87, 149, 88], [149, 45, 150, 44], [150, 79, 151, 80], [151, 46, 152, 47], [152, 86, 153, 85], [161, 34, 162, 35], [162, 96, 163, 95], [163, 16, 164, 17], [164, 114, 165, 113], [165, 3, 166, 2], [166, 109, 167, 110], [167, 21, 168, 20], [168, 91, 169, 92], [169, 41, 170, 40], [170, 155, 171, 156], [171, 28, 172, 29], [172, 102, 173, 101], [173, 10, 174, 11], [174, 120, 175, 119], [175, 9, 176, 8], [176, 103, 177, 104], [177, 27, 178, 26], [178, 154, 179, 153], [179, 84, 180, 85], [180, 48, 181, 47], [181, 81, 182, 80], [182, 43, 183, 44], [183, 89, 184, 88], [184, 23, 185, 24], [185, 107, 186, 106], [186, 5, 187, 6], [187, 116, 188, 117], [188, 14, 189, 13], [189, 98, 190, 99], [190, 32, 191, 31], [191, 159, 192, 158], [192, 37, 193, 38], [194, 94, 195, 93], [195, 18, 196, 19], [196, 112, 197, 111], [49, 83, 50, 82], [50, 41, 51, 42], [51, 91, 52, 90], [52, 21, 53, 22], [53, 109, 54, 108], [54, 3, 55, 4], [55, 114, 56, 115], [56, 16, 57, 15], [57, 96, 58, 97], [58, 34, 59, 33], [59, 161, 60, 160], [60, 35, 61, 36], [61, 95, 62, 94], [62, 17, 63, 18], [63, 113, 64, 112], [64, 2, 65, 1], [65, 110, 66, 111], [66, 20, 67, 19], [67, 92, 68, 93], [68, 40, 69, 39], [69, 156, 70, 157], [70, 29, 71, 30], [71, 101, 72, 100], [72, 11, 73, 12], [73, 119, 74, 118], [74, 8, 75, 7], [75, 104, 76, 105], [76, 26, 77, 25], [77, 86, 78, 87], [78, 46, 79, 45]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[49, 197], [120, 79], [161, 153]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 194
+07/04/2017 11:38:12 PM: We will drag [138, 194, 139, 193] under [194, 94, 195, 93]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [140, 96, 141, 95][141, 199, 142, 198][142, 93, 143, 94]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [197, 95, 198, 94]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[122, 10, 123, 9], [123, 104, 124, 105], [124, 28, 125, 27], [125, 159, 126, 158], [126, 83, 127, 84], [127, 49, 128, 48], [128, 82, 129, 81], [129, 42, 130, 43], [130, 90, 131, 89], [131, 22, 132, 23], [132, 110, 133, 109], [133, 4, 134, 5], [134, 117, 135, 118], [135, 15, 136, 14], [136, 99, 137, 100], [137, 33, 138, 32], [138, 164, 139, 163], [139, 36, 140, 37], [140, 96, 141, 95], [141, 199, 142, 198], [142, 93, 143, 94], [143, 39, 144, 38], [144, 161, 145, 162], [145, 30, 146, 31], [146, 102, 147, 101], [147, 12, 148, 13], [148, 120, 149, 119], [149, 7, 150, 6], [150, 107, 151, 108], [151, 25, 152, 24], [152, 87, 153, 88], [153, 45, 154, 44], [154, 79, 155, 80], [155, 46, 156, 47], [156, 86, 157, 85], [165, 34, 166, 35], [166, 98, 167, 97], [167, 16, 168, 17], [168, 116, 169, 115], [169, 3, 170, 2], [170, 111, 171, 112], [171, 21, 172, 20], [172, 91, 173, 92], [173, 41, 174, 40], [174, 159, 175, 160], [175, 28, 176, 29], [176, 104, 177, 103], [177, 10, 178, 11], [178, 122, 179, 121], [179, 9, 180, 8], [180, 105, 181, 106], [181, 27, 182, 26], [182, 158, 183, 157], [183, 84, 184, 85], [184, 48, 185, 47], [185, 81, 186, 80], [186, 43, 187, 44], [187, 89, 188, 88], [188, 23, 189, 24], [189, 109, 190, 108], [190, 5, 191, 6], [191, 118, 192, 119], [192, 14, 193, 13], [193, 100, 194, 101], [194, 32, 195, 31], [195, 163, 196, 162], [196, 37, 197, 38], [197, 95, 198, 94], [199, 18, 200, 19], [200, 114, 201, 113], [49, 83, 50, 82], [50, 41, 51, 42], [51, 91, 52, 90], [52, 21, 53, 22], [53, 111, 54, 110], [54, 3, 55, 4], [55, 116, 56, 117], [56, 16, 57, 15], [57, 98, 58, 99], [58, 34, 59, 33], [59, 165, 60, 164], [60, 35, 61, 36], [61, 97, 62, 96], [62, 17, 63, 18], [63, 115, 64, 114], [64, 2, 65, 1], [65, 112, 66, 113], [66, 20, 67, 19], [67, 92, 68, 93], [68, 40, 69, 39], [69, 160, 70, 161], [70, 29, 71, 30], [71, 103, 72, 102], [72, 11, 73, 12], [73, 121, 74, 120], [74, 8, 75, 7], [75, 106, 76, 107], [76, 26, 77, 25], [77, 86, 78, 87], [78, 46, 79, 45]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[49, 201], [122, 79], [165, 157]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 199
+07/04/2017 11:38:12 PM: We will drag [141, 199, 142, 198] under [199, 18, 200, 19]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==f
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [143, 18, 144, 19][144, 204, 145, 203][145, 21, 146, 20]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [202, 19, 203, 20]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[124, 10, 125, 9], [125, 106, 126, 107], [126, 30, 127, 29], [127, 163, 128, 162], [128, 85, 129, 86], [129, 51, 130, 50], [130, 84, 131, 83], [131, 44, 132, 45], [132, 92, 133, 91], [133, 24, 134, 25], [134, 112, 135, 111], [135, 4, 136, 5], [136, 119, 137, 120], [137, 15, 138, 14], [138, 101, 139, 102], [139, 35, 140, 34], [140, 168, 141, 167], [141, 38, 142, 39], [142, 98, 143, 97], [143, 18, 144, 19], [144, 204, 145, 203], [145, 21, 146, 20], [146, 95, 147, 96], [147, 41, 148, 40], [148, 165, 149, 166], [149, 32, 150, 33], [150, 104, 151, 103], [151, 12, 152, 13], [152, 122, 153, 121], [153, 7, 154, 6], [154, 109, 155, 110], [155, 27, 156, 26], [156, 89, 157, 90], [157, 47, 158, 46], [158, 81, 159, 82], [159, 48, 160, 49], [160, 88, 161, 87], [169, 36, 170, 37], [170, 100, 171, 99], [171, 16, 172, 17], [172, 118, 173, 117], [173, 3, 174, 2], [174, 113, 175, 114], [175, 23, 176, 22], [176, 93, 177, 94], [177, 43, 178, 42], [178, 163, 179, 164], [179, 30, 180, 31], [180, 106, 181, 105], [181, 10, 182, 11], [182, 124, 183, 123], [183, 9, 184, 8], [184, 107, 185, 108], [185, 29, 186, 28], [186, 162, 187, 161], [187, 86, 188, 87], [188, 50, 189, 49], [189, 83, 190, 82], [190, 45, 191, 46], [191, 91, 192, 90], [192, 25, 193, 26], [193, 111, 194, 110], [194, 5, 195, 6], [195, 120, 196, 121], [196, 14, 197, 13], [197, 102, 198, 103], [198, 34, 199, 33], [199, 167, 200, 166], [200, 39, 201, 40], [201, 97, 202, 96], [202, 19, 203, 20], [204, 116, 205, 115], [51, 85, 52, 84], [52, 43, 53, 44], [53, 93, 54, 92], [54, 23, 55, 24], [55, 113, 56, 112], [56, 3, 57, 4], [57, 118, 58, 119], [58, 16, 59, 15], [59, 100, 60, 101], [60, 36, 61, 35], [61, 169, 62, 168], [62, 37, 63, 38], [63, 99, 64, 98], [64, 17, 65, 18], [65, 117, 66, 116], [66, 2, 67, 1], [67, 114, 68, 115], [68, 22, 69, 21], [69, 94, 70, 95], [70, 42, 71, 41], [71, 164, 72, 165], [72, 31, 73, 32], [73, 105, 74, 104], [74, 11, 75, 12], [75, 123, 76, 122], [76, 8, 77, 7], [77, 108, 78, 109], [78, 28, 79, 27], [79, 88, 80, 89], [80, 48, 81, 47]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[51, 205], [124, 81], [169, 161]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 204
+07/04/2017 11:38:12 PM: We will drag [144, 204, 145, 203] under [204, 116, 205, 115]
+07/04/2017 11:38:12 PM: Dragging case b=e, a>y, y==h
+07/04/2017 11:38:12 PM: (a,b,c,d) becomes [146, 118, 147, 117][147, 1, 148, 208][148, 115, 149, 116]
+07/04/2017 11:38:12 PM: (e,f,g,h) becomes [207, 117, 208, 116]
+07/04/2017 11:38:12 PM: PD code of the knot after dragging is [[126, 10, 127, 9], [127, 106, 128, 107], [128, 30, 129, 29], [129, 167, 130, 166], [130, 85, 131, 86], [131, 51, 132, 50], [132, 84, 133, 83], [133, 44, 134, 45], [134, 92, 135, 91], [135, 24, 136, 25], [136, 112, 137, 111], [137, 4, 138, 5], [138, 121, 139, 122], [139, 15, 140, 14], [140, 101, 141, 102], [141, 35, 142, 34], [142, 172, 143, 171], [143, 38, 144, 39], [144, 98, 145, 97], [145, 18, 146, 19], [146, 118, 147, 117], [147, 1, 148, 208], [148, 115, 149, 116], [149, 21, 150, 20], [150, 95, 151, 96], [151, 41, 152, 40], [152, 169, 153, 170], [153, 32, 154, 33], [154, 104, 155, 103], [155, 12, 156, 13], [156, 124, 157, 123], [157, 7, 158, 6], [158, 109, 159, 110], [159, 27, 160, 26], [160, 89, 161, 90], [161, 47, 162, 46], [162, 81, 163, 82], [163, 48, 164, 49], [164, 88, 165, 87], [173, 36, 174, 37], [174, 100, 175, 99], [175, 16, 176, 17], [176, 120, 177, 119], [177, 3, 178, 2], [178, 113, 179, 114], [179, 23, 180, 22], [180, 93, 181, 94], [181, 43, 182, 42], [182, 167, 183, 168], [183, 30, 184, 31], [184, 106, 185, 105], [185, 10, 186, 11], [186, 126, 187, 125], [187, 9, 188, 8], [188, 107, 189, 108], [189, 29, 190, 28], [190, 166, 191, 165], [191, 86, 192, 87], [192, 50, 193, 49], [193, 83, 194, 82], [194, 45, 195, 46], [195, 91, 196, 90], [196, 25, 197, 26], [197, 111, 198, 110], [198, 5, 199, 6], [199, 122, 200, 123], [200, 14, 201, 13], [201, 102, 202, 103], [202, 34, 203, 33], [203, 171, 204, 170], [204, 39, 205, 40], [205, 97, 206, 96], [206, 19, 207, 20], [207, 117, 208, 116], [51, 85, 52, 84], [52, 43, 53, 44], [53, 93, 54, 92], [54, 23, 55, 24], [55, 113, 56, 112], [56, 3, 57, 4], [57, 120, 58, 121], [58, 16, 59, 15], [59, 100, 60, 101], [60, 36, 61, 35], [61, 173, 62, 172], [62, 37, 63, 38], [63, 99, 64, 98], [64, 17, 65, 18], [65, 119, 66, 118], [66, 2, 67, 1], [67, 114, 68, 115], [68, 22, 69, 21], [69, 94, 70, 95], [70, 42, 71, 41], [71, 168, 72, 169], [72, 31, 73, 32], [73, 105, 74, 104], [74, 11, 75, 12], [75, 125, 76, 124], [76, 8, 77, 7], [77, 108, 78, 109], [78, 28, 79, 27], [79, 88, 80, 89], [80, 48, 81, 47]]
+07/04/2017 11:38:12 PM: After dragging and altering, the bridges are [[51, 209], [126, 81], [173, 165]]
+07/04/2017 11:38:12 PM: If we drag this crossing again, we should drag it along 1
+07/04/2017 11:38:12 PM: We will drag [147, 1, 148, 208] under [66, 2, 67, 1]
