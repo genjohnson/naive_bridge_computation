@@ -474,37 +474,46 @@ class Knot:
         Arguments:
         twisted_crossings -- (list) the indices of crossings to eliminate
         """
+        def alter_bridge_end_for_rm1(x, duplicate_value, max_value):
+            if x > duplicate_value:
+                x -= 2
+                if x > max_value:
+                    x = x%max_value
+            elif x == duplicate_value:
+                if duplicate_value == 1:
+                    x = max_value
+                elif duplicate_value == max_value+2:
+                    x = 1
+                else:
+                    x -= 1
+            return x
+
         crossings = self.crossings
         for index in sorted(twisted_crossings, reverse = True):
             duplicate_value = self.crossings[index].has_duplicate_value()
+            original_max_value = len(self.crossings)*2
             self.delete_crossings([index])
-            max_value = len(self.crossings)*2
-            # Adjust crossings.
-            addend = -2
-            for crossing in self.crossings:
-                crossing.alter_elements_greater_than(duplicate_value, addend, max_value)
-            # Adjust bridges.
-            def alter_bridge_end_for_rm1(x, duplicate_value, max_value):
-                if x > duplicate_value:
-                    x -= 2
-                    if x > max_value:
-                        x = x%max_value
-                elif x == duplicate_value:
-                    if duplicate_value == 1:
-                        x = max_value
-                    else:
-                        x -= 1
-                return x
+            new_max_value = original_max_value-2
 
+            if duplicate_value == original_max_value:
+                extend_if_bridge_end = [1, duplicate_value + 1]
+                # Adjust crossings.
+                for crossing in self.crossings:
+                    crossing.alter_elements_greater_than(new_max_value, -new_max_value, new_max_value)
+            else:
+                extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
+                # Adjust crossings.
+                for crossing in self.crossings:
+                    crossing.alter_elements_greater_than(duplicate_value, -2, new_max_value)
             for i, bridge in enumerate(self.bridges):
-                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, 2), repeat(max_value, 2))
-
-            extend_if_bridge_end = [duplicate_value - 1, duplicate_value + 1]
-            for bridge in self.bridges:
+                # Adjust bridges.
+                self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, 2), repeat(new_max_value, 2))
+                # Try to extend bridges.
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     bridge_index = self.bridges.index(bridge)
                     self.extend_bridge(bridge_index)
+
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
