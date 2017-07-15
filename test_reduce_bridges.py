@@ -275,6 +275,12 @@ class SimplifyRm1TestCase(unittest.TestCase):
         answer = create_knot_from_pd_code([[4,12,5,11],[8,14,9,13],[9,7,10,6],[10,4,11,3],[14,8,1,7],[1,13,2,12],[2,6,3,5]])
         self.assertEqual(knot, answer)
 
+    def testSimplifyRm1_2(self):
+        knot = create_knot_from_pd_code([[3,6,4,7],[4,2,5,1],[5,2,6,3],[7,8,8,1]])
+        knot.simplify_rm1([3])
+        answer = create_knot_from_pd_code([[3,6,4,1],[4,2,5,1],[5,2,6,3]])
+        self.assertEqual(knot, answer)
+
 class SimplifyRm1RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm1Recursively(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[7,10,8,1],[8,6,9,5],[9,6,10,7]])
