@@ -114,7 +114,7 @@ class Knot:
             for i in [0, 2]:
                 x = bridge_crossing.pd_code[i]
                 for free_crossing in self.free_crossings:
-                    if (x in free_crossing.pd_code):
+                    if (x == free_crossing.pd_code[1]) or (x == free_crossing.pd_code[3]):
                         self.designate_bridge(free_crossing)
                         return self
         logging.critical('We were unable to designate an additional bridge.')
