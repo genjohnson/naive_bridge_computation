@@ -3,3 +3,4 @@ output*
 *.log
 *.pyc
 pd_codes.csv
+analyzed_output/minimum_computed_bridge_indices.csv
