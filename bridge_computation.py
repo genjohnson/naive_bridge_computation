@@ -61,29 +61,34 @@ def calculate_bridge_index(inputfile, outputdir):
 
         # Perform actions on each row of the input CSV.
         for row in knotreader:
-            # Create a knot object.
-            knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
-            logging.info('Created knot ' + str(knot.name))
-            logging.debug('The initial PD code of the knot is ' + str(knot))
-            # Simplify the knot now to avoid choosing bridges which will be
-            # discarded during simplification.
-            knot.simplify_rm1_rm2_recursively()
-            # Designate initial bridges.
-            if (knot.num_crossings() > 1):
-                knot.designate_bridge(knot.crossings[0])
-                knot.designate_additional_bridge()
-                # Drag crossings, simplify knot, and identify bridges
-                # until all crossings belong to a bridge.
-                while knot.free_crossings != []:
-                    args = knot.find_crossing_to_drag()
-                    if args:
-                        knot.drag_crossing_under_bridge_resursively(*args)
-                        knot.simplify_rm1_rm2_recursively()
-                    else:
-                        knot.designate_additional_bridge()
-            computed_bridge_index = len(knot.bridges)
-            logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
-            logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+            try:
+                # Create a knot object.
+                knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
+                logging.info('Created knot ' + str(knot.name))
+                logging.debug('The initial PD code of the knot is ' + str(knot))
+                # Simplify the knot now to avoid choosing bridges which will be
+                # discarded during simplification.
+                knot.simplify_rm1_rm2_recursively()
+                # Designate initial bridges.
+                if (knot.num_crossings() > 1):
+                    knot.designate_bridge(knot.crossings[0])
+                    knot.designate_additional_bridge()
+                    # Drag crossings, simplify knot, and identify bridges
+                    # until all crossings belong to a bridge.
+                    while knot.free_crossings != []:
+                        args = knot.find_crossing_to_drag()
+                        if args:
+                            knot.drag_crossing_under_bridge_resursively(*args)
+                            knot.simplify_rm1_rm2_recursively()
+                        else:
+                            knot.designate_additional_bridge()
+                computed_bridge_index = len(knot.bridges)
+                logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
+                logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+                pass
+            except:
+                logging.warning('Failed to fully process ' + str(knot.name) + '. Moving on to the next knot.')
+                continue
 
             # Add the results to our output file.
             try:
