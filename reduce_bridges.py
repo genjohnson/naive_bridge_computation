@@ -110,13 +110,18 @@ class Knot:
         """
         Choose a crossing to designate as a bridge based on existing bridges.
         """
-        for bridge_crossing in diff(self.crossings, self.free_crossings):
-            for i in [0, 2]:
-                x = bridge_crossing.pd_code[i]
-                for free_crossing in self.free_crossings:
-                    if (x == free_crossing.pd_code[1]) or (x == free_crossing.pd_code[3]):
-                        self.designate_bridge(free_crossing)
-                        return self
+        bridge_crossings = diff(self.crossings, self.free_crossings)
+        bridge_ends = [x for bridge_ends in self.bridges for x in bridge_ends]
+        all_bridge_segments = [crossing.pd_code[i] for crossing in bridge_crossings for i in [0, 2]]
+        bridge_interior_segments = diff(all_bridge_segments, bridge_ends)
+
+        for free_crossing in self.free_crossings:
+            interior_match = list(set([free_crossing.pd_code[1], free_crossing.pd_code[3]]) & set(bridge_interior_segments))
+            end_match = list(set(bridge_ends) & set(free_crossing.pd_code))
+            if (interior_match or end_match):
+                self.designate_bridge(free_crossing)
+                return self
+
         logging.critical('We were unable to designate an additional bridge.')
         sys.exit('We were unable to designate an additional bridge for ' + self.name + '.')
 
