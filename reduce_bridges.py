@@ -117,6 +117,12 @@ class Knot:
                     if (x == free_crossing.pd_code[1]) or (x == free_crossing.pd_code[3]):
                         self.designate_bridge(free_crossing)
                         return self
+        for bridge_ends in self.bridges:
+            for bridge_end in bridge_ends:
+                for free_crossing in self.free_crossings:
+                    if bridge_end in free_crossing.pd_code:
+                        self.designate_bridge(free_crossing)
+                        return self
         logging.critical('We were unable to designate an additional bridge.')
         sys.exit('We were unable to designate an additional bridge for ' + self.name + '.')
 
