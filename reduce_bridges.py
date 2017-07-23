@@ -469,23 +469,20 @@ class Knot:
             os.makedirs('bridge_ts')
         if self.bridges == []:
             # Create file to store initial pairs of brige Ts.
-            outfile_name = 'bridge_ts/roots.csv'
-            with open(outfile_name, "w") as outfile:
-                outputwriter = csv.writer(outfile, delimiter=',')
-                outputwriter.writerow(['name','pd_code','bridges'])
+            roots_outfile_name = 'bridge_ts/roots.csv'
+            roots_outfile = open(roots_outfile_name, "w")
+            rootsoutputwriter = csv.writer(roots_outfile, delimiter=',')
+            rootsoutputwriter.writerow(['name','pd_notation','bridge_pd_codes'])
             # Find and store intial bridge Ts.
             i = 1
             for a, b in itertools.combinations(self.free_crossings, 2):
                 if list(set(a.pd_code).intersection(b.pd_code)):
                     name = str(self.name) + '_tree_' + str(i)
-                    bridges = [a.pd_code, b.pd_code]
-                    try:
-                        with open(outfile_name, "a") as outfile:
-                            outputwriter = csv.writer(outfile, delimiter=',')
-                            outputwriter.writerow([name, str(self), bridge_pd_codes])
-                    except IOError:
-                        sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+                    bridge_pd_codes = [a.pd_code, b.pd_code]
+                    logging.debug('We found ' + name + ' at ' + str(a.pd_code) + ', ' + str(b.pd_code))
+                    rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
                     i += 1
+            roots_outfile.close()
 
     def max_pd_code_value(self):
         """

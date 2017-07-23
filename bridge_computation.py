@@ -7,7 +7,7 @@ import logging
 import sys, getopt, os
 from reduce_bridges import *
 
-logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.WARNING)
+logging.basicConfig(filename='bridge_computation.log', filemode='w', format='%(asctime)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 def bridge_computation(argv):
     inputfile = ''
@@ -64,39 +64,49 @@ def calculate_bridge_index(inputfile, outputdir):
             try:
                 # Create a knot object.
                 knot = create_knot_from_pd_code(ast.literal_eval(row['pd_notation']), row['name'])
-                logging.info('Created knot ' + str(knot.name))
+                logging.info('Processing knot ' + str(knot.name))
                 logging.debug('The initial PD code of the knot is ' + str(knot))
                 # Simplify the knot now to avoid choosing bridges which will be
                 # discarded during simplification.
                 knot.simplify_rm1_rm2_recursively()
-                # Designate initial bridges.
-                if (knot.num_crossings() > 1):
-                    knot.designate_bridge(knot.crossings[0])
-                    knot.designate_additional_bridge()
-                    # Drag crossings, simplify knot, and identify bridges
-                    # until all crossings belong to a bridge.
-                    while knot.free_crossings != []:
-                        args = knot.find_crossing_to_drag()
-                        if args:
-                            knot.drag_crossing_under_bridge_resursively(*args)
-                            knot.simplify_rm1_rm2_recursively()
-                        else:
-                            knot.designate_additional_bridge()
-                computed_bridge_index = len(knot.bridges)
-                logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
-                logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+                # Generate a list of bride pairs that form a T.
+                knot.list_bridge_ts()
+                # Process each initial bridge pair.
+                with open('bridge_ts/roots.csv') as rootscsvfile:
+                    rootsreader = csv.DictReader(rootscsvfile)
+                    for root in rootsreader:
+                        knot = create_knot_from_pd_code(ast.literal_eval(root['pd_notation']), root['name'])
+                        logging.debug('Created knot ' + str(knot.name))
+                        for bridge in ast.literal_eval(root['bridge_pd_codes']):
+                            for crossing in knot.free_crossings:
+                                if crossing.pd_code == bridge:
+                                    knot.designate_bridge(crossing)
+
+                #     # Drag crossings, simplify knot, and identify bridges
+                #     # until all crossings belong to a bridge.
+                #     while knot.free_crossings != []:
+                #         args = knot.find_crossing_to_drag()
+                #         if args:
+                #             knot.drag_crossing_under_bridge_resursively(*args)
+                #             knot.simplify_rm1_rm2_recursively()
+                #         else:
+                #             knot.designate_additional_bridge()
+                # computed_bridge_index = len(knot.bridges)
+                # logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
+                # logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
                 pass
             except:
+                print 'Failed to fully process the knot. Moving on to the next knot'
                 logging.warning('Failed to fully process ' + str(knot.name) + '. Moving on to the next knot.')
                 continue
 
             # Add the results to our output file.
-            try:
-                with open(outfile_name, "a") as outfile:
-                    outputwriter = csv.writer(outfile, delimiter=',')
-                    outputwriter.writerow([knot.name, computed_bridge_index])
-            except IOError:
-                sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+            # try:
+            #     with open(outfile_name, "a") as outfile:
+            #         outputwriter = csv.writer(outfile, delimiter=',')
+            #         outputwriter.writerow([knot.name, computed_bridge_index])
+            # except IOError:
+            #     sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
