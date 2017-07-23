@@ -83,13 +83,14 @@ def calculate_bridge_index(inputfile, outputdir):
                         # Drag crossings, simplify knot, and identify bridges
                         # until all crossings belong to a bridge.
                         while knot.free_crossings != []:
-                            args = knot.find_crossing_to_drag()
-                            if args:
+                            try:
+                                args = knot.find_crossing_to_drag()
                                 knot.drag_crossing_under_bridge_resursively(*args)
                                 knot.simplify_rm1_rm2_recursively()
-                            else:
+                            except:
                                 logging.info('We need to identify next choices for bridge Ts')
-                                print 'We need to identify next choices for bridge Ts'
+                                print 'We need to identify next choices for bridge Ts for ' + knot.name
+                                break
                                 # knot.designate_additional_bridge()
                         computed_bridge_index = len(knot.bridges)
                         logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
