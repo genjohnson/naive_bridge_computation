@@ -4,7 +4,7 @@ import itertools
 from itertools import repeat
 import logging
 import numpy
-import sys
+import sys, os, csv
 
 class Crossing:
     def __init__(self, pd_code, bridge = None):
@@ -459,6 +459,33 @@ class Knot:
             else:
                 break
         return has_rm2
+
+    def list_bridge_ts(self):
+        """
+        Generate a list of bridge choices that form a "T".
+        """
+        # Create a directory for outputs.
+        if not os.path.exists('bridge_ts'):
+            os.makedirs('bridge_ts')
+        if self.bridges == []:
+            # Create file to store initial pairs of brige Ts.
+            outfile_name = 'bridge_ts/roots.csv'
+            with open(outfile_name, "w") as outfile:
+                outputwriter = csv.writer(outfile, delimiter=',')
+                outputwriter.writerow(['name','pd_code','bridges'])
+            # Find and store intial bridge Ts.
+            i = 1
+            for a, b in itertools.combinations(self.free_crossings, 2):
+                if list(set(a.pd_code).intersection(b.pd_code)):
+                    name = str(self.name) + '_tree_' + str(i)
+                    bridges = [a.pd_code, b.pd_code]
+                    try:
+                        with open(outfile_name, "a") as outfile:
+                            outputwriter = csv.writer(outfile, delimiter=',')
+                            outputwriter.writerow([name, str(self), bridge_pd_codes])
+                    except IOError:
+                        sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+                    i += 1
 
     def max_pd_code_value(self):
         """
