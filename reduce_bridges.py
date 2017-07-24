@@ -483,6 +483,23 @@ class Knot:
                     rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
                     i += 1
             roots_outfile.close()
+        else:
+            # Create a file to store the output for this level.
+            name_parts = self.name.split('_')
+            depth = len(name_parts) - 3
+            roots_outfile_name = 'bridge_ts/tree_' + name_parts[3] + '_' + str(depth) + '.csv'
+            roots_outfile = open(roots_outfile_name, "w")
+            rootsoutputwriter = csv.writer(roots_outfile, delimiter=',')
+            rootsoutputwriter.writerow(['name','pd_notation','bridge_pd_codes'])
+            # Find and store bridge Ts.
+            i = 1
+            # For overpasses that form a T with an existing bridge...
+            for x in [1,2,3]:
+                name = str(self.name) + '_' + str(i)
+                bridge_pd_codes = ['a','b','c']
+                rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
+                i += 1
+            roots_outfile.close()
 
     def max_pd_code_value(self):
         """

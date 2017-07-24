@@ -90,6 +90,7 @@ def calculate_bridge_index(inputfile, outputdir):
                             except:
                                 logging.info('We need to identify next choices for bridge Ts')
                                 print 'We need to identify next choices for bridge Ts for ' + knot.name
+                                knot.list_bridge_ts()
                                 break
                                 # knot.designate_additional_bridge()
                         computed_bridge_index = len(knot.bridges)
