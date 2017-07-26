@@ -493,12 +493,14 @@ class Knot:
             rootsoutputwriter.writerow(['name','pd_notation','bridge_pd_codes'])
             # Find and store bridge Ts.
             i = 1
-            # For overpasses that form a T with an existing bridge...
-            for x in [1,2,3]:
-                name = str(self.name) + '_' + str(i)
-                bridge_pd_codes = ['a','b','c']
-                rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
-                i += 1
+            bridge_crossings = diff(self.crossings, self.free_crossings)
+            for a, b in itertools.product(bridge_crossings, self.free_crossings):
+                if list(set(a.pd_code).intersection(b.pd_code)):
+                    name = str(self.name) + '_' + str(i)
+                    bridge_pd_codes = [x.pd_code for x in bridge_crossings]
+                    bridge_pd_codes.append(b.pd_code)
+                    rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
+                    i += 1
             roots_outfile.close()
 
     def max_pd_code_value(self):
