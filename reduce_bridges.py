@@ -464,44 +464,48 @@ class Knot:
         """
         Generate a list of bridge choices that form a "T".
         """
-        # Create a directory for outputs.
-        if not os.path.exists('bridge_ts'):
-            os.makedirs('bridge_ts')
         if self.bridges == []:
-            # Create file to store initial pairs of brige Ts.
-            roots_outfile_name = 'bridge_ts/roots.csv'
-            roots_outfile = open(roots_outfile_name, "w")
-            rootsoutputwriter = csv.writer(roots_outfile, delimiter=',')
-            rootsoutputwriter.writerow(['name','pd_notation','bridge_pd_codes'])
-            # Find and store intial bridge Ts.
             i = 1
             for a, b in itertools.combinations(self.free_crossings, 2):
                 if list(set(a.pd_code).intersection(b.pd_code)):
-                    name = str(self.name) + '_tree_' + str(i)
-                    bridge_pd_codes = [a.pd_code, b.pd_code]
+                    name = self.name + '_tree_' + str(i) + '_0'
+                    e,f,g,h = a.pd_code
+                    p,q,r,s = b.pd_code
                     logging.debug('We found ' + name + ' at ' + str(a.pd_code) + ', ' + str(b.pd_code))
-                    rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
+                    # Create the directory bridge_ts/tree_i
+                    tree_directory = 'bridge_ts/tree_' + str(i)
+                    if not os.path.exists(tree_directory):
+                        os.makedirs(tree_directory)
+                    # Create the file tree_i/tree_i_0.csv
+                    tree_file = tree_directory + '/tree_' + str(i) +'_0.csv'
+                    outfile = open(tree_file, "w")
+                    outputwriter = csv.writer(outfile, delimiter=',')
+                    outputwriter.writerow(['name','pd_notation','bridges'])
+                    outputwriter.writerow([name,str(self),str([[f,h],[q,s]])])
                     i += 1
-            roots_outfile.close()
+            outfile.close()
         else:
-            # Create a file to store the output for this level.
-            name_parts = self.name.split('_')
-            depth = len(name_parts) - 3
-            roots_outfile_name = 'bridge_ts/tree_' + name_parts[3] + '_' + str(depth) + '.csv'
-            roots_outfile = open(roots_outfile_name, "w")
-            rootsoutputwriter = csv.writer(roots_outfile, delimiter=',')
-            rootsoutputwriter.writerow(['name','pd_notation','bridge_pd_codes'])
-            # Find and store bridge Ts.
-            i = 1
-            bridge_crossings = diff(self.crossings, self.free_crossings)
-            for a, b in itertools.product(bridge_crossings, self.free_crossings):
-                if list(set(a.pd_code).intersection(b.pd_code)):
-                    name = str(self.name) + '_' + str(i)
-                    bridge_pd_codes = [x.pd_code for x in bridge_crossings]
-                    bridge_pd_codes.append(b.pd_code)
-                    rootsoutputwriter.writerow([name,str(self),str(bridge_pd_codes)])
-                    i += 1
-            roots_outfile.close()
+            print self.name + ' already has some bridges chosen'
+            # Create a file to store the bridge T choices for this depth.
+            # name_parts = self.name.split('_')
+            # tree_number = str(name_parts[3])
+            # depth = int(name_parts[-1]) + 1
+            # outfile_name = 'bridge_ts/tree_' + tree_number + '/tree_' + tree_number + '_' + str(depth) + '.csv'
+            # outfile = open(outfile_name, "w")
+            # outputwriter = csv.writer(outfile, delimiter=',')
+            # outputwriter.writerow(['name','pd_notation','bridges'])
+            # # Find and store bridge Ts.
+            # i = 1
+            # bridge_crossings = diff(self.crossings, self.free_crossings)
+            # for a, b in itertools.product(bridge_crossings, self.free_crossings):
+            #     knot_copy = copy.deepcopy(self)
+            #     if list(set(a.pd_code).intersection(b.pd_code)):
+            #         knot_copy.designate_bridge(b)
+            #         knot_name_parts = self.name.rsplit('_', 1)
+            #         knot_copy_name = knot_name_parts[0] + '_' + str(i)
+            #         outputwriter.writerow([knot_copy_name,str(knot_copy),str(knot_copy.bridges)])
+            #         i += 1
+            # outfile.close()
 
     def max_pd_code_value(self):
         """
