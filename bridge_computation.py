@@ -67,16 +67,8 @@ def calculate_bridge_index(inputfile, outputdir):
                 # Simplify the knot now to avoid choosing bridges which will be
                 # discarded during simplification.
                 knot.simplify_rm1_rm2_recursively()
-                # # Create a directory to store the trees of this knot.
                 base_knot_name = row['name']
-                # trees_directory = 'trees/' + base_knot_name
-                # if not os.path.exists(trees_directory):
-                #     os.makedirs(trees_directory)
-                # Generate a list of bride pairs that form a T.
                 knot.list_bridge_ts(base_knot_name)
-
-
-
 
                 # # Process each initial bridge pair.
                 # with open('bridge_ts/roots.csv') as rootscsvfile:
