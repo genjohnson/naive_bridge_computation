@@ -460,9 +460,12 @@ class Knot:
                 break
         return has_rm2
 
-    def list_bridge_ts(self):
+    def list_bridge_ts(self, base_knot_name):
         """
         Generate a list of bridge choices that form a "T".
+
+        Arguments:
+        base_knot_name -- (str) The name of the original knot being processed
         """
         if self.bridges == []:
             i = 1
@@ -472,11 +475,11 @@ class Knot:
                     e,f,g,h = a.pd_code
                     p,q,r,s = b.pd_code
                     logging.debug('We found ' + name + ' at ' + str(a.pd_code) + ', ' + str(b.pd_code))
-                    # Create the directory bridge_ts/tree_i
-                    tree_directory = 'bridge_ts/tree_' + str(i)
+                    # Create the directory for this tree.
+                    tree_directory = 'knot_trees/' + base_knot_name + '/tree_' + str(i)
                     if not os.path.exists(tree_directory):
                         os.makedirs(tree_directory)
-                    # Create the file tree_i/tree_i_0.csv
+                    # Create the file to store the tree root.
                     tree_file = tree_directory + '/tree_' + str(i) +'_0.csv'
                     outfile = open(tree_file, "w")
                     outputwriter = csv.writer(outfile, delimiter=',')
@@ -490,7 +493,7 @@ class Knot:
             # name_parts = self.name.split('_')
             # tree_number = str(name_parts[3])
             # depth = int(name_parts[-1]) + 1
-            # outfile_name = 'bridge_ts/tree_' + tree_number + '/tree_' + tree_number + '_' + str(depth) + '.csv'
+            # outfile_name = 'trees/' + base_knot_name + '/tree_' + tree_number + '/tree_' + tree_number + '_' + str(depth) + '.csv'
             # outfile = open(outfile_name, "w")
             # outputwriter = csv.writer(outfile, delimiter=',')
             # outputwriter.writerow(['name','pd_notation','bridges'])

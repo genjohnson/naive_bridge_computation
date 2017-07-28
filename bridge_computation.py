@@ -67,11 +67,13 @@ def calculate_bridge_index(inputfile, outputdir):
                 # Simplify the knot now to avoid choosing bridges which will be
                 # discarded during simplification.
                 knot.simplify_rm1_rm2_recursively()
-                # Create a directory for outputs.
-                if not os.path.exists('bridge_ts'):
-                    os.makedirs('bridge_ts')
+                # # Create a directory to store the trees of this knot.
+                base_knot_name = row['name']
+                # trees_directory = 'trees/' + base_knot_name
+                # if not os.path.exists(trees_directory):
+                #     os.makedirs(trees_directory)
                 # Generate a list of bride pairs that form a T.
-                knot.list_bridge_ts()
+                knot.list_bridge_ts(base_knot_name)
 
 
 
