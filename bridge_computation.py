@@ -54,8 +54,7 @@ def calculate_bridge_index(inputfile, outputdir):
 
         # Perform actions on each row of the input CSV.
         for row in knotreader:
-            # Create a directory to store the output of all trees of this knot.
-            root, ext = os.path.splitext(os.path.basename(inputfile))
+            # Create a file to store the output of all trees of this knot.
             outfile_name = outputdir + '/' + row['name'] + '_output.csv'
             with open(outfile_name, "w") as outfile:
                 outputwriter = csv.writer(outfile, delimiter=',')
