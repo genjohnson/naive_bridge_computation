@@ -70,40 +70,47 @@ def calculate_bridge_index(inputfile, outputdir):
                 base_knot_name = row['name']
                 knot.list_bridge_ts(base_knot_name)
 
-                # # Process each initial bridge pair.
-                # with open('bridge_ts/roots.csv') as rootscsvfile:
-                #     rootsreader = csv.DictReader(rootscsvfile)
-                #     for root in rootsreader:
-                #         knot = create_knot_from_pd_code(ast.literal_eval(root['pd_notation']), root['name'])
-                #         logging.debug('Created knot ' + str(knot.name))
-                #         for bridge in ast.literal_eval(root['bridge_pd_codes']):
-                #             for crossing in knot.free_crossings:
-                #                 if crossing.pd_code == bridge:
-                #                     knot.designate_bridge(crossing)
-                #         # Drag crossings, simplify knot, and identify bridges
-                #         # until all crossings belong to a bridge.
-                #         while knot.free_crossings != []:
-                #             try:
-                #                 args = knot.find_crossing_to_drag()
-                #                 knot.drag_crossing_under_bridge_resursively(*args)
-                #                 knot.simplify_rm1_rm2_recursively()
-                #             except:
-                #                 logging.info('We need to identify next choices for bridge Ts')
-                #                 print 'We need to identify next choices for bridge Ts for ' + knot.name
-                #                 knot.list_bridge_ts()
-                #                 break
-                #                 # knot.designate_additional_bridge()
-                #         computed_bridge_index = len(knot.bridges)
-                #         logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
-                #         logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
-                #         # Add the results to our output file.
-                #         try:
-                #             with open(outfile_name, "a") as outfile:
-                #                 outputwriter = csv.writer(outfile, delimiter=',')
-                #                 outputwriter.writerow([knot.name, computed_bridge_index])
-                #         except IOError:
-                #             sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
-                # pass
+                for subdir, dirs, files in os.walk('knot_trees/' + base_knot_name):
+                    more_branches_to_process = 1
+                    depth_to_process = 0
+                    while (more_branches_to_process > 0):
+                        more_branches_to_process = 0
+                        next_depth_to_process = depth_to_process + 1
+                        for file in files:
+                            # If file name ends in "_" + depth_to_process + ".csv", open the file.
+                            if (depth_to_process == int(file.rsplit('_', 1)[-1].rsplit('.', 1)[0])):
+                                file_path = os.path.join(subdir, file)
+                                with open(file_path) as treecsvfile:
+                                    treereader = csv.DictReader(treecsvfile)
+                                    for tree in treereader:
+                                        # @todo: Configure create_knot_from_pd_code()
+                                        # to take bridges arg.
+                                        knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'])
+                                        print knot.name
+                                        while knot.free_crossings != []:
+                                            try:
+                                                # Drag underpasses & simplify recursively
+                                                # until no more moves are possible.
+                                                args = knot.find_crossing_to_drag()
+                                                knot.drag_crossing_under_bridge_resursively(*args)
+                                                knot.simplify_rm1_rm2_recursively()
+                                            except:
+                                                logging.info('We need to identify next choices for bridge Ts')
+                                                print 'We need to identify next choices for bridge Ts for ' + knot.name
+                                                more_branches_to_process += 1
+                                                # @todo: run knot.list_bridge_ts() where tree_directory = subdir.
+                                                # @todo: Write all knots/bridge choices for each depth in the same file. E.g., tree_1_1, tree_1_2, etc.
+                                        computed_bridge_index = len(knot.bridges)
+                                        logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
+                                        logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+                                        # Add the results to our output file.
+                                        try:
+                                            with open(outfile_name, "a") as outfile:
+                                                outputwriter = csv.writer(outfile, delimiter=',')
+                                                outputwriter.writerow([knot.name, computed_bridge_index])
+                                        except IOError:
+                                            sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+                        depth_to_process = next_depth_to_process
             except:
                 print 'Failed to fully process the knot. Moving on to the next knot'
                 logging.warning('Failed to fully process ' + str(knot.name) + '. Moving on to the next knot.')
