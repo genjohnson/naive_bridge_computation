@@ -51,8 +51,6 @@ def calculate_bridge_index(inputfile, outputdir):
     with open(inputfile) as csvfile:
         fieldnames = ['name', 'pd_notation']
         knotreader = csv.DictReader(csvfile)
-
-        # Perform actions on each row of the input CSV.
         for row in knotreader:
             # Create a file to store the output of all trees of this knot.
             outfile_name = outputdir + '/' + row['name'] + '_output.csv'
@@ -67,58 +65,58 @@ def calculate_bridge_index(inputfile, outputdir):
                 # Simplify the knot now to avoid choosing bridges which will be
                 # discarded during simplification.
                 knot.simplify_rm1_rm2_recursively()
-                base_knot_name = row['name']
-                directory = 'knot_trees/' + base_knot_name
-                knot.list_bridge_ts(directory, 0)
-
-                for subdir, dirs, files in os.walk(directory):
-                    more_branches_to_process = 1
-                    depth_to_process = 0
-                    while (more_branches_to_process > 0):
-                        more_branches_to_process = 0
-                        next_depth_to_process = depth_to_process + 1
-                        for file in files:
-                            print 'depth_to_process is ' + str(depth_to_process)
-                            # If file name ends in "_" + depth_to_process + ".csv", open the file.
-                            if (depth_to_process == int(file.rsplit('_', 1)[-1].rsplit('.', 1)[0])):
-                                file_path = os.path.join(subdir, file)
-                                print 'We are processing ' + file_path
-                                with open(file_path) as treecsvfile:
-                                    treereader = csv.DictReader(treecsvfile)
-                                    for tree in treereader:
-                                        knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'], ast.literal_eval(tree['bridges']))
-                                        print 'we have created knot ' + knot.name
-                                        while knot.free_crossings != []:
-                                            try:
-                                                # Drag underpasses & simplify recursively
-                                                # until no more moves are possible.
-                                                args = knot.find_crossing_to_drag()
-                                                knot.drag_crossing_under_bridge_resursively(*args)
-                                                knot.simplify_rm1_rm2_recursively()
-                                                continue
-                                            except:
-                                                logging.info('We need to identify next choices for bridge Ts')
-                                                print 'We need to identify next choices for bridge Ts for ' + knot.name
-                                                more_branches_to_process += 1
-                                                knot.list_bridge_ts(subdir, next_depth_to_process)
-                                            break
-
-                                        if knot.free_crossings == []:
-                                            computed_bridge_index = len(knot.bridges)
-                                            logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
-                                            logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
-                                            # Add the results to our output file.
-                                            try:
-                                                with open(outfile_name, "a") as outfile:
-                                                    outputwriter = csv.writer(outfile, delimiter=',')
-                                                    outputwriter.writerow([knot.name, computed_bridge_index])
-                                            except IOError:
-                                                sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
-                        depth_to_process = next_depth_to_process
+                if knot.free_crossings != []:
+                    base_knot_name = row['name']
+                    directory = 'knot_trees/' + base_knot_name
+                    knot.list_bridge_ts(directory, 0)
+                    for subdir, dirs, files in os.walk(directory):
+                        more_to_process = True
+                        depth_to_process = 0
+                        while more_to_process == True:
+                            more_to_process = process_tree_with_depth(subdir, depth_to_process)
+                            depth_to_process += 1
+                        break
             except:
                 print 'Failed to fully process the knot. Moving on to the next knot'
                 logging.warning('Failed to fully process ' + str(knot.name) + '. Moving on to the next knot.')
                 continue
+
+def process_tree_with_depth(directory, depth):
+    more_to_process = False
+    for subdir, dirs, files in os.walk(directory):
+        for file in files:
+            # If file name ends in "_" + depth + ".csv", open the file.
+            if (depth == int(file.rsplit('_', 1)[-1].rsplit('.', 1)[0])):
+                file_path = os.path.join(subdir, file)
+                with open(file_path) as treecsvfile:
+                    treereader = csv.DictReader(treecsvfile)
+                    for tree in treereader:
+                        knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'], ast.literal_eval(tree['bridges']))
+                        while knot.free_crossings != []:
+                            try:
+                                # Drag underpasses & simplify until no moves are possible.
+                                args = knot.find_crossing_to_drag()
+                                knot.drag_crossing_under_bridge_resursively(*args)
+                                knot.simplify_rm1_rm2_recursively()
+                            except:
+                                break
+                        if knot.free_crossings == []:
+                            # @todo Write number of bridges to output file.
+                            print 'Number of bridges for ' + knot.name + ' is ' + str(len(knot.bridges))
+                            # computed_bridge_index = len(knot.bridges)
+                            # logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
+                            # logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+                            # # Add the results to our output file.
+                            # try:
+                            #     with open(outfile_name, "a") as outfile:
+                            #         outputwriter = csv.writer(outfile, delimiter=',')
+                            #         outputwriter.writerow([knot.name, computed_bridge_index])
+                            # except IOError:
+                            #     sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+                        else:
+                            knot.list_bridge_ts(subdir, depth + 1)
+                            more_to_process = True
+    return more_to_process
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
