@@ -68,9 +68,10 @@ def calculate_bridge_index(inputfile, outputdir):
                 # discarded during simplification.
                 knot.simplify_rm1_rm2_recursively()
                 base_knot_name = row['name']
-                knot.list_bridge_ts(base_knot_name)
+                directory = 'knot_trees/' + base_knot_name
+                knot.list_bridge_ts(directory, 0)
 
-                for subdir, dirs, files in os.walk('knot_trees/' + base_knot_name):
+                for subdir, dirs, files in os.walk(directory):
                     more_branches_to_process = 1
                     depth_to_process = 0
                     while (more_branches_to_process > 0):
@@ -83,8 +84,7 @@ def calculate_bridge_index(inputfile, outputdir):
                                 with open(file_path) as treecsvfile:
                                     treereader = csv.DictReader(treecsvfile)
                                     for tree in treereader:
-                                        knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'])
-                                        print knot.name
+                                        knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'], ast.literal_eval(tree['bridges']))
                                         while knot.free_crossings != []:
                                             try:
                                                 # Drag underpasses & simplify recursively
@@ -96,8 +96,8 @@ def calculate_bridge_index(inputfile, outputdir):
                                                 logging.info('We need to identify next choices for bridge Ts')
                                                 print 'We need to identify next choices for bridge Ts for ' + knot.name
                                                 more_branches_to_process += 1
-                                                # @todo: run knot.list_bridge_ts() where tree_directory = subdir.
-                                                # @todo: Write all knots/bridge choices for each depth in the same file. E.g., tree_1_1, tree_1_2, etc.
+                                                knot.list_bridge_ts(subdir, next_depth_to_process)
+                                                x += 1
                                         computed_bridge_index = len(knot.bridges)
                                         logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
                                         logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
