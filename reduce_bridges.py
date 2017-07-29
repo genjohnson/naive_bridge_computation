@@ -61,11 +61,20 @@ class Crossing:
             return max(f, h)
 
 class Knot:
-    def __init__(self, crossings, name = None):
+    def __init__(self, crossings, name = None, bridges = None):
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
-        self.bridges = []
         self.free_crossings = crossings[:]
+        self.bridges = []
+        if bridges:
+            for bridge in bridges:
+                bridge_end = bridge[0]
+                for free_crossing in self.free_crossings:
+                    if (bridge_end in free_crossing.pd_code):
+                        i = free_crossing.pd_code.index(bridge_end)
+                        if ((i == 1) or (i == 3)):
+                            self.designate_bridge(free_crossing)
+                            break
 
     def __eq__(self, other):
         return self.crossings == other.crossings
@@ -716,14 +725,16 @@ def alter_y_values(y, addends, maximum):
     y_vals = [alter_if_greater(y+addend, maximum, 0, maximum) for addend in addends]
     return y_vals
 
-def create_knot_from_pd_code(pd_code, name = None):
+def create_knot_from_pd_code(pd_code, name = None, bridges = None):
     """
     Create a Knot object using a provided PD code.
 
     Arguments:
     pd_code -- (list) the PD notation of a knot expressed as a list of lists
+    name -- (str) a string to identify the knot
+    bridges -- (list) Each element is a list of PD code values for the ends of each bridge
     """
-    return Knot([Crossing(crossing) for crossing in pd_code], name)
+    return Knot([Crossing(crossing) for crossing in pd_code], name, bridges)
 
 def diff(first, second):
     """
