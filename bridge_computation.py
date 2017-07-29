@@ -83,8 +83,6 @@ def calculate_bridge_index(inputfile, outputdir):
                                 with open(file_path) as treecsvfile:
                                     treereader = csv.DictReader(treecsvfile)
                                     for tree in treereader:
-                                        # @todo: Configure create_knot_from_pd_code()
-                                        # to take bridges arg.
                                         knot = create_knot_from_pd_code(ast.literal_eval(tree['pd_notation']), tree['name'])
                                         print knot.name
                                         while knot.free_crossings != []:
