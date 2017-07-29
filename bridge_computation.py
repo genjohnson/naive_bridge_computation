@@ -73,15 +73,17 @@ def calculate_bridge_index(inputfile, outputdir):
                         more_to_process = True
                         depth_to_process = 0
                         while more_to_process == True:
-                            more_to_process = process_tree_with_depth(subdir, depth_to_process)
+                            more_to_process = process_tree_with_depth(subdir, depth_to_process, outfile_name)
                             depth_to_process += 1
                         break
+                else:
+                    write_output(knot, outfile_name)
             except:
                 print 'Failed to fully process the knot. Moving on to the next knot'
                 logging.warning('Failed to fully process ' + str(knot.name) + '. Moving on to the next knot.')
                 continue
 
-def process_tree_with_depth(directory, depth):
+def process_tree_with_depth(directory, depth, outfile_name):
     more_to_process = False
     for subdir, dirs, files in os.walk(directory):
         for file in files:
@@ -101,22 +103,23 @@ def process_tree_with_depth(directory, depth):
                             except:
                                 break
                         if knot.free_crossings == []:
-                            # @todo Write number of bridges to output file.
-                            print 'Number of bridges for ' + knot.name + ' is ' + str(len(knot.bridges))
-                            # computed_bridge_index = len(knot.bridges)
-                            # logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
-                            # logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
-                            # # Add the results to our output file.
-                            # try:
-                            #     with open(outfile_name, "a") as outfile:
-                            #         outputwriter = csv.writer(outfile, delimiter=',')
-                            #         outputwriter.writerow([knot.name, computed_bridge_index])
-                            # except IOError:
-                            #     sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
+                            write_output(knot, outfile_name)
                         else:
                             knot.list_bridge_ts(subdir, depth + 1)
                             more_to_process = True
     return more_to_process
+
+def write_output(knot, outfile_name):
+    computed_bridge_index = len(knot.bridges)
+    logging.info('Finished processing ' + str(knot.name) + '. The final bridge number is ' + str(computed_bridge_index))
+    logging.debug('The final PD code of ' + str(knot.name) + ' is ' + str(knot))
+    # Add the results to our output file.
+    try:
+        with open(outfile_name, "a") as outfile:
+            outputwriter = csv.writer(outfile, delimiter=',')
+            outputwriter.writerow([knot.name, computed_bridge_index])
+    except IOError:
+        sys.exit('Cannot write output file. Be sure the directory "outputs" exists and is writeable.')
 
 if __name__ == "__main__":
     bridge_computation(sys.argv[1:])
