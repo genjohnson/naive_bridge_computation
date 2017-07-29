@@ -499,13 +499,11 @@ class Knot:
                     i += 1
             outfile.close()
         else:
-            print self.name + ' already has some bridges chosen'
             # Check if a file for this knot & depth exists. If not, create the file.
             tree_prefix = directory.rsplit('/', 1)[1]
             depth_suffix = '_' + str(depth)
             file_name = tree_prefix + depth_suffix + '.csv'
             file_path = directory + '/' + file_name
-            
             if not os.path.isfile(file_path):
                 # Create the file we need with headers.
                 with open(file_path, "w") as outfile:
