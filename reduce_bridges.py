@@ -76,7 +76,6 @@ class Knot:
                             self.designate_bridge(free_crossing)
                             break
 
-
     def __eq__(self, other):
         return self.crossings == other.crossings
 
@@ -364,7 +363,7 @@ class Knot:
 
     def find_crossing_to_drag(self):
         max_pd_code_value = self.max_pd_code_value()
-        for bridge in self.bridges:
+        for bridge in self.bridges.itervalues():
             for end in bridge:
                 crossings_containing_end = []
                 for crossing in diff(self.crossings, self.free_crossings):
@@ -484,7 +483,7 @@ class Knot:
         directory -- (str) The base path to store all the output files.
         depth -- (int) The depth of the tree
         """
-        if self.bridges == []:
+        if self.bridges == {}:
             i = 1
             depth_suffix = '_' + str(depth)
             for a, b in itertools.combinations(self.free_crossings, 2):
@@ -492,6 +491,7 @@ class Knot:
                     name = self.name + '_tree_' + str(i) + depth_suffix
                     e,f,g,h = a.pd_code
                     p,q,r,s = b.pd_code
+                    bridges = {0:[f,h],1:[q,s]}
                     logging.debug('We found ' + name + ' at ' + str(a.pd_code) + ', ' + str(b.pd_code))
                     # Create the directory for this tree.
                     tree_directory = directory + '/tree_' + str(i)
@@ -502,7 +502,7 @@ class Knot:
                     outfile = open(tree_file, "w")
                     outputwriter = csv.writer(outfile, delimiter=',')
                     outputwriter.writerow(['name','pd_notation','bridges'])
-                    outputwriter.writerow([name,str(self),str([[f,h],[q,s]])])
+                    outputwriter.writerow([name,str(self),bridges])
                     i += 1
             outfile.close()
         else:
