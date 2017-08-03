@@ -97,12 +97,6 @@ class DesignateBridgeTestCase(unittest.TestCase):
         knot.designate_bridge(knot.crossings[0])
         answer = Knot([Crossing(x[0],x[1]) for x in [[[1, 15, 2, 14], 0],[[5, 17, 6, 16], 0],[[6, 12, 7, 11], None],[[9, 5, 10, 4], None],[[10, 16, 11, 15], 0],[[12, 8, 13, 7], None],[[13, 3, 14, 2], None],[[17, 9, 18, 8], None],[[18, 4, 1, 3], None]]])
         self.assertEqual(knot, answer)
-    # def testDesignateNonAdjacentBridge(self):
-    #     knot = create_knot_from_pd_code([[1,8,2,9],[3,11,4,10],[5,1,6,12],[7,2,8,3],[9,7,10,6],[11,5,12,4]])
-    #     knot.designate_bridge(knot.crossings[0])
-    #     knot.designate_additional_bridge()
-    #     answer = Knot([Crossing(x[0],x[1]) for x in [[[1,8,2,9],0],[[3,11,4,10],None],[[5,1,6,12],None],[[7,2,8,3],1],[[9,7,10,6],None],[[11,5,12,4],None]]])
-    #     self.assertEqual(knot, answer)
 
 class DragCrossingUnderBridgeTestCase(unittest.TestCase):
     # Dragging case b=g, a>y, y==f
