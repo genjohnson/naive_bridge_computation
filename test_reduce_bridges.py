@@ -278,14 +278,13 @@ class SimplifyRm2TestCase(unittest.TestCase):
         answer = create_knot_from_pd_code([[1,2,2,1]])
         self.assertEqual(knot, answer)
 
-    # def testSimplifyRm2Bridges(self):
-    #     # Check bridge changes and PD code.
-    #     knot = create_knot_from_pd_code([[8,19,9,20],[10,8,11,7],[11,16,12,17],[12,22,13,21],[18,9,19,10],[1,15,2,14],[2,15,3,16],[3,1,4,22],[4,14,5,13],[5,20,6,21],[6,18,7,17]], bridges = {0:[19,20],1:[18,17]})
-    #     print knot.bridges
-    #     knot.simplify_rm2([5, 6], [[15, -2], [2, -2]])
-    #     answer = Knot([Crossing(x[0], x[1]) for x in [[[6,15,7,16],0],[[8,6,9,5],None],[[9,12,10,13],1],[[10,18,11,17],0],[[14,7,15,8],None],[[1,1,2,18],0],[[2,12,3,11],1],[[3,16,4,17],0],[[4,14,5,13],1]]])
-    #     self.assertEqual(knot, answer)
-    #     self.assertEqual(knot.bridges, {0:[15,1],1:[14,11]})
+    def testSimplifyRm2Bridges(self):
+        # Check bridge changes and PD code.
+        knot = create_knot_from_pd_code([[8,19,9,20],[10,8,11,7],[11,16,12,17],[12,22,13,21],[18,9,19,10],[1,15,2,14],[2,15,3,16],[3,1,4,22],[4,14,5,13],[5,20,6,21],[6,18,7,17]], bridges = {0:[19,20],1:[18,17]})
+        knot.simplify_rm2([5, 6], [[15, -2], [2, -2]])
+        answer = Knot([Crossing(x[0], x[1]) for x in [[[6,15,7,16],0],[[8,6,9,5],None],[[9,12,10,13],1],[[10,18,11,17],0],[[14,7,15,8],None],[[1,1,2,18],0],[[2,12,3,11],1],[[3,16,4,17],0],[[4,14,5,13],1]]])
+        self.assertEqual(knot, answer)
+        self.assertEqual(knot.bridges, {0:[15,1],1:[14,11]})
 
 class SimplifyRm2RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm2Recursively(self):

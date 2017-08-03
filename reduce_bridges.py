@@ -606,11 +606,12 @@ class Knot:
         return self
 
     def simplify_rm2(self, crossing_indices, segments_to_eliminate):
-        """Simplify a knot by one Reidemeister move of type 2.
+        """
+        Simplify a knot by one Reidemeister move of type 2.
 
         Arguments:
         crossing_indices -- (list) the indices of crossings to remove
-        segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
+        segments_to_eliminate -- (list) each element is a list of the PD code of a segment that is simplified and the addend to apply to all greater PD code values.
         """
         self.delete_crossings(crossing_indices)
         maximum = len(self.crossings) * 2
@@ -620,15 +621,15 @@ class Knot:
         logging.info('The segments ' + str(segments_to_eliminate[0][0]) + ' and ' + str(segments_to_eliminate[1][0]) + ' can be elimiated by RM2 moves.')
 
         for segment in segments_to_eliminate:
-            value = segment[0]
-            addend = segment[1]
+            value, addend = segment
+
             # Alter values of each crossing.
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(value, addend)
 
             # Adjust bridges.
-            for bridge in self.bridges.itervalues():
-                map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
+            for key, bridge in self.bridges.iteritems():
+                self.bridges[key] = map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
 
             # Alter values of remaining segments to eliminate.
             segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
