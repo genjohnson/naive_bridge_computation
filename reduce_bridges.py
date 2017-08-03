@@ -65,9 +65,9 @@ class Knot:
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
         self.free_crossings = crossings[:]
-        self.bridges = []
+        self.bridges = {}
         if bridges:
-            for bridge in bridges:
+            for bridge in bridges.itervalues():
                 bridge_end = bridge[0]
                 for free_crossing in self.free_crossings:
                     if (bridge_end in free_crossing.pd_code):
@@ -75,6 +75,7 @@ class Knot:
                         if ((i == 1) or (i == 3)):
                             self.designate_bridge(free_crossing)
                             break
+
 
     def __eq__(self, other):
         return self.crossings == other.crossings
@@ -92,8 +93,7 @@ class Knot:
         addend -- (int) The number to add to the segments greater than value.
         maximum -- (int) The maximum allowed value of segments in the bridge.
         """
-        for bridge in self.bridges:
-            bridge_index = self.bridges.index(bridge)
+        for bridge_index, bridge in self.bridges.iteritems():
             for x in bridge:
                 x_index = bridge.index(x)
                 self.bridges[bridge_index][x_index] = alter_if_greater(x, value, addend, maximum)
@@ -120,7 +120,7 @@ class Knot:
         Choose a crossing to designate as a bridge based on existing bridges.
         """
         bridge_crossings = diff(self.crossings, self.free_crossings)
-        bridge_ends = [x for bridge_ends in self.bridges for x in bridge_ends]
+        bridge_ends = [x for bridge_ends in self.bridges.itervalues() for x in bridge_ends]
         all_bridge_segments = [crossing.pd_code[i] for crossing in bridge_crossings for i in [0, 2]]
         bridge_interior_segments = diff(all_bridge_segments, bridge_ends)
 
@@ -141,10 +141,17 @@ class Knot:
         Arguments:
         crossing -- (obj) a crossing
         """
-        self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
+        # Determine the key for this bridge.
+        bridge_keys = self.bridges.keys()
+        if (bridge_keys):
+          key = max(bridge_keys) + 1
+        else:
+          key = 0
+        # Designate the bridge and update the crossing's info.
+        self.bridges[key] = [crossing.pd_code[1], crossing.pd_code[3]]
         self.free_crossings.remove(crossing)
-        crossing.bridge = len(self.bridges) - 1
-        logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
+        crossing.bridge = key
+        logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with key ' + str(key))
         self.extend_bridge(crossing.bridge)
         
     def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment):
@@ -620,8 +627,8 @@ class Knot:
                 crossing.alter_elements_greater_than(value, addend)
 
             # Adjust bridges.
-            for i, bridge in enumerate(self.bridges):
-                self.bridges[i] = map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
+            for bridge in self.bridges.itervalues():
+                map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
 
             # Alter values of remaining segments to eliminate.
             segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
@@ -636,10 +643,9 @@ class Knot:
         self.alter_bridge_segments_greater_than(maximum, 0, maximum)
                 
         extend_if_bridge_end = [value - 1, value + 1]
-        for bridge in self.bridges:
+        for bridge_index, bridge in self.bridges.iteritems():
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
-                bridge_index = self.bridges.index(bridge)
                 self.extend_bridge(bridge_index)
         logging.info('After simplifying by RM2, the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
 
