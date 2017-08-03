@@ -65,9 +65,9 @@ class Knot:
         self.name = name
         self.crossings = crossings # crossings is a list of Crossing objects
         self.free_crossings = crossings[:]
-        self.bridges = []
+        self.bridges = {}
         if bridges:
-            for bridge in bridges:
+            for bridge in bridges.itervalues():
                 bridge_end = bridge[0]
                 for free_crossing in self.free_crossings:
                     if (bridge_end in free_crossing.pd_code):
@@ -92,8 +92,7 @@ class Knot:
         addend -- (int) The number to add to the segments greater than value.
         maximum -- (int) The maximum allowed value of segments in the bridge.
         """
-        for bridge in self.bridges:
-            bridge_index = self.bridges.index(bridge)
+        for bridge_index, bridge in self.bridges.iteritems():
             for x in bridge:
                 x_index = bridge.index(x)
                 self.bridges[bridge_index][x_index] = alter_if_greater(x, value, addend, maximum)
@@ -120,7 +119,7 @@ class Knot:
         Choose a crossing to designate as a bridge based on existing bridges.
         """
         bridge_crossings = diff(self.crossings, self.free_crossings)
-        bridge_ends = [x for bridge_ends in self.bridges for x in bridge_ends]
+        bridge_ends = [x for bridge_ends in self.bridges.itervalues() for x in bridge_ends]
         all_bridge_segments = [crossing.pd_code[i] for crossing in bridge_crossings for i in [0, 2]]
         bridge_interior_segments = diff(all_bridge_segments, bridge_ends)
 
@@ -141,10 +140,17 @@ class Knot:
         Arguments:
         crossing -- (obj) a crossing
         """
-        self.bridges.append([crossing.pd_code[1], crossing.pd_code[3]])
+        # Determine the key for this bridge.
+        bridge_keys = self.bridges.keys()
+        if (bridge_keys):
+          key = max(bridge_keys) + 1
+        else:
+          key = 0
+        # Designate the bridge and update the crossing's info.
+        self.bridges[key] = [crossing.pd_code[1], crossing.pd_code[3]]
         self.free_crossings.remove(crossing)
-        crossing.bridge = len(self.bridges) - 1
-        logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with index ' + str(crossing.bridge))
+        crossing.bridge = key
+        logging.debug('Crossing ' + str(crossing.pd_code) + ' has been designated as a bridge with key ' + str(key))
         self.extend_bridge(crossing.bridge)
         
     def drag_crossing_under_bridge(self, crossing_to_drag, adjacent_segment):
@@ -288,11 +294,11 @@ class Knot:
         logging.debug('PD code of the knot after dragging is ' + str(self))
 
         # Alter PD code values of bridge ends.
-        for i, bridge in enumerate(self.bridges):
+        for i, bridge in self.bridges.iteritems():
             self.bridges[i] = map(alter_element_for_drag, bridge, repeat(a_y_sorted[0],2), repeat(a_y_sorted[1],2))
 
         # Check if the crossing we dragged is now covered by a bridge.
-        for i, bridge in enumerate(self.bridges):
+        for i, bridge in self.bridges.iteritems():
             for end in bridge:
                 if (end == crossing_to_drag.pd_code[1]) or (end == crossing_to_drag.pd_code[3]):
                     self.extend_bridge(i)
@@ -357,7 +363,7 @@ class Knot:
 
     def find_crossing_to_drag(self):
         max_pd_code_value = self.max_pd_code_value()
-        for bridge in self.bridges:
+        for bridge in self.bridges.itervalues():
             for end in bridge:
                 crossings_containing_end = []
                 for crossing in diff(self.crossings, self.free_crossings):
@@ -477,7 +483,7 @@ class Knot:
         directory -- (str) The base path to store all the output files.
         depth -- (int) The depth of the tree
         """
-        if self.bridges == []:
+        if self.bridges == {}:
             i = 1
             depth_suffix = '_' + str(depth)
             for a, b in itertools.combinations(self.free_crossings, 2):
@@ -485,6 +491,7 @@ class Knot:
                     name = self.name + '_tree_' + str(i) + depth_suffix
                     e,f,g,h = a.pd_code
                     p,q,r,s = b.pd_code
+                    bridges = {0:[f,h],1:[q,s]}
                     logging.debug('We found ' + name + ' at ' + str(a.pd_code) + ', ' + str(b.pd_code))
                     # Create the directory for this tree.
                     tree_directory = directory + '/tree_' + str(i)
@@ -495,7 +502,7 @@ class Knot:
                     outfile = open(tree_file, "w")
                     outputwriter = csv.writer(outfile, delimiter=',')
                     outputwriter.writerow(['name','pd_notation','bridges'])
-                    outputwriter.writerow([name,str(self),str([[f,h],[q,s]])])
+                    outputwriter.writerow([name,str(self),bridges])
                     i += 1
             outfile.close()
         else:
@@ -573,7 +580,7 @@ class Knot:
                 # Adjust crossings.
                 for crossing in self.crossings:
                     crossing.alter_elements_greater_than(duplicate_value, -2, new_max_value)
-            for i, bridge in enumerate(self.bridges):
+            for i, bridge in self.bridges.iteritems():
                 # Adjust bridges.
                 self.bridges[i] = map(alter_bridge_end_for_rm1, bridge, repeat(duplicate_value, 2), repeat(new_max_value, 2))
                 # Try to extend bridges.
@@ -599,11 +606,12 @@ class Knot:
         return self
 
     def simplify_rm2(self, crossing_indices, segments_to_eliminate):
-        """Simplify a knot by one Reidemeister move of type 2.
+        """
+        Simplify a knot by one Reidemeister move of type 2.
 
         Arguments:
         crossing_indices -- (list) the indices of crossings to remove
-        segments_to_eliminate -- (list) integer values corresponding to the segments which are simplified
+        segments_to_eliminate -- (list) each element is a list of the PD code of a segment that is simplified and the addend to apply to all greater PD code values.
         """
         self.delete_crossings(crossing_indices)
         maximum = len(self.crossings) * 2
@@ -613,15 +621,15 @@ class Knot:
         logging.info('The segments ' + str(segments_to_eliminate[0][0]) + ' and ' + str(segments_to_eliminate[1][0]) + ' can be elimiated by RM2 moves.')
 
         for segment in segments_to_eliminate:
-            value = segment[0]
-            addend = segment[1]
+            value, addend = segment
+
             # Alter values of each crossing.
             for crossing in self.crossings:
                 crossing.alter_elements_greater_than(value, addend)
 
             # Adjust bridges.
-            for i, bridge in enumerate(self.bridges):
-                self.bridges[i] = map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
+            for key, bridge in self.bridges.iteritems():
+                self.bridges[key] = map(alter_if_greater, bridge, repeat(value, 2), repeat(addend, 2))
 
             # Alter values of remaining segments to eliminate.
             segments_to_eliminate = alter_segment_elements_greater_than(segments_to_eliminate, value, addend)
@@ -636,10 +644,9 @@ class Knot:
         self.alter_bridge_segments_greater_than(maximum, 0, maximum)
                 
         extend_if_bridge_end = [value - 1, value + 1]
-        for bridge in self.bridges:
+        for bridge_index, bridge in self.bridges.iteritems():
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
-                bridge_index = self.bridges.index(bridge)
                 self.extend_bridge(bridge_index)
         logging.info('After simplifying by RM2, the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
 
