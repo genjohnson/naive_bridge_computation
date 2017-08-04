@@ -586,9 +586,7 @@ class Knot:
                 # Try to extend bridges.
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
-                    bridge_index = self.bridges.index(bridge)
-                    self.extend_bridge(bridge_index)
-
+                    self.extend_bridge(i)
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
