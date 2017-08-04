@@ -70,11 +70,15 @@ class Knot:
             for bridge in bridges.itervalues():
                 bridge_end = bridge[0]
                 for free_crossing in self.free_crossings:
-                    if (bridge_end in free_crossing.pd_code):
+                    count = free_crossing.pd_code.count(bridge_end)
+                    if count == 1:
                         i = free_crossing.pd_code.index(bridge_end)
                         if ((i == 1) or (i == 3)):
                             self.designate_bridge(free_crossing)
                             break
+                    elif count == 2:
+                        self.designate_bridge(free_crossing)
+                        break
 
     def __eq__(self, other):
         return self.crossings == other.crossings
