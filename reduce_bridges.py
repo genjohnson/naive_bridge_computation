@@ -102,6 +102,9 @@ class Knot:
                 self.bridges[bridge_index][x_index] = alter_if_greater(x, value, addend, maximum)
         return self
 
+    def bridge_crossings(self):
+        return diff(self.crossings, self.free_crossings)
+
     def delete_crossings(self, indices):
         """
         Delete crossings from a knot.
@@ -122,7 +125,7 @@ class Knot:
         """
         Choose a crossing to designate as a bridge based on existing bridges.
         """
-        bridge_crossings = diff(self.crossings, self.free_crossings)
+        bridge_crossings = self.bridge_crossings()
         bridge_ends = [x for bridge_ends in self.bridges.itervalues() for x in bridge_ends]
         all_bridge_segments = [crossing.pd_code[i] for crossing in bridge_crossings for i in [0, 2]]
         bridge_interior_segments = diff(all_bridge_segments, bridge_ends)
@@ -165,7 +168,7 @@ class Knot:
             Arguments:
             adjacent_segment -- (int) The PD code value of the segment to drag a crossing along.
             """
-            for crossing in diff(self.crossings, self.free_crossings):
+            for crossing in self.bridge_crossings():
                 if adjacent_segment in crossing.pd_code:
                     return crossing
 
@@ -370,7 +373,7 @@ class Knot:
         for bridge in self.bridges.itervalues():
             for end in bridge:
                 crossings_containing_end = []
-                for crossing in diff(self.crossings, self.free_crossings):
+                for crossing in self.bridge_crossings():
                     if end in crossing.pd_code:
                         crossings_containing_end.append(crossing)
                 if len(crossings_containing_end) == 2:
@@ -522,8 +525,7 @@ class Knot:
                     outputwriter.writerow(['name','pd_notation','bridges'])
             # Find and store bridge Ts.
             i = 1
-            bridge_crossings = diff(self.crossings, self.free_crossings)
-            for a, b in itertools.product(bridge_crossings, self.free_crossings):
+            for a, b in itertools.product(self.bridge_crossings(), self.free_crossings):
                 knot_copy = copy.deepcopy(self)
                 if list(set(a.pd_code).intersection(b.pd_code)):
                     knot_copy.designate_bridge(b)
