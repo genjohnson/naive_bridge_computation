@@ -105,6 +105,13 @@ class Knot:
     def bridge_crossings(self):
         return diff(self.crossings, self.free_crossings)
 
+    def delete_bridge(self, bridge_key):
+        for crossing in self.bridge_crossings():
+            if (crossing.bridge == bridge_key):
+                crossing.bridge = None
+        del(self.bridges[bridge_key])
+        return self
+
     def delete_crossings(self, indices):
         """
         Delete crossings from a knot.
@@ -598,7 +605,7 @@ class Knot:
             if key != None:
                 bridge_to_check = self.bridges[key]
                 if (bridge_to_check[0] == bridge_to_check[1]):
-                    del(self.bridges[key])
+                    self.delete_bridge(key)
                     logging.debug('The bridge with key ' + str(key) + ' has become a simple arc and been deleted.')
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
