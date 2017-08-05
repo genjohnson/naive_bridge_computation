@@ -570,6 +570,7 @@ class Knot:
         crossings = self.crossings
         for index in sorted(twisted_crossings, reverse = True):
             duplicate_value = self.crossings[index].has_duplicate_value()
+            key = self.crossings[index].bridge
             original_max_value = len(self.crossings)*2
             self.delete_crossings([index])
             new_max_value = original_max_value-2
@@ -591,6 +592,12 @@ class Knot:
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     self.extend_bridge(i)
+            # Remove the bridge if it has become a simple arc.
+            if key != None:
+                bridge_to_check = self.bridges[key]
+                if (bridge_to_check[0] == bridge_to_check[1]):
+                    del(self.bridges[key])
+                    logging.debug('The bridge with key ' + str(key) + ' has become a simple arc and been deleted.')
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
