@@ -109,7 +109,9 @@ class Knot:
         for crossing in self.bridge_crossings():
             if (crossing.bridge == bridge_key):
                 crossing.bridge = None
+                self.free_crossings.append(crossing)
         del(self.bridges[bridge_key])
+        logging.debug('The bridge with key ' + str(bridge_key) + ' has been deleted.')
         return self
 
     def delete_crossings(self, indices):
