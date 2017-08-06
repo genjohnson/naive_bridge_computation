@@ -650,6 +650,7 @@ class Knot:
         crossing_indices -- (list) the indices of crossings to remove
         segments_to_eliminate -- (list) each element is a list of the PD code of a segment that is simplified and the addend to apply to all greater PD code values.
         """
+        key = self.crossings[crossing_indices[0]].bridge
         self.delete_crossings(crossing_indices)
         maximum = len(self.crossings) * 2
         extend_if_bridge_end = []
@@ -685,6 +686,11 @@ class Knot:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
                 self.extend_bridge(bridge_index)
+        # Remove the bridge if it has become a simple arc.
+        if key != None:
+            bridge_to_check = self.bridges[key]
+            if (bridge_to_check[0] == bridge_to_check[1]):
+                self.delete_bridge(key)
         logging.info('After simplifying by RM2, the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
 
         return self
