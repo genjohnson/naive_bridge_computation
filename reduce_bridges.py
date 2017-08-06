@@ -569,6 +569,27 @@ class Knot:
         """
         return len(self.crossings)
 
+    def simplify_bridges(self, key):
+        """
+        Delete or merge bridges eliminated as part of Reidemeister moves.
+
+        Arguments:
+        key -- The index of the bridge to eliminate or None.
+        """
+        if key != None:
+            bridge_to_check = self.bridges[key]
+            if (bridge_to_check[0] == bridge_to_check[1]):
+                # Remove the bridge if it has become a simple arc.
+                self.delete_bridge(key)
+            else:
+                other_bridges = {other_key: value for other_key, value in self.bridges.items() if other_key != key}
+                for (end, (other_key, other_ends)) in itertools.product(bridge_to_check, other_bridges.items()):
+                    if end in other_ends:
+                        # Merge bridges that have been joined.
+                        self.merge_bridges(key, other_key)
+                        break
+        return self
+
     def simplify_rm1(self, twisted_crossings):
         """
         Simplify one level of a knot by Reidemeister moves of type 1.
@@ -615,18 +636,7 @@ class Knot:
                 extend_bridge = any(x in bridge for x in extend_if_bridge_end)
                 if extend_bridge:
                     self.extend_bridge(i)
-            if key != None:
-                bridge_to_check = self.bridges[key]
-                if (bridge_to_check[0] == bridge_to_check[1]):
-                    # Remove the bridge if it has become a simple arc.
-                    self.delete_bridge(key)
-                else:
-                    other_bridges = {other_key: value for other_key, value in self.bridges.items() if other_key != key}
-                    for (end, (other_key, other_ends)) in itertools.product(bridge_to_check, other_bridges.items()):
-                        if end in other_ends:
-                            # Merge bridges that have been joined.
-                            self.merge_bridges(key, other_key)
-                            break
+            self.simplify_bridges(key)
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
@@ -687,18 +697,7 @@ class Knot:
             extend_bridge = any(x in bridge for x in extend_if_bridge_end)
             if extend_bridge:
                 self.extend_bridge(bridge_index)
-        if key != None:
-            bridge_to_check = self.bridges[key]
-            if (bridge_to_check[0] == bridge_to_check[1]):
-                # Remove the bridge if it has become a simple arc.
-                self.delete_bridge(key)
-            else:
-                other_bridges = {other_key: value for other_key, value in self.bridges.items() if other_key != key}
-                for (end, (other_key, other_ends)) in itertools.product(bridge_to_check, other_bridges.items()):
-                    if end in other_ends:
-                        # Merge bridges that have been joined.
-                        self.merge_bridges(key, other_key)
-                        break
+        self.simplify_bridges(key)
         logging.info('After simplifying by RM2, the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
 
         return self
