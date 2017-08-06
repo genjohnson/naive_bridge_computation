@@ -551,6 +551,18 @@ class Knot:
         """
         return len(self.crossings)*2
 
+    def merge_bridges(self, bridge_a, bridge_b):
+        """
+        Merge bridges that become one through Reidemeister moves type 1 or 2.
+
+        Arguments:
+        bridge_a -- The key of a bridge invloved in the merge.
+        bridge_b -- The key of the other bridge invovled in the merge.
+        """
+        self.delete_bridge(bridge_a)
+        self.extend_bridge(bridge_b)
+        return self
+
     def num_crossings(self):
         """
         Return the number of crossings in the knot.
