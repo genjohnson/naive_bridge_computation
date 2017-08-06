@@ -244,6 +244,12 @@ class SimplifyRm1TestCase(unittest.TestCase):
         self.assertEqual(knot, answer)
         self.assertEqual(knot.bridges, {})
 
+    def testSimplifyRm1_with_bridge_merger(self):
+        knot = create_knot_from_pd_code([[1,2,2,3],[3,4,4,5],[6,5,1,6]], bridges = {0:[2,3], 1:[6,5]})
+        knot.simplify_rm1([1])
+        answer = create_knot_from_pd_code([[1,2,2,3],[4,3,1,4]], bridges = {0:[2,4]})
+        self.assertEqual(knot, answer)
+
 class SimplifyRm1RecursivelyTestCase(unittest.TestCase):
     def testSimplifyRm1Recursively(self):
         knot = create_knot_from_pd_code([[1,5,2,4],[3,3,4,2],[7,10,8,1],[8,6,9,5],[9,6,10,7]])

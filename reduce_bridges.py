@@ -620,7 +620,12 @@ class Knot:
                 bridge_to_check = self.bridges[key]
                 if (bridge_to_check[0] == bridge_to_check[1]):
                     self.delete_bridge(key)
-                    logging.debug('The bridge with key ' + str(key) + ' has become a simple arc and been deleted.')
+                else:
+                    other_bridges = {other_key: value for other_key, value in self.bridges.items() if other_key != key}
+                    for (end, (other_key, other_ends)) in itertools.product(bridge_to_check, other_bridges.items()):
+                        if end in other_ends:
+                            self.merge_bridges(key, other_key)
+                            break
             logging.info('After simplifying the knot for RM1 at segment ' + str(duplicate_value) + ', the PD code is ' + str(self) + ' and the bridges are ' + str(self.bridges))
         return self
 
