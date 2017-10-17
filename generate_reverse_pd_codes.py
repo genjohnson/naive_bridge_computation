@@ -8,7 +8,7 @@ def generate_reverse_pd_codes(argv):
   """
   Switch between clockwise and counterclockwise traversal of segments for
   generation of PD codes.
-  This is useful when using between PD codes between Knotinfo and Sage.
+  This is useful when using PD codes between Knotinfo and Sage.
   """
   inputfile = ''
   try:
