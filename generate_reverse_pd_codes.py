@@ -35,7 +35,7 @@ def generate_reverse_pd_codes(argv):
     for crossing in pd_code:
       a,b,c,d = crossing
       sage_pd_code.append([a,d,c,b])
-    name = row['name'] + '_sage'
+    name = 'sage_' + row['name']
     writer.writerow([name, sage_pd_code])
 
   inputfile.close()
