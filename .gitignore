@@ -4,5 +4,5 @@ output*
 *.pyc
 pd_codes.csv
 analyzed_output/
-knot_trees*
+knot_trees/
 pd_codes/
