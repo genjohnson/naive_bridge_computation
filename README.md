@@ -5,9 +5,9 @@ Naïvely compute an upper bound on the bridge index of knots using Reidemeister 
 
 # How to use this program
 ## Input CSV files
-The program processes PD codes stored in CVS files with the headers “name” and “pd_notation”.
+The program processes planar diagram (PD) codes stored in CVS files with the headers “name” and “pd_notation”.
 
-The contents of an input CSV file, `pd_codes.csv`:
+For example, the contents of an input CSV file named `pd_codes.csv`:
 ```
 name,pd_notation
 3_1,"[[1,5,2,4],[3,1,4,6],[5,3,6,2]]"
@@ -15,6 +15,8 @@ name,pd_notation
 5_1,"[[2,8,3,7],[4,10,5,9],[6,2,7,1],[8,4,9,3],[10,6,1,5]]"
 5_2,"[[1,5,2,4],[3,9,4,8],[5,1,6,10],[7,3,8,2],[9,7,10,6]]"
 ```
+
+PD codes for all prime knots with 3-12 crossings (from [KnotInfo: Table of Knot Invariants](http://www.indiana.edu/~knotinfo/)) and a few unknots are provided in the folder `pd_codes`.
 
 ## Running the program
 ### The easy way
