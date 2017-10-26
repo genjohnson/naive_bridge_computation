@@ -5,3 +5,4 @@ output*
 pd_codes.csv
 analyzed_output/minimum_computed_bridge_indices.csv
 knot_trees*
+pd_codes/
